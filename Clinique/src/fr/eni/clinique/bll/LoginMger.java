@@ -6,7 +6,7 @@ public class LoginMger {
 	
 	public String verifPassword(String password){
 		String message ="";
-		if(password ==  {
+		if(password.equals("") ) {
 			message = "Connexion validée";
 		}else{
 			message = "Erreur mot de passe";
