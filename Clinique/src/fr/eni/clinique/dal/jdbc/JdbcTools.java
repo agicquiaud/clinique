@@ -22,7 +22,7 @@ public class JdbcTools {
 		urldb = Settings.getProperty("urldb");
 		userdb = Settings.getProperty("userdb");
 		passworddb = Settings.getProperty("passworddb");
-		System.out.println("urldb="+urldb+";userdb="+userdb+";passworddb="+passworddb);
+		System.out.println("urldb="+urldb+"userdb="+userdb+";passworddb="+passworddb);
 	}
 	
 	

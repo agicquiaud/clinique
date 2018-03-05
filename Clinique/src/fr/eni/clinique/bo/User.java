@@ -6,6 +6,16 @@ public class User {
 	private String login;
 	private String password;
 	private String type;
+	private Integer hide;
+
+	public User(Integer id, String login, String password, String type, Integer hide) {
+		super();
+		this.id = id;
+		this.login = login;
+		this.password = password;
+		this.type = type;
+		this.hide = hide;
+	}
 	
 	public User(Integer id, String login, String password, String type) {
 		super();
@@ -15,14 +25,22 @@ public class User {
 		this.type = type;
 	}
 	
-	public User(String login, String password, String type) {
+	public User(String login, String password, String type, Integer hide) {
 		super();
 		this.login = login;
 		this.password = password;
 		this.type = type;
+		this.hide = hide;
 	}
 
+	public Integer getHide() {
+		return hide;
+	}
 
+	public void setHide(Integer hide) {
+		this.hide = hide;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

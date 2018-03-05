@@ -1,7 +1,5 @@
 package fr.eni.clinique.dal;
 
-import fr.eni.clinique.bo.User;
-
 public class DAOFactory {
 	
 	public static UserDAO getUserDAO()  {
