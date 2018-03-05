@@ -19,6 +19,7 @@ public class ConnexionDAOJdbcImpl implements UserDAO{
 	private static final String sqlUpdate = "UPDATE Personnels SET Nom=?, MotPasse=?, Role=?, Archive=? WHERE CodePers=?";
 	private static final String sqlInsert = "INSERT INTO Personnels (Nom, MotPasse, Role, Archive) VALUES (?, ?, ?, ?)";
 	private static final String sqlDelete = "DELETE FROM Personnels WHERE CodePers=?";
+	private static final String sqlSelectByNom = "SELECT CodePers, Nom, MotPasse, Role, Archive FROM Personnels WHERE Nom=?";
 	
 	
 	public User selectById(int id) throws DALException {
@@ -198,5 +199,46 @@ public class ConnexionDAOJdbcImpl implements UserDAO{
 			}
 
 		}		
+	}
+	
+	public User selectByNom(String nom) throws DALException{
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		User user = null;
+		try {
+			cnx = JdbcTools.getConnection();
+			rqt = cnx.prepareStatement(sqlSelectByNom);
+			rqt.setString(1, nom);
+
+			rs = rqt.executeQuery();
+			if (rs.next()){
+
+					user = new User(rs.getInt("CodePers"),
+							rs.getString("Nom"),
+							rs.getString("MotPasse"),
+							rs.getString("Role"),
+							rs.getInt("Archive"));
+				}
+			
+		} catch (SQLException e) {
+			throw new DALException("selectByNom failed - Nom = " + nom , e);
+		} finally {
+			try {
+				if (rs != null){
+					rs.close();
+				}
+				if (rqt != null){
+					rqt.close();
+				}
+				if(cnx!=null){
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return user;
 	}
 }

@@ -19,4 +19,6 @@ public interface UserDAO {
 		
 		//Supprimer un article
 		public void delete(int id) throws DALException;
+		
+		public User selectByNom(String nom) throws DALException;
 }
