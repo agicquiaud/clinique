@@ -7,6 +7,8 @@ public class User {
 	private String password;
 	private String type;
 	
+	public User(){}
+	
 	public User(Integer id, String login, String password, String type) {
 		super();
 		this.id = id;
