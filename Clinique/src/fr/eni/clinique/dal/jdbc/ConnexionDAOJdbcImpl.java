@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,10 +14,10 @@ import fr.eni.clinique.dal.UserDAO;
 
 public class ConnexionDAOJdbcImpl implements UserDAO{
 	
-	private static final String sqlSelectById = "SELECT Nom, MotPasse, Role, Archive FROM Personnels WHERE CodePers=?";
-	private static final String sqlSelectAll = "SELECT Nom, MotPasse, Role, Archive FROM Personnels";
-	private static final String sqlUpdate = "UPDATE Personnels SET Nom=?, MotPasse=?, Role=? WHERE CodePers=?";
-	private static final String sqlInsert = "INSERT INTO Personnels (Nom, MotPasse, Role) VALUES (?, ?, ?)";
+	private static final String sqlSelectById = "SELECT CodePers, Nom, MotPasse, Role, Archive FROM Personnels WHERE CodePers=?";
+	private static final String sqlSelectAll = "SELECT CodePers, Nom, MotPasse, Role, Archive FROM Personnels";
+	private static final String sqlUpdate = "UPDATE Personnels SET Nom=?, MotPasse=?, Role=?, Archive=? WHERE CodePers=?";
+	private static final String sqlInsert = "INSERT INTO Personnels (Nom, MotPasse, Role, Archive) VALUES (?, ?, ?, ?)";
 	private static final String sqlDelete = "DELETE FROM Personnels WHERE CodePers=?";
 	
 	
@@ -38,7 +37,8 @@ public class ConnexionDAOJdbcImpl implements UserDAO{
 					user = new User(rs.getInt("CodePers"),
 							rs.getString("Nom"),
 							rs.getString("MotPasse"),
-							rs.getString("Role"));
+							rs.getString("Role"),
+							rs.getInt("Archive"));
 				}
 			
 		} catch (SQLException e) {
@@ -78,7 +78,8 @@ public class ConnexionDAOJdbcImpl implements UserDAO{
 					user = new User(rs.getInt("CodePers"),
 							rs.getString("Nom"),
 							rs.getString("MotPasse"),
-							rs.getString("Role"));
+							rs.getString("Role"),
+							rs.getInt("Archive"));
 				}
 				liste.add(user);
 			
@@ -113,6 +114,8 @@ public class ConnexionDAOJdbcImpl implements UserDAO{
 			rqt.setString(1, data.getLogin());
 			rqt.setString(2, data.getPassword());
 			rqt.setString(3, data.getType());
+			rqt.setInt(4, data.getHide());
+			rqt.setInt(5, data.getId());
 
 			rqt.executeUpdate();
 
@@ -129,9 +132,7 @@ public class ConnexionDAOJdbcImpl implements UserDAO{
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-
 		}
-
 	}
 
 	@Override
@@ -144,6 +145,7 @@ public class ConnexionDAOJdbcImpl implements UserDAO{
 			rqt.setString(1, data.getLogin());
 			rqt.setString(2, data.getPassword());
 			rqt.setString(3, data.getType());
+			rqt.setInt(4, data.getHide());
 
 			int nbRows = rqt.executeUpdate();
 			if(nbRows == 1){
@@ -176,8 +178,8 @@ public class ConnexionDAOJdbcImpl implements UserDAO{
 		PreparedStatement rqt = null;
 		try {		
 			cnx = JdbcTools.getConnection();
-			//l'intÃ©gritÃ© rÃ©fÃ©rentielle s'occupe d'invalider la suppression
-			//si l'article est rÃ©fÃ©rencÃ© dans une ligne de commande
+			//l'intégrité référentielle s'occupe d'invalider la suppression
+			//si l'article est référencé dans une ligne de commande
 			rqt = cnx.prepareStatement(sqlDelete);
 			rqt.setInt(1, id);
 			rqt.executeUpdate();

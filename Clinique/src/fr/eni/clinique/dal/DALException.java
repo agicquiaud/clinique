@@ -2,7 +2,7 @@ package fr.eni.clinique.dal;
 
 import java.sql.SQLException;
 
-public class DALException extends Exception {
+public class DALException extends SQLException {
 	
 	public DALException(){
 		super();
