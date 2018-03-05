@@ -17,6 +17,8 @@ public class User {
 		this.hide = hide;
 	}
 	
+	public User(){}
+	
 	public User(Integer id, String login, String password, String type) {
 		super();
 		this.id = id;
