@@ -16,10 +16,12 @@ public class TestBO {
 	public void set(){
 		p = new User();
 	}
+	
 	@After
 	public void tearDown(){
 		
 	}
+	
 	@Test
 	public void testCreerUsers() {
 		fail("Not yet implemented");
