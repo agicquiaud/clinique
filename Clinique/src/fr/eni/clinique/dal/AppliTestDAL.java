@@ -9,7 +9,7 @@ public class AppliTestDAL {
 	public static void main(String[] args) {
 
 		// Déclaration et instanciation de la DAO
-		UserDAO userDAO = new DAOFactory.getUserDAO();
+		UserDAO userDAO = new DAOFactory().getUserDAO();
 
 		// Instanciation du jeu d'essai
 		User u1 = new User("Edmond", "Bosapin", "adm", 1);
