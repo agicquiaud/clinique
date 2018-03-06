@@ -23,30 +23,20 @@ public class ControllerPersonnels {
 	public void ArchivePersonnel(User p) {
 		mger.archive(p);
 	}
-
-	public Object[][] getListe() {
-		liste = mger.getAll();
-		Integer i = 0;
-		Object[][] data = new Object[liste.size()][];
-		for (User user : liste) {
-			
-		}
-		return data;
-	}
 	
 	public Object[][] getList(){
 		liste = mger.getAll();
 		Integer i = 0;
-		Object[][] albator = new Object[liste.size()][3];
+		Object[][] tab = new Object[liste.size()][3];
 		String pass = "*****";
 		for (User user : liste) {
 			
-			albator[i][0] = user.getLogin();
-			albator[i][1] = pass;
-			albator[i][2] = user.getType();
+			tab[i][0] = user.getLogin();
+			tab[i][1] = pass;
+			tab[i][2] = user.getType();
 			i++;
 		}
-		return albator;
+		return tab;
 	}
 
 

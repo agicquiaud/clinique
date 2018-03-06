@@ -215,7 +215,7 @@ public class windowtest {
 		String[] entetes = {"Nom", "Role", "Mot de passe"};
 		Object[][] donnee = new ControllerPersonnels().getList();
 		
-		table = new JTable(controller.getListe(), entetes);
+		table = new JTable(controller.getList(), entetes);
 		table = new JTable(donnee, entetes);
 		GridBagConstraints gbc_table = new GridBagConstraints();
 		gbc_table.gridwidth = 3;
