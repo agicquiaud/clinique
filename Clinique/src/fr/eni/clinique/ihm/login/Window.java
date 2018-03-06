@@ -2,6 +2,8 @@ package fr.eni.clinique.ihm.login;
 
 import javax.swing.JFrame;
 import java.awt.GridBagLayout;
+import java.awt.Image;
+
 import javax.swing.JTextField;
 
 import fr.eni.clinique.bll.BLLException;
@@ -14,6 +16,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class Window {
@@ -48,6 +51,7 @@ public class Window {
 		gbc_panel_2.gridx = 2;
 		gbc_panel_2.gridy = 0;
 		frame.getContentPane().add(panel_2, gbc_panel_2);
+
 
 		JLabel lblNewLabel = new JLabel("Nom");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();

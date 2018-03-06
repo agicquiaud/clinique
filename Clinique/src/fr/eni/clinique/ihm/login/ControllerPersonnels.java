@@ -35,6 +35,21 @@ public class ControllerPersonnels {
 		return listereturn;		
 	}
 	
+	public String[] getList(){
+		liste = mger.getAll();
+		String str;
+		String pass = null;
+		for (User user : liste) {
+			str = user.getLogin();
+			for(int i = 0; i<user.getPassword().length(); i++){
+				pass = pass + "*";
+			}
+			str = str + pass;
+			str = str + user.getType();
+		}
+		return null;
+	}
+	
 	public void resetMotDePasse(User p){
 		mger.resetMotDePasse(p);
 	}
