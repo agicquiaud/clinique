@@ -1,37 +1,14 @@
 package fr.eni.clinique.bll;
 
 import fr.eni.clinique.bo.User;
-import fr.eni.clinique.dal.DALException;
-import fr.eni.clinique.dal.DAOFactory;
-import fr.eni.clinique.dal.UserDAO;
 
 public class AppliTestBLL {
-	
+
 	public static void main(String[] args) {
-		// Instanciation du jeu d'essai
-		UserDAO fact = DAOFactory.getUserDAO();
-		
-		User u1 = null;
-		try {
-			u1 = fact.selectById(12);
-		} catch (DALException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
-		User u2 = null;
-		try {
-			u2 = fact.selectById(13);
-		} catch (DALException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
-		User u3 = null;
-		try {
-			u3 = fact.selectById(14);
-		} catch (DALException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
+
+		User u1 = new User("Edmond", "Bosapin", "adm", 1);
+		User u2 = new User("Mélanie", "Malalanich", "vet", 1);
+		User u3 = new User("Elisabeth", "Abondieu", "sec", 1);
 
 		LoginMger mger;
 		try {

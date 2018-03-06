@@ -1,7 +1,5 @@
 package fr.eni.clinique.bll;
 
-import java.util.List;
-
 import fr.eni.clinique.bo.User;
 import fr.eni.clinique.dal.DALException;
 import fr.eni.clinique.dal.DAOFactory;
@@ -27,8 +25,8 @@ public class LoginMger {
 		return instance;
 	}
 
-	public void verifPassword(String password, String nom) throws BLLException {
-		
+	public String verifPassword(String password, String nom) throws BLLException {
+		String message = "";
 		try {
 			user = daoUser.selectByNom(nom);
 		} catch (DALException e) {
@@ -36,11 +34,11 @@ public class LoginMger {
 		}
 
 		if (password.equals(user.getPassword())) {
-
+			message = "Identifiant correct";
 		} else {
 			throw new BLLException("Identifiant incorrect.");
 		}
-
+		return message;
 	}
 
 }
