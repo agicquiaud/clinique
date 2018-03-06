@@ -10,7 +10,6 @@ public class ControllerPersonnels {
 
 	private static Personnels mger;
 	private List<User> liste;
-	private User user;
 
 	public ControllerPersonnels() {
 		mger = PersonnelsSingleton.getInstance();
@@ -26,15 +25,12 @@ public class ControllerPersonnels {
 	
 	public Object[][] getList(){
 		liste = mger.getAll();
-		Integer i = 0;
 		Object[][] tab = new Object[liste.size()][3];
 		String pass = "*****";
-		for (User user : liste) {
-			
-			tab[i][0] = user.getLogin();
+		for (int i = 0; i < liste.size(); i++){
+			tab[i][0] = liste.get(i).getLogin();
 			tab[i][1] = pass;
-			tab[i][2] = user.getType();
-			i++;
+			tab[i][2] = liste.get(i).getType();
 		}
 		return tab;
 	}

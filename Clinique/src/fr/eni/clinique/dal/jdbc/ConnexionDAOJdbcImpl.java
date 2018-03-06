@@ -20,13 +20,14 @@ public class ConnexionDAOJdbcImpl implements UserDAO{
 	private static final String sqlInsert = "INSERT INTO Personnels (Nom, MotPasse, Role, Archive) VALUES (?, ?, ?, ?)";
 	private static final String sqlDelete = "DELETE FROM Personnels WHERE CodePers=?";
 	private static final String sqlSelectByNom = "SELECT CodePers, Nom, MotPasse, Role, Archive FROM Personnels WHERE Nom=?";
-	
+	private List<User> liste;
 	
 	public User selectById(int id) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		ResultSet rs = null;
 		User user = null;
+		
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlSelectById);
@@ -68,7 +69,6 @@ public class ConnexionDAOJdbcImpl implements UserDAO{
 		Connection cnx = null;
 		Statement rqt = null;
 		ResultSet rs = null;
-		List<User> liste = new ArrayList<User>();
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.createStatement();
@@ -82,7 +82,8 @@ public class ConnexionDAOJdbcImpl implements UserDAO{
 							rs.getString("Role"),
 							rs.getInt("Archive"));
 				}
-				liste.add(user);
+			liste.add(user);
+				
 			
 		} catch (SQLException e) {
 			throw new DALException("selectAll failed - " , e);
