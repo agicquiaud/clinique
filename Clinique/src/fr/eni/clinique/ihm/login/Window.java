@@ -21,13 +21,13 @@ public class Window {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JLabel lblConnexion;
-	private Controller controller;
+	private ControllerLogin controller;
 
 	/**
 	 * Create the application.
 	 */
 	public Window() {
-		controller = new Controller();
+		controller = new ControllerLogin();
 		frame = new JFrame();
 		frame.setTitle("Connexion");
 		frame.setBounds(100, 100, 450, 300);

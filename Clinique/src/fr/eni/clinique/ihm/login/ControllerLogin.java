@@ -4,12 +4,11 @@ import fr.eni.clinique.bll.BLLException;
 import fr.eni.clinique.bll.LoginManager;
 import fr.eni.clinique.bll.LoginManagerSingleton;
 
-public class Controller {
-	
+public class ControllerLogin {
 	
 	private static LoginManager mger;
 	
-	public Controller(){
+	public ControllerLogin(){
 		
 		mger = LoginManagerSingleton.getInstance();
 	}
