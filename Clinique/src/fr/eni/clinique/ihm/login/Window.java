@@ -1,13 +1,11 @@
 package fr.eni.clinique.ihm.login;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.GridBagLayout;
 import javax.swing.JTextField;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import javax.swing.SwingConstants;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -17,30 +15,13 @@ public class Window {
 	private JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Window window = new Window();
-					window.frame.setVisible(true);
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
+	
 	/**
 	 * Create the application.
 	 */
 	public Window() {
-		initialize();
-		
+		initialize();		
 	}
 
 	/**
@@ -51,6 +32,7 @@ public class Window {
 		frame.setTitle("Connexion");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{34, 25, 112, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 41, 0, 0, 0, 0, 0, 0};
