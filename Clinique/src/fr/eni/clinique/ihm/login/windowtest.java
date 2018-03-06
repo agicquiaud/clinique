@@ -213,8 +213,10 @@ public class windowtest {
 		gbc_panel_4.gridy = 1;
 		frame.getContentPane().add(panel_4, gbc_panel_4);
 		String[] entetes = {"Nom", "Role", "Mot de passe"};
+		Object[][] donnee = new ControllerPersonnels().getList();
 		
 		table = new JTable(controller.getListe(), entetes);
+		table = new JTable(donnee, entetes);
 		GridBagConstraints gbc_table = new GridBagConstraints();
 		gbc_table.gridwidth = 3;
 		gbc_table.gridheight = 6;
