@@ -1,20 +1,17 @@
 package fr.eni.clinique.ihm.login;
 
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import java.awt.GridBagLayout;
-import javax.swing.JTextField;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
-import javax.swing.SwingConstants;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.JList;
+import javax.swing.JTextField;
 
 public class windowtest {
 
@@ -27,6 +24,7 @@ public class windowtest {
 	private JButton btnValider;
 	private JTextField textField_5;
 	private JTable table;
+	private ControllerPersonnels controller;
 
 	/**
 	 * Launch the application.
@@ -216,7 +214,7 @@ public class windowtest {
 		frame.getContentPane().add(panel_4, gbc_panel_4);
 		String[] entetes = {"Nom", "Role", "Mot de passe"};
 		
-		table = new JTable();
+		table = new JTable(controller.getListe(), entetes);
 		GridBagConstraints gbc_table = new GridBagConstraints();
 		gbc_table.gridwidth = 3;
 		gbc_table.gridheight = 6;

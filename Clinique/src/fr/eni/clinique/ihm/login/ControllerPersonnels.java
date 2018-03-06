@@ -1,4 +1,5 @@
 package fr.eni.clinique.ihm.login;
+
 import java.util.List;
 
 import fr.eni.clinique.bll.Personnels;
@@ -9,6 +10,7 @@ public class ControllerPersonnels {
 
 	private static Personnels mger;
 	private List<User> liste;
+	private User user;
 
 	public ControllerPersonnels() {
 		mger = PersonnelsSingleton.getInstance();
@@ -24,34 +26,15 @@ public class ControllerPersonnels {
 
 	public Object[][] getListe() {
 		liste = mger.getAll();
-		Object[][] data = new Object[liste.size()][((List<User>) liste.get(0)).size()];
-		for (int i = 0; i < liste.size(); i++) {
-			data[i] = ((List<User>) liste.get(i)).toArray();
+		Integer i = 0;
+		Object[][] data = new Object[liste.size()][];
+		for (User user : liste) {
+			
 		}
 		return data;
 	}
-<<<<<<< HEAD
-	
-	public String[] getList(){
-		liste = mger.getAll();
-		String str;
-		String pass = null;
-		for (User user : liste) {
-			str = user.getLogin();
-			for(int i = 0; i<user.getPassword().length(); i++){
-				pass = pass + "*";
-			}
-			str = str + pass;
-			str = str + user.getType();
-		}
-		return null;
-	}
-	
-	public void resetMotDePasse(User p){
-=======
 
 	public void resetMotDePasse(User p) {
->>>>>>> branch 'master' of https://github.com/agicquiaud/clinique.git
 		mger.resetMotDePasse(p);
 	}
 
