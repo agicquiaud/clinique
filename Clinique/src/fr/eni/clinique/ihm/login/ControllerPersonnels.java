@@ -30,29 +30,24 @@ public class ControllerPersonnels {
 		}
 		return data;
 	}
-<<<<<<< HEAD
+
 	
-	public String[] getList(){
+	public Object[][] getList(){
 		liste = mger.getAll();
-		String str;
-		String pass = null;
+		Integer i = 0;
+		Object[][] albator = new Object[liste.size()][3];
+		String pass = "*****";
 		for (User user : liste) {
-			str = user.getLogin();
-			for(int i = 0; i<user.getPassword().length(); i++){
-				pass = pass + "*";
-			}
-			str = str + pass;
-			str = str + user.getType();
+			
+			albator[i][0] = user.getLogin();
+			albator[i][1] = pass;
+			albator[i][2] = user.getType();
+			i++;
 		}
-		return null;
+		return albator;
 	}
-	
-	public void resetMotDePasse(User p){
-=======
 
 	public void resetMotDePasse(User p) {
->>>>>>> branch 'master' of https://github.com/agicquiaud/clinique.git
 		mger.resetMotDePasse(p);
 	}
-
 }
