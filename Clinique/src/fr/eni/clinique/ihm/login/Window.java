@@ -114,6 +114,9 @@ public class Window {
 		gbc_panel.gridx = 2;
 		gbc_panel.gridy = 6;
 		frame.getContentPane().add(panel, gbc_panel);
+		
+		JLabel lblConnexion = new JLabel();
+		panel.add(lblConnexion);
 	}
 	
 	  class textFieldListenerNom implements ActionListener{
@@ -133,9 +136,11 @@ public class Window {
 	  class buttonListener implements ActionListener{
 		  String nom ="";
 		    public void actionPerformed(ActionEvent e) {
-		    	nom = textField.getText();
-		      System.out.println(nom);          
+		    	lblConnexion.setText(controller.verif(textField.getText(), textField_1.getText()));
+          
 		    }
 		  }
+	  
+	  
 
 }
