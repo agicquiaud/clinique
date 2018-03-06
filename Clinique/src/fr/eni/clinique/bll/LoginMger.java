@@ -7,6 +7,7 @@ import fr.eni.clinique.dal.DALException;
 import fr.eni.clinique.dal.UserDAO;
 
 public class LoginMger {
+
 	// fonction pour savoir si le mdp est bon ou pas
 	// Et ça va retourner la fonction de la DAL
 	private UserDAO daoUser;
@@ -19,6 +20,7 @@ public class LoginMger {
 			user = daoUser.selectByNom(nom);
 		} catch (DALException e) {
 			e.printStackTrace();
+
 		}
 		
 		if (password == user.getPassword()) {
