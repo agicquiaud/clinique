@@ -6,6 +6,9 @@ import java.awt.GridBagLayout;
 import javax.swing.JTextField;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -56,6 +59,7 @@ public class Window {
 		gbc_lblNewLabel.gridy = 1;
 		frame.getContentPane().add(lblNewLabel, gbc_lblNewLabel);
 		
+		
 		textField = new JTextField();
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.insets = new Insets(0, 0, 5, 5);
@@ -64,6 +68,8 @@ public class Window {
 		gbc_textField.gridy = 1;
 		frame.getContentPane().add(textField, gbc_textField);
 		textField.setColumns(10);
+		textField.addActionListener(new textFieldListenerNom());
+
 		
 		JLabel lblMotDePasse = new JLabel("Mot de passe");
 		GridBagConstraints gbc_lblMotDePasse = new GridBagConstraints();
@@ -73,6 +79,7 @@ public class Window {
 		gbc_lblMotDePasse.gridy = 3;
 		frame.getContentPane().add(lblMotDePasse, gbc_lblMotDePasse);
 		
+		
 		textField_1 = new JTextField();
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
 		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
@@ -81,6 +88,7 @@ public class Window {
 		gbc_textField_1.gridy = 3;
 		frame.getContentPane().add(textField_1, gbc_textField_1);
 		textField_1.setColumns(10);
+		textField_1.addActionListener(new textFieldListenerMotDePasse());
 		
 		JPanel panel_1 = new JPanel();
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
@@ -97,6 +105,7 @@ public class Window {
 		gbc_btnValider.gridx = 2;
 		gbc_btnValider.gridy = 5;
 		frame.getContentPane().add(btnValider, gbc_btnValider);
+		btnValider.addActionListener(new buttonListener());
 		
 		JPanel panel = new JPanel();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
@@ -106,5 +115,27 @@ public class Window {
 		gbc_panel.gridy = 6;
 		frame.getContentPane().add(panel, gbc_panel);
 	}
+	
+	  class textFieldListenerNom implements ActionListener{
+
+		    public void actionPerformed(ActionEvent e) {
+         
+		    }
+		  }
+	  
+	  class textFieldListenerMotDePasse implements ActionListener{
+
+		    public void actionPerformed(ActionEvent e) {
+       
+		    }
+		  }
+	  
+	  class buttonListener implements ActionListener{
+		  String nom ="";
+		    public void actionPerformed(ActionEvent e) {
+		    	nom = textField.getText();
+		      System.out.println(nom);          
+		    }
+		  }
 
 }
