@@ -18,6 +18,6 @@ public class Controller {
 	
 	public String verif(String nom, String mdp){
 		
-		
+		return null;
 	}
 }
