@@ -30,14 +30,19 @@ public class LoginMger {
 		try {
 			user = daoUser.selectByNom(nom);
 		} catch (DALException e) {
+			user = null;
 			e.printStackTrace();
 		}
-
-		if (password.equals(user.getPassword())) {
-			message = "Identifiant correct";
-		} else {
-			throw new BLLException("Identifiant incorrect.");
+		if(user != null){
+			if (password.equals(user.getPassword())) {
+				message = "Identifiant correct.";
+			} else {
+				message = "Identifiant incorrect.";
+			}
+		}else{
+			message = "Identifiant incorrect.";
 		}
+		
 		return message;
 	}
 

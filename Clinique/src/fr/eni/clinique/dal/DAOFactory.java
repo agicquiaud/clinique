@@ -1,11 +1,12 @@
 package fr.eni.clinique.dal;
 
+
 public class DAOFactory {
 	
 	public static UserDAO getUserDAO()  {
-		UserDAO user=null;
+		UserDAO userDAO=null;
 		try {
-			user =(UserDAO) Class.forName("fr.eni.clinique.dal.jdbc.ConnexionDAOJdbcImpl").newInstance();
+			userDAO=(UserDAO ) Class.forName("fr.eni.clinique.dal.jdbc.ConnexionDAOJdbcImpl").newInstance();
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -16,6 +17,6 @@ public class DAOFactory {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return user; 
+		return userDAO; 
 	}
 }

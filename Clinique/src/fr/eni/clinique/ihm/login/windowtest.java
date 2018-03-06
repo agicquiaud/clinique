@@ -115,11 +115,15 @@ public class windowtest {
 		
 		JPanel panel = new JPanel();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.anchor = GridBagConstraints.WEST;
 		gbc_panel.insets = new Insets(0, 0, 0, 5);
-		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.fill = GridBagConstraints.VERTICAL;
 		gbc_panel.gridx = 2;
 		gbc_panel.gridy = 6;
 		frame.getContentPane().add(panel, gbc_panel);
+		
+		JLabel lblConnexionOk = new JLabel("Connexion ok !");
+		panel.add(lblConnexionOk);
 	}
 
 }
