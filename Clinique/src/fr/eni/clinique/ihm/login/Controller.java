@@ -14,9 +14,13 @@ public class Controller {
 		mger = LoginManagerSingleton.getInstance();
 	}
 	
-	public String verif(String nom, String mdp){
+	public String verif(String nom, char[] cs){
 		String message = "";
+		String mdp = "";
 		try {
+			for (char c : cs) {
+				mdp = mdp + c;
+			}
 			message = mger.verifPassword(nom, mdp);
 		} catch (BLLException e) {
 			e.printStackTrace();

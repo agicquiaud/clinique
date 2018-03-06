@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
@@ -19,7 +20,7 @@ public class Window {
 
 	private JFrame frame;
 	private JTextField textField;
-	private JTextField textField_1;
+	private JPasswordField textField_1;
 	private JLabel lblConnexion;
 	private Controller controller;
 
@@ -73,7 +74,7 @@ public class Window {
 		gbc_lblMotDePasse.gridy = 3;
 		frame.getContentPane().add(lblMotDePasse, gbc_lblMotDePasse);
 
-		textField_1 = new JTextField();
+		textField_1 = new JPasswordField();
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
 		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
@@ -112,7 +113,7 @@ public class Window {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				lblConnexion.setText(controller.verif(textField.getText(), textField_1.getText()));
+				lblConnexion.setText(controller.verif(textField.getText(), textField_1.getPassword()));
 
 			}
 		});
