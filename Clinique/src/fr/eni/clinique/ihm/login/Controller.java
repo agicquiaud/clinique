@@ -4,18 +4,19 @@ import fr.eni.clinique.bll.BLLException;
 import fr.eni.clinique.bll.LoginManager;
 import fr.eni.clinique.bll.LoginManagerSingleton;
 
-public class ControllerLogin {
+public class Controller {
+	
 	
 	private static LoginManager mger;
 	
-	public ControllerLogin(){
+	public Controller(){
 		
 		mger = LoginManagerSingleton.getInstance();
 	}
 	
 	public String verif(String nom, char[] cs){
 		String message = "";
-		String mdp = null;
+		String mdp = "";
 		try {
 			for (char c : cs) {
 				mdp = mdp + c;
