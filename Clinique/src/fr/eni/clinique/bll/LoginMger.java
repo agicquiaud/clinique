@@ -4,6 +4,7 @@ import java.util.List;
 
 import fr.eni.clinique.bo.User;
 import fr.eni.clinique.dal.DALException;
+import fr.eni.clinique.dal.DAOFactory;
 import fr.eni.clinique.dal.UserDAO;
 
 public class LoginMger {
@@ -12,24 +13,34 @@ public class LoginMger {
 	// Et ça va retourner la fonction de la DAL
 	private UserDAO daoUser;
 	private User user;
+	private static LoginMger instance = null;
 
-	public String verifPassword(String password, String nom) {
-		String message = "";
+	private LoginMger() throws BLLException {
+		// Instancier le Data Access Object
+		daoUser = DAOFactory.getUserDAO();
+	}
+
+	public static synchronized LoginMger getInstance() throws BLLException {
+		if (instance == null) {
+			instance = new LoginMger();
+		}
+		return instance;
+	}
+
+	public void verifPassword(String password, String nom) throws BLLException {
 		
 		try {
 			user = daoUser.selectByNom(nom);
 		} catch (DALException e) {
 			e.printStackTrace();
-
 		}
-		
-		if (password == user.getPassword()) {
-			message = "Connexion validée";
+
+		if (password.equals(user.getPassword())) {
+
 		} else {
-			message = "Erreur d'identifiant";
+			throw new BLLException("Identifiant incorrect.");
 		}
 
-		return message;
 	}
 
 }
