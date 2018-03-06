@@ -14,8 +14,13 @@ public class Controller {
 		mger = LoginManagerSingleton.getInstance();
 	}
 	
-	public static String verif(String nom, String mdp) throws BLLException{
-		
-		return mger.verifPassword(nom, mdp);
+	public String verif(String nom, String mdp){
+		String message = "";
+		try {
+			message = mger.verifPassword(nom, mdp);
+		} catch (BLLException e) {
+			e.printStackTrace();
+		}
+		return message;
 	}
 }

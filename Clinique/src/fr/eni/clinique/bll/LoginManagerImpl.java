@@ -12,7 +12,7 @@ public class LoginManagerImpl implements LoginManager{
 	private UserDAO daoUser = new DAOFactory().getUserDAO();
 	private User user;
 
-	public String verifPassword(String password, String nom) throws BLLException {
+	public String verifPassword(String nom, String password) throws BLLException {
 		String message = "";
 		try {
 			user = daoUser.selectByNom(nom);

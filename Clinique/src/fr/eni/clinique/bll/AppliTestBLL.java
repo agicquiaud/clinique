@@ -14,14 +14,16 @@ public class AppliTestBLL {
 
 		// Verif mdp
 		try {
-			mger.verifPassword(u1.getLogin(), u1.getPassword());
+			System.out.println(mger.verifPassword(u1.getLogin(), u1.getPassword()));
 
-			mger.verifPassword(u2.getLogin(), u2.getPassword());
+			System.out.println(mger.verifPassword(u2.getLogin(), u2.getPassword()));
 
-			mger.verifPassword(u3.getLogin(), u3.getPassword());
+			System.out.println(mger.verifPassword(u3.getLogin(), u3.getPassword()));
 
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
+		
+		
 	}
 }
