@@ -4,6 +4,9 @@ package fr.eni.clinique.ihm.login;
 import javax.swing.JFrame;
 import java.awt.GridBagLayout;
 import javax.swing.JTextField;
+
+import fr.eni.clinique.bll.BLLException;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -18,6 +21,8 @@ public class Window {
 	private JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JLabel lblConnexion;
+	
 	
 	
 	/**
@@ -117,6 +122,7 @@ public class Window {
 		
 		JLabel lblConnexion = new JLabel();
 		panel.add(lblConnexion);
+		lblConnexion.setVisible(false);
 	}
 	
 	  class textFieldListenerNom implements ActionListener{
@@ -134,9 +140,15 @@ public class Window {
 		  }
 	  
 	  class buttonListener implements ActionListener{
-		  String nom ="";
 		    public void actionPerformed(ActionEvent e) {
-		    	lblConnexion.setText(controller.verif(textField.getText(), textField_1.getText()));
+
+		    	try {
+					lblConnexion.setText(Controller.verif(textField.getText(), textField_1.getText()));
+					lblConnexion.setVisible(true);
+				} catch (BLLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
           
 		    }
 		  }
