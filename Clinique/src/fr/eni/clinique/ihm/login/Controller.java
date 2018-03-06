@@ -1,23 +1,21 @@
 package fr.eni.clinique.ihm.login;
 
 import fr.eni.clinique.bll.BLLException;
-import fr.eni.clinique.bll.LoginManagerImpl;
+import fr.eni.clinique.bll.LoginManager;
+import fr.eni.clinique.bll.LoginManagerSingleton;
 
 public class Controller {
 	
-	private LoginManagerImpl mger;
+	
+	private static LoginManager mger;
 	
 	public Controller(){
 		
-		try {
-			mger = LoginManagerImpl.getInstance();
-		} catch (BLLException e1) {
-			e1.getStackTrace();
-		}
+		mger = LoginManagerSingleton.getInstance();
 	}
 	
-	public String verif(String nom, String mdp){
+	public static String verif(String nom, String mdp) throws BLLException{
 		
-		return null;
+		return mger.verifPassword(nom, mdp);
 	}
 }
