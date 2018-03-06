@@ -2,10 +2,11 @@ package fr.eni.clinique.bll;
 
 import fr.eni.clinique.bo.User;
 import fr.eni.clinique.dal.DALException;
-import fr.eni.clinique.dal.jdbc.ConnexionDAOJdbcImpl;
+import fr.eni.clinique.dal.DAOFactory;
+import fr.eni.clinique.dal.UserDAO;
 
 public class Personnels implements IPersonnels{
-	ConnexionDAOJdbcImpl con = new ConnexionDAOJdbcImpl();
+	UserDAO con = new DAOFactory().getUserDAO();
 	
 	@Override
 	public void add(User p) {
