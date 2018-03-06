@@ -10,12 +10,11 @@ public class AppliTestBLL {
 		User u2 = new User("Mélanie", "Malalanich", "vet", 1);
 		User u3 = new User("Elisabeth", "Abondieu", "sec", 1);
 
-		LoginMger mger;
+		LoginMger mger = null;
 		try {
 			mger = LoginMger.getInstance();
 		} catch (BLLException e1) {
-			e1.printStackTrace();
-			return;
+			System.out.println("je suis la");
 		}
 
 		// Verif mdp

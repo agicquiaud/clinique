@@ -34,9 +34,9 @@ public class LoginMger {
 		}
 
 		if (password.equals(user.getPassword())) {
-			message = "Identifiant correct";
+			message = "Identifiant correct.";
 		} else {
-			throw new BLLException("Identifiant incorrect.");
+			message = "Identifiant incorrect.";
 		}
 		return message;
 	}
