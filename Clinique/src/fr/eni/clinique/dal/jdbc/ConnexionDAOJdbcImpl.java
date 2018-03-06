@@ -12,7 +12,7 @@ import fr.eni.clinique.bo.User;
 import fr.eni.clinique.dal.DALException;
 import fr.eni.clinique.dal.UserDAO;
 
-class ConnexionDAOJdbcImpl implements UserDAO{
+public class ConnexionDAOJdbcImpl implements UserDAO{
 	
 	private static final String sqlSelectById = "SELECT CodePers, Nom, MotPasse, Role, Archive FROM Personnels WHERE CodePers=?";
 	private static final String sqlSelectAll = "SELECT CodePers, Nom, MotPasse, Role, Archive FROM Personnels";

@@ -1,16 +1,16 @@
 package fr.eni.clinique.ihm.login;
 
 import fr.eni.clinique.bll.BLLException;
-import fr.eni.clinique.bll.LoginMger;
+import fr.eni.clinique.bll.LoginManagerImpl;
 
 public class Controller {
 	
-	private LoginMger mger;
+	private LoginManagerImpl mger;
 	
 	public Controller(){
 		
 		try {
-			mger = LoginMger.getInstance();
+			mger = LoginManagerImpl.getInstance();
 		} catch (BLLException e1) {
 			e1.getStackTrace();
 		}

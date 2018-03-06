@@ -1,9 +1,11 @@
 package fr.eni.clinique.dal;
 
+import fr.eni.clinique.dal.jdbc.ConnexionDAOJdbcImpl;
+
 
 public class DAOFactory {
 	
-	public static UserDAO getUserDAO()  {
+	public UserDAO getUserDAO()  {
 		UserDAO userDAO=null;
 		try {
 			userDAO=(UserDAO ) Class.forName("fr.eni.clinique.dal.jdbc.ConnexionDAOJdbcImpl").newInstance();
