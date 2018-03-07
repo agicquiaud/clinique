@@ -19,18 +19,23 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import fr.eni.clinique.bo.User;
+import javax.swing.JComboBox;
+
 
 public class WindowGestionPersonnels {
 
 	private JFrame frameGestionPersonnel;
 	private JTable table;
 	private JDialog AjoutPersonnel = new JDialog();
+	private ControllerPersonnels controller;
 
 
 	/**
 	 * Create the application.
 	 */
 	public WindowGestionPersonnels() {
+		controller = new ControllerPersonnels();
 		frameGestionPersonnel = new JFrame();
 		frameGestionPersonnel.setTitle("Gestion Personnel");
 		frameGestionPersonnel.setBounds(100, 100, 450, 300);
@@ -136,12 +141,12 @@ public class WindowGestionPersonnels {
 		AjoutPersonnel.getContentPane().add(textField_6, gbc_textField_6);
 		textField_6.setColumns(10);
 		
-		JLabel lblNom = new JLabel("Type");
-		GridBagConstraints gbc_lblNom = new GridBagConstraints();
-		gbc_lblNom.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNom.gridx = 1;
-		gbc_lblNom.gridy = 5;
-		AjoutPersonnel.getContentPane().add(lblNom, gbc_lblNom);
+		JLabel lblMotDePasse = new JLabel("Mot de passe");
+		GridBagConstraints gbc_lblMotDePasse = new GridBagConstraints();
+		gbc_lblMotDePasse.insets = new Insets(0, 0, 5, 5);
+		gbc_lblMotDePasse.gridx = 1;
+		gbc_lblMotDePasse.gridy = 5;
+		AjoutPersonnel.getContentPane().add(lblMotDePasse, gbc_lblMotDePasse);
 		
 		JTextField textField_7 = new JTextField();
 		GridBagConstraints gbc_textField_7 = new GridBagConstraints();
@@ -152,21 +157,22 @@ public class WindowGestionPersonnels {
 		AjoutPersonnel.getContentPane().add(textField_7, gbc_textField_7);
 		textField_7.setColumns(10);
 		
-		JLabel lblMotDePasse = new JLabel("Mot de passe");
-		GridBagConstraints gbc_lblMotDePasse = new GridBagConstraints();
-		gbc_lblMotDePasse.insets = new Insets(0, 0, 0, 5);
-		gbc_lblMotDePasse.gridx = 1;
-		gbc_lblMotDePasse.gridy = 7;
-		AjoutPersonnel.getContentPane().add(lblMotDePasse, gbc_lblMotDePasse);
+		JLabel lblNom = new JLabel("Type");
+		GridBagConstraints gbc_lblNom = new GridBagConstraints();
+		gbc_lblNom.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNom.gridx = 1;
+		gbc_lblNom.gridy = 7;
+		AjoutPersonnel.getContentPane().add(lblNom, gbc_lblNom);
 		
-		JTextField textField_8 = new JTextField();
-		GridBagConstraints gbc_textField_8 = new GridBagConstraints();
-		gbc_textField_8.insets = new Insets(0, 0, 0, 5);
-		gbc_textField_8.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_8.gridx = 3;
-		gbc_textField_8.gridy = 7;
-		AjoutPersonnel.getContentPane().add(textField_8, gbc_textField_8);
-		textField_8.setColumns(10);
+		String[] role = {"", "adm", "vet", "sec"};
+		JComboBox comboBox = new JComboBox(role);
+		comboBox.setSelectedIndex(0);
+		GridBagConstraints gbc_comboBox = new GridBagConstraints();
+		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox.gridx = 3;
+		gbc_comboBox.gridy = 7;
+		AjoutPersonnel.getContentPane().add(comboBox, gbc_comboBox);
 		
 		JButton btnValiderModalAjout = new JButton("VALIDER");
 		GridBagConstraints gbc_btnValider_1 = new GridBagConstraints();
@@ -188,8 +194,7 @@ public class WindowGestionPersonnels {
 		btnValiderModalAjout.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-			
+				controller.addPersonnel(new User(textField_6.getText(), textField_7.getText(), (String)comboBox.getSelectedItem(), false));			
 			}
 		});
 }
