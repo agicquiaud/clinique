@@ -3,12 +3,18 @@ package fr.eni.clinique.ihm.login;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ContainerEvent;
+import java.awt.event.ContainerListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class WindowGestionPersonnels {
 
@@ -26,7 +32,7 @@ public class WindowGestionPersonnels {
 		frameGestionPersonnel.setVisible(true);
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 25, 112, 0, 0 };
+		gridBagLayout.columnWidths = new int[] { 25, 112, 146, 0 };
 		gridBagLayout.rowHeights = new int[] { 80, 10, 155, 0 };
 		gridBagLayout.columnWeights = new double[] { 1.0, 1.0, 0.0, Double.MIN_VALUE };
 		gridBagLayout.rowWeights = new double[] { 1.0, 0.0, 0.0, Double.MIN_VALUE };
@@ -67,14 +73,24 @@ public class WindowGestionPersonnels {
 		
 		table = new JTable(donnee, entetes);
 		scrollPane.setViewportView(table);
-		
-		JLabel lblNewLabelGP = new JLabel("New label");
+		JLabel lblNewLabelGP = new JLabel("");
 		GridBagConstraints gbc_lblNewLabelGP = new GridBagConstraints();
 		gbc_lblNewLabelGP.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabelGP.gridwidth = 3;
 		gbc_lblNewLabelGP.gridx = 0;
 		gbc_lblNewLabelGP.gridy = 3;
 		frameGestionPersonnel.getContentPane().add(lblNewLabelGP, gbc_lblNewLabelGP);
+		
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				lblNewLabelGP.setText(table.getValueAt(table.getSelectedRow(), table.getSelectedColumn()).toString());		
+			}
+		});
+		
+		
 	}
+	
+	
 
 }
