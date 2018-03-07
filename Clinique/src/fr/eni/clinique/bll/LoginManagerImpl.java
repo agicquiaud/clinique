@@ -13,23 +13,17 @@ public class LoginManagerImpl implements LoginManager{
 	private User user;
 
 	public String verifPassword(String nom, String password) throws BLLException {
-		String message = "";
+		String message = "Identifiant incorrect.";
 		try {
 			user = daoUser.selectByNom(nom);
 		} catch (DALException e) {
 			user = null;
-			e.printStackTrace();
+			throw new BLLException("Erreur BLL - " + user);			
 		}
-		if(user != null){
-			if (password.equals(user.getPassword())) {
+			if (password.equalsIgnoreCase(user.getPassword())) {
 				message = "Identifiant correct.";
-			} else {
-				message = "Identifiant incorrect.";
 			}
-		}else{
-			message = "Identifiant incorrect.";
-		}
-		
+		System.out.println(message);
 		return message;
 	}
 
