@@ -240,7 +240,7 @@ public class WindowGestionPersonnels {
 			
 			@Override
 			public void tableChanged(TableModelEvent e) {
-
+ 
 			}
 		});
 		
