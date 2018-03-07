@@ -20,9 +20,14 @@ public class LoginManagerImpl implements LoginManager{
 			user = null;
 			throw new BLLException("Erreur BLL - " + user);			
 		}
+		if (user == null) {
+			message = false;
+		}else{
 			if (password.equalsIgnoreCase(user.getPassword())) {
 				message = true;
 			}
+		}
+			
 		System.out.println(message);
 		return message;
 	}
