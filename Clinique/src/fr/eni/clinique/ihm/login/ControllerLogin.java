@@ -25,7 +25,7 @@ public class ControllerLogin {
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
-		if (message.equals("Identifiant correct.")) {
+		if (message) {
 			WindowGestionPersonnels frame = new WindowGestionPersonnels();
 		}
 		return message;

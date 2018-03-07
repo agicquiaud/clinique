@@ -130,7 +130,7 @@ public class WindowLogin {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				if(controller.verif(textField.getText(), textField_1.getPassword()).equals("Identifiant correct.")){
+				if(controller.verif(textField.getText(), textField_1.getPassword())){
 					frame.setVisible(false);
 				}else{
 					lblConnexion.setText("Identifiant incorrect.");
