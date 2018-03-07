@@ -6,27 +6,26 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-
 import javax.swing.JTextField;
-
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import fr.eni.clinique.bo.User;
-import javax.swing.JComboBox;
-
 
 public class WindowGestionPersonnels {
 
 	private JFrame frameGestionPersonnel;
 	private JTable table;
+	private JLabel monLabel;
 	private JDialog AjoutPersonnel = new JDialog();
 	private ControllerPersonnels controller;
 
@@ -41,7 +40,8 @@ public class WindowGestionPersonnels {
 		frameGestionPersonnel.setBounds(100, 100, 450, 300);
 		frameGestionPersonnel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frameGestionPersonnel.setVisible(true);
-		
+		frameGestionPersonnel.setContentPane(new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg")));
+        
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 25, 112, 146, 0 };
 		gridBagLayout.rowHeights = new int[] { 80, 10, 155, 0 };
@@ -106,22 +106,21 @@ public class WindowGestionPersonnels {
 				lblNewLabelGP.setText(table.getValueAt(table.getSelectedRow(), 0).toString());		
 			}
 		});
-		
-		
-		
+        
 //		Modal --------------------------------------------------------------------------------------
 	
 		GridBagLayout gridBagLayoutModal = new GridBagLayout();
-		gridBagLayoutModal.columnWidths = new int[]{50, 0, 0, 140, 100, 0};
+		gridBagLayoutModal.columnWidths = new int[]{50, 0, 0, 140, 0, 100, 0};
 		gridBagLayoutModal.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayoutModal.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gridBagLayoutModal.columnWeights = new double[]{0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayoutModal.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		AjoutPersonnel.getContentPane().setLayout(gridBagLayoutModal);
 		
 		JLabel lblAjouterUnePersonne = new JLabel("AJOUTER UNE PERSONNE");
 		GridBagConstraints gbc_lblAjouterUnePersonne = new GridBagConstraints();
+		gbc_lblAjouterUnePersonne.gridwidth = 2;
 		gbc_lblAjouterUnePersonne.insets = new Insets(0, 0, 5, 5);
-		gbc_lblAjouterUnePersonne.gridx = 3;
+		gbc_lblAjouterUnePersonne.gridx = 2;
 		gbc_lblAjouterUnePersonne.gridy = 1;
 		AjoutPersonnel.getContentPane().add(lblAjouterUnePersonne, gbc_lblAjouterUnePersonne);
 		
@@ -176,7 +175,7 @@ public class WindowGestionPersonnels {
 		
 		JButton btnValiderModalAjout = new JButton("VALIDER");
 		GridBagConstraints gbc_btnValider_1 = new GridBagConstraints();
-		gbc_btnValider_1.gridx = 4;
+		gbc_btnValider_1.gridx = 5;
 		gbc_btnValider_1.gridy = 8;
 		AjoutPersonnel.getContentPane().add(btnValiderModalAjout, gbc_btnValider_1);
 		
