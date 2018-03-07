@@ -120,7 +120,7 @@ public class WindowGestionPersonnels {
 		gbc_lblAjouterUnePersonne.gridy = 1;
 		AjoutPersonnel.getContentPane().add(lblAjouterUnePersonne, gbc_lblAjouterUnePersonne);
 		
-		JLabel lblPrenom = new JLabel("Prenom");
+		JLabel lblPrenom = new JLabel("Nom");
 		GridBagConstraints gbc_lblPrenom = new GridBagConstraints();
 		gbc_lblPrenom.insets = new Insets(0, 0, 5, 5);
 		gbc_lblPrenom.gridx = 1;
@@ -136,7 +136,7 @@ public class WindowGestionPersonnels {
 		AjoutPersonnel.getContentPane().add(textField_6, gbc_textField_6);
 		textField_6.setColumns(10);
 		
-		JLabel lblNom = new JLabel("Nom");
+		JLabel lblNom = new JLabel("Type");
 		GridBagConstraints gbc_lblNom = new GridBagConstraints();
 		gbc_lblNom.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNom.gridx = 1;
