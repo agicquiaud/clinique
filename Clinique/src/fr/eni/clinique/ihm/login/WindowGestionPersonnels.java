@@ -39,8 +39,9 @@ public class WindowGestionPersonnels {
 		frameGestionPersonnel.setBounds(100, 100, 450, 300);
 		frameGestionPersonnel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frameGestionPersonnel.setVisible(true);
-		frameGestionPersonnel.setContentPane(new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg")));
-        
+		JLabel label = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		frameGestionPersonnel.setContentPane(label);
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 25, 112, 146, 0 };
 		gridBagLayout.rowHeights = new int[] { 80, 10, 155, 0 };
