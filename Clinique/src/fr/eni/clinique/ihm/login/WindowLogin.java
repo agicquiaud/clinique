@@ -25,7 +25,7 @@ import javax.swing.JButton;
 public class WindowLogin {
 
 	private JFrame frame;
-	private JTextField textField;
+	private static JTextField textField;
 	private JPasswordField textField_1;
 	private JLabel lblConnexion;
 	private ControllerLogin controller;
@@ -51,9 +51,9 @@ public class WindowLogin {
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 34, 25, 112, 0, 0 };
-		gridBagLayout.rowHeights = new int[] { 0, 41, 0, 0, 0, 0, 0, 0 };
+		gridBagLayout.rowHeights = new int[] { 0, 41, 0, 0, 0, 0, 0, 0, 0 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
 		frame.getContentPane().setLayout(gridBagLayout);
 
 
@@ -90,13 +90,20 @@ public class WindowLogin {
 		gbc_textField_1.gridy = 3;
 		frame.getContentPane().add(textField_1, gbc_textField_1);
 		textField_1.setColumns(10);
+		
+		lblConnexion = new JLabel("");
+		GridBagConstraints gbc_lblConnexion = new GridBagConstraints();
+		gbc_lblConnexion.insets = new Insets(0, 0, 5, 5);
+		gbc_lblConnexion.gridx = 2;
+		gbc_lblConnexion.gridy = 5;
+		frame.getContentPane().add(lblConnexion, gbc_lblConnexion);
 
 		JButton btnValider = new JButton("Valider");
 		GridBagConstraints gbc_btnValider = new GridBagConstraints();
 		gbc_btnValider.anchor = GridBagConstraints.WEST;
 		gbc_btnValider.insets = new Insets(0, 0, 5, 5);
 		gbc_btnValider.gridx = 2;
-		gbc_btnValider.gridy = 5;
+		gbc_btnValider.gridy = 6;
 		frame.getContentPane().add(btnValider, gbc_btnValider);
 //------------------------------------------------------------------------
 		
@@ -114,5 +121,8 @@ public class WindowLogin {
 		});
 	}
 
+	public static String getNom(){
+		return textField.getText();
+	}
 
 }

@@ -41,7 +41,6 @@ public class PersonnelsImpl implements Personnels{
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	@Override

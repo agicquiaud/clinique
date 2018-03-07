@@ -10,6 +10,7 @@ public class ControllerPersonnels {
 
 	private static Personnels mger;
 	private List<User> liste;
+	private User user;
 
 	public ControllerPersonnels() {
 		mger = PersonnelsSingleton.getInstance();
@@ -36,7 +37,19 @@ public class ControllerPersonnels {
 	}
 
 
-	public void resetMotDePasse(User p) {
-		mger.resetMotDePasse(p);
+	public void resetMotDePasse(String login, String mdp) {
+		user = mger.getUser(login);
+		user.setPassword(mdp);
+		mger.resetMotDePasse(user);
+	}
+	
+	public Boolean verifDroit(){
+		Boolean droit = false;
+		String nom = WindowLogin.getNom();
+		user = mger.getUser(nom);
+		if(user.getType().equals("adm")){
+			droit = true;
+		}
+		return droit;
 	}
 }
