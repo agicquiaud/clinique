@@ -3,10 +3,6 @@ package fr.eni.clinique.ihm.login;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.ContainerEvent;
-import java.awt.event.ContainerListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,6 +11,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 public class WindowGestionPersonnels {
 
@@ -58,9 +55,7 @@ public class WindowGestionPersonnels {
 		gbc_btnReinitialiser.gridx = 2;
 		gbc_btnReinitialiser.gridy = 0;
 		frameGestionPersonnel.getContentPane().add(btnReinitialiser, gbc_btnReinitialiser);
-		String[] entetes = {"Nom", "Mot de passe", "Role"};
-		Object[][] donnee = new ControllerPersonnels().getList();
-		
+				
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.gridheight = 2;
@@ -71,7 +66,17 @@ public class WindowGestionPersonnels {
 		gbc_scrollPane.gridy = 1;
 		frameGestionPersonnel.getContentPane().add(scrollPane, gbc_scrollPane);
 		
+		String[] entetes = {"Nom", "Mot de passe", "Role"};
+		Object[][] donnee = new ControllerPersonnels().getList();
 		table = new JTable(donnee, entetes);
+		DefaultTableModel tableModel = new DefaultTableModel(donnee, entetes) {
+
+		    @Override
+		    public boolean isCellEditable(int row, int column) {
+		       return false;
+		    }
+		};
+		table.setModel(tableModel);
 		scrollPane.setViewportView(table);
 		JLabel lblNewLabelGP = new JLabel("");
 		GridBagConstraints gbc_lblNewLabelGP = new GridBagConstraints();
@@ -84,7 +89,7 @@ public class WindowGestionPersonnels {
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				lblNewLabelGP.setText(table.getValueAt(table.getSelectedRow(), table.getSelectedColumn()).toString());		
+				lblNewLabelGP.setText(table.getValueAt(table.getSelectedRow(), 0).toString());		
 			}
 		});
 		
