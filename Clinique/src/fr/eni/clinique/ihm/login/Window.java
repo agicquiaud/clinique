@@ -116,8 +116,12 @@ public class Window {
 		btnValider.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				lblConnexion.setText(controller.verif(textField.getText(), textField_1.getPassword()));
+				if (controller.verif(textField.getText(), textField_1.getPassword())) {
+					
+				}else{
+					lblConnexion.setText("Identifiant incorrect.");
+				}
+				
 
 			}
 		});

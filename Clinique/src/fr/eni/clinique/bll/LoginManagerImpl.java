@@ -12,8 +12,8 @@ public class LoginManagerImpl implements LoginManager{
 	private UserDAO daoUser = new DAOFactory().getUserDAO();
 	private User user;
 
-	public String verifPassword(String nom, String password) throws BLLException {
-		String message = "Identifiant incorrect.";
+	public Boolean verifPassword(String nom, String password) throws BLLException {
+		Boolean message = false;
 		try {
 			user = daoUser.selectByNom(nom);
 		} catch (DALException e) {
@@ -21,7 +21,7 @@ public class LoginManagerImpl implements LoginManager{
 			throw new BLLException("Erreur BLL - " + user);			
 		}
 			if (password.equalsIgnoreCase(user.getPassword())) {
-				message = "Identifiant correct.";
+				message = true;
 			}
 		System.out.println(message);
 		return message;

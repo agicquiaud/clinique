@@ -13,8 +13,8 @@ public class ControllerLogin {
 		mger = LoginManagerSingleton.getInstance();
 	}
 	
-	public String verif(String nom, char[] pass){
-		String message = "";
+	public Boolean verif(String nom, char[] pass){
+		Boolean message = false;
 		String mdp = "";
 		try {
 			for (char c : pass) {
