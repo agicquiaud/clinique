@@ -206,10 +206,8 @@ public class ConnexionDAOJdbcImpl implements UserDAO {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlSelectByNom);
 			rqt.setString(1, nom);
-
 			rs = rqt.executeQuery();
 			if (rs.next()) {
-
 				user = new User(rs.getInt("CodePers"), rs.getString("Nom"), rs.getString("MotPasse"),
 						rs.getString("Role"), rs.getBoolean("Archive"));
 			}

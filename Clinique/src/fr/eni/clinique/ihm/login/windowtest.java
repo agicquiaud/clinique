@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -58,9 +59,9 @@ public class windowtest {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 126, 126, 126, 0, 0};
-		gridBagLayout.rowHeights = new int[]{1, 20, 25, 0, 52, 0, 25, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{1, 20, 25, 0, 52, 0, 25, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
 		frame.getContentPane().setLayout(gridBagLayout);
 		
 //		JLabel lblNewLabel = new JLabel("Panneau Supprimer Personnel");
@@ -212,15 +213,21 @@ public class windowtest {
 		gbc_panel_4.gridx = 4;
 		gbc_panel_4.gridy = 1;
 		frame.getContentPane().add(panel_4, gbc_panel_4);
-		String[] entetes = {"Nom", "Role", "Mot de passe"};
+		Object[] entetes = {"Nom", "Role", "Mot de passe"};
 		Object[][] donnee = new ControllerPersonnels().getList();
-		
 		table = new JTable(donnee, entetes);
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setColumnHeaderView(table.getTableHeader());
 		GridBagConstraints gbc_table = new GridBagConstraints();
-		gbc_table.gridwidth = 3;
-		gbc_table.gridheight = 6;
 		gbc_table.insets = new Insets(0, 0, 5, 5);
+		gbc_table.gridwidth = 3;
+		gbc_table.gridheight = 7;
 		gbc_table.fill = GridBagConstraints.BOTH;
+		gbc_table.gridx = 1;
+		gbc_table.gridy = 2;
+		frame.getContentPane().add(scrollPane, gbc_table);
+		gbc_table.gridwidth = 3;
+		gbc_table.gridheight = 7;
 		gbc_table.gridx = 1;
 		gbc_table.gridy = 2;
 		frame.getContentPane().add(table, gbc_table);
