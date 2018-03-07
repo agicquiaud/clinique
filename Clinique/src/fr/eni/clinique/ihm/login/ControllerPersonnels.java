@@ -20,8 +20,9 @@ public class ControllerPersonnels {
 		mger.add(p);
 	}
 
-	public void ArchivePersonnel(User p) {
-		mger.archive(p);
+	public void ArchivePersonnel(String nom) {
+		user = mger.getUser(nom);
+		mger.archive(user);
 	}
 	
 	public Object[][] getList(){

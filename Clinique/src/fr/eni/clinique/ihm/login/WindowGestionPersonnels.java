@@ -17,6 +17,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 import fr.eni.clinique.bo.User;
@@ -89,7 +91,7 @@ public class WindowGestionPersonnels {
 		frameGestionPersonnel.getContentPane().add(scrollPane, gbc_scrollPane);
 
 		String[] entetes = { "Nom", "Mot de passe", "Role" };
-		Object[][] donnee = new ControllerPersonnels().getList();
+		Object[][] donnee = controller.getList();
 		table = new JTable(donnee, entetes);
 		DefaultTableModel tableModel = new DefaultTableModel(donnee, entetes) {
 
@@ -107,13 +109,6 @@ public class WindowGestionPersonnels {
 		gbc_lblNewLabelGP.gridx = 0;
 		gbc_lblNewLabelGP.gridy = 4;
 		frameGestionPersonnel.getContentPane().add(lblNewLabelGP, gbc_lblNewLabelGP);
-
-		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				lblNewLabelGP.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
-			}
-		});
 
 		// Modal Add Personnel
 		// --------------------------------------------------------------------------------------
@@ -234,6 +229,21 @@ public class WindowGestionPersonnels {
 
 		/////////////////////////////////////////////////////////////////////////////////////////
 
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				lblNewLabelGP.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
+			}
+		});
+		
+		tableModel.addTableModelListener(new TableModelListener() {
+			
+			@Override
+			public void tableChanged(TableModelEvent e) {
+
+			}
+		});
+		
 		btnAjouter.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -252,6 +262,7 @@ public class WindowGestionPersonnels {
 			public void actionPerformed(ActionEvent e) {
 				controller.addPersonnel(new User(textField_6.getText(), textField_7.getText(),
 						(String) comboBox.getSelectedItem(), false));
+				tableModel.fireTableDataChanged();
 				AjoutPersonnel.setVisible(false);
 			}
 		});
@@ -265,15 +276,26 @@ public class WindowGestionPersonnels {
 				} else {
 					lblerror.setText("Droit insuffisant");
 				}
-
 			}
 		});
 
 		btnValiderModalReset.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.resetMotDePasse(table.getValueAt(table.getSelectedRow(), 0).toString(), textField.getText());
+				controller.resetMotDePasse(lblNewLabelGP.getText(), textField.getText());
 				ResetMdp.setVisible(false);
+			}
+		});
+		
+		btnSupprimer.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (controller.verifDroit()) {
+					controller.ArchivePersonnel(lblNewLabelGP.getText());
+					tableModel.fireTableDataChanged();
+				} else {
+					lblerror.setText("Droit insuffisant");
+				}
 			}
 		});
 	}
