@@ -5,7 +5,7 @@ import fr.eni.clinique.bll.LoginManager;
 import fr.eni.clinique.bll.LoginManagerSingleton;
 
 public class ControllerLogin {
-	
+
 	private static LoginManager mger;
 	
 	public ControllerLogin(){
@@ -24,6 +24,9 @@ public class ControllerLogin {
 			message = mger.verifPassword(nom, mdp);
 		} catch (BLLException e) {
 			e.printStackTrace();
+		}
+		if (message.equals("Identifiant correct.")) {
+			WindowGestionPersonnels frame = new WindowGestionPersonnels();
 		}
 		return message;
 	}
