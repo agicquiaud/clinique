@@ -12,9 +12,9 @@ public class AppliTestDAL {
 		UserDAO userDAO = new DAOFactory().getUserDAO();
 
 		// Instanciation du jeu d'essai
-		User u1 = new User("Edmond", "Bosapin", "adm", 1);
-		User u2 = new User("Mélanie", "Malalanich", "vet", 1);
-		User u3 = new User("Elisabeth", "Abondieu", "sec", 1);
+		User u1 = new User("Edmond", "Bosapin", "adm", false);
+		User u2 = new User("Mélanie", "Malalanich", "vet", false);
+		User u3 = new User("Elisabeth", "Abondieu", "sec", true);
 
 		System.out.println("Ajout des Utilisateurs... ");
 		// TODO...

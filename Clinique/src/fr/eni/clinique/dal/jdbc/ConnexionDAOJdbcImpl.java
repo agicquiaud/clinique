@@ -12,48 +12,44 @@ import fr.eni.clinique.bo.User;
 import fr.eni.clinique.dal.DALException;
 import fr.eni.clinique.dal.UserDAO;
 
-public class ConnexionDAOJdbcImpl implements UserDAO{
-	
+public class ConnexionDAOJdbcImpl implements UserDAO {
+
 	private static final String sqlSelectById = "SELECT CodePers, Nom, MotPasse, Role, Archive FROM Personnels WHERE CodePers=?";
 	private static final String sqlSelectAll = "SELECT CodePers, Nom, MotPasse, Role, Archive FROM Personnels";
 	private static final String sqlUpdate = "UPDATE Personnels SET Nom=?, MotPasse=?, Role=?, Archive=? WHERE CodePers=?";
 	private static final String sqlInsert = "INSERT INTO Personnels (Nom, MotPasse, Role, Archive) VALUES (?, ?, ?, ?)";
 	private static final String sqlDelete = "DELETE FROM Personnels WHERE CodePers=?";
 	private static final String sqlSelectByNom = "SELECT CodePers, Nom, MotPasse, Role, Archive FROM Personnels WHERE Nom=?";
-	private List<User> liste;
-	
+
 	public User selectById(int id) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		ResultSet rs = null;
 		User user = null;
-		
+
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlSelectById);
 			rqt.setInt(1, id);
 
 			rs = rqt.executeQuery();
-			if (rs.next()){
+			if (rs.next()) {
 
-					user = new User(rs.getInt("CodePers"),
-							rs.getString("Nom"),
-							rs.getString("MotPasse"),
-							rs.getString("Role"),
-							rs.getInt("Archive"));
-				}
-			
+				user = new User(rs.getInt("CodePers"), rs.getString("Nom"), rs.getString("MotPasse"),
+						rs.getString("Role"), rs.getBoolean("Archive"));
+			}
+
 		} catch (SQLException e) {
-			throw new DALException("selectById failed - id = " + id , e);
+			throw new DALException("selectById failed - id = " + id, e);
 		} finally {
 			try {
-				if (rs != null){
+				if (rs != null) {
 					rs.close();
 				}
-				if (rqt != null){
+				if (rqt != null) {
 					rqt.close();
 				}
-				if(cnx!=null){
+				if (cnx != null) {
 					cnx.close();
 				}
 			} catch (SQLException e) {
@@ -69,6 +65,7 @@ public class ConnexionDAOJdbcImpl implements UserDAO{
 		Connection cnx = null;
 		Statement rqt = null;
 		ResultSet rs = null;
+		List<User> liste = new ArrayList<User>();
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.createStatement();
@@ -76,29 +73,28 @@ public class ConnexionDAOJdbcImpl implements UserDAO{
 			User user = null;
 
 			while (rs.next()) {
-					user = new User(rs.getInt("CodePers"),
-							rs.getString("Nom"),
-							rs.getString("MotPasse"),
-							rs.getString("Role"),
-							rs.getInt("Archive"));
-				}
-			liste.add(user);
-				
-			
-		} catch (SQLException e) {
-			throw new DALException("selectAll failed - " , e);
+				user = new User(rs.getInt("CodePers"), rs.getString("Nom"), rs.getString("MotPasse"),
+						rs.getString("Role"), rs.getBoolean("Archive"));
+
+				liste.add(user);
+			}
+		} catch (
+
+		SQLException e) {
+			throw new DALException("selectAll failed - ", e);
 		} finally {
 			try {
-				if (rs != null){
+				if (rs != null) {
 					rs.close();
 				}
-				if (rqt != null){
+				if (rqt != null) {
 					rqt.close();
 				}
-				if(cnx!=null){
+				if (cnx != null) {
 					cnx.close();
 				}
 			} catch (SQLException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -116,7 +112,7 @@ public class ConnexionDAOJdbcImpl implements UserDAO{
 			rqt.setString(1, data.getLogin());
 			rqt.setString(2, data.getPassword());
 			rqt.setString(3, data.getType());
-			rqt.setInt(4, data.getHide());
+			rqt.setBoolean(4, data.getHide());
 			rqt.setInt(5, data.getId());
 
 			rqt.executeUpdate();
@@ -125,10 +121,10 @@ public class ConnexionDAOJdbcImpl implements UserDAO{
 			throw new DALException("Update article failed - " + data, e);
 		} finally {
 			try {
-				if (rqt != null){
+				if (rqt != null) {
 					rqt.close();
 				}
-				if(cnx !=null){
+				if (cnx != null) {
 					cnx.close();
 				}
 			} catch (SQLException e) {
@@ -147,24 +143,23 @@ public class ConnexionDAOJdbcImpl implements UserDAO{
 			rqt.setString(1, data.getLogin());
 			rqt.setString(2, data.getPassword());
 			rqt.setString(3, data.getType());
-			rqt.setInt(4, data.getHide());
+			rqt.setBoolean(4, data.getHide());
 
 			int nbRows = rqt.executeUpdate();
-			if(nbRows == 1){
+			if (nbRows == 1) {
 				ResultSet rs = rqt.getGeneratedKeys();
-				if(rs.next()){
+				if (rs.next()) {
 					data.setId(rs.getInt(1));
 				}
 			}
-		}catch(SQLException e){
+		} catch (SQLException e) {
 			throw new DALException("Insert article failed - " + data, e);
-		}
-		finally {
+		} finally {
 			try {
-				if (rqt != null){
+				if (rqt != null) {
 					rqt.close();
 				}
-				if(cnx!=null){
+				if (cnx != null) {
 					cnx.close();
 				}
 			} catch (SQLException e) {
@@ -178,10 +173,10 @@ public class ConnexionDAOJdbcImpl implements UserDAO{
 	public void delete(int id) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
-		try {		
+		try {
 			cnx = JdbcTools.getConnection();
-			//l'intégrité référentielle s'occupe d'invalider la suppression
-			//si l'article est référencé dans une ligne de commande
+			// l'intégrité référentielle s'occupe d'invalider la suppression
+			// si l'article est référencé dans une ligne de commande
 			rqt = cnx.prepareStatement(sqlDelete);
 			rqt.setInt(1, id);
 			rqt.executeUpdate();
@@ -189,20 +184,20 @@ public class ConnexionDAOJdbcImpl implements UserDAO{
 			throw new DALException("Delete article failed - id=" + id, e);
 		} finally {
 			try {
-				if (rqt != null){
+				if (rqt != null) {
 					rqt.close();
 				}
-				if(cnx!=null){
+				if (cnx != null) {
 					cnx.close();
 				}
 			} catch (SQLException e) {
-				throw new DALException("close failed " , e);
+				throw new DALException("close failed ", e);
 			}
 
-		}		
+		}
 	}
-	
-	public User selectByNom(String nom) throws DALException{
+
+	public User selectByNom(String nom) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		ResultSet rs = null;
@@ -213,26 +208,23 @@ public class ConnexionDAOJdbcImpl implements UserDAO{
 			rqt.setString(1, nom);
 
 			rs = rqt.executeQuery();
-			if (rs.next()){
+			if (rs.next()) {
 
-					user = new User(rs.getInt("CodePers"),
-							rs.getString("Nom"),
-							rs.getString("MotPasse"),
-							rs.getString("Role"),
-							rs.getInt("Archive"));
-				}
-			
+				user = new User(rs.getInt("CodePers"), rs.getString("Nom"), rs.getString("MotPasse"),
+						rs.getString("Role"), rs.getBoolean("Archive"));
+			}
+
 		} catch (SQLException e) {
-			throw new DALException("selectByNom failed - Nom = " + nom , e);
+			throw new DALException("selectByNom failed - Nom = " + nom, e);
 		} finally {
 			try {
-				if (rs != null){
+				if (rs != null) {
 					rs.close();
 				}
-				if (rqt != null){
+				if (rqt != null) {
 					rqt.close();
 				}
-				if(cnx!=null){
+				if (cnx != null) {
 					cnx.close();
 				}
 			} catch (SQLException e) {

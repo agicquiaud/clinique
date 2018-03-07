@@ -1,5 +1,6 @@
 package fr.eni.clinique.bll;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.clinique.bo.User;
@@ -25,7 +26,7 @@ public class PersonnelsImpl implements Personnels{
 	@Override
 	public void archive(User p) {
 		try {
-			p.setHide(0);
+			p.setHide(true);
 			con.update(p);
 		} catch (DALException e) {
 			e.printStackTrace();
@@ -55,12 +56,18 @@ public class PersonnelsImpl implements Personnels{
 
 	@Override
 	public List<User> getAll() {
+	List<User> listereturn = new ArrayList<User>();
 		try {
 			liste = con.selectAll();
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
-		return liste;
+		for (User user : liste) {
+			if(user.getHide() == false){
+				listereturn.add(user);
+			}
+		}
+		return listereturn;
 	}
 	
 }
