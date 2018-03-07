@@ -5,15 +5,15 @@ import fr.eni.clinique.bll.LoginManager;
 import fr.eni.clinique.bll.LoginManagerSingleton;
 
 public class ControllerLogin {
-	
+
 	private static LoginManager mger;
-	
-	public ControllerLogin(){
-		
+
+	public ControllerLogin() {
+
 		mger = LoginManagerSingleton.getInstance();
 	}
-	
-	public String verif(String nom, char[] pass){
+
+	public String verif(String nom, char[] pass) {
 		String message = "";
 		String mdp = "";
 		try {
@@ -24,6 +24,9 @@ public class ControllerLogin {
 			message = mger.verifPassword(nom, mdp);
 		} catch (BLLException e) {
 			e.printStackTrace();
+		}
+		if (message.equals("Identifiant correct.")) {
+			WindowGestionPersonnels frame = new WindowGestionPersonnels();
 		}
 		return message;
 	}
