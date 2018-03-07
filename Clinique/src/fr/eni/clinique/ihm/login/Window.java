@@ -15,6 +15,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,8 +23,10 @@ import javax.swing.JButton;
 public class Window {
 
 	private JFrame frame;
+	private JFrame frameGestionPersonnel;
 	private JTextField textField;
 	private JPasswordField textField_1;
+	private JTable table;
 	private JLabel lblConnexion;
 	private ControllerLogin controller;
 
@@ -32,17 +35,32 @@ public class Window {
 	 */
 	public Window() {
 		controller = new ControllerLogin();
+		
+		//liste panneau------------------------------------
 		frame = new JFrame();
 		frame.setTitle("Connexion");
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		
+		frameGestionPersonnel = new JFrame();
+		frameGestionPersonnel.setTitle("Gestion Personnel");
+		frameGestionPersonnel.setBounds(100, 100, 450, 300);
+		frameGestionPersonnel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frameGestionPersonnel.setVisible(false);
+		
+		//-----------------------------------------------
+		
+		//Panneau Connexion------------------------------------
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 34, 25, 112, 0, 0 };
 		gridBagLayout.rowHeights = new int[] { 0, 41, 0, 0, 0, 0, 0, 0 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE };
 		gridBagLayout.rowWeights = new double[] { 1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE };
 		frame.getContentPane().setLayout(gridBagLayout);
+		frameGestionPersonnel.getContentPane().setLayout(gridBagLayout);
+		
 
 		JPanel panel_2 = new JPanel();
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
@@ -113,11 +131,60 @@ public class Window {
 		gbc_btnValider.gridx = 2;
 		gbc_btnValider.gridy = 5;
 		frame.getContentPane().add(btnValider, gbc_btnValider);
+//------------------------------------------------------------------------
+		
+//Panneau Gestion de Personnel------------------------------------------------------------------------
+
+		
+		JButton btnAjouter = new JButton("AJOUTER");
+		GridBagConstraints gbc_btnAjouter = new GridBagConstraints();
+		gbc_btnAjouter.insets = new Insets(0, 0, 5, 5);
+		gbc_btnAjouter.gridx = 1;
+		gbc_btnAjouter.gridy = 1;
+		frameGestionPersonnel.getContentPane().add(btnAjouter, gbc_btnAjouter);
+		
+		JButton btnSupprimer = new JButton("SUPPRIMER");
+		GridBagConstraints gbc_btnSupprimer = new GridBagConstraints();
+		gbc_btnSupprimer.insets = new Insets(0, 0, 5, 5);
+		gbc_btnSupprimer.gridx = 2;
+		gbc_btnSupprimer.gridy = 1;
+		frameGestionPersonnel.getContentPane().add(btnSupprimer, gbc_btnSupprimer);
+		
+		JButton btnReinitialiser = new JButton("REINITIALISER");
+		GridBagConstraints gbc_btnReinitialiser = new GridBagConstraints();
+		gbc_btnReinitialiser.insets = new Insets(0, 0, 5, 5);
+		gbc_btnReinitialiser.gridx = 3;
+		gbc_btnReinitialiser.gridy = 1;
+		frameGestionPersonnel.getContentPane().add(btnReinitialiser, gbc_btnReinitialiser);
+		String[] entetes = {"Nom", "Role", "Mot de passe"};
+		Object[][] donnee = new ControllerPersonnels().getList();
+		
+		table = new JTable(donnee, entetes);
+		GridBagConstraints gbc_table = new GridBagConstraints();
+		gbc_table.gridwidth = 3;
+		gbc_table.gridheight = 5;
+		gbc_table.insets = new Insets(0, 0, 5, 5);
+		gbc_table.fill = GridBagConstraints.BOTH;
+		gbc_table.gridx = 1;
+		gbc_table.gridy = 2;
+		frameGestionPersonnel.getContentPane().add(table, gbc_table);
+		
+		JLabel lblNewLabelGP = new JLabel("New label");
+		GridBagConstraints gbc_lblNewLabelGP = new GridBagConstraints();
+		gbc_lblNewLabelGP.anchor = GridBagConstraints.WEST;
+		gbc_lblNewLabelGP.gridwidth = 3;
+		gbc_lblNewLabelGP.insets = new Insets(0, 0, 0, 5);
+		gbc_lblNewLabelGP.gridx = 1;
+		gbc_lblNewLabelGP.gridy = 7;
+		frameGestionPersonnel.getContentPane().add(lblNewLabelGP, gbc_lblNewLabelGP);
+		
 		btnValider.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
 				lblConnexion.setText(controller.verif(textField.getText(), textField_1.getPassword()));
+				frameGestionPersonnel.setVisible(true);
+				frame.setVisible(false);
 
 			}
 		});
