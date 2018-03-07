@@ -183,8 +183,6 @@ public class Window {
 			public void actionPerformed(ActionEvent e) {
 
 				lblConnexion.setText(controller.verif(textField.getText(), textField_1.getPassword()));
-				frameGestionPersonnel.setVisible(true);
-				frame.setVisible(false);
 
 			}
 		});
