@@ -15,11 +15,12 @@ public class ControllerLogin {
 	
 	public String verif(String nom, char[] cs){
 		String message = "";
-		String mdp = null;
+		String mdp = "";
 		try {
 			for (char c : cs) {
 				mdp = mdp + c;
 			}
+			System.out.println(mdp);
 			message = mger.verifPassword(nom, mdp);
 		} catch (BLLException e) {
 			e.printStackTrace();
