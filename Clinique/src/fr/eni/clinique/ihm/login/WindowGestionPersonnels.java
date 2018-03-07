@@ -25,7 +25,6 @@ public class WindowGestionPersonnels {
 
 	private JFrame frameGestionPersonnel;
 	private JTable table;
-	private JLabel monLabel;
 	private JDialog AjoutPersonnel = new JDialog();
 	private ControllerPersonnels controller;
 

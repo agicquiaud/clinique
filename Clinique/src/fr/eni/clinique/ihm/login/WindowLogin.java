@@ -42,7 +42,9 @@ public class WindowLogin {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		
+		JLabel label = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		frame.setContentPane(label);
+        
 		//-----------------------------------------------
 		
 		//Panneau Connexion------------------------------------
@@ -53,15 +55,6 @@ public class WindowLogin {
 		gridBagLayout.columnWeights = new double[] { 0.0, 1.0, 1.0, 0.0, Double.MIN_VALUE };
 		gridBagLayout.rowWeights = new double[] { 1.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, Double.MIN_VALUE };
 		frame.getContentPane().setLayout(gridBagLayout);
-		
-
-		JPanel panel_2 = new JPanel();
-		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
-		gbc_panel_2.insets = new Insets(0, 0, 5, 5);
-		gbc_panel_2.fill = GridBagConstraints.BOTH;
-		gbc_panel_2.gridx = 2;
-		gbc_panel_2.gridy = 0;
-		frame.getContentPane().add(panel_2, gbc_panel_2);
 
 
 		JLabel lblNewLabel = new JLabel("Nom");
@@ -97,25 +90,6 @@ public class WindowLogin {
 		gbc_textField_1.gridy = 3;
 		frame.getContentPane().add(textField_1, gbc_textField_1);
 		textField_1.setColumns(10);
-		
-		JPanel panel = new JPanel();
-		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.insets = new Insets(0, 0, 0, 5);
-		gbc_panel.fill = GridBagConstraints.BOTH;
-		gbc_panel.gridx = 2;
-		gbc_panel.gridy = 6;
-		frame.getContentPane().add(panel, gbc_panel);
-
-		JLabel lblConnexion = new JLabel();
-		panel.add(lblConnexion);
-
-		JPanel panel_1 = new JPanel();
-		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
-		gbc_panel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_panel_1.fill = GridBagConstraints.BOTH;
-		gbc_panel_1.gridx = 2;
-		gbc_panel_1.gridy = 4;
-		frame.getContentPane().add(panel_1, gbc_panel_1);
 
 		JButton btnValider = new JButton("Valider");
 		GridBagConstraints gbc_btnValider = new GridBagConstraints();
