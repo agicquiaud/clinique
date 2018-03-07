@@ -1,4 +1,5 @@
 package fr.eni.clinique.ihm.login;
+
 import java.util.List;
 
 import fr.eni.clinique.bll.Personnels;
@@ -21,31 +22,19 @@ public class ControllerPersonnels {
 	public void ArchivePersonnel(User p) {
 		mger.archive(p);
 	}
-
-	public Object[][] getListe() {
-		liste = mger.getAll();
-		Object[][] data = new Object[liste.size()][((List<User>) liste.get(0)).size()];
-		for (int i = 0; i < liste.size(); i++) {
-			data[i] = ((List<User>) liste.get(i)).toArray();
-		}
-		return data;
-	}
-
 	
 	public Object[][] getList(){
 		liste = mger.getAll();
-		Integer i = 0;
-		Object[][] albator = new Object[liste.size()][3];
+		Object[][] tab = new Object[liste.size()][3];
 		String pass = "*****";
-		for (User user : liste) {
-			
-			albator[i][0] = user.getLogin();
-			albator[i][1] = pass;
-			albator[i][2] = user.getType();
-			i++;
+		for (int i = 0; i < liste.size(); i++){
+			tab[i][0] = liste.get(i).getLogin();
+			tab[i][1] = pass;
+			tab[i][2] = liste.get(i).getType();
 		}
-		return albator;
+		return tab;
 	}
+
 
 	public void resetMotDePasse(User p) {
 		mger.resetMotDePasse(p);
