@@ -18,4 +18,6 @@ public interface UserDAO {
 		public void delete(int id) throws DALException;
 		
 		public User selectByNom(String nom) throws DALException;
+		
+		public List<User> selectByPoste(String role) throws DALException;
 }

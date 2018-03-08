@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.bo.User;
 import fr.eni.clinique.dal.DALException;
 
@@ -15,25 +16,27 @@ public class ClientDAOJdbcImpl {
 
 	private static final String sqlSelectAll = "SELECT CodeClient, NomClient, PrenomClient, "
 			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Assurance, Email, Remarque, Archive FROM Clients";
-	private static final String sqlUpdate = "UPDATE Clients SET NomClient=?, PrenomClient=?, Role=?, Archive=? WHERE CodePers=?";
-	private static final String sqlInsert = "INSERT INTO Personnels (Nom, MotPasse, Role, Archive) VALUES (?, ?, ?, ?)";
+	private static final String sqlUpdate = "UPDATE Clients SET NomClient=?, PrenomClient=?, "
+			+ "Adresse1=?, Adresse2=?, CodePostal=?, Ville=?, NumTel=?, Assurance=?, Email=?, Remarque=?, Archive=? WHERE CodePers=?";
+	private static final String sqlInsert = "INSERT INTO Clients (CodeClient, NomClient, PrenomClient, "
+			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Assurance, Email, Remarque, Archive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String sqlDelete = "DELETE FROM Personnels WHERE CodePers=?";
 	private static final String sqlSelectByNom = "SELECT CodeClient, NomClient, PrenomClient, "
 			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Assurance, Email, Remarque, Archive FROM Clients WHERE NomClient=?";
 
-	public List<User> selectAll() throws DALException {
+	public List<Clients> selectAll() throws DALException {
 		Connection cnx = null;
 		Statement rqt = null;
 		ResultSet rs = null;
-		List<User> liste = new ArrayList<User>();
+		List<Clients> liste = new ArrayList<Clients>();
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.createStatement();
 			rs = rqt.executeQuery(sqlSelectAll);
-			User user = null;
+			Clients user = null;
 
 			while (rs.next()) {
-				user = new User(rs.getInt("CodePers"), rs.getString("Nom"), rs.getString("MotPasse"),
+				user = new Clients(rs.getInt("CodePers"), rs.getString("Nom"), rs.getString("MotPasse"),
 						rs.getString("Role"), rs.getBoolean("Archive"));
 
 				liste.add(user);
