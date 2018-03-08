@@ -1,6 +1,7 @@
 package fr.eni.clinique.bo;
 
 public class Animaux {
+	private Integer CodeAnimal;
 	private String Nom;
 	private String Sexe;
 	private String Couleur;
@@ -13,9 +14,10 @@ public class Animaux {
 	
 	public Animaux(){}
 
-	public Animaux(String nom, String sexe, String couleur, String race, String espece, Integer codeClient,
-			String tatouage, String antecedents, Boolean archive) {
+	public Animaux(Integer codeAnimal, String nom, String sexe, String couleur, String race, String espece,
+			Integer codeClient, String tatouage, String antecedents, Boolean archive) {
 		super();
+		CodeAnimal = codeAnimal;
 		Nom = nom;
 		Sexe = sexe;
 		Couleur = couleur;
@@ -25,6 +27,16 @@ public class Animaux {
 		Tatouage = tatouage;
 		Antecedents = antecedents;
 		Archive = archive;
+	}
+
+	
+	
+	public Integer getCodeAnimal() {
+		return CodeAnimal;
+	}
+
+	public void setCodeAnimal(Integer codeAnimal) {
+		CodeAnimal = codeAnimal;
 	}
 
 	public String getNom() {

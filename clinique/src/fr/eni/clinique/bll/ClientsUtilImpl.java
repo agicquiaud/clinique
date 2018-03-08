@@ -6,7 +6,7 @@ import fr.eni.clinique.dal.DALException;
 import fr.eni.clinique.dal.jdbc.ClientDAOJdbcImpl;
 import fr.eni.clinique.bo.Clients;
 
-public class ClientsImpl implements fr.eni.clinique.bll.Clients {
+public class ClientsUtilImpl implements fr.eni.clinique.bll.ClientsUtil {
 	private ClientDAOJdbcImpl con = new ClientDAOJdbcImpl();
 	
 	@Override
