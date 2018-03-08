@@ -2,12 +2,14 @@ package fr.eni.clinique.bll;
 
 import java.util.List;
 
+import fr.eni.clinique.dal.ClientDAO;
 import fr.eni.clinique.dal.DALException;
+import fr.eni.clinique.dal.DAOFactory;
 import fr.eni.clinique.dal.jdbc.ClientDAOJdbcImpl;
 import fr.eni.clinique.bo.Clients;
 
 public class ClientsImpl implements fr.eni.clinique.bll.Clients {
-	private ClientDAOJdbcImpl con = new ClientDAOJdbcImpl();
+	private ClientDAO con = new DAOFactory().getClientDAO();
 	
 	@Override
 	public List<Clients> getAll() {
