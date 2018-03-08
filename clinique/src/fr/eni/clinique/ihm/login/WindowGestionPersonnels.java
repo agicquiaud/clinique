@@ -17,8 +17,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 import fr.eni.clinique.bo.User;
@@ -31,6 +29,7 @@ public class WindowGestionPersonnels {
 	private JDialog ResetMdp = new JDialog();
 	private ControllerPersonnels controller;
 	private JTextField textField;
+	private DefaultTableModel tableModel;
 
 	/**
 	 * Create the application.
@@ -93,8 +92,7 @@ public class WindowGestionPersonnels {
 		String[] entetes = { "Nom", "Mot de passe", "Role" };
 		Object[][] donnee = controller.getList();
 		table = new JTable(donnee, entetes);
-		DefaultTableModel tableModel = new DefaultTableModel(donnee, entetes) {
-
+		tableModel = new DefaultTableModel(controller.getList(), entetes) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
@@ -236,14 +234,6 @@ public class WindowGestionPersonnels {
 			}
 		});
 		
-		tableModel.addTableModelListener(new TableModelListener() {
-			
-			@Override
-			public void tableChanged(TableModelEvent e) {
- 
-			}
-		});
-		
 		btnAjouter.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -262,7 +252,7 @@ public class WindowGestionPersonnels {
 			public void actionPerformed(ActionEvent e) {
 				controller.addPersonnel(new User(textField_6.getText(), textField_7.getText(),
 					(String) comboBox.getSelectedItem(), false));
-				
+				setUpTableData();
 				AjoutPersonnel.setVisible(false);
 			}
 		});
@@ -292,6 +282,7 @@ public class WindowGestionPersonnels {
 			public void actionPerformed(ActionEvent e) {
 				if (controller.verifDroit()) {
 					controller.ArchivePersonnel(lblNewLabelGP.getText());
+					setUpTableData();
 				} else {
 					lblerror.setText("Droit insuffisant");
 				}
@@ -299,10 +290,16 @@ public class WindowGestionPersonnels {
 		});
 	}
 	
-	public void setUpTableData(){
+	private void setUpTableData(){
 		String[] entetes = { "Nom", "Mot de passe", "Role" };
-		DefaultTableModel tableModel = new DefaultTableModel(controller.getList(), entetes);
+		tableModel = new DefaultTableModel(controller.getList(), entetes) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
 		table.setModel(tableModel);
+		tableModel.fireTableDataChanged();
 	}
 
 }
