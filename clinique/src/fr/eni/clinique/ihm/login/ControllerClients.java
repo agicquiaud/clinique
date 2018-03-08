@@ -19,8 +19,10 @@ public class ControllerClients {
 		
 	}
 	
-	public void insertClient (Clients client){
-		bllclients.insert(client);
+	public void insertClient (String text, String text2, String text3, String text4, String text5, String text6,
+			String text7){
+		clients = new Clients();
+		bllclients.insert(clients);
 	}
 	
 	public Object[][] getList(){
@@ -38,9 +40,8 @@ public class ControllerClients {
 	}
 	
 	
-	public void deleteClient (String codeclient){
-		Integer cc = Integer.parseInt(codeclient);
-		bllclients.delete(cc);
+	public void deleteClient (Integer codeclient){
+		bllclients.delete(codeclient);
 	}
 	
 	public void updateClient (Clients client){
