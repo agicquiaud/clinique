@@ -1,34 +1,68 @@
 package fr.eni.clinique.bll;
 
-public class ClientsImpl implements Clients {
+import java.util.List;
+
+import fr.eni.clinique.dal.DALException;
+import fr.eni.clinique.dal.jdbc.ClientDAOJdbcImpl;
+import fr.eni.clinique.bo.Clients;
+
+public class ClientsImpl implements fr.eni.clinique.bll.Clients {
+	private ClientDAOJdbcImpl con = new ClientDAOJdbcImpl();
 	
 	@Override
-	public void getAll() {
-		// TODO Auto-generated method stub
-		
+	public List<Clients> getAll() {
+		List<Clients> liste = null;
+		try {
+			liste = con.selectAll();
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return liste;
 	}
 
 	@Override
 	public Clients getClient(String nom) {
-		// TODO Auto-generated method stub
-		return null;
+		Clients cl = new Clients();
+		try {
+			cl = con.selectByNom(nom);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return cl;
 	}
 
 	@Override
 	public void insert(Clients client) {
-		// TODO Auto-generated method stub
+		try {
+			con.insert(client);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public void update(Clients client) {
-		// TODO Auto-generated method stub
+		try {
+			con.update(client);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public void delete(Integer id) {
-		// TODO Auto-generated method stub
+		try {
+			con.delete(id);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
