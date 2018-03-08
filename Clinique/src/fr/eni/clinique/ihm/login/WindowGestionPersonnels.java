@@ -261,8 +261,8 @@ public class WindowGestionPersonnels {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				controller.addPersonnel(new User(textField_6.getText(), textField_7.getText(),
-						(String) comboBox.getSelectedItem(), false));
-				tableModel.fireTableDataChanged();
+					(String) comboBox.getSelectedItem(), false));
+				
 				AjoutPersonnel.setVisible(false);
 			}
 		});
