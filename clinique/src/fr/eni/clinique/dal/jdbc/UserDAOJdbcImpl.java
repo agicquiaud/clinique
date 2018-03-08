@@ -12,53 +12,13 @@ import fr.eni.clinique.bo.User;
 import fr.eni.clinique.dal.DALException;
 import fr.eni.clinique.dal.UserDAO;
 
-public class ConnexionDAOJdbcImpl implements UserDAO {
+public class UserDAOJdbcImpl implements UserDAO {
 
-	private static final String sqlSelectById = "SELECT CodePers, Nom, MotPasse, Role, Archive FROM Personnels WHERE CodePers=?";
 	private static final String sqlSelectAll = "SELECT CodePers, Nom, MotPasse, Role, Archive FROM Personnels";
 	private static final String sqlUpdate = "UPDATE Personnels SET Nom=?, MotPasse=?, Role=?, Archive=? WHERE CodePers=?";
 	private static final String sqlInsert = "INSERT INTO Personnels (Nom, MotPasse, Role, Archive) VALUES (?, ?, ?, ?)";
 	private static final String sqlDelete = "DELETE FROM Personnels WHERE CodePers=?";
 	private static final String sqlSelectByNom = "SELECT CodePers, Nom, MotPasse, Role, Archive FROM Personnels WHERE Nom=?";
-
-	public User selectById(int id) throws DALException {
-		Connection cnx = null;
-		PreparedStatement rqt = null;
-		ResultSet rs = null;
-		User user = null;
-
-		try {
-			cnx = JdbcTools.getConnection();
-			rqt = cnx.prepareStatement(sqlSelectById);
-			rqt.setInt(1, id);
-
-			rs = rqt.executeQuery();
-			if (rs.next()) {
-
-				user = new User(rs.getInt("CodePers"), rs.getString("Nom"), rs.getString("MotPasse"),
-						rs.getString("Role"), rs.getBoolean("Archive"));
-			}
-
-		} catch (SQLException e) {
-			throw new DALException("selectById failed - id = " + id, e);
-		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (rqt != null) {
-					rqt.close();
-				}
-				if (cnx != null) {
-					cnx.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
-		}
-		return user;
-	}
 
 	@Override
 	public List<User> selectAll() throws DALException {

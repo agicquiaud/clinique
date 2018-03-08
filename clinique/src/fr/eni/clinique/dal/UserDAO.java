@@ -4,10 +4,7 @@ import java.util.List;
 
 import fr.eni.clinique.bo.User;
 
-public interface UserDAO {
-	//Sélectionner un article par son idArticle
-		public User selectById(int id) throws DALException;
-		
+public interface UserDAO {		
 		//Sélectionner tous les articles 
 		public List<User> selectAll() throws DALException;
 		
