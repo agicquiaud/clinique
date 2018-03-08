@@ -19,7 +19,8 @@ public class UserDAOJdbcImpl implements UserDAO {
 	private static final String sqlInsert = "INSERT INTO Personnels (Nom, MotPasse, Role, Archive) VALUES (?, ?, ?, ?)";
 	private static final String sqlDelete = "DELETE FROM Personnels WHERE CodePers=?";
 	private static final String sqlSelectByNom = "SELECT CodePers, Nom, MotPasse, Role, Archive FROM Personnels WHERE Nom=?";
-
+	private static final String sqlSelectByPoste = "SELECT CodePers, Nom, MotPasse, Role, Archive FROM Personnels WHERE Role=?";
+	
 	@Override
 	public List<User> selectAll() throws DALException {
 		Connection cnx = null;
@@ -191,5 +192,47 @@ public class UserDAOJdbcImpl implements UserDAO {
 
 		}
 		return user;
+	}
+
+	@Override
+	public List<User> selectByPoste(String role) throws DALException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		List<User> liste = new ArrayList<User>();
+		try {
+			cnx = JdbcTools.getConnection();
+			rqt = cnx.prepareStatement(sqlSelectByPoste);
+			rqt.setString(1, role);
+			rs = rqt.executeQuery();
+			User user = null;
+
+			while (rs.next()) {
+				user = new User(rs.getInt("CodePers"), rs.getString("Nom"), rs.getString("MotPasse"),
+						rs.getString("Role"), rs.getBoolean("Archive"));
+
+				liste.add(user);
+			}
+		} catch (
+
+		SQLException e) {
+			throw new DALException("selectByRole failed - ", e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (rqt != null) {
+					rqt.close();
+				}
+				if (cnx != null) {
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return liste;
 	}
 }

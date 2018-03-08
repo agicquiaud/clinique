@@ -8,6 +8,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.security.ntlm.Client;
+
+import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.bo.User;
 import fr.eni.clinique.dal.DALException;
 
@@ -15,28 +18,30 @@ public class ClientDAOJdbcImpl {
 
 	private static final String sqlSelectAll = "SELECT CodeClient, NomClient, PrenomClient, "
 			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Assurance, Email, Remarque, Archive FROM Clients";
-	private static final String sqlUpdate = "UPDATE Clients SET NomClient=?, PrenomClient=?, Role=?, Archive=? WHERE CodePers=?";
-	private static final String sqlInsert = "INSERT INTO Personnels (Nom, MotPasse, Role, Archive) VALUES (?, ?, ?, ?)";
+	private static final String sqlUpdate = "UPDATE Clients SET NomClient=?, PrenomClient=?, "
+			+ "Adresse1=?, Adresse2=?, CodePostal=?, Ville=?, NumTel=?, Assurance=?, Email=?, Remarque=?, Archive=? WHERE CodePers=?";
+	private static final String sqlInsert = "INSERT INTO Clients (CodeClient, NomClient, PrenomClient, "
+			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Assurance, Email, Remarque, Archive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String sqlDelete = "DELETE FROM Personnels WHERE CodePers=?";
 	private static final String sqlSelectByNom = "SELECT CodeClient, NomClient, PrenomClient, "
 			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Assurance, Email, Remarque, Archive FROM Clients WHERE NomClient=?";
 
-	public List<User> selectAll() throws DALException {
+	public List<Clients> selectAll() throws DALException {
 		Connection cnx = null;
 		Statement rqt = null;
 		ResultSet rs = null;
-		List<User> liste = new ArrayList<User>();
+		List<Clients> liste = new ArrayList<Clients>();
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.createStatement();
 			rs = rqt.executeQuery(sqlSelectAll);
-			User user = null;
+			Clients client = null;
 
 			while (rs.next()) {
-				user = new User(rs.getInt("CodePers"), rs.getString("Nom"), rs.getString("MotPasse"),
+				client = new Clients(rs.getInt("CodePers"), rs.getString("Nom"), rs.getString("MotPasse"),
 						rs.getString("Role"), rs.getBoolean("Archive"));
 
-				liste.add(user);
+				liste.add(client);
 			}
 		} catch (
 
@@ -61,7 +66,7 @@ public class ClientDAOJdbcImpl {
 
 	}
 
-	public void update(User data) throws DALException {
+	public void update(Clients data) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		try {
@@ -91,7 +96,7 @@ public class ClientDAOJdbcImpl {
 		}
 	}
 
-	public void insert(User data) throws DALException {
+	public void insert(Clients data) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		try {
@@ -153,18 +158,18 @@ public class ClientDAOJdbcImpl {
 		}
 	}
 
-	public User selectByNom(String nom) throws DALException {
+	public Clients selectByNom(String nom) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		ResultSet rs = null;
-		User user = null;
+		Clients client = null;
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlSelectByNom);
 			rqt.setString(1, nom);
 			rs = rqt.executeQuery();
 			if (rs.next()) {
-				user = new User(rs.getInt("CodePers"), rs.getString("Nom"), rs.getString("MotPasse"),
+				client = new Clients(rs.getInt("CodePers"), rs.getString("Nom"), rs.getString("MotPasse"),
 						rs.getString("Role"), rs.getBoolean("Archive"));
 			}
 
@@ -186,6 +191,6 @@ public class ClientDAOJdbcImpl {
 			}
 
 		}
-		return user;
+		return client;
 	}
 }
