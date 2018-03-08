@@ -261,7 +261,8 @@ public class WindowGestionPersonnels {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				controller.addPersonnel(new User(textField_6.getText(), textField_7.getText(),
-				(String) comboBox.getSelectedItem(), false));
+					(String) comboBox.getSelectedItem(), false));
+				
 				AjoutPersonnel.setVisible(false);
 			}
 		});
@@ -291,15 +292,12 @@ public class WindowGestionPersonnels {
 			public void actionPerformed(ActionEvent e) {
 				if (controller.verifDroit()) {
 					controller.ArchivePersonnel(lblNewLabelGP.getText());
+					tableModel.fireTableDataChanged();
 				} else {
 					lblerror.setText("Droit insuffisant");
 				}
 			}
 		});
-	}
-	
-	public void setupTableData(){
-		
 	}
 
 }
