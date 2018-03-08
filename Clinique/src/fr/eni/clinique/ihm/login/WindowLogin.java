@@ -35,7 +35,7 @@ public class WindowLogin {
 	 */
 	public WindowLogin() {
 		controller = new ControllerLogin();
-		
+		 
 		//liste panneau------------------------------------
 		frame = new JFrame();
 		frame.setTitle("Connexion");
