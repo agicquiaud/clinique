@@ -56,8 +56,14 @@ class AnimalImpl implements Animal{
 
 	@Override
 	public Animaux animalById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Animaux anim = null;
+		try {
+			anim = con.selectById(id);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return anim;
 	}
 
 	@Override
