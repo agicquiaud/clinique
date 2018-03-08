@@ -300,7 +300,9 @@ public class WindowGestionPersonnels {
 	}
 	
 	public void setUpTableData(){
-		
+		String[] entetes = { "Nom", "Mot de passe", "Role" };
+		DefaultTableModel tableModel = new DefaultTableModel(controller.getList(), entetes);
+		table.setModel(tableModel);
 	}
 
 }
