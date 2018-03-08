@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import fr.eni.clinique.bo.Clients;
-import fr.eni.clinique.bo.User;
 import fr.eni.clinique.dal.DALException;
 
 public class ClientDAOJdbcImpl {
