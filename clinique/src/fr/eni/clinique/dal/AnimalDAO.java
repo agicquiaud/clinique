@@ -18,4 +18,7 @@ public interface AnimalDAO {
 		
 		// Selectionne tous les animaux du client
 		public List<Animaux> selectByIdClient(Integer id) throws DALException;
+		
+		//Selectionne un animal
+		public Animaux selectById(Integer id) throws DALException; 
 }
