@@ -1,5 +1,8 @@
 package fr.eni.clinique.bll;
 
+import fr.eni.clinique.bll.BLLException;
+import fr.eni.clinique.bll.LoginManager;
+import fr.eni.clinique.bll.LoginManagerSingleton;
 import fr.eni.clinique.bo.User;
 
 public class AppliTestBLL {
