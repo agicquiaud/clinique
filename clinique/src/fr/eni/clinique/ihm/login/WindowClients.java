@@ -94,25 +94,28 @@ public class WindowClients {
 		gbc_btnNewButton_4.gridy = 1;
 		frame.getContentPane().add(btnNewButton_4, gbc_btnNewButton_4);
 		
-		table_2 = new JTable();
-		GridBagConstraints gbc_table_2 = new GridBagConstraints();
-		gbc_table_2.gridwidth = 2;
-		gbc_table_2.gridheight = 6;
-		gbc_table_2.insets = new Insets(0, 0, 5, 5);
-		gbc_table_2.fill = GridBagConstraints.BOTH;
-		gbc_table_2.gridx = 1;
-		gbc_table_2.gridy = 3;
-		frame.getContentPane().add(table_2, gbc_table_2);
-		
-		table_1 = new JTable();
+		String[] entetes1 = { "Nom", "Mot de passe", "Role" };
+		Object[][] donnee;
+		table_1 = new JTable(null, entetes1);
 		GridBagConstraints gbc_table_1 = new GridBagConstraints();
-		gbc_table_1.gridwidth = 4;
+		gbc_table_1.gridwidth = 2;
 		gbc_table_1.gridheight = 6;
 		gbc_table_1.insets = new Insets(0, 0, 5, 5);
 		gbc_table_1.fill = GridBagConstraints.BOTH;
-		gbc_table_1.gridx = 4;
+		gbc_table_1.gridx = 1;
 		gbc_table_1.gridy = 3;
 		frame.getContentPane().add(table_1, gbc_table_1);
+		
+		String[] entetes2 = { "Nom", "Mot de passe", "Role" };
+		table_2 = new JTable(null, entetes2);
+		GridBagConstraints gbc_table_2 = new GridBagConstraints();
+		gbc_table_2.gridwidth = 4;
+		gbc_table_2.gridheight = 6;
+		gbc_table_2.insets = new Insets(0, 0, 5, 5);
+		gbc_table_2.fill = GridBagConstraints.BOTH;
+		gbc_table_2.gridx = 4;
+		gbc_table_2.gridy = 3;
+		frame.getContentPane().add(table_2, gbc_table_2);
 		
 		JButton btnAjouter = new JButton("Ajouter");
 		GridBagConstraints gbc_btnAjouter = new GridBagConstraints();
