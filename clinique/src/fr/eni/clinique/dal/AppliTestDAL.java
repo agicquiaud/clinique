@@ -28,7 +28,7 @@ public class AppliTestDAL {
 
 			// Sélection de l'utilisateur par id
 			// TODO...
-			User u = userDAO.selectById(u2.getId());
+			User u = userDAO.selectByNom(u2.getLogin());
 			System.out.println("Sélection de l'utilisateur par id  : " + u.toString());
 
 			// Sélection de tous les utilisateurs

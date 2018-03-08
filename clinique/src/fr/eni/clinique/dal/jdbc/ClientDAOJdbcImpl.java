@@ -7,76 +7,38 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import fr.eni.clinique.bo.User;
+import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.dal.DALException;
-import fr.eni.clinique.dal.UserDAO;
 
-public class ConnexionDAOJdbcImpl implements UserDAO {
+public class ClientDAOJdbcImpl {
 
-	private static final String sqlSelectById = "SELECT CodePers, Nom, MotPasse, Role, Archive FROM Personnels WHERE CodePers=?";
-	private static final String sqlSelectAll = "SELECT CodePers, Nom, MotPasse, Role, Archive FROM Personnels";
-	private static final String sqlUpdate = "UPDATE Personnels SET Nom=?, MotPasse=?, Role=?, Archive=? WHERE CodePers=?";
-	private static final String sqlInsert = "INSERT INTO Personnels (Nom, MotPasse, Role, Archive) VALUES (?, ?, ?, ?)";
-	private static final String sqlDelete = "DELETE FROM Personnels WHERE CodePers=?";
-	private static final String sqlSelectByNom = "SELECT CodePers, Nom, MotPasse, Role, Archive FROM Personnels WHERE Nom=?";
+	private static final String sqlSelectAll = "SELECT CodeClient, NomClient, PrenomClient, "
+			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive FROM Clients";
+	private static final String sqlUpdate = "UPDATE Clients SET NomClient=?, PrenomClient=?, "
+			+ "Adresse1=?, CodePostal=?, Ville=?, NumTel=?, Email=?, Archive=? WHERE CodeClient=?";
+	private static final String sqlInsert = "INSERT INTO Clients (CodeClient, NomClient, PrenomClient, "
+			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String sqlDelete = "DELETE FROM Clients WHERE CodeClient=?";
+	private static final String sqlSelectByNom = "SELECT CodeClient, NomClient, PrenomClient, "
+			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive FROM Clients WHERE NomClient=?";
 
-	public User selectById(int id) throws DALException {
-		Connection cnx = null;
-		PreparedStatement rqt = null;
-		ResultSet rs = null;
-		User user = null;
-
-		try {
-			cnx = JdbcTools.getConnection();
-			rqt = cnx.prepareStatement(sqlSelectById);
-			rqt.setInt(1, id);
-
-			rs = rqt.executeQuery();
-			if (rs.next()) {
-
-				user = new User(rs.getInt("CodePers"), rs.getString("Nom"), rs.getString("MotPasse"),
-						rs.getString("Role"), rs.getBoolean("Archive"));
-			}
-
-		} catch (SQLException e) {
-			throw new DALException("selectById failed - id = " + id, e);
-		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (rqt != null) {
-					rqt.close();
-				}
-				if (cnx != null) {
-					cnx.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
-		}
-		return user;
-	}
-
-	@Override
-	public List<User> selectAll() throws DALException {
+	public List<Clients> selectAll() throws DALException {
 		Connection cnx = null;
 		Statement rqt = null;
 		ResultSet rs = null;
-		List<User> liste = new ArrayList<User>();
+		List<Clients> liste = new ArrayList<Clients>();
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.createStatement();
 			rs = rqt.executeQuery(sqlSelectAll);
-			User user = null;
+			Clients client = null;
 
 			while (rs.next()) {
-				user = new User(rs.getInt("CodePers"), rs.getString("Nom"), rs.getString("MotPasse"),
-						rs.getString("Role"), rs.getBoolean("Archive"));
+				client = new Clients(rs.getInt("CodePers"), rs.getString("NomClient"), rs.getString("PrenomClient"),
+						rs.getString("Adresse1"), rs.getString("CodePostal"),
+						rs.getString("Ville"), rs.getString("NumTel"), rs.getString("Email"), rs.getBoolean("Archive"));
 
-				liste.add(user);
+				liste.add(client);
 			}
 		} catch (
 
@@ -94,7 +56,6 @@ public class ConnexionDAOJdbcImpl implements UserDAO {
 					cnx.close();
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -102,18 +63,21 @@ public class ConnexionDAOJdbcImpl implements UserDAO {
 
 	}
 
-	@Override
-	public void update(User data) throws DALException {
+	public void update(Clients data) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlUpdate);
-			rqt.setString(1, data.getLogin());
-			rqt.setString(2, data.getPassword());
-			rqt.setString(3, data.getType());
-			rqt.setBoolean(4, data.getHide());
-			rqt.setInt(5, data.getId());
+			rqt.setString(1, data.getNom());
+			rqt.setString(2, data.getPrenom());
+			rqt.setString(3, data.getAdresse1());
+			rqt.setString(4, data.getCodePostal());
+			rqt.setString(5, data.getVille());
+			rqt.setString(6, data.getNumTel());
+			rqt.setString(7, data.getEmail());
+			rqt.setBoolean(8, data.getArchive());
+			rqt.setInt(9, data.getCodeClient());
 
 			rqt.executeUpdate();
 
@@ -133,23 +97,27 @@ public class ConnexionDAOJdbcImpl implements UserDAO {
 		}
 	}
 
-	@Override
-	public void insert(User data) throws DALException {
+	public void insert(Clients data) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
-			rqt.setString(1, data.getLogin());
-			rqt.setString(2, data.getPassword());
-			rqt.setString(3, data.getType());
-			rqt.setBoolean(4, data.getHide());
+			rqt.setInt(1, data.getCodeClient());
+			rqt.setString(2, data.getNom());
+			rqt.setString(3, data.getPrenom());
+			rqt.setString(4, data.getAdresse1());
+			rqt.setString(5, data.getCodePostal());
+			rqt.setString(6, data.getVille());
+			rqt.setString(7, data.getNumTel());
+			rqt.setString(8, data.getEmail());
+			rqt.setBoolean(9, data.getArchive());
 
 			int nbRows = rqt.executeUpdate();
 			if (nbRows == 1) {
 				ResultSet rs = rqt.getGeneratedKeys();
 				if (rs.next()) {
-					data.setId(rs.getInt(1));
+					data.setCodeClient(rs.getInt(1));
 				}
 			}
 		} catch (SQLException e) {
@@ -169,7 +137,6 @@ public class ConnexionDAOJdbcImpl implements UserDAO {
 		}
 	}
 
-	@Override
 	public void delete(int id) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
@@ -197,19 +164,20 @@ public class ConnexionDAOJdbcImpl implements UserDAO {
 		}
 	}
 
-	public User selectByNom(String nom) throws DALException {
+	public Clients selectByNom(String nom) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		ResultSet rs = null;
-		User user = null;
+		Clients client = null;
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlSelectByNom);
 			rqt.setString(1, nom);
 			rs = rqt.executeQuery();
 			if (rs.next()) {
-				user = new User(rs.getInt("CodePers"), rs.getString("Nom"), rs.getString("MotPasse"),
-						rs.getString("Role"), rs.getBoolean("Archive"));
+				client = new Clients(rs.getInt("CodePers"), rs.getString("NomClient"), rs.getString("PrenomClient"),
+						rs.getString("Adresse1"), rs.getString("CodePostal"),
+						rs.getString("Ville"), rs.getString("NumTel"), rs.getString("Email"), rs.getBoolean("Archive"));
 			}
 
 		} catch (SQLException e) {
@@ -230,6 +198,6 @@ public class ConnexionDAOJdbcImpl implements UserDAO {
 			}
 
 		}
-		return user;
+		return client;
 	}
 }
