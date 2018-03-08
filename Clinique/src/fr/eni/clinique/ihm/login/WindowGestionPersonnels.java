@@ -292,12 +292,15 @@ public class WindowGestionPersonnels {
 			public void actionPerformed(ActionEvent e) {
 				if (controller.verifDroit()) {
 					controller.ArchivePersonnel(lblNewLabelGP.getText());
-					tableModel.fireTableDataChanged();
 				} else {
 					lblerror.setText("Droit insuffisant");
 				}
 			}
 		});
+	}
+	
+	public void setUpTableData(){
+		
 	}
 
 }
