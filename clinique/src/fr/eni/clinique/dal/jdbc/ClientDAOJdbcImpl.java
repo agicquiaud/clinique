@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.sun.security.ntlm.Client;
+
 import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.bo.User;
 import fr.eni.clinique.dal.DALException;
@@ -33,13 +35,13 @@ public class ClientDAOJdbcImpl {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.createStatement();
 			rs = rqt.executeQuery(sqlSelectAll);
-			Clients user = null;
+			Clients client = null;
 
 			while (rs.next()) {
-				user = new Clients(rs.getInt("CodePers"), rs.getString("Nom"), rs.getString("MotPasse"),
+				client = new Clients(rs.getInt("CodePers"), rs.getString("Nom"), rs.getString("MotPasse"),
 						rs.getString("Role"), rs.getBoolean("Archive"));
 
-				liste.add(user);
+				liste.add(client);
 			}
 		} catch (
 
@@ -156,18 +158,18 @@ public class ClientDAOJdbcImpl {
 		}
 	}
 
-	public User selectByNom(String nom) throws DALException {
+	public Client selectByNom(String nom) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		ResultSet rs = null;
-		User user = null;
+		Client client = null;
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlSelectByNom);
 			rqt.setString(1, nom);
 			rs = rqt.executeQuery();
 			if (rs.next()) {
-				user = new User(rs.getInt("CodePers"), rs.getString("Nom"), rs.getString("MotPasse"),
+				client = new User(rs.getInt("CodePers"), rs.getString("Nom"), rs.getString("MotPasse"),
 						rs.getString("Role"), rs.getBoolean("Archive"));
 			}
 
@@ -189,6 +191,6 @@ public class ClientDAOJdbcImpl {
 			}
 
 		}
-		return user;
+		return client;
 	}
 }
