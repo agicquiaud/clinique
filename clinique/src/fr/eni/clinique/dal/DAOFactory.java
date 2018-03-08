@@ -1,8 +1,5 @@
 package fr.eni.clinique.dal;
 
-import fr.eni.clinique.dal.jdbc.UserDAOJdbcImpl;
-
-
 public class DAOFactory {
 	
 	public UserDAO getUserDAO()  {
@@ -20,5 +17,22 @@ public class DAOFactory {
 			e.printStackTrace();
 		}
 		return userDAO; 
+	}
+	
+	public ClientDAO getClientDAO()  {
+		ClientDAO clientDAO=null;
+		try {
+			clientDAO=(ClientDAO ) Class.forName("fr.eni.clinique.dal.jdbc.ClientDAOJdbcImpl").newInstance();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return clientDAO; 
 	}
 }

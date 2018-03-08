@@ -79,7 +79,7 @@ public class UserDAOJdbcImpl implements UserDAO {
 			rqt.executeUpdate();
 
 		} catch (SQLException e) {
-			throw new DALException("Update article failed - " + data, e);
+			throw new DALException("Update user failed - " + data, e);
 		} finally {
 			try {
 				if (rqt != null) {
@@ -114,7 +114,7 @@ public class UserDAOJdbcImpl implements UserDAO {
 				}
 			}
 		} catch (SQLException e) {
-			throw new DALException("Insert article failed - " + data, e);
+			throw new DALException("Insert user failed - " + data, e);
 		} finally {
 			try {
 				if (rqt != null) {
@@ -142,7 +142,7 @@ public class UserDAOJdbcImpl implements UserDAO {
 			rqt.setInt(1, id);
 			rqt.executeUpdate();
 		} catch (SQLException e) {
-			throw new DALException("Delete article failed - id=" + id, e);
+			throw new DALException("Delete user failed - id=" + id, e);
 		} finally {
 			try {
 				if (rqt != null) {

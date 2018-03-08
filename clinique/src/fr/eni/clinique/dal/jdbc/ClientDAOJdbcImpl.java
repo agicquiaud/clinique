@@ -16,7 +16,7 @@ public class ClientDAOJdbcImpl {
 			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive FROM Clients";
 	private static final String sqlUpdate = "UPDATE Clients SET NomClient=?, PrenomClient=?, "
 			+ "Adresse1=?, CodePostal=?, Ville=?, NumTel=?, Email=?, Archive=? WHERE CodeClient=?";
-	private static final String sqlInsert = "INSERT INTO Clients (CodeClient, NomClient, PrenomClient, "
+	private static final String sqlInsert = "INSERT INTO Clients (NomClient, PrenomClient, "
 			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String sqlDelete = "DELETE FROM Clients WHERE CodeClient=?";
 	private static final String sqlSelectByNom = "SELECT CodeClient, NomClient, PrenomClient, "
@@ -82,7 +82,7 @@ public class ClientDAOJdbcImpl {
 			rqt.executeUpdate();
 
 		} catch (SQLException e) {
-			throw new DALException("Update article failed - " + data, e);
+			throw new DALException("Update client failed - " + data, e);
 		} finally {
 			try {
 				if (rqt != null) {
@@ -103,7 +103,6 @@ public class ClientDAOJdbcImpl {
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
-			rqt.setInt(1, data.getCodeClient());
 			rqt.setString(2, data.getNom());
 			rqt.setString(3, data.getPrenom());
 			rqt.setString(4, data.getAdresse1());
@@ -121,7 +120,7 @@ public class ClientDAOJdbcImpl {
 				}
 			}
 		} catch (SQLException e) {
-			throw new DALException("Insert article failed - " + data, e);
+			throw new DALException("Insert client failed - " + data, e);
 		} finally {
 			try {
 				if (rqt != null) {
@@ -148,7 +147,7 @@ public class ClientDAOJdbcImpl {
 			rqt.setInt(1, id);
 			rqt.executeUpdate();
 		} catch (SQLException e) {
-			throw new DALException("Delete article failed - id=" + id, e);
+			throw new DALException("Delete client failed - id=" + id, e);
 		} finally {
 			try {
 				if (rqt != null) {
