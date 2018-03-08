@@ -66,7 +66,7 @@ public class ClientDAOJdbcImpl {
 
 	}
 
-	public void update(User data) throws DALException {
+	public void update(Clients data) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		try {
@@ -96,7 +96,7 @@ public class ClientDAOJdbcImpl {
 		}
 	}
 
-	public void insert(User data) throws DALException {
+	public void insert(Clients data) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		try {
@@ -158,18 +158,18 @@ public class ClientDAOJdbcImpl {
 		}
 	}
 
-	public Client selectByNom(String nom) throws DALException {
+	public Clients selectByNom(String nom) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		ResultSet rs = null;
-		Client client = null;
+		Clients client = null;
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlSelectByNom);
 			rqt.setString(1, nom);
 			rs = rqt.executeQuery();
 			if (rs.next()) {
-				client = new User(rs.getInt("CodePers"), rs.getString("Nom"), rs.getString("MotPasse"),
+				client = new Clients(rs.getInt("CodePers"), rs.getString("Nom"), rs.getString("MotPasse"),
 						rs.getString("Role"), rs.getBoolean("Archive"));
 			}
 
