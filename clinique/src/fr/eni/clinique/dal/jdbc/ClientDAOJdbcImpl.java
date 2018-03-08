@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.security.ntlm.Client;
+//import com.sun.security.ntlm.Client;
 
 import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.bo.User;
