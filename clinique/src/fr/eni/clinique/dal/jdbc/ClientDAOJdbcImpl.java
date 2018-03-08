@@ -7,10 +7,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
 import fr.eni.clinique.bo.Clients;
+import fr.eni.clinique.dal.ClientDAO;
 import fr.eni.clinique.dal.DALException;
 
-public class ClientDAOJdbcImpl {
+public class ClientDAOJdbcImpl implements ClientDAO{
 
 	private static final String sqlSelectAll = "SELECT CodeClient, NomClient, PrenomClient, "
 			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive FROM Clients";

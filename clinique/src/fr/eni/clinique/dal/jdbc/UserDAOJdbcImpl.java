@@ -73,7 +73,7 @@ public class UserDAOJdbcImpl implements UserDAO {
 			rqt.setString(1, data.getLogin());
 			rqt.setString(2, data.getPassword());
 			rqt.setString(3, data.getType());
-			rqt.setBoolean(4, data.getHide());
+			rqt.setBoolean(4, data.getArchive());
 			rqt.setInt(5, data.getId());
 
 			rqt.executeUpdate();
@@ -104,7 +104,7 @@ public class UserDAOJdbcImpl implements UserDAO {
 			rqt.setString(1, data.getLogin());
 			rqt.setString(2, data.getPassword());
 			rqt.setString(3, data.getType());
-			rqt.setBoolean(4, data.getHide());
+			rqt.setBoolean(4, data.getArchive());
 
 			int nbRows = rqt.executeUpdate();
 			if (nbRows == 1) {
@@ -189,7 +189,6 @@ public class UserDAOJdbcImpl implements UserDAO {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-
 		}
 		return user;
 	}

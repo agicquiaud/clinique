@@ -6,15 +6,15 @@ public class User {
 	private String login;
 	private String password;
 	private String type;
-	private Boolean hide;
+	private Boolean archive;
 
-	public User(Integer id, String login, String password, String type, Boolean hide) {
+	public User(Integer id, String login, String password, String type, Boolean archive) {
 		super();
 		this.id = id;
 		this.login = login;
 		this.password = password;
 		this.type = type;
-		this.hide = hide;
+		this.archive = archive;
 	}
 
 	public User() {
@@ -29,20 +29,20 @@ public class User {
 		this.type = type;
 	}
 
-	public User(String login, String password, String type, Boolean hide) {
+	public User(String login, String password, String type, Boolean archive) {
 		super();
 		this.login = login;
 		this.password = password;
 		this.type = type;
-		this.hide = hide;
+		this.archive = archive;
 	}
 
-	public Boolean getHide() {
-		return hide;
+	public Boolean getArchive() {
+		return archive;
 	}
 
-	public void setHide(Boolean hide) {
-		this.hide = hide;
+	public void setArchive(Boolean archive) {
+		this.archive = archive;
 	}
 
 	public Integer getId() {
@@ -79,7 +79,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", login=" + login + ", password=" + password + ", type=" + type + ", hide=" + hide
+		return "User [id=" + id + ", login=" + login + ", password=" + password + ", type=" + type + ", hide=" + archive
 				+ "]";
 	}
 

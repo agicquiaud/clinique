@@ -26,7 +26,7 @@ public class PersonnelsImpl implements Personnels{
 	@Override
 	public void archive(User p) {
 		try {
-			p.setHide(true);
+			p.setArchive(true);
 			con.update(p);
 		} catch (DALException e) {
 			e.printStackTrace();
@@ -62,7 +62,7 @@ public class PersonnelsImpl implements Personnels{
 			e.printStackTrace();
 		}
 		for (User user : liste) {
-			if(user.getHide() == false){
+			if(user.getArchive() == false){
 				listereturn.add(user);
 			}
 		}
