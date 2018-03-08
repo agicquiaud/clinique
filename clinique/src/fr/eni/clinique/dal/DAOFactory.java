@@ -39,7 +39,7 @@ public class DAOFactory {
 	public AnimalDAO getAnimalDAO()  {
 		AnimalDAO animalDAO = null;
 		try {
-			animalDAO =(AnimalDAO ) Class.forName("fr.eni.clinique.dal.jdbc.ClientDAOJdbcImpl").newInstance();
+			animalDAO =(AnimalDAO ) Class.forName("fr.eni.clinique.dal.jdbc.AnimalDAOJdbcImpl").newInstance();
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
