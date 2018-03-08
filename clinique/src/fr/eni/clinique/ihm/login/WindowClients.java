@@ -16,6 +16,7 @@ public class WindowClients {
 	private JFrame frame;
 	private JTable table_1;
 	private JTable table_2;
+	private ControllerClients controller;
 	
 	public WindowClients(){
 		frame = new JFrame();
