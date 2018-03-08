@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.clinique.bo.Animaux;
+import fr.eni.clinique.bo.User;
+import fr.eni.clinique.dal.AnimalDAO;
 import fr.eni.clinique.dal.DALException;
 
-public class AnimalDAOJdbcImpl {
-	
+public class AnimalDAOJdbcImpl implements AnimalDAO {
+
 	private static final String sqlSelectAll = "SELECT CodeAnimal, NomAnimal, Sexe, "
 			+ "Couleur, Race, Espece, CodeClient, Tatouage, Antecedents, Archive FROM Animaux";
 	private static final String sqlUpdate = "UPDATE Animaux SET NomAnimal=?, Sexe=?, "
@@ -20,7 +22,9 @@ public class AnimalDAOJdbcImpl {
 	private static final String sqlInsert = "INSERT INTO Clients (NomAnimal, Sexe, "
 			+ "Couleur, Race, Espece, CodeClient, Tatouage, Antecedents, Archive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String sqlDelete = "DELETE FROM Animaux WHERE CodeAnimal=?";
-	
+	private static final String sqlSelectByIdClient = "SELECT CodeAnimal, NomAnimal, Sexe, "
+			+ "Couleur, Race, Espece, CodeClient, Tatouage, Antecedents, Archive FROM Animaux WHERE CodeClient=?";
+
 	public List<Animaux> selectAll() throws DALException {
 		Connection cnx = null;
 		Statement rqt = null;
@@ -34,9 +38,9 @@ public class AnimalDAOJdbcImpl {
 
 			while (rs.next()) {
 				animal = new Animaux(rs.getInt("CodeAnimal"), rs.getString("NomAnimal"), rs.getString("Sexe"),
-						rs.getString("Couleur"), rs.getString("Race"), rs.getString("Espece"),
-						rs.getInt("CodeClient"), rs.getString("Tatouage"), rs.getString("Antecedents"), rs.getBoolean("Archive"));
-				
+						rs.getString("Couleur"), rs.getString("Race"), rs.getString("Espece"), rs.getInt("CodeClient"),
+						rs.getString("Tatouage"), rs.getString("Antecedents"), rs.getBoolean("Archive"));
+
 				liste.add(animal);
 			}
 		} catch (
@@ -78,7 +82,7 @@ public class AnimalDAOJdbcImpl {
 			rqt.setString(8, data.getAntecedents());
 			rqt.setBoolean(9, data.getArchive());
 			rqt.setInt(10, data.getCodeAnimal());
-			
+
 			rqt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -163,4 +167,48 @@ public class AnimalDAOJdbcImpl {
 
 		}
 	}
+
+	@Override
+	public List<Animaux> selectByIdClient(Integer id) throws DALException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		List<Animaux> liste = new ArrayList<Animaux>();
+		try {
+			cnx = JdbcTools.getConnection();
+			rqt = cnx.prepareStatement(sqlSelectByIdClient);
+			rqt.setInt(1, id);
+			rs = rqt.executeQuery();
+			Animaux animal = null;
+
+			while (rs.next()) {
+				animal = new Animaux(rs.getInt("CodeAnimal"), rs.getString("NomAnimal"), rs.getString("Sexe"),
+						rs.getString("Couleur"), rs.getString("Race"), rs.getString("Espece"), rs.getInt("CodeClient"),
+						rs.getString("Tatouage"), rs.getString("Antecedents"), rs.getBoolean("Archive"));
+
+				liste.add(animal);
+			}
+		} catch (
+
+		SQLException e) {
+			throw new DALException("selectByRole failed - ", e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (rqt != null) {
+					rqt.close();
+				}
+				if (cnx != null) {
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return liste;
+	}
+
 }
