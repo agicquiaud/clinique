@@ -227,12 +227,7 @@ public class WindowGestionPersonnels {
 
 		/////////////////////////////////////////////////////////////////////////////////////////
 
-		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				lblNewLabelGP.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
-			}
-		});
+
 		
 		btnAjouter.addActionListener(new ActionListener() {
 			@Override
@@ -272,7 +267,7 @@ public class WindowGestionPersonnels {
 		btnValiderModalReset.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.resetMotDePasse(lblNewLabelGP.getText(), textField.getText());
+				controller.resetMotDePasse(table.getValueAt(table.getSelectedRow(), 0).toString(), textField.getText());
 				ResetMdp.setVisible(false);
 			}
 		});
@@ -281,7 +276,7 @@ public class WindowGestionPersonnels {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (controller.verifDroit()) {
-					controller.ArchivePersonnel(lblNewLabelGP.getText());
+					controller.ArchivePersonnel(table.getValueAt(table.getSelectedRow(), 0).toString());
 					setUpTableData();
 				} else {
 					lblerror.setText("Droit insuffisant");
