@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.clinique.bo.Animaux;
+import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.bo.User;
 import fr.eni.clinique.dal.AnimalDAO;
 import fr.eni.clinique.dal.DALException;
@@ -24,7 +25,9 @@ public class AnimalDAOJdbcImpl implements AnimalDAO {
 	private static final String sqlDelete = "DELETE FROM Animaux WHERE CodeAnimal=?";
 	private static final String sqlSelectByIdClient = "SELECT CodeAnimal, NomAnimal, Sexe, "
 			+ "Couleur, Race, Espece, CodeClient, Tatouage, Antecedents, Archive FROM Animaux WHERE CodeClient=?";
-
+	private static final String sqlSelectById = "SELECT CodeAnimal, NomAnimal, Sexe, "
+			+ "Couleur, Race, Espece, CodeClient, Tatouage, Antecedents, Archive FROM Animaux WHERE CodeAnimal=?";
+	
 	public List<Animaux> selectAll() throws DALException {
 		Connection cnx = null;
 		Statement rqt = null;
@@ -209,6 +212,43 @@ public class AnimalDAOJdbcImpl implements AnimalDAO {
 			}
 		}
 		return liste;
+	}
+	
+	public Animaux selectById(Integer id) throws DALException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		Animaux animal = null;
+		try {
+			cnx = JdbcTools.getConnection();
+			rqt = cnx.prepareStatement(sqlSelectById);
+			rqt.setInt(1, id);
+			rs = rqt.executeQuery();
+			if (rs.next()) {
+				animal = new Animaux(rs.getInt("CodeAnimal"), rs.getString("NomAnimal"), rs.getString("Sexe"),
+						rs.getString("Couleur"), rs.getString("Race"), rs.getString("Espece"), rs.getInt("CodeClient"),
+						rs.getString("Tatouage"), rs.getString("Antecedents"), rs.getBoolean("Archive"));
+			}
+
+		} catch (SQLException e) {
+			throw new DALException("selectById failed - Id = " + id, e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (rqt != null) {
+					rqt.close();
+				}
+				if (cnx != null) {
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return animal;
 	}
 
 }
