@@ -35,4 +35,21 @@ public class DAOFactory {
 		}
 		return clientDAO; 
 	}
+	
+	public AnimalDAO getAnimalDAO()  {
+		AnimalDAO animalDAO = null;
+		try {
+			animalDAO =(AnimalDAO ) Class.forName("fr.eni.clinique.dal.jdbc.AnimalDAOJdbcImpl").newInstance();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return animalDAO; 
+	}
 }

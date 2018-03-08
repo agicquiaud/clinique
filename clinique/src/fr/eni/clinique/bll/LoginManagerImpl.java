@@ -23,7 +23,7 @@ public class LoginManagerImpl implements LoginManager{
 		if (user == null) {
 			message = false;
 		}else{
-			if (password.equalsIgnoreCase(user.getPassword()) && user.getHide() == false) {
+			if (password.equalsIgnoreCase(user.getPassword()) && user.getArchive() == false) {
 				message = true;
 			}
 		}
