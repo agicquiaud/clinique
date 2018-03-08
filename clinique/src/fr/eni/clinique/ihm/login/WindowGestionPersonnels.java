@@ -226,8 +226,7 @@ public class WindowGestionPersonnels {
 		ResetMdp.getContentPane().add(btnValiderModalReset, gbc_btnValiderModalReset);
 
 		/////////////////////////////////////////////////////////////////////////////////////////
-
-
+		
 		
 		btnAjouter.addActionListener(new ActionListener() {
 			@Override
