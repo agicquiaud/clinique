@@ -9,16 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.clinique.bo.Animaux;
-import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.dal.DALException;
 
 public class AnimalDAOJdbcImpl {
 	
 	private static final String sqlSelectAll = "SELECT CodeAnimal, NomAnimal, Sexe, "
 			+ "Couleur, Race, Espece, CodeClient, Tatouage, Antecedents, Archive FROM Animaux";
-	private static final String sqlUpdate = "UPDATE Animaux SET CodeAnimal=?, NomAnimal=?, Sexe=?, "
+	private static final String sqlUpdate = "UPDATE Animaux SET NomAnimal=?, Sexe=?, "
 			+ "Couleur=?, Race=?, Espece=?, CodeClient=?, Tatouage=?, Antecedents=?, Archive=? WHERE CodeAnimal=?";
-	private static final String sqlInsert = "INSERT INTO Clients (CodeAnimal, NomAnimal, Sexe, "
+	private static final String sqlInsert = "INSERT INTO Clients (NomAnimal, Sexe, "
 			+ "Couleur, Race, Espece, CodeClient, Tatouage, Antecedents, Archive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String sqlDelete = "DELETE FROM Animaux WHERE CodeAnimal=?";
 	
@@ -34,10 +33,10 @@ public class AnimalDAOJdbcImpl {
 			Animaux animal = null;
 
 			while (rs.next()) {
-				animal = new Clients(rs.getInt("CodePers"), rs.getString("NomClient"), rs.getString("PrenomClient"),
-						rs.getString("Adresse1"), rs.getString("CodePostal"), rs.getString("Ville"),
-						rs.getString("NumTel"), rs.getString("Email"), rs.getBoolean("Archive"));
-
+				animal = new Animaux(rs.getInt("CodeAnimal"), rs.getString("NomAnimal"), rs.getString("Sexe"),
+						rs.getString("Couleur"), rs.getString("Race"), rs.getString("Espece"),
+						rs.getInt("CodeClient"), rs.getString("Tatouage"), rs.getString("Antecedents"), rs.getBoolean("Archive"));
+				
 				liste.add(animal);
 			}
 		} catch (
@@ -70,19 +69,20 @@ public class AnimalDAOJdbcImpl {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlUpdate);
 			rqt.setString(1, data.getNom());
-			rqt.setString(2, data.getPrenom());
-			rqt.setString(3, data.getAdresse1());
-			rqt.setString(4, data.getCodePostal());
-			rqt.setString(5, data.getVille());
-			rqt.setString(6, data.getNumTel());
-			rqt.setString(7, data.getEmail());
-			rqt.setBoolean(8, data.getArchive());
-			rqt.setInt(9, data.getCodeClient());
-
+			rqt.setString(2, data.getSexe());
+			rqt.setString(3, data.getCouleur());
+			rqt.setString(4, data.getRace());
+			rqt.setString(5, data.getEspece());
+			rqt.setInt(6, data.getCodeClient());
+			rqt.setString(7, data.getTatouage());
+			rqt.setString(8, data.getAntecedents());
+			rqt.setBoolean(9, data.getArchive());
+			rqt.setInt(10, data.getCodeAnimal());
+			
 			rqt.executeUpdate();
 
 		} catch (SQLException e) {
-			throw new DALException("Update client failed - " + data, e);
+			throw new DALException("Update animal failed - " + data, e);
 		} finally {
 			try {
 				if (rqt != null) {
@@ -103,13 +103,14 @@ public class AnimalDAOJdbcImpl {
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
-			rqt.setString(2, data.getNom());
-			rqt.setString(3, data.getPrenom());
-			rqt.setString(4, data.getAdresse1());
-			rqt.setString(5, data.getCodePostal());
-			rqt.setString(6, data.getVille());
-			rqt.setString(7, data.getNumTel());
-			rqt.setString(8, data.getEmail());
+			rqt.setString(1, data.getNom());
+			rqt.setString(2, data.getSexe());
+			rqt.setString(3, data.getCouleur());
+			rqt.setString(4, data.getRace());
+			rqt.setString(5, data.getEspece());
+			rqt.setInt(6, data.getCodeClient());
+			rqt.setString(7, data.getTatouage());
+			rqt.setString(8, data.getAntecedents());
 			rqt.setBoolean(9, data.getArchive());
 
 			int nbRows = rqt.executeUpdate();
@@ -120,7 +121,7 @@ public class AnimalDAOJdbcImpl {
 				}
 			}
 		} catch (SQLException e) {
-			throw new DALException("Insert client failed - " + data, e);
+			throw new DALException("Insert animal failed - " + data, e);
 		} finally {
 			try {
 				if (rqt != null) {
@@ -147,7 +148,7 @@ public class AnimalDAOJdbcImpl {
 			rqt.setInt(1, id);
 			rqt.executeUpdate();
 		} catch (SQLException e) {
-			throw new DALException("Delete client failed - id=" + id, e);
+			throw new DALException("Delete animal failed - id=" + id, e);
 		} finally {
 			try {
 				if (rqt != null) {
@@ -161,42 +162,5 @@ public class AnimalDAOJdbcImpl {
 			}
 
 		}
-	}
-
-	public Animaux selectByNom(String nom) throws DALException {
-		Connection cnx = null;
-		PreparedStatement rqt = null;
-		ResultSet rs = null;
-		Animaux animal = null;
-		try {
-			cnx = JdbcTools.getConnection();
-			rqt = cnx.prepareStatement(sqlSelectByNom);
-			rqt.setString(1, nom);
-			rs = rqt.executeQuery();
-			if (rs.next()) {
-				animal = new Clients(rs.getInt("CodePers"), rs.getString("NomClient"), rs.getString("PrenomClient"),
-						rs.getString("Adresse1"), rs.getString("CodePostal"), rs.getString("Ville"),
-						rs.getString("NumTel"), rs.getString("Email"), rs.getBoolean("Archive"));
-			}
-
-		} catch (SQLException e) {
-			throw new DALException("selectByNom failed - Nom = " + nom, e);
-		} finally {
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-				if (rqt != null) {
-					rqt.close();
-				}
-				if (cnx != null) {
-					cnx.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
-		}
-		return animal;
 	}
 }
