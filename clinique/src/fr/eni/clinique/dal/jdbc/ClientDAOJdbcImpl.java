@@ -7,9 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.sun.security.ntlm.Client;
-
 import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.bo.User;
 import fr.eni.clinique.dal.DALException;
@@ -17,14 +14,14 @@ import fr.eni.clinique.dal.DALException;
 public class ClientDAOJdbcImpl {
 
 	private static final String sqlSelectAll = "SELECT CodeClient, NomClient, PrenomClient, "
-			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Assurance, Email, Remarque, Archive FROM Clients";
+			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive FROM Clients";
 	private static final String sqlUpdate = "UPDATE Clients SET NomClient=?, PrenomClient=?, "
-			+ "Adresse1=?, Adresse2=?, CodePostal=?, Ville=?, NumTel=?, Assurance=?, Email=?, Remarque=?, Archive=? WHERE CodePers=?";
+			+ "Adresse1=?, CodePostal=?, Ville=?, NumTel=?, Email=?, Archive=? WHERE CodeClient=?";
 	private static final String sqlInsert = "INSERT INTO Clients (CodeClient, NomClient, PrenomClient, "
-			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Assurance, Email, Remarque, Archive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	private static final String sqlDelete = "DELETE FROM Personnels WHERE CodePers=?";
+			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String sqlDelete = "DELETE FROM Clients WHERE CodeClient=?";
 	private static final String sqlSelectByNom = "SELECT CodeClient, NomClient, PrenomClient, "
-			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Assurance, Email, Remarque, Archive FROM Clients WHERE NomClient=?";
+			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive FROM Clients WHERE NomClient=?";
 
 	public List<Clients> selectAll() throws DALException {
 		Connection cnx = null;
@@ -38,8 +35,9 @@ public class ClientDAOJdbcImpl {
 			Clients client = null;
 
 			while (rs.next()) {
-				client = new Clients(rs.getInt("CodePers"), rs.getString("Nom"), rs.getString("MotPasse"),
-						rs.getString("Role"), rs.getBoolean("Archive"));
+				client = new Clients(rs.getInt("CodePers"), rs.getString("NomClient"), rs.getString("PrenomClient"),
+						rs.getString("Adresse1"), rs.getString("CodePostal"),
+						rs.getString("Ville"), rs.getString("NumTel"), rs.getString("Email"), rs.getBoolean("Archive"));
 
 				liste.add(client);
 			}
@@ -72,11 +70,15 @@ public class ClientDAOJdbcImpl {
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlUpdate);
-			rqt.setString(1, data.getLogin());
-			rqt.setString(2, data.getPassword());
-			rqt.setString(3, data.getType());
-			rqt.setBoolean(4, data.getHide());
-			rqt.setInt(5, data.getId());
+			rqt.setString(1, data.getNom());
+			rqt.setString(2, data.getPrenom());
+			rqt.setString(3, data.getAdresse1());
+			rqt.setString(4, data.getCodePostal());
+			rqt.setString(5, data.getVille());
+			rqt.setString(6, data.getNumTel());
+			rqt.setString(7, data.getEmail());
+			rqt.setBoolean(8, data.getArchive());
+			rqt.setInt(9, data.getCodeClient());
 
 			rqt.executeUpdate();
 
@@ -102,16 +104,21 @@ public class ClientDAOJdbcImpl {
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
-			rqt.setString(1, data.getLogin());
-			rqt.setString(2, data.getPassword());
-			rqt.setString(3, data.getType());
-			rqt.setBoolean(4, data.getHide());
+			rqt.setInt(1, data.getCodeClient());
+			rqt.setString(2, data.getNom());
+			rqt.setString(3, data.getPrenom());
+			rqt.setString(4, data.getAdresse1());
+			rqt.setString(5, data.getCodePostal());
+			rqt.setString(6, data.getVille());
+			rqt.setString(7, data.getNumTel());
+			rqt.setString(8, data.getEmail());
+			rqt.setBoolean(9, data.getArchive());
 
 			int nbRows = rqt.executeUpdate();
 			if (nbRows == 1) {
 				ResultSet rs = rqt.getGeneratedKeys();
 				if (rs.next()) {
-					data.setId(rs.getInt(1));
+					data.setCodeClient(rs.getInt(1));
 				}
 			}
 		} catch (SQLException e) {
@@ -169,8 +176,9 @@ public class ClientDAOJdbcImpl {
 			rqt.setString(1, nom);
 			rs = rqt.executeQuery();
 			if (rs.next()) {
-				client = new Clients(rs.getInt("CodePers"), rs.getString("Nom"), rs.getString("MotPasse"),
-						rs.getString("Role"), rs.getBoolean("Archive"));
+				client = new Clients(rs.getInt("CodePers"), rs.getString("NomClient"), rs.getString("PrenomClient"),
+						rs.getString("Adresse1"), rs.getString("CodePostal"),
+						rs.getString("Ville"), rs.getString("NumTel"), rs.getString("Email"), rs.getBoolean("Archive"));
 			}
 
 		} catch (SQLException e) {

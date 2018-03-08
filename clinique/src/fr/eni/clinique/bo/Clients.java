@@ -1,6 +1,7 @@
 package fr.eni.clinique.bo;
 
 public class Clients {
+	private Integer CodeClient;
 	private String Nom;
 	private String Prenom;
 	private String adresse1;
@@ -11,13 +12,12 @@ public class Clients {
 	private String Assurance;
 	private String Email;
 	private String Remarque;
-	private String Archive;
+	private Boolean Archive;
 	
-	public Clients(){}
-
-	public Clients(String nom, String prenom, String adresse1, String adresse2, String codePostal, String ville,
-			String numTel, String assurance, String email, String remarque, String archive) {
+	public Clients(Integer codeClient, String nom, String prenom, String adresse1, String adresse2, String codePostal,
+			String ville, String numTel, String assurance, String email, String remarque, Boolean archive) {
 		super();
+		CodeClient = codeClient;
 		Nom = nom;
 		Prenom = prenom;
 		this.adresse1 = adresse1;
@@ -30,6 +30,31 @@ public class Clients {
 		Remarque = remarque;
 		Archive = archive;
 	}
+	
+	public Clients(Integer codeClient, String nom, String prenom, String adresse1, String codePostal,
+			String ville, String numTel, String email, Boolean archive) {
+		super();
+		CodeClient = codeClient;
+		Nom = nom;
+		Prenom = prenom;
+		this.adresse1 = adresse1;
+		CodePostal = codePostal;
+		Ville = ville;
+		NumTel = numTel;
+		Email = email;
+		Archive = archive;
+	}
+	
+	public Integer getCodeClient() {
+		return CodeClient;
+	}
+
+	public void setCodeClient(Integer codeClient) {
+		CodeClient = codeClient;
+	}
+
+	public Clients(){}
+
 
 	public String getNom() {
 		return Nom;
@@ -111,11 +136,11 @@ public class Clients {
 		Remarque = remarque;
 	}
 
-	public String getArchive() {
+	public Boolean getArchive() {
 		return Archive;
 	}
 
-	public void setArchive(String archive) {
+	public void setArchive(Boolean archive) {
 		Archive = archive;
 	}
 
