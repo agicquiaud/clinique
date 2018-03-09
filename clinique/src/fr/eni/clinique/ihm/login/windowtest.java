@@ -10,15 +10,24 @@ import java.awt.Insets;
 import javax.swing.SwingConstants;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.JList;
+import javax.swing.JComboBox;
+import javax.swing.JDesktopPane;
+import java.awt.Color;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.UIManager;
+import java.awt.Font;
+import javax.swing.ImageIcon;
 
 public class windowtest {
 
-	private JFrame frame;
+	private JFrame frmGestionAnimal;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -32,122 +41,300 @@ public class windowtest {
 	private JTextField textField_8;
 	private JTable table_1;
 	private JTable table_2;
+	private JTextField textField_9;
+	private JTextField textField_10;
+	private JTextField textField_11;
+	private JTextField textField_12;
 
 	/**
 	 * Create the application.
 	 */
 	public windowtest() {
-		frame = new JFrame();
+		frmGestionAnimal = new JFrame();
+		frmGestionAnimal.setForeground(new Color(240, 255, 255));
+		frmGestionAnimal.setFont(new Font("Malgun Gothic", Font.PLAIN, 13));
+		frmGestionAnimal.setTitle("                    Gestion Animal");
+		frmGestionAnimal.getContentPane().setBackground(new Color(255, 255, 255));
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0, 146, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 50, 38, 38, 38, 38, 38, 38, 38, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		frame.getContentPane().setLayout(gridBagLayout);
+		gridBagLayout.columnWidths = new int[]{0, 84, 67, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{10, 0, 0, 35, 35, 35, 0, 50, 0};
+		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		frmGestionAnimal.getContentPane().setLayout(gridBagLayout);
+		frmGestionAnimal.setVisible(true);
 		
-		JPanel panel = new JPanel();
-		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.insets = new Insets(0, 0, 5, 5);
-		gbc_panel.fill = GridBagConstraints.BOTH;
-		gbc_panel.gridx = 3;
-		gbc_panel.gridy = 0;
-		frame.getContentPane().add(panel, gbc_panel);
+		JDesktopPane desktopPane = new JDesktopPane();
+		desktopPane.setBorder(null);
+		desktopPane.setBackground(new Color(255, 255, 255));
+		GridBagConstraints gbc_desktopPane = new GridBagConstraints();
+		gbc_desktopPane.gridwidth = 6;
+		gbc_desktopPane.insets = new Insets(0, 0, 5, 0);
+		gbc_desktopPane.fill = GridBagConstraints.BOTH;
+		gbc_desktopPane.gridx = 0;
+		gbc_desktopPane.gridy = 0;
+		frmGestionAnimal.getContentPane().add(desktopPane, gbc_desktopPane);
 		
-		JButton btnNewButton = new JButton("Rechercher");
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton.gridx = 1;
-		gbc_btnNewButton.gridy = 1;
-		frame.getContentPane().add(btnNewButton, gbc_btnNewButton);
+		JButton btnAnnuler = new JButton("");
+		btnAnnuler.setForeground(new Color(255, 255, 255));
+		btnAnnuler.setBackground(new Color(255, 255, 255));
+		btnAnnuler.setIcon(new ImageIcon("Y:\\RL_AG_LV\\checked32.png"));
+		btnAnnuler.setBounds(329, 11, 58, 44);
+		desktopPane.add(btnAnnuler);
 		
-		JButton btnNewButton_4 = new JButton("Annuler");
-		btnNewButton_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+		JButton btnValider_1 = new JButton("");
+		btnValider_1.setIcon(new ImageIcon("Y:\\RL_AG_LV\\cancel.png"));
+		btnValider_1.setBounds(423, 11, 58, 44);
+		desktopPane.add(btnValider_1);
 		
-		JButton btnNewButton_1 = new JButton("Ajouter");
-		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_1.gridx = 3;
-		gbc_btnNewButton_1.gridy = 1;
-		frame.getContentPane().add(btnNewButton_1, gbc_btnNewButton_1);
+		JDesktopPane desktopPane_1 = new JDesktopPane();
+		desktopPane_1.setBackground(UIManager.getColor("Button.background"));
+		desktopPane_1.setBorder(null);
+		GridBagConstraints gbc_desktopPane_1 = new GridBagConstraints();
+		gbc_desktopPane_1.gridheight = 2;
+		gbc_desktopPane_1.gridwidth = 6;
+		gbc_desktopPane_1.insets = new Insets(0, 0, 5, 0);
+		gbc_desktopPane_1.fill = GridBagConstraints.BOTH;
+		gbc_desktopPane_1.gridx = 0;
+		gbc_desktopPane_1.gridy = 1;
+		frmGestionAnimal.getContentPane().add(desktopPane_1, gbc_desktopPane_1);
 		
-		JButton btnNewButton_2 = new JButton("Supprimer");
-		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
-		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_2.gridx = 4;
-		gbc_btnNewButton_2.gridy = 1;
-		frame.getContentPane().add(btnNewButton_2, gbc_btnNewButton_2);
+		JLabel lblClient = new JLabel("Client :");
+		lblClient.setFont(new Font("Malgun Gothic", Font.BOLD, 12));
+		lblClient.setBounds(22, 11, 46, 14);
+		desktopPane_1.add(lblClient);
 		
-		JButton btnNewButton_3 = new JButton("Valider");
-		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
-		gbc_btnNewButton_3.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_3.gridx = 6;
-		gbc_btnNewButton_3.gridy = 1;
-		frame.getContentPane().add(btnNewButton_3, gbc_btnNewButton_3);
-		GridBagConstraints gbc_btnNewButton_4 = new GridBagConstraints();
-		gbc_btnNewButton_4.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_4.gridx = 7;
-		gbc_btnNewButton_4.gridy = 1;
-		frame.getContentPane().add(btnNewButton_4, gbc_btnNewButton_4);
+		JLabel lblNewLabel_3 = new JLabel("Albert Kader");
+		lblNewLabel_3.setFont(new Font("Malgun Gothic", Font.PLAIN, 12));
+		lblNewLabel_3.setBounds(43, 32, 265, 14);
+		desktopPane_1.add(lblNewLabel_3);
 		
-		table_2 = new JTable();
-		GridBagConstraints gbc_table_2 = new GridBagConstraints();
-		gbc_table_2.gridwidth = 2;
-		gbc_table_2.gridheight = 6;
-		gbc_table_2.insets = new Insets(0, 0, 5, 5);
-		gbc_table_2.fill = GridBagConstraints.BOTH;
-		gbc_table_2.gridx = 1;
-		gbc_table_2.gridy = 3;
-		frame.getContentPane().add(table_2, gbc_table_2);
+		JLabel lblNewLabel = new JLabel("Code");
+		lblNewLabel.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.gridx = 0;
+		gbc_lblNewLabel.gridy = 3;
+		frmGestionAnimal.getContentPane().add(lblNewLabel, gbc_lblNewLabel);
 		
-		table_1 = new JTable();
-		GridBagConstraints gbc_table_1 = new GridBagConstraints();
-		gbc_table_1.gridwidth = 4;
-		gbc_table_1.gridheight = 6;
-		gbc_table_1.insets = new Insets(0, 0, 5, 5);
-		gbc_table_1.fill = GridBagConstraints.BOTH;
-		gbc_table_1.gridx = 4;
-		gbc_table_1.gridy = 3;
-		frame.getContentPane().add(table_1, gbc_table_1);
+		textField_9 = new JTextField();
+		GridBagConstraints gbc_textField_9 = new GridBagConstraints();
+		gbc_textField_9.gridwidth = 2;
+		gbc_textField_9.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_9.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_9.gridx = 1;
+		gbc_textField_9.gridy = 3;
+		frmGestionAnimal.getContentPane().add(textField_9, gbc_textField_9);
+		textField_9.setColumns(10);
 		
-		JPanel panel_1 = new JPanel();
-		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
-		gbc_panel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_panel_1.fill = GridBagConstraints.BOTH;
-		gbc_panel_1.gridx = 0;
-		gbc_panel_1.gridy = 4;
-		frame.getContentPane().add(panel_1, gbc_panel_1);
+		JLabel lblNom = new JLabel("Nom");
+		lblNom.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
+		GridBagConstraints gbc_lblNom = new GridBagConstraints();
+		gbc_lblNom.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNom.gridx = 0;
+		gbc_lblNom.gridy = 4;
+		frmGestionAnimal.getContentPane().add(lblNom, gbc_lblNom);
 		
-		JPanel panel_2 = new JPanel();
-		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
-		gbc_panel_2.insets = new Insets(0, 0, 5, 0);
-		gbc_panel_2.fill = GridBagConstraints.BOTH;
-		gbc_panel_2.gridx = 8;
-		gbc_panel_2.gridy = 5;
-		frame.getContentPane().add(panel_2, gbc_panel_2);
+		textField_10 = new JTextField();
+		GridBagConstraints gbc_textField_10 = new GridBagConstraints();
+		gbc_textField_10.gridwidth = 2;
+		gbc_textField_10.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_10.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_10.gridx = 1;
+		gbc_textField_10.gridy = 4;
+		frmGestionAnimal.getContentPane().add(textField_10, gbc_textField_10);
+		textField_10.setColumns(10);
 		
-		JButton btnAjouter = new JButton("Ajouter");
-		GridBagConstraints gbc_btnAjouter = new GridBagConstraints();
-		gbc_btnAjouter.insets = new Insets(0, 0, 5, 5);
-		gbc_btnAjouter.gridx = 5;
-		gbc_btnAjouter.gridy = 9;
-		frame.getContentPane().add(btnAjouter, gbc_btnAjouter);
+		JComboBox comboBox_2 = new JComboBox();
+		GridBagConstraints gbc_comboBox_2 = new GridBagConstraints();
+		gbc_comboBox_2.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox_2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox_2.gridx = 3;
+		gbc_comboBox_2.gridy = 4;
+		frmGestionAnimal.getContentPane().add(comboBox_2, gbc_comboBox_2);
 		
-		JButton btnNewButton_5 = new JButton("Supprimer");
-		GridBagConstraints gbc_btnNewButton_5 = new GridBagConstraints();
-		gbc_btnNewButton_5.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_5.gridx = 6;
-		gbc_btnNewButton_5.gridy = 9;
-		frame.getContentPane().add(btnNewButton_5, gbc_btnNewButton_5);
+		JLabel lblCouleur = new JLabel("Couleur");
+		lblCouleur.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
+		GridBagConstraints gbc_lblCouleur = new GridBagConstraints();
+		gbc_lblCouleur.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCouleur.gridx = 0;
+		gbc_lblCouleur.gridy = 5;
+		frmGestionAnimal.getContentPane().add(lblCouleur, gbc_lblCouleur);
 		
-		JButton btnNewButton_6 = new JButton("Editer");
-		GridBagConstraints gbc_btnNewButton_6 = new GridBagConstraints();
-		gbc_btnNewButton_6.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_6.gridx = 7;
-		gbc_btnNewButton_6.gridy = 9;
-		frame.getContentPane().add(btnNewButton_6, gbc_btnNewButton_6);
+		textField_11 = new JTextField();
+		GridBagConstraints gbc_textField_11 = new GridBagConstraints();
+		gbc_textField_11.gridwidth = 2;
+		gbc_textField_11.insets = new Insets(0, 0, 5, 5);
+		gbc_textField_11.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_11.gridx = 1;
+		gbc_textField_11.gridy = 5;
+		frmGestionAnimal.getContentPane().add(textField_11, gbc_textField_11);
+		textField_11.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("Esp\u00E8ce");
+		lblNewLabel_1.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
+		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_1.gridx = 0;
+		gbc_lblNewLabel_1.gridy = 6;
+		frmGestionAnimal.getContentPane().add(lblNewLabel_1, gbc_lblNewLabel_1);
+		
+		JComboBox comboBox = new JComboBox();
+		GridBagConstraints gbc_comboBox = new GridBagConstraints();
+		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox.gridx = 1;
+		gbc_comboBox.gridy = 6;
+		frmGestionAnimal.getContentPane().add(comboBox, gbc_comboBox);
+		
+		JLabel lblNewLabel_2 = new JLabel("Race");
+		lblNewLabel_2.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
+		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
+		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel_2.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel_2.gridx = 2;
+		gbc_lblNewLabel_2.gridy = 6;
+		frmGestionAnimal.getContentPane().add(lblNewLabel_2, gbc_lblNewLabel_2);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
+		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox_1.gridx = 3;
+		gbc_comboBox_1.gridy = 6;
+		frmGestionAnimal.getContentPane().add(comboBox_1, gbc_comboBox_1);
+		
+		JLabel lblTatouage = new JLabel("Tatouage");
+		lblTatouage.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
+		GridBagConstraints gbc_lblTatouage = new GridBagConstraints();
+		gbc_lblTatouage.insets = new Insets(0, 0, 0, 5);
+		gbc_lblTatouage.gridx = 0;
+		gbc_lblTatouage.gridy = 7;
+		frmGestionAnimal.getContentPane().add(lblTatouage, gbc_lblTatouage);
+		
+		textField_12 = new JTextField();
+		GridBagConstraints gbc_textField_12 = new GridBagConstraints();
+		gbc_textField_12.gridwidth = 2;
+		gbc_textField_12.insets = new Insets(0, 0, 0, 5);
+		gbc_textField_12.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_12.gridx = 1;
+		gbc_textField_12.gridy = 7;
+		frmGestionAnimal.getContentPane().add(textField_12, gbc_textField_12);
+		textField_12.setColumns(10);
+		
+		
+		
+		
+//panneau client -----------------------------------------------------------------------------------------------		
+//		GridBagLayout gridBagLayout = new GridBagLayout();
+//		gridBagLayout.columnWidths = new int[]{0, 0, 146, 0, 0, 0, 0, 0, 0, 0};
+//		gridBagLayout.rowHeights = new int[]{0, 0, 50, 38, 38, 38, 38, 38, 38, 38, 0, 0, 0};
+//		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
+//		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+//		frame.getContentPane().setLayout(gridBagLayout);
+//		
+//		JPanel panel = new JPanel();
+//		GridBagConstraints gbc_panel = new GridBagConstraints();
+//		gbc_panel.insets = new Insets(0, 0, 5, 5);
+//		gbc_panel.fill = GridBagConstraints.BOTH;
+//		gbc_panel.gridx = 3;
+//		gbc_panel.gridy = 0;
+//		frame.getContentPane().add(panel, gbc_panel);
+//		
+//		JButton btnNewButton = new JButton("Rechercher");
+//		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+//		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
+//		gbc_btnNewButton.gridx = 1;
+//		gbc_btnNewButton.gridy = 1;
+//		frame.getContentPane().add(btnNewButton, gbc_btnNewButton);
+//		
+//		JButton btnNewButton_4 = new JButton("Annuler");
+//		btnNewButton_4.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent arg0) {
+//			}
+//		});
+//		
+//		JButton btnNewButton_1 = new JButton("Ajouter");
+//		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
+//		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 5);
+//		gbc_btnNewButton_1.gridx = 3;
+//		gbc_btnNewButton_1.gridy = 1;
+//		frame.getContentPane().add(btnNewButton_1, gbc_btnNewButton_1);
+//		
+//		JButton btnNewButton_2 = new JButton("Supprimer");
+//		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
+//		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 5);
+//		gbc_btnNewButton_2.gridx = 4;
+//		gbc_btnNewButton_2.gridy = 1;
+//		frame.getContentPane().add(btnNewButton_2, gbc_btnNewButton_2);
+//		
+//		JButton btnNewButton_3 = new JButton("Valider");
+//		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
+//		gbc_btnNewButton_3.insets = new Insets(0, 0, 5, 5);
+//		gbc_btnNewButton_3.gridx = 6;
+//		gbc_btnNewButton_3.gridy = 1;
+//		frame.getContentPane().add(btnNewButton_3, gbc_btnNewButton_3);
+//		GridBagConstraints gbc_btnNewButton_4 = new GridBagConstraints();
+//		gbc_btnNewButton_4.insets = new Insets(0, 0, 5, 5);
+//		gbc_btnNewButton_4.gridx = 7;
+//		gbc_btnNewButton_4.gridy = 1;
+//		frame.getContentPane().add(btnNewButton_4, gbc_btnNewButton_4);
+//		
+//		table_2 = new JTable();
+//		GridBagConstraints gbc_table_2 = new GridBagConstraints();
+//		gbc_table_2.gridwidth = 2;
+//		gbc_table_2.gridheight = 6;
+//		gbc_table_2.insets = new Insets(0, 0, 5, 5);
+//		gbc_table_2.fill = GridBagConstraints.BOTH;
+//		gbc_table_2.gridx = 1;
+//		gbc_table_2.gridy = 3;
+//		frame.getContentPane().add(table_2, gbc_table_2);
+//		
+//		table_1 = new JTable();
+//		GridBagConstraints gbc_table_1 = new GridBagConstraints();
+//		gbc_table_1.gridwidth = 4;
+//		gbc_table_1.gridheight = 6;
+//		gbc_table_1.insets = new Insets(0, 0, 5, 5);
+//		gbc_table_1.fill = GridBagConstraints.BOTH;
+//		gbc_table_1.gridx = 4;
+//		gbc_table_1.gridy = 3;
+//		frame.getContentPane().add(table_1, gbc_table_1);
+//		
+//		JPanel panel_1 = new JPanel();
+//		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
+//		gbc_panel_1.insets = new Insets(0, 0, 5, 5);
+//		gbc_panel_1.fill = GridBagConstraints.BOTH;
+//		gbc_panel_1.gridx = 0;
+//		gbc_panel_1.gridy = 4;
+//		frame.getContentPane().add(panel_1, gbc_panel_1);
+//		
+//		JPanel panel_2 = new JPanel();
+//		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
+//		gbc_panel_2.insets = new Insets(0, 0, 5, 0);
+//		gbc_panel_2.fill = GridBagConstraints.BOTH;
+//		gbc_panel_2.gridx = 8;
+//		gbc_panel_2.gridy = 5;
+//		frame.getContentPane().add(panel_2, gbc_panel_2);
+//		
+//		JButton btnAjouter = new JButton("Ajouter");
+//		GridBagConstraints gbc_btnAjouter = new GridBagConstraints();
+//		gbc_btnAjouter.insets = new Insets(0, 0, 5, 5);
+//		gbc_btnAjouter.gridx = 5;
+//		gbc_btnAjouter.gridy = 9;
+//		frame.getContentPane().add(btnAjouter, gbc_btnAjouter);
+//		
+//		JButton btnNewButton_5 = new JButton("Supprimer");
+//		GridBagConstraints gbc_btnNewButton_5 = new GridBagConstraints();
+//		gbc_btnNewButton_5.insets = new Insets(0, 0, 5, 5);
+//		gbc_btnNewButton_5.gridx = 6;
+//		gbc_btnNewButton_5.gridy = 9;
+//		frame.getContentPane().add(btnNewButton_5, gbc_btnNewButton_5);
+//		
+//		JButton btnNewButton_6 = new JButton("Editer");
+//		GridBagConstraints gbc_btnNewButton_6 = new GridBagConstraints();
+//		gbc_btnNewButton_6.insets = new Insets(0, 0, 5, 5);
+//		gbc_btnNewButton_6.gridx = 7;
+//		gbc_btnNewButton_6.gridy = 9;
+//		frame.getContentPane().add(btnNewButton_6, gbc_btnNewButton_6);
 		
 //		----------------------------------------------------------------------------------------------------------
 //		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -392,5 +579,4 @@ public class windowtest {
 		
 
 	}
-
 }
