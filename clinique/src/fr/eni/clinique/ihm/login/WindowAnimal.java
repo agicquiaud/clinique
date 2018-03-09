@@ -165,9 +165,9 @@ public class WindowAnimal {
 		gbc_lblNewLabel_1.gridy = 6;
 		frmGestionAnimal.getContentPane().add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		JComboBox comboBox = new JComboBox();
+		String [] StringGenre = {"Chat", "Chien", "Serpent", "souris", "lapin"};
+		JComboBox comboBox = new JComboBox(StringGenre);
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		comboBox.setForeground(new Color(255, 255, 255));
 		comboBox.setBackground(new Color(255, 255, 255));
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
