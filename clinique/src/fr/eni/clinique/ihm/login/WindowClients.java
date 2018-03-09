@@ -13,11 +13,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
 public class WindowClients {
 
 	private JFrame frame;
+	private DefaultTableModel tableModel;
 	private JTable table_1;
 	private JTable table_2;
 	private ControllerClients controller;
@@ -335,6 +337,7 @@ public class WindowClients {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				controller.addClient(textField1.getText(), textField_1.getText(), textField_2.getText(), textField_3.getText(), textField_4.getText(), textField_5.getText(), textField_6.getText());
+				setUpTable_1Data(entetes1);
 				AddClient.setVisible(false);
 			}
 		});
@@ -345,6 +348,16 @@ public class WindowClients {
 				controller.removeClient((Integer) table_1.getValueAt(table_1.getSelectedRow(), 0));
 			}
 		});
-
+	}
+	
+	private void setUpTable_1Data(String[] entetes){
+		tableModel = new DefaultTableModel(controller.getList(), entetes) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		table_1.setModel(tableModel);
+		tableModel.fireTableDataChanged();
 	}
 }

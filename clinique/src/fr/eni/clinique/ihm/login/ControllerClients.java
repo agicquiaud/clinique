@@ -27,7 +27,7 @@ public class ControllerClients {
 	
 	public Object[][] getList(){
 		liste = bllclients.getAll();
-		Object[][] tab = new Object[liste.size()][5];
+		Object[][] tab = new Object[liste.size()][6];
 		for (int i = 0; i < liste.size(); i++){
 			tab[i][0] = liste.get(i).getCodeClient();
 			tab[i][1] = liste.get(i).getPrenom();
