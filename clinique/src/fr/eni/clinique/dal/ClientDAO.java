@@ -20,4 +20,7 @@ public interface ClientDAO {
 	
 	//Selectioner un client par son nom
 	public List<Clients> selectByNom(String nom) throws DALException;
+	
+	//Selectioner un client par son id
+	public Clients selectById(Integer id) throws DALException;
 }
