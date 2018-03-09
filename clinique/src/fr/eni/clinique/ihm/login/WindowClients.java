@@ -34,17 +34,17 @@ public class WindowClients {
 	private JTextField textFieldVilleClient;
 	private JTextField textFieldNumTelClient;
 	private JTextField textFieldEmailClient;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
+	private JTextField textFieldCodeClientEdit;
+	private JTextField textFieldNomClientEdit;
+	private JTextField textFieldPrenomClientEdit;
+	private JTextField textFieldAdresse1ClientEdit;
+	private JTextField textFieldAdresse2ClientEdit;
+	private JTextField textFieldVilleClientEdit;
+	private JTextField textFieldCodePostalClientEdit;
+	private JTextField textFieldNumTelClientEdit;
+	private JTextField textFieldAssuranceClientEdit;
+	private JTextField textFieldEmailClientEdit;
+	private JTextField textFieldRemarqueClientEdit;
 
 	public WindowClients() {
 		controller = new ControllerClients();
@@ -376,15 +376,15 @@ public class WindowClients {
 		gbc_lblCode.gridy = 2;
 		EditClient.getContentPane().add(lblCode, gbc_lblCode);
 
-		textField_1 = new JTextField();
-		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
-		gbc_textField_1.gridwidth = 5;
-		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_1.gridx = 3;
-		gbc_textField_1.gridy = 2;
-		EditClient.getContentPane().add(textField_1, gbc_textField_1);
-		textField_1.setColumns(10);
+		textFieldCodeClientEdit = new JTextField();
+		GridBagConstraints gbc_textFieldCodeClientEdit = new GridBagConstraints();
+		gbc_textFieldCodeClientEdit.gridwidth = 5;
+		gbc_textFieldCodeClientEdit.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldCodeClientEdit.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldCodeClientEdit.gridx = 3;
+		gbc_textFieldCodeClientEdit.gridy = 2;
+		EditClient.getContentPane().add(textFieldCodeClientEdit, gbc_textFieldCodeClientEdit);
+		textFieldCodeClientEdit.setColumns(10);
 
 		JLabel lblAssurance = new JLabel("Assurance");
 		GridBagConstraints gbc_lblAssurance = new GridBagConstraints();
@@ -393,15 +393,15 @@ public class WindowClients {
 		gbc_lblAssurance.gridy = 2;
 		EditClient.getContentPane().add(lblAssurance, gbc_lblAssurance);
 
-		textField_9 = new JTextField();
-		textField_9.setColumns(10);
-		GridBagConstraints gbc_textField_9 = new GridBagConstraints();
-		gbc_textField_9.gridwidth = 2;
-		gbc_textField_9.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_9.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_9.gridx = 10;
-		gbc_textField_9.gridy = 2;
-		EditClient.getContentPane().add(textField_9, gbc_textField_9);
+		textFieldAssuranceClientEdit = new JTextField();
+		textFieldAssuranceClientEdit.setColumns(10);
+		GridBagConstraints gbc_textFieldAssuranceEdit = new GridBagConstraints();
+		gbc_textFieldAssuranceEdit.gridwidth = 2;
+		gbc_textFieldAssuranceEdit.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldAssuranceEdit.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldAssuranceEdit.gridx = 10;
+		gbc_textFieldAssuranceEdit.gridy = 2;
+		EditClient.getContentPane().add(textFieldAssuranceClientEdit, gbc_textFieldAssuranceEdit);
 
 		JLabel lblNom = new JLabel("Nom");
 		GridBagConstraints gbc_lblNom = new GridBagConstraints();
@@ -410,15 +410,15 @@ public class WindowClients {
 		gbc_lblNom.gridy = 3;
 		EditClient.getContentPane().add(lblNom, gbc_lblNom);
 
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		GridBagConstraints gbc_textField_2 = new GridBagConstraints();
-		gbc_textField_2.gridwidth = 5;
-		gbc_textField_2.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_2.gridx = 3;
-		gbc_textField_2.gridy = 3;
-		EditClient.getContentPane().add(textField_2, gbc_textField_2);
+		textFieldNomClientEdit = new JTextField();
+		textFieldNomClientEdit.setColumns(10);
+		GridBagConstraints gbc_textFieldNomClientEdit = new GridBagConstraints();
+		gbc_textFieldNomClientEdit.gridwidth = 5;
+		gbc_textFieldNomClientEdit.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldNomClientEdit.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldNomClientEdit.gridx = 3;
+		gbc_textFieldNomClientEdit.gridy = 3;
+		EditClient.getContentPane().add(textFieldNomClientEdit, gbc_textFieldNomClientEdit);
 
 		JLabel lblEmail = new JLabel("Email");
 		GridBagConstraints gbc_lblEmail = new GridBagConstraints();
@@ -427,15 +427,15 @@ public class WindowClients {
 		gbc_lblEmail.gridy = 3;
 		EditClient.getContentPane().add(lblEmail, gbc_lblEmail);
 
-		textField_10 = new JTextField();
-		textField_10.setColumns(10);
-		GridBagConstraints gbc_textField_10 = new GridBagConstraints();
-		gbc_textField_10.gridwidth = 2;
-		gbc_textField_10.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_10.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_10.gridx = 10;
-		gbc_textField_10.gridy = 3;
-		EditClient.getContentPane().add(textField_10, gbc_textField_10);
+		textFieldEmailClientEdit = new JTextField();
+		textFieldEmailClientEdit.setColumns(10);
+		GridBagConstraints gbc_textFieldEmailEdit = new GridBagConstraints();
+		gbc_textFieldEmailEdit.gridwidth = 2;
+		gbc_textFieldEmailEdit.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldEmailEdit.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldEmailEdit.gridx = 10;
+		gbc_textFieldEmailEdit.gridy = 3;
+		EditClient.getContentPane().add(textFieldEmailClientEdit, gbc_textFieldEmailEdit);
 
 		JLabel lblPrenom = new JLabel("Prenom");
 		GridBagConstraints gbc_lblPrenom = new GridBagConstraints();
@@ -444,15 +444,15 @@ public class WindowClients {
 		gbc_lblPrenom.gridy = 4;
 		EditClient.getContentPane().add(lblPrenom, gbc_lblPrenom);
 
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		GridBagConstraints gbc_textField_3 = new GridBagConstraints();
-		gbc_textField_3.gridwidth = 5;
-		gbc_textField_3.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_3.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_3.gridx = 3;
-		gbc_textField_3.gridy = 4;
-		EditClient.getContentPane().add(textField_3, gbc_textField_3);
+		textFieldPrenomClientEdit = new JTextField();
+		textFieldPrenomClientEdit.setColumns(10);
+		GridBagConstraints gbc_textFieldPrenomClientEdit = new GridBagConstraints();
+		gbc_textFieldPrenomClientEdit.gridwidth = 5;
+		gbc_textFieldPrenomClientEdit.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldPrenomClientEdit.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldPrenomClientEdit.gridx = 3;
+		gbc_textFieldPrenomClientEdit.gridy = 4;
+		EditClient.getContentPane().add(textFieldPrenomClientEdit, gbc_textFieldPrenomClientEdit);
 
 		JLabel lblRemarque = new JLabel("Remarque");
 		GridBagConstraints gbc_lblRemarque = new GridBagConstraints();
@@ -461,16 +461,16 @@ public class WindowClients {
 		gbc_lblRemarque.gridy = 4;
 		EditClient.getContentPane().add(lblRemarque, gbc_lblRemarque);
 
-		textField_11 = new JTextField();
-		textField_11.setColumns(10);
-		GridBagConstraints gbc_textField_11 = new GridBagConstraints();
-		gbc_textField_11.gridheight = 3;
-		gbc_textField_11.gridwidth = 2;
-		gbc_textField_11.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_11.fill = GridBagConstraints.BOTH;
-		gbc_textField_11.gridx = 10;
-		gbc_textField_11.gridy = 4;
-		EditClient.getContentPane().add(textField_11, gbc_textField_11);
+		textFieldRemarqueClientEdit = new JTextField();
+		textFieldRemarqueClientEdit.setColumns(10);
+		GridBagConstraints gbc_textFieldRemarqueEdit = new GridBagConstraints();
+		gbc_textFieldRemarqueEdit.gridheight = 3;
+		gbc_textFieldRemarqueEdit.gridwidth = 2;
+		gbc_textFieldRemarqueEdit.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldRemarqueEdit.fill = GridBagConstraints.BOTH;
+		gbc_textFieldRemarqueEdit.gridx = 10;
+		gbc_textFieldRemarqueEdit.gridy = 4;
+		EditClient.getContentPane().add(textFieldRemarqueClientEdit, gbc_textFieldRemarqueEdit);
 
 		JLabel lblAdresse = new JLabel("Adresse");
 		GridBagConstraints gbc_lblAdresse = new GridBagConstraints();
@@ -479,25 +479,25 @@ public class WindowClients {
 		gbc_lblAdresse.gridy = 5;
 		EditClient.getContentPane().add(lblAdresse, gbc_lblAdresse);
 
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		GridBagConstraints gbc_textField_4 = new GridBagConstraints();
-		gbc_textField_4.gridwidth = 5;
-		gbc_textField_4.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_4.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_4.gridx = 3;
-		gbc_textField_4.gridy = 5;
-		EditClient.getContentPane().add(textField_4, gbc_textField_4);
+		textFieldAdresse1ClientEdit = new JTextField();
+		textFieldAdresse1ClientEdit.setColumns(10);
+		GridBagConstraints gbc_textFieldAdresse1ClientEdit = new GridBagConstraints();
+		gbc_textFieldAdresse1ClientEdit.gridwidth = 5;
+		gbc_textFieldAdresse1ClientEdit.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldAdresse1ClientEdit.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldAdresse1ClientEdit.gridx = 3;
+		gbc_textFieldAdresse1ClientEdit.gridy = 5;
+		EditClient.getContentPane().add(textFieldAdresse1ClientEdit, gbc_textFieldAdresse1ClientEdit);
 
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		GridBagConstraints gbc_textField_5 = new GridBagConstraints();
-		gbc_textField_5.gridwidth = 5;
-		gbc_textField_5.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_5.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_5.gridx = 3;
-		gbc_textField_5.gridy = 6;
-		EditClient.getContentPane().add(textField_5, gbc_textField_5);
+		textFieldAdresse2ClientEdit = new JTextField();
+		textFieldAdresse2ClientEdit.setColumns(10);
+		GridBagConstraints gbc_textFieldAdresse2ClientEdit = new GridBagConstraints();
+		gbc_textFieldAdresse2ClientEdit.gridwidth = 5;
+		gbc_textFieldAdresse2ClientEdit.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldAdresse2ClientEdit.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldAdresse2ClientEdit.gridx = 3;
+		gbc_textFieldAdresse2ClientEdit.gridy = 6;
+		EditClient.getContentPane().add(textFieldAdresse2ClientEdit, gbc_textFieldAdresse2ClientEdit);
 
 		JLabel lblVille = new JLabel("Ville");
 		GridBagConstraints gbc_lblVille = new GridBagConstraints();
@@ -506,15 +506,15 @@ public class WindowClients {
 		gbc_lblVille.gridy = 7;
 		EditClient.getContentPane().add(lblVille, gbc_lblVille);
 
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		GridBagConstraints gbc_textField_6 = new GridBagConstraints();
-		gbc_textField_6.gridwidth = 5;
-		gbc_textField_6.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_6.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_6.gridx = 3;
-		gbc_textField_6.gridy = 7;
-		EditClient.getContentPane().add(textField_6, gbc_textField_6);
+		textFieldVilleClientEdit = new JTextField();
+		textFieldVilleClientEdit.setColumns(10);
+		GridBagConstraints gbc_textFieldVilleClientEdit = new GridBagConstraints();
+		gbc_textFieldVilleClientEdit.gridwidth = 5;
+		gbc_textFieldVilleClientEdit.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldVilleClientEdit.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldVilleClientEdit.gridx = 3;
+		gbc_textFieldVilleClientEdit.gridy = 7;
+		EditClient.getContentPane().add(textFieldVilleClientEdit, gbc_textFieldVilleClientEdit);
 
 		JLabel lblCodePostal = new JLabel("Code Postal");
 		GridBagConstraints gbc_lblCodePostal = new GridBagConstraints();
@@ -523,15 +523,15 @@ public class WindowClients {
 		gbc_lblCodePostal.gridy = 8;
 		EditClient.getContentPane().add(lblCodePostal, gbc_lblCodePostal);
 
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		GridBagConstraints gbc_textField_7 = new GridBagConstraints();
-		gbc_textField_7.gridwidth = 5;
-		gbc_textField_7.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_7.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_7.gridx = 3;
-		gbc_textField_7.gridy = 8;
-		EditClient.getContentPane().add(textField_7, gbc_textField_7);
+		textFieldCodePostalClientEdit = new JTextField();
+		textFieldCodePostalClientEdit.setColumns(10);
+		GridBagConstraints gbc_textFieldCodePostalEdit = new GridBagConstraints();
+		gbc_textFieldCodePostalEdit.gridwidth = 5;
+		gbc_textFieldCodePostalEdit.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldCodePostalEdit.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldCodePostalEdit.gridx = 3;
+		gbc_textFieldCodePostalEdit.gridy = 8;
+		EditClient.getContentPane().add(textFieldCodePostalClientEdit, gbc_textFieldCodePostalEdit);
 
 		JLabel lblNumTel = new JLabel("Num. Tel");
 		GridBagConstraints gbc_lblNumTel = new GridBagConstraints();
@@ -540,15 +540,15 @@ public class WindowClients {
 		gbc_lblNumTel.gridy = 9;
 		EditClient.getContentPane().add(lblNumTel, gbc_lblNumTel);
 
-		textField_8 = new JTextField();
-		textField_8.setColumns(10);
-		GridBagConstraints gbc_textField_8 = new GridBagConstraints();
-		gbc_textField_8.gridwidth = 5;
-		gbc_textField_8.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_8.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_8.gridx = 3;
-		gbc_textField_8.gridy = 9;
-		EditClient.getContentPane().add(textField_8, gbc_textField_8);
+		textFieldNumTelClientEdit = new JTextField();
+		textFieldNumTelClientEdit.setColumns(10);
+		GridBagConstraints gbc_textFieldNumTelEdit = new GridBagConstraints();
+		gbc_textFieldNumTelEdit.gridwidth = 5;
+		gbc_textFieldNumTelEdit.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldNumTelEdit.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldNumTelEdit.gridx = 3;
+		gbc_textFieldNumTelEdit.gridy = 9;
+		EditClient.getContentPane().add(textFieldNumTelClientEdit, gbc_textFieldNumTelEdit);
 
 		JButton btnConfirmEditClient = new JButton("Valider");
 		GridBagConstraints gbc_btnConfirmEditClient = new GridBagConstraints();
@@ -556,7 +556,7 @@ public class WindowClients {
 		gbc_btnConfirmEditClient.gridx = 10;
 		gbc_btnConfirmEditClient.gridy = 10;
 		EditClient.getContentPane().add(btnConfirmEditClient, gbc_btnConfirmEditClient);
-		
+
 		JButton btnCancelEditClient = new JButton("Annuler");
 		GridBagConstraints gbc_btnCancelEditClient = new GridBagConstraints();
 		gbc_btnCancelEditClient.insets = new Insets(0, 0, 5, 5);
@@ -614,6 +614,35 @@ public class WindowClients {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				PopupDeleteClient.setVisible(false);
+			}
+		});
+
+		btnEditClient.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				EditClient.setBounds(100, 100, 480, 330);
+				EditClient.setVisible(true);
+			}
+		});
+
+		btnCancelEditClient.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				EditClient.setVisible(false);
+			}
+		});
+
+		btnConfirmEditClient.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.updateClient(textFieldCodeClientEdit.getText(),
+						textFieldNomClientEdit.getText(), textFieldPrenomClientEdit.getText(),
+						textFieldAdresse1ClientEdit.getText(), textFieldAdresse2ClientEdit.getText(),
+						textFieldCodePostalClientEdit.getText(), textFieldVilleClientEdit.getText(),
+						textFieldNumTelClientEdit.getText(), textFieldAssuranceClientEdit.getText(), textFieldEmailClientEdit.getText(),
+						textFieldRemarqueClientEdit.getText());
+				setUpTableData(controller.getList(), entetes1);
+				EditClient.setVisible(false);
 			}
 		});
 	}

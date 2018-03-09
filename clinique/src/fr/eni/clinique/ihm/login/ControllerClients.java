@@ -1,35 +1,32 @@
 package fr.eni.clinique.ihm.login;
 
-import java.util.Arrays;
 import java.util.List;
 
 import fr.eni.clinique.bll.ClientsUtil;
-import fr.eni.clinique.bll.ClientsUtilImpl;
 import fr.eni.clinique.bll.ClientsUtilSingleton;
 import fr.eni.clinique.bo.Clients;
 
 public class ControllerClients {
-	
+
 	private ClientsUtil bllclients;
 	private List<Clients> liste;
 	private Clients clients;
-	
-	
-	public ControllerClients (){
+
+	public ControllerClients() {
 		bllclients = ClientsUtilSingleton.getinstance();
-		
+
 	}
-	
-	public void addClient (String Nom, String Prenom, String Adresse1, String CodePostal, String Ville, String NumTel,
-			String Email){
+
+	public void addClient(String Nom, String Prenom, String Adresse1, String CodePostal, String Ville, String NumTel,
+			String Email) {
 		clients = new Clients(Nom, Prenom, Adresse1, CodePostal, Ville, NumTel, Email, false);
 		bllclients.insert(clients);
 	}
-	
-	public Object[][] getList(){
+
+	public Object[][] getList() {
 		liste = bllclients.getAll();
 		Object[][] tab = new Object[liste.size()][6];
-		for (int i = 0; i < liste.size(); i++){
+		for (int i = 0; i < liste.size(); i++) {
 			tab[i][0] = liste.get(i).getCodeClient();
 			tab[i][1] = liste.get(i).getPrenom();
 			tab[i][2] = liste.get(i).getNom();
@@ -39,12 +36,12 @@ public class ControllerClients {
 		}
 		return tab;
 	}
-	
-	public Object[][] getClient(String nom){
-		liste = bllclients.getClient(nom);
+
+	public Object[][] getClient(String nom) {
+		liste = bllclients.getClientByNom(nom);
 		System.out.println(liste.toString());
 		Object[][] tab = new Object[liste.size()][6];
-		for (int i = 0; i < liste.size(); i++){
+		for (int i = 0; i < liste.size(); i++) {
 			tab[i][0] = liste.get(i).getCodeClient();
 			tab[i][1] = liste.get(i).getPrenom();
 			tab[i][2] = liste.get(i).getNom();
@@ -54,15 +51,18 @@ public class ControllerClients {
 		}
 		return tab;
 	}
-	
-	public void removeClient (Integer codeclient){
-		bllclients.delete(codeclient);
+
+	public void removeClient(Integer codeclient) {
+		clients = bllclients.getClientById(codeclient);
+		clients.setArchive(true);
+		bllclients.update(clients);
 	}
-	
-	public void updateClient (Clients client){
-		bllclients.update(client);
+
+	public void updateClient(String codeClient, String nomClient, String prenomClient, String adresse1, String adresse2,
+			String codePostal, String ville, String numTel, String assurance, String email, String remarque) {
+		clients = new Clients(Integer.parseInt(codeClient), nomClient, prenomClient, adresse1, adresse2, codePostal,
+				ville, numTel, assurance, email, remarque, false);
+		bllclients.update(clients);
 	}
-	
-	
-	
+
 }

@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.clinique.bo.Animaux;
 import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.bo.User;
 import fr.eni.clinique.dal.ClientDAO;
@@ -24,7 +25,10 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 	private static final String sqlDelete = "DELETE FROM Clients WHERE CodeClient=?";
 	private static final String sqlSelectByNom = "SELECT CodeClient, NomClient, PrenomClient, "
 			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive FROM Clients WHERE NomClient LIKE ? OR PrenomClient LIKE ?";
-
+	private static final String sqlSelectById = "SELECT CodeClient, NomClient, PrenomClient, "
+			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive FROM Clients WHERE CodeClient=?";
+	
+	
 	public List<Clients> selectAll() throws DALException {
 		Connection cnx = null;
 		Statement rqt = null;
@@ -203,5 +207,43 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 			}
 		}
 		return liste;
+	}
+	
+	public Clients selectById(Integer id) throws DALException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		Clients client = null;
+		try {
+			cnx = JdbcTools.getConnection();
+			rqt = cnx.prepareStatement(sqlSelectById);
+			rqt.setInt(1, id);
+			rs = rqt.executeQuery();
+			if (rs.next()) {
+				client = new Clients(rs.getInt("CodeClient"), rs.getString("NomClient"), rs.getString("PrenomClient"),
+						rs.getString("Adresse1"), rs.getString("CodePostal"), rs.getString("Ville"),
+						rs.getString("NumTel"), rs.getString("Email"), rs.getBoolean("Archive"));
+
+				}
+
+		} catch (SQLException e) {
+			throw new DALException("selectById failed - Id = " + id, e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (rqt != null) {
+					rqt.close();
+				}
+				if (cnx != null) {
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return client;
 	}
 }

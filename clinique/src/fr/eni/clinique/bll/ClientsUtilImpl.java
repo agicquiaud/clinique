@@ -24,11 +24,10 @@ public class ClientsUtilImpl implements ClientsUtil {
 	}
 
 	@Override
-	public List<Clients> getClient(String nom) {
+	public List<Clients> getClientByNom(String nom) {
 		try {
 			liste = con.selectByNom(nom);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return liste;
@@ -39,7 +38,6 @@ public class ClientsUtilImpl implements ClientsUtil {
 		try {
 			con.insert(client);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -50,7 +48,6 @@ public class ClientsUtilImpl implements ClientsUtil {
 		try {
 			con.update(client);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -61,10 +58,19 @@ public class ClientsUtilImpl implements ClientsUtil {
 		try {
 			con.delete(id);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+	}
+
+	@Override
+	public Clients getClientById(Integer id) {
+		try {
+			clients = con.selectById(id);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		return clients;
 	}
 
 }
