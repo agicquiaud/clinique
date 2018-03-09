@@ -36,7 +36,7 @@ public class WindowAnimal {
 		frmGestionAnimal.setBounds(100, 100, 540, 375);
 		frmGestionAnimal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmGestionAnimal.setFont(new Font("Malgun Gothic", Font.PLAIN, 13));
-		frmGestionAnimal.setTitle("                    Gestion Animal");
+		frmGestionAnimal.setTitle("Gestion Animal");
 		frmGestionAnimal.getContentPane().setBackground(new Color(255, 255, 255));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 84, 67, 0, 0, 0};
@@ -60,14 +60,14 @@ public class WindowAnimal {
 		JButton btnAnnuler = new JButton("");
 		btnAnnuler.setForeground(new Color(255, 255, 255));
 		btnAnnuler.setBackground(new Color(255, 255, 255));
-		btnAnnuler.setIcon(new ImageIcon("Y:\\RL_AG_LV\\checked32.png"));
+		btnAnnuler.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/checked32.png"));
 		btnAnnuler.setBounds(329, 11, 58, 44);
 		desktopPane.add(btnAnnuler);
 		
 		JButton btnValider_1 = new JButton("");
 		btnValider_1.setForeground(new Color(255, 255, 255));
 		btnValider_1.setBackground(new Color(255, 255, 255));
-		btnValider_1.setIcon(new ImageIcon("Y:\\RL_AG_LV\\cancel.png"));
+		btnValider_1.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/cancel.png"));
 		btnValider_1.setBounds(423, 11, 58, 44);
 		desktopPane.add(btnValider_1);
 		
