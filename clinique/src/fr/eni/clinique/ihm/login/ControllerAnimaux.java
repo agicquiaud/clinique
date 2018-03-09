@@ -2,6 +2,8 @@ package fr.eni.clinique.ihm.login;
 
 import java.util.List;
 
+import javax.swing.SwingUtilities;
+
 import fr.eni.clinique.bll.Animal;
 import fr.eni.clinique.bll.AnimalSingleton;
 import fr.eni.clinique.bo.Animaux;
@@ -26,9 +28,21 @@ public class ControllerAnimaux {
 			tab[i][3] = liste.get(i).getCouleur();
 			tab[i][4] = liste.get(i).getRace();
 			tab[i][5] = liste.get(i).getEspece();
+	
 		}
+		return tab;
+	}
+	
+	public String[] getRace (String Espece){
+
+		String tab [] = bllclients.bllRace(Espece);
+		
 		return tab;
 	}
 
 
 }
+
+
+
+

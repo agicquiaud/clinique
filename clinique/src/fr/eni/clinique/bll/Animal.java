@@ -11,4 +11,5 @@ public interface Animal {
 	public List<Animaux> getAll();
 	public Animaux animalById(Integer id);
 	public List<Animaux> clientById(Integer id);
+	public String[] bllRace(String espece);
 }
