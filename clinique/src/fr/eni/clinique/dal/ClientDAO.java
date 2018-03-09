@@ -19,5 +19,5 @@ public interface ClientDAO {
 	public void delete(int id) throws DALException;
 	
 	//Selectioner un client par son nom
-	public Clients selectByNom(String nom) throws DALException;
+	public List<Clients> selectByNom(String nom) throws DALException;
 }

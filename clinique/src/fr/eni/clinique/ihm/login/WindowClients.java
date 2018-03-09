@@ -319,7 +319,7 @@ public class WindowClients {
 		btnSearchClient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				
 			}
 		});
 
@@ -334,7 +334,7 @@ public class WindowClients {
 		btnValiderModalAdd.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.insertClient(textField1.getText(), textField_1.getText(), textField_2.getText(), textField_3.getText(), textField_4.getText(), textField_5.getText(), textField_6.getText());
+				controller.addClient(textField1.getText(), textField_1.getText(), textField_2.getText(), textField_3.getText(), textField_4.getText(), textField_5.getText(), textField_6.getText());
 				AddClient.setVisible(false);
 			}
 		});
@@ -342,7 +342,7 @@ public class WindowClients {
 		btnDeleteClient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.deleteClient((Integer) table_1.getValueAt(table_1.getSelectedRow(), 0));
+				controller.removeClient((Integer) table_1.getValueAt(table_1.getSelectedRow(), 0));
 			}
 		});
 

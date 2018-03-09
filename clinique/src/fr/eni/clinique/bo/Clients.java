@@ -45,6 +45,19 @@ public class Clients {
 		Archive = archive;
 	}
 	
+	public Clients(String nom, String prenom, String adresse1, String codePostal, String ville, String numTel,
+			String email, Boolean archive) {
+		super();
+		Nom = nom;
+		Prenom = prenom;
+		this.adresse1 = adresse1;
+		CodePostal = codePostal;
+		Ville = ville;
+		NumTel = numTel;
+		Email = email;
+		Archive = archive;
+	}
+
 	public Integer getCodeClient() {
 		return CodeClient;
 	}

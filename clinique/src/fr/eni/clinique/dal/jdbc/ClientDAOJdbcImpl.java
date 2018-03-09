@@ -22,7 +22,7 @@ public class ClientDAOJdbcImpl implements ClientDAO{
 			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String sqlDelete = "DELETE FROM Clients WHERE CodeClient=?";
 	private static final String sqlSelectByNom = "SELECT CodeClient, NomClient, PrenomClient, "
-			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive FROM Clients WHERE NomClient=?";
+			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive FROM Clients WHERE NomClient=? OR PrenomClient=?";
 
 	public List<Clients> selectAll() throws DALException {
 		Connection cnx = null;
@@ -165,20 +165,23 @@ public class ClientDAOJdbcImpl implements ClientDAO{
 		}
 	}
 
-	public Clients selectByNom(String nom) throws DALException {
+	public List<Clients> selectByNom(String nom) throws DALException {
 		Connection cnx = null;
-		PreparedStatement rqt = null;
+		Statement rqt = null;
 		ResultSet rs = null;
-		Clients client = null;
+		List<Clients> liste = new ArrayList<Clients>();
 		try {
 			cnx = JdbcTools.getConnection();
-			rqt = cnx.prepareStatement(sqlSelectByNom);
-			rqt.setString(1, nom);
-			rs = rqt.executeQuery();
-			if (rs.next()) {
+			rqt = cnx.createStatement();
+			rs = rqt.executeQuery(sqlSelectAll);
+			Clients client = null;
+
+			while (rs.next()) {
 				client = new Clients(rs.getInt("CodePers"), rs.getString("NomClient"), rs.getString("PrenomClient"),
 						rs.getString("Adresse1"), rs.getString("CodePostal"),
 						rs.getString("Ville"), rs.getString("NumTel"), rs.getString("Email"), rs.getBoolean("Archive"));
+
+				liste.add(client);
 			}
 
 		} catch (SQLException e) {
@@ -199,6 +202,6 @@ public class ClientDAOJdbcImpl implements ClientDAO{
 			}
 
 		}
-		return client;
+		return liste;
 	}
 }

@@ -9,10 +9,11 @@ import fr.eni.clinique.bo.Clients;
 
 public class ClientsUtilImpl implements ClientsUtil {
 	private ClientDAO con = new DAOFactory().getClientDAO();
+	List<Clients> liste;
+	Clients clients;
 	
 	@Override
 	public List<Clients> getAll() {
-		List<Clients> liste = null;
 		try {
 			liste = con.selectAll();
 		} catch (DALException e) {
@@ -23,15 +24,14 @@ public class ClientsUtilImpl implements ClientsUtil {
 	}
 
 	@Override
-	public Clients getClient(String nom) {
-		Clients cl = new Clients();
+	public List<Clients> getClient(String nom) {
 		try {
-			cl = con.selectByNom(nom);
+			liste = con.selectByNom(nom);
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return cl;
+		return liste;
 	}
 
 	@Override
