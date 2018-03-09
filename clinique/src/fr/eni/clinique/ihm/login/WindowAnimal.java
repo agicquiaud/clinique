@@ -28,9 +28,11 @@ public class WindowAnimal {
 	private JTextField textField_10;
 	private JTextField textField_11;
 	private JTextField textField_12;
+	private ControllerAnimaux selectAnimal;
 	
 	
 	public WindowAnimal(){
+		
 		frmGestionAnimal = new JFrame();
 		frmGestionAnimal.setForeground(new Color(240, 255, 255));
 		frmGestionAnimal.setBounds(100, 100, 540, 375);
@@ -165,7 +167,7 @@ public class WindowAnimal {
 		gbc_lblNewLabel_1.gridy = 6;
 		frmGestionAnimal.getContentPane().add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		String [] Espece = {"Chat", "Chien", "Serpent", "souris", "lapin"};
+		String [] Espece = {"Chat", "Chien", "Serpent", "Souris", "Lapin"};
 		JComboBox comboBox = new JComboBox(Espece);
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		comboBox.setBackground(new Color(255, 255, 255));
@@ -185,12 +187,9 @@ public class WindowAnimal {
 		gbc_lblNewLabel_2.gridy = 6;
 		frmGestionAnimal.getContentPane().add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
-		String [] raceChat = {"Siamois","Persan","Maine Coone","Bengal","Sphinx"};
-		String [] raceChien = {"Berger Allemand","Labrador","Bulldog","Caniche","Teckel"};
-		String [] raceSerpent = {"Crotal","Anaconda","Boa","Cobra", "Mamba"};
-		String [] raceSouris = {"Mulot","Hamster","Cochon d'Inde"};
-		String [] raceLapin = {"Hollandais","Californien","Alaska","Mini-Lop"};
-		JComboBox comboBox_1 = new JComboBox(raceChat);
+		
+		String [] race = selectAnimal.getRace(comboBox.getSelectedItem().toString());
+		JComboBox comboBox_1 = new JComboBox(race);
 		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
 		comboBox_1.setBackground(new Color(255, 255, 255));
 		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);

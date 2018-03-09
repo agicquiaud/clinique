@@ -77,5 +77,26 @@ class AnimalImpl implements Animal{
 		}
 		return liste;
 	}
+	
+	public String [] bllRace (String comborace){
+		String tab [] = null;
+	
+		switch(comborace){
+		case "Chat": tab = new String[]{"Siamois","Persan","Maine Coone","Bengal","Sphinx"};
+		break;
+		case "Chien": tab = new String[]{"Berger Allemand","Labrador","Bulldog","Caniche","Teckel"};
+		break;
+		case "Serpent": tab = new String[] {"Crotal","Anaconda","Boa","Cobra", "Mamba"};
+		break;
+		case "Souris": tab = new String[] {"Mulot","Hamster","Cochon d'Inde"};
+		break;
+		case "Lapin": tab = new String[] {"Hollandais","Californien","Alaska","Mini-Lop"};
+		break;
+		
+		}
+		return tab;
+	}
 
 }
+	
+	
