@@ -56,9 +56,9 @@ public class windowtest {
 		frmGestionAnimal.setTitle("                    Gestion Animal");
 		frmGestionAnimal.getContentPane().setBackground(new Color(255, 255, 255));
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 84, 67, 0, 0, 0, 0};
+		gridBagLayout.columnWidths = new int[]{0, 84, 67, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{10, 0, 0, 35, 35, 35, 0, 50, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frmGestionAnimal.getContentPane().setLayout(gridBagLayout);
 		frmGestionAnimal.setVisible(true);
@@ -67,7 +67,7 @@ public class windowtest {
 		desktopPane.setBorder(null);
 		desktopPane.setBackground(new Color(255, 255, 255));
 		GridBagConstraints gbc_desktopPane = new GridBagConstraints();
-		gbc_desktopPane.gridwidth = 6;
+		gbc_desktopPane.gridwidth = 5;
 		gbc_desktopPane.insets = new Insets(0, 0, 5, 0);
 		gbc_desktopPane.fill = GridBagConstraints.BOTH;
 		gbc_desktopPane.gridx = 0;
@@ -91,7 +91,7 @@ public class windowtest {
 		desktopPane_1.setBorder(null);
 		GridBagConstraints gbc_desktopPane_1 = new GridBagConstraints();
 		gbc_desktopPane_1.gridheight = 2;
-		gbc_desktopPane_1.gridwidth = 6;
+		gbc_desktopPane_1.gridwidth = 5;
 		gbc_desktopPane_1.insets = new Insets(0, 0, 5, 0);
 		gbc_desktopPane_1.fill = GridBagConstraints.BOTH;
 		gbc_desktopPane_1.gridx = 0;
@@ -184,6 +184,7 @@ public class windowtest {
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_comboBox.gridx = 1;
 		gbc_comboBox.gridy = 6;
+		
 		frmGestionAnimal.getContentPane().add(comboBox, gbc_comboBox);
 		
 		JLabel lblNewLabel_2 = new JLabel("Race");

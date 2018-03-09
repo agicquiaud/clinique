@@ -33,13 +33,13 @@ public class WindowAnimal {
 	public WindowAnimal(){
 		frmGestionAnimal = new JFrame();
 		frmGestionAnimal.setForeground(new Color(240, 255, 255));
-		frmGestionAnimal.setBounds(100, 100, 570, 375);
+		frmGestionAnimal.setBounds(100, 100, 540, 375);
 		frmGestionAnimal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmGestionAnimal.setFont(new Font("Malgun Gothic", Font.PLAIN, 13));
 		frmGestionAnimal.setTitle("                    Gestion Animal");
 		frmGestionAnimal.getContentPane().setBackground(new Color(255, 255, 255));
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 84, 67, 0, 0, 0, 0};
+		gridBagLayout.columnWidths = new int[]{0, 84, 67, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{10, 0, 0, 35, 35, 35, 0, 50, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
@@ -171,6 +171,7 @@ public class WindowAnimal {
 		comboBox.setBackground(new Color(255, 255, 255));
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox.gridwidth = 2;
 		gbc_comboBox.gridx = 1;
 		gbc_comboBox.gridy = 6;
 		frmGestionAnimal.getContentPane().add(comboBox, gbc_comboBox);
@@ -189,11 +190,12 @@ public class WindowAnimal {
 		String [] raceSerpent = {"Crotal","Anaconda","Boa","Cobra", "Mamba"};
 		String [] raceSouris = {"Mulot","Hamster","Cochon d'Inde"};
 		String [] raceLapin = {"Hollandais","Californien","Alaska","Mini-Lop"};
-		JComboBox comboBox_1 = new JComboBox();
+		JComboBox comboBox_1 = new JComboBox(raceChat);
 		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
 		comboBox_1.setBackground(new Color(255, 255, 255));
 		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBox_1.gridwidth = 2;
 		gbc_comboBox_1.gridx = 3;
 		gbc_comboBox_1.gridy = 6;
 		frmGestionAnimal.getContentPane().add(comboBox_1, gbc_comboBox_1);
