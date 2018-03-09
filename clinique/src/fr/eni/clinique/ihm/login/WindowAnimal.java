@@ -36,7 +36,7 @@ public class WindowAnimal {
 		frmGestionAnimal.setBounds(100, 100, 540, 375);
 		frmGestionAnimal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmGestionAnimal.setFont(new Font("Malgun Gothic", Font.PLAIN, 13));
-		frmGestionAnimal.setTitle("                    Gestion Animal");
+		frmGestionAnimal.setTitle("Gestion Animal");
 		frmGestionAnimal.getContentPane().setBackground(new Color(255, 255, 255));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 84, 67, 0, 0, 0};
