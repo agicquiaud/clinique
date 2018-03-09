@@ -129,9 +129,9 @@ public class WindowAnimal {
 		frmGestionAnimal.getContentPane().add(textField_10, gbc_textField_10);
 		textField_10.setColumns(10);
 		
-		JComboBox comboBox_2 = new JComboBox();
+		String [] Genre = {"Mâle", "Femelle"};
+		JComboBox comboBox_2 = new JComboBox(Genre);
 		GridBagConstraints gbc_comboBox_2 = new GridBagConstraints();
-		comboBox_2.setForeground(new Color(255, 255, 255));
 		comboBox_2.setBackground(new Color(255, 255, 255));
 		gbc_comboBox_2.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox_2.fill = GridBagConstraints.HORIZONTAL;
@@ -165,8 +165,8 @@ public class WindowAnimal {
 		gbc_lblNewLabel_1.gridy = 6;
 		frmGestionAnimal.getContentPane().add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
-		String [] StringGenre = {"Chat", "Chien", "Serpent", "souris", "lapin"};
-		JComboBox comboBox = new JComboBox(StringGenre);
+		String [] Espece = {"Chat", "Chien", "Serpent", "souris", "lapin"};
+		JComboBox comboBox = new JComboBox(Espece);
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		comboBox.setBackground(new Color(255, 255, 255));
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
@@ -184,9 +184,13 @@ public class WindowAnimal {
 		gbc_lblNewLabel_2.gridy = 6;
 		frmGestionAnimal.getContentPane().add(lblNewLabel_2, gbc_lblNewLabel_2);
 		
+		String [] raceChat = {"Siamois","Persan","Maine Coone","Bengal","Sphinx"};
+		String [] raceChien = {"Berger Allemand","Labrador","Bulldog","Caniche","Teckel"};
+		String [] raceSerpent = {"Crotal","Anaconda","Boa","Cobra", "Mamba"};
+		String [] raceSouris = {"Mulot","Hamster","Cochon d'Inde"};
+		String [] raceLapin = {"Hollandais","Californien","Alaska","Mini-Lop"};
 		JComboBox comboBox_1 = new JComboBox();
 		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
-		comboBox_1.setForeground(new Color(255, 255, 255));
 		comboBox_1.setBackground(new Color(255, 255, 255));
 		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
