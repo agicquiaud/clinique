@@ -1,20 +1,28 @@
 package fr.eni.clinique.ihm.login;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 
-import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import fr.eni.clinique.bll.ClientsUtilImpl;
+import fr.eni.clinique.bll.ClientsUtilSingleton;
+
+import java.awt.GridBagLayout;
+import javax.swing.JLabel;
+import java.awt.GridBagConstraints;
+import javax.swing.JButton;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JToolBar;
+
 public class popupDelete extends JFrame {
 
-	private JDialog contentPane;
+	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
@@ -38,7 +46,8 @@ public class popupDelete extends JFrame {
 	public popupDelete() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 418, 136);
-		contentPane = new JDialog();
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -67,6 +76,24 @@ public class popupDelete extends JFrame {
 		gbc_btnNewButton.gridx = 5;
 		gbc_btnNewButton.gridy = 6;
 		contentPane.add(btnNewButton, gbc_btnNewButton);
+		
+		btnNewButton_1.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ClientsUtilSingleton.getinstance().delete(id);
+				
+			}
+		});
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+			}
+		});
 	}
 
 }
