@@ -5,6 +5,7 @@ import java.util.List;
 import fr.eni.clinique.bll.Animal;
 import fr.eni.clinique.bll.AnimalSingleton;
 import fr.eni.clinique.bo.Animaux;
+import fr.eni.clinique.bo.Clients;
 
 public class ControllerAnimaux {
 
@@ -28,6 +29,12 @@ public class ControllerAnimaux {
 			tab[i][5] = liste.get(i).getEspece();
 		}
 		return tab;
+	}
+	
+	public void addClient(String Nom, String Prenom, String Adresse1, String CodePostal, String Ville, String NumTel,
+			String Email) {
+		animal = new Animaux();
+		bllclients.insert(animal);
 	}
 
 
