@@ -9,20 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.clinique.bo.Clients;
+import fr.eni.clinique.bo.User;
 import fr.eni.clinique.dal.ClientDAO;
 import fr.eni.clinique.dal.DALException;
 
-public class ClientDAOJdbcImpl implements ClientDAO{
+public class ClientDAOJdbcImpl implements ClientDAO {
 
 	private static final String sqlSelectAll = "SELECT CodeClient, NomClient, PrenomClient, "
 			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive FROM Clients";
 	private static final String sqlUpdate = "UPDATE Clients SET NomClient=?, PrenomClient=?, "
 			+ "Adresse1=?, CodePostal=?, Ville=?, NumTel=?, Email=?, Archive=? WHERE CodeClient=?";
 	private static final String sqlInsert = "INSERT INTO Clients (NomClient, PrenomClient, "
-			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String sqlDelete = "DELETE FROM Clients WHERE CodeClient=?";
 	private static final String sqlSelectByNom = "SELECT CodeClient, NomClient, PrenomClient, "
-			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive FROM Clients WHERE NomClient=? OR PrenomClient=?";
+			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive FROM Clients WHERE NomClient LIKE ? OR PrenomClient LIKE ?";
 
 	public List<Clients> selectAll() throws DALException {
 		Connection cnx = null;
@@ -36,9 +37,9 @@ public class ClientDAOJdbcImpl implements ClientDAO{
 			Clients client = null;
 
 			while (rs.next()) {
-				client = new Clients(rs.getInt("CodePers"), rs.getString("NomClient"), rs.getString("PrenomClient"),
-						rs.getString("Adresse1"), rs.getString("CodePostal"),
-						rs.getString("Ville"), rs.getString("NumTel"), rs.getString("Email"), rs.getBoolean("Archive"));
+				client = new Clients(rs.getInt("CodeClient"), rs.getString("NomClient"), rs.getString("PrenomClient"),
+						rs.getString("Adresse1"), rs.getString("CodePostal"), rs.getString("Ville"),
+						rs.getString("NumTel"), rs.getString("Email"), rs.getBoolean("Archive"));
 
 				liste.add(client);
 			}
@@ -105,14 +106,14 @@ public class ClientDAOJdbcImpl implements ClientDAO{
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
-			rqt.setString(2, data.getNom());
-			rqt.setString(3, data.getPrenom());
-			rqt.setString(4, data.getAdresse1());
-			rqt.setString(5, data.getCodePostal());
-			rqt.setString(6, data.getVille());
-			rqt.setString(7, data.getNumTel());
-			rqt.setString(8, data.getEmail());
-			rqt.setBoolean(9, data.getArchive());
+			rqt.setString(1, data.getNom());
+			rqt.setString(2, data.getPrenom());
+			rqt.setString(3, data.getAdresse1());
+			rqt.setString(4, data.getCodePostal());
+			rqt.setString(5, data.getVille());
+			rqt.setString(6, data.getNumTel());
+			rqt.setString(7, data.getEmail());
+			rqt.setBoolean(8, data.getArchive());
 
 			int nbRows = rqt.executeUpdate();
 			if (nbRows == 1) {
@@ -144,7 +145,6 @@ public class ClientDAOJdbcImpl implements ClientDAO{
 		try {
 			cnx = JdbcTools.getConnection();
 			// l'intégrité référentielle s'occupe d'invalider la suppression
-			// si l'article est référencé dans une ligne de commande
 			rqt = cnx.prepareStatement(sqlDelete);
 			rqt.setInt(1, id);
 			rqt.executeUpdate();
@@ -167,19 +167,20 @@ public class ClientDAOJdbcImpl implements ClientDAO{
 
 	public List<Clients> selectByNom(String nom) throws DALException {
 		Connection cnx = null;
-		Statement rqt = null;
+		PreparedStatement rqt = null;
 		ResultSet rs = null;
 		List<Clients> liste = new ArrayList<Clients>();
+		Clients client = null;
 		try {
 			cnx = JdbcTools.getConnection();
-			rqt = cnx.createStatement();
-			rs = rqt.executeQuery(sqlSelectAll);
-			Clients client = null;
-
-			while (rs.next()) {
-				client = new Clients(rs.getInt("CodePers"), rs.getString("NomClient"), rs.getString("PrenomClient"),
-						rs.getString("Adresse1"), rs.getString("CodePostal"),
-						rs.getString("Ville"), rs.getString("NumTel"), rs.getString("Email"), rs.getBoolean("Archive"));
+			rqt = cnx.prepareStatement(sqlSelectByNom);
+			rqt.setString(1, "%" + nom + "%");
+			rqt.setString(2, "%" + nom + "%");
+			rs = rqt.executeQuery();
+			if (rs.next()) {
+				client = new Clients(rs.getInt("CodeClient"), rs.getString("NomClient"), rs.getString("PrenomClient"),
+						rs.getString("Adresse1"), rs.getString("CodePostal"), rs.getString("Ville"),
+						rs.getString("NumTel"), rs.getString("Email"), rs.getBoolean("Archive"));
 
 				liste.add(client);
 			}
@@ -200,7 +201,6 @@ public class ClientDAOJdbcImpl implements ClientDAO{
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-
 		}
 		return liste;
 	}

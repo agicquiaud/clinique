@@ -1,5 +1,6 @@
 package fr.eni.clinique.ihm.login;
 
+import java.util.Arrays;
 import java.util.List;
 
 import fr.eni.clinique.bll.ClientsUtil;
@@ -27,7 +28,7 @@ public class ControllerClients {
 	
 	public Object[][] getList(){
 		liste = bllclients.getAll();
-		Object[][] tab = new Object[liste.size()][5];
+		Object[][] tab = new Object[liste.size()][6];
 		for (int i = 0; i < liste.size(); i++){
 			tab[i][0] = liste.get(i).getCodeClient();
 			tab[i][1] = liste.get(i).getPrenom();
@@ -39,9 +40,19 @@ public class ControllerClients {
 		return tab;
 	}
 	
-	public List<Clients> getClient(String nom){
+	public Object[][] getClient(String nom){
 		liste = bllclients.getClient(nom);
-		return liste;
+		System.out.println(liste.toString());
+		Object[][] tab = new Object[liste.size()][6];
+		for (int i = 0; i < liste.size(); i++){
+			tab[i][0] = liste.get(i).getCodeClient();
+			tab[i][1] = liste.get(i).getPrenom();
+			tab[i][2] = liste.get(i).getNom();
+			tab[i][3] = liste.get(i).getVille();
+			tab[i][4] = liste.get(i).getCodePostal();
+			tab[i][5] = liste.get(i).getAdresse1();
+		}
+		return tab;
 	}
 	
 	public void removeClient (Integer codeclient){
