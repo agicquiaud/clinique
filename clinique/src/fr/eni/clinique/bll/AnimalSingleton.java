@@ -1,9 +1,9 @@
 package fr.eni.clinique.bll;
 
 public class AnimalSingleton {
-	private Animal instance;
+	private static Animal instance;
 	private AnimalSingleton(){}
-	public Animal getinstance(){
+	public static Animal getinstance(){
 		if(instance == null){
 			instance = new AnimalImpl();
 		}

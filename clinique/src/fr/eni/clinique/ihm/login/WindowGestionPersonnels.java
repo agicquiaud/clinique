@@ -27,6 +27,7 @@ public class WindowGestionPersonnels {
 	private JTable table;
 	private JDialog AjoutPersonnel = new JDialog();
 	private JDialog ResetMdp = new JDialog();
+	private JDialog PopupDeleteClient = new JDialog();
 	private ControllerPersonnels controller;
 	private JTextField textField;
 	private DefaultTableModel tableModel;
@@ -71,13 +72,13 @@ public class WindowGestionPersonnels {
 		gbc_btnReinitialiser.gridx = 2;
 		gbc_btnReinitialiser.gridy = 0;
 		frameGestionPersonnel.getContentPane().add(btnReinitialiser, gbc_btnReinitialiser);
-		
-				JLabel lblerror = new JLabel("");
-				GridBagConstraints gbc_lblerror = new GridBagConstraints();
-				gbc_lblerror.insets = new Insets(0, 0, 5, 5);
-				gbc_lblerror.gridx = 0;
-				gbc_lblerror.gridy = 1;
-				frameGestionPersonnel.getContentPane().add(lblerror, gbc_lblerror);
+
+		JLabel lblerror = new JLabel("");
+		GridBagConstraints gbc_lblerror = new GridBagConstraints();
+		gbc_lblerror.insets = new Insets(0, 0, 5, 5);
+		gbc_lblerror.gridx = 0;
+		gbc_lblerror.gridy = 1;
+		frameGestionPersonnel.getContentPane().add(lblerror, gbc_lblerror);
 
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
@@ -225,9 +226,40 @@ public class WindowGestionPersonnels {
 		gbc_btnValiderModalReset.gridy = 7;
 		ResetMdp.getContentPane().add(btnValiderModalReset, gbc_btnValiderModalReset);
 
+		// Popup Remove Client
+		// --------------------------------------------------------------------------------------
+
+		GridBagLayout gbl_PopupDeleteClient = new GridBagLayout();
+		gbl_PopupDeleteClient.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_PopupDeleteClient.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_PopupDeleteClient.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+				Double.MIN_VALUE };
+		gbl_PopupDeleteClient.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		PopupDeleteClient.setLayout(gbl_PopupDeleteClient);
+
+		JLabel lbltesvousSurDe = new JLabel("Etes-vous sur de vouloir supprimer ce client ?");
+		GridBagConstraints gbc_lbltesvousSurDe = new GridBagConstraints();
+		gbc_lbltesvousSurDe.insets = new Insets(0, 0, 5, 5);
+		gbc_lbltesvousSurDe.gridx = 4;
+		gbc_lbltesvousSurDe.gridy = 2;
+		PopupDeleteClient.add(lbltesvousSurDe, gbc_lbltesvousSurDe);
+
+		JButton btnPopupDeleteClient = new JButton("Oui");
+		GridBagConstraints gbc_btnPopupDeleteClient = new GridBagConstraints();
+		gbc_btnPopupDeleteClient.insets = new Insets(0, 0, 0, 5);
+		gbc_btnPopupDeleteClient.gridx = 3;
+		gbc_btnPopupDeleteClient.gridy = 6;
+		PopupDeleteClient.add(btnPopupDeleteClient, gbc_btnPopupDeleteClient);
+
+		JButton btnPopupCancelDeleteClient = new JButton("Non");
+		GridBagConstraints gbc_btnPopupCancelDeleteClient = new GridBagConstraints();
+		gbc_btnPopupCancelDeleteClient.insets = new Insets(0, 0, 0, 5);
+		gbc_btnPopupCancelDeleteClient.gridx = 5;
+		gbc_btnPopupCancelDeleteClient.gridy = 6;
+		PopupDeleteClient.add(btnPopupCancelDeleteClient, gbc_btnPopupCancelDeleteClient);
+
 		/////////////////////////////////////////////////////////////////////////////////////////
-		
-		
+
 		btnAjouter.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -245,7 +277,7 @@ public class WindowGestionPersonnels {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				controller.addPersonnel(new User(textField_6.getText(), textField_7.getText(),
-					(String) comboBox.getSelectedItem(), false));
+						(String) comboBox.getSelectedItem(), false));
 				setUpTableData();
 				AjoutPersonnel.setVisible(false);
 			}
@@ -270,21 +302,37 @@ public class WindowGestionPersonnels {
 				ResetMdp.setVisible(false);
 			}
 		});
-		
+
 		btnSupprimer.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (controller.verifDroit()) {
-					controller.ArchivePersonnel(table.getValueAt(table.getSelectedRow(), 0).toString());
-					setUpTableData();
+					PopupDeleteClient.setBounds(100, 100, 418, 136);
+					PopupDeleteClient.setVisible(true);
 				} else {
 					lblerror.setText("Droit insuffisant");
 				}
 			}
 		});
+		
+		btnPopupDeleteClient.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.ArchivePersonnel(table.getValueAt(table.getSelectedRow(), 0).toString());
+				setUpTableData();
+				PopupDeleteClient.setVisible(false);
+			}
+		});
+		
+		btnPopupCancelDeleteClient.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PopupDeleteClient.setVisible(false);
+			}
+		});
 	}
-	
-	private void setUpTableData(){
+
+	private void setUpTableData() {
 		String[] entetes = { "Nom", "Mot de passe", "Role" };
 		tableModel = new DefaultTableModel(controller.getList(), entetes) {
 			@Override

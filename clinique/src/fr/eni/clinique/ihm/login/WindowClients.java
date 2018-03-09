@@ -635,11 +635,11 @@ public class WindowClients {
 		btnConfirmEditClient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.updateClient(textFieldCodeClientEdit.getText(),
-						textFieldNomClientEdit.getText(), textFieldPrenomClientEdit.getText(),
-						textFieldAdresse1ClientEdit.getText(), textFieldAdresse2ClientEdit.getText(),
-						textFieldCodePostalClientEdit.getText(), textFieldVilleClientEdit.getText(),
-						textFieldNumTelClientEdit.getText(), textFieldAssuranceClientEdit.getText(), textFieldEmailClientEdit.getText(),
+				controller.updateClient(textFieldCodeClientEdit.getText(), textFieldNomClientEdit.getText(),
+						textFieldPrenomClientEdit.getText(), textFieldAdresse1ClientEdit.getText(),
+						textFieldAdresse2ClientEdit.getText(), textFieldCodePostalClientEdit.getText(),
+						textFieldVilleClientEdit.getText(), textFieldNumTelClientEdit.getText(),
+						textFieldAssuranceClientEdit.getText(), textFieldEmailClientEdit.getText(),
 						textFieldRemarqueClientEdit.getText());
 				setUpTableData(controller.getList(), entetes1);
 				EditClient.setVisible(false);
