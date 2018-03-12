@@ -64,6 +64,11 @@ public class WindowClients {
 	private JTextField textFieldNomAnimal;
 	private JTextField textFieldCouleurAnimal;
 	private JTextField textFieldTatouageAnimal;
+	private JTextField textFieldCodeEditAnimal;
+	private JTextField textFieldNomAnimalEditAnimal;
+	private JTextField textFieldCouleurEditAnimal;
+	private JTextField textFieldTatouageEditAnimal;
+	private JTextField textFieldAntecedentsEditAnimal;
 
 	public WindowClients() {
 		controller = new ControllerClients();
@@ -763,7 +768,8 @@ public class WindowClients {
 		AddAnimal.getContentPane().add(textFieldTatouageAnimal, gbc_textFieldTatouageAnimal);
 		textFieldTatouageAnimal.setColumns(10);
 		
-		////////////////////////////////////////////////////////////////////////////
+		// Edit Animal
+		// --------------------------------------------------------------------------------------
 		
 		GridBagLayout gbl_EditAnimal = new GridBagLayout();
 		gbl_EditAnimal.columnWidths = new int[]{0, 84, 0, 67, 0, 0, 0, 0};
@@ -813,150 +819,149 @@ public class WindowClients {
 		lblClientEditAnimal.setBounds(22, 11, 46, 14);
 		desktopPaneEditAnimal_1.add(lblClientEditAnimal);
 		
-		JLabel lblNewLabel_3 = new JLabel("Albert Kader");
-		lblNewLabel_3.setFont(new Font("Malgun Gothic", Font.PLAIN, 12));
-		lblNewLabel_3.setBounds(43, 32, 265, 14);
-		desktopPane_1.add(lblNewLabel_3);
+		JLabel lblNomClientEditAnimal = new JLabel("");
+		lblNomClientEditAnimal.setFont(new Font("Malgun Gothic", Font.PLAIN, 12));
+		lblNomClientEditAnimal.setBounds(43, 32, 265, 14);
+		desktopPane_1.add(lblNomClientEditAnimal);
 		
 
-		JLabel lblNewLabel = new JLabel("Code");
-		lblNewLabel.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
-		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 0;
-		gbc_lblNewLabel.gridy = 2;
-		frmGestionAnimal.getContentPane().add(lblNewLabel, gbc_lblNewLabel);
+		JLabel lblCodeEditAnimal = new JLabel("Code");
+		lblCodeEditAnimal.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
+		GridBagConstraints gbc_lblCodeEditAnimal = new GridBagConstraints();
+		gbc_lblCodeEditAnimal.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCodeEditAnimal.gridx = 0;
+		gbc_lblCodeEditAnimal.gridy = 2;
+		EditAnimal.getContentPane().add(lblCodeEditAnimal, gbc_lblCodeEditAnimal);
 		
-		textField_9 = new JTextField();
-		GridBagConstraints gbc_textField_9 = new GridBagConstraints();
-		gbc_textField_9.gridwidth = 3;
-		gbc_textField_9.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_9.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_9.gridx = 1;
-		gbc_textField_9.gridy = 2;
-		frmGestionAnimal.getContentPane().add(textField_9, gbc_textField_9);
-		textField_9.setColumns(10);
+		textFieldCodeEditAnimal = new JTextField();
+		GridBagConstraints gbc_textFieldCodeEditAnimal = new GridBagConstraints();
+		gbc_textFieldCodeEditAnimal.gridwidth = 3;
+		gbc_textFieldCodeEditAnimal.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldCodeEditAnimal.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldCodeEditAnimal.gridx = 1;
+		gbc_textFieldCodeEditAnimal.gridy = 2;
+		EditAnimal.getContentPane().add(textFieldCodeEditAnimal, gbc_textFieldCodeEditAnimal);
+		textFieldCodeEditAnimal.setColumns(10);
 		
-		String [] Espece = {"Chat", "Chien", "Serpent", "Souris", "Lapin"};
 		
-		JLabel lblNom = new JLabel("Nom");
+		JLabel lblNomAnimalEditAnimal = new JLabel("Nom");
 		lblNom.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
-		GridBagConstraints gbc_lblNom = new GridBagConstraints();
-		gbc_lblNom.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNom.gridx = 0;
-		gbc_lblNom.gridy = 3;
-		frmGestionAnimal.getContentPane().add(lblNom, gbc_lblNom);
+		GridBagConstraints gbc_lblNomAnimalEditAnimal = new GridBagConstraints();
+		gbc_lblNomAnimalEditAnimal.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNomAnimalEditAnimal.gridx = 0;
+		gbc_lblNomAnimalEditAnimal.gridy = 3;
+		EditAnimal.getContentPane().add(lblNomAnimalEditAnimal, gbc_lblNomAnimalEditAnimal);
 		
-		textField_10 = new JTextField();
-		GridBagConstraints gbc_textField_10 = new GridBagConstraints();
-		gbc_textField_10.gridwidth = 3;
-		gbc_textField_10.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_10.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_10.gridx = 1;
-		gbc_textField_10.gridy = 3;
-		frmGestionAnimal.getContentPane().add(textField_10, gbc_textField_10);
-		textField_10.setColumns(10);
-		JComboBox comboBox_2 = new JComboBox(Genre);
-		GridBagConstraints gbc_comboBox_2 = new GridBagConstraints();
-		comboBox_2.setBackground(new Color(255, 255, 255));
-		gbc_comboBox_2.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox_2.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox_2.gridx = 5;
-		gbc_comboBox_2.gridy = 3;
-		frmGestionAnimal.getContentPane().add(comboBox_2, gbc_comboBox_2);
+		textFieldNomAnimalEditAnimal = new JTextField();
+		GridBagConstraints gbc_textFieldNomAnimalEditAnimal = new GridBagConstraints();
+		gbc_textFieldNomAnimalEditAnimal.gridwidth = 3;
+		gbc_textFieldNomAnimalEditAnimal.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldNomAnimalEditAnimal.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldNomAnimalEditAnimal.gridx = 1;
+		gbc_textFieldNomAnimalEditAnimal.gridy = 3;
+		EditAnimal.getContentPane().add(textFieldNomAnimalEditAnimal, gbc_textFieldNomAnimalEditAnimal);
+		textFieldNomAnimalEditAnimal.setColumns(10);
 		
-		JLabel lblCouleur = new JLabel("Couleur");
-		lblCouleur.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
-		GridBagConstraints gbc_lblCouleur = new GridBagConstraints();
-		gbc_lblCouleur.insets = new Insets(0, 0, 5, 5);
-		gbc_lblCouleur.gridx = 0;
-		gbc_lblCouleur.gridy = 4;
-		frmGestionAnimal.getContentPane().add(lblCouleur, gbc_lblCouleur);
+		JComboBox<String>comboboxgenreEditAnimal = new JComboBox<String>(Genre);
+		GridBagConstraints gbc_comboboxgenreEditAnimal = new GridBagConstraints();
+		comboboxgenreEditAnimal.setBackground(new Color(255, 255, 255));
+		gbc_comboboxgenreEditAnimal.insets = new Insets(0, 0, 5, 5);
+		gbc_comboboxgenreEditAnimal.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboboxgenreEditAnimal.gridx = 5;
+		gbc_comboboxgenreEditAnimal.gridy = 3;
+		EditAnimal.getContentPane().add(comboboxgenreEditAnimal, gbc_comboboxgenreEditAnimal);
 		
-		textField_11 = new JTextField();
-		GridBagConstraints gbc_textField_11 = new GridBagConstraints();
-		gbc_textField_11.gridwidth = 3;
-		gbc_textField_11.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_11.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_11.gridx = 1;
-		gbc_textField_11.gridy = 4;
-		frmGestionAnimal.getContentPane().add(textField_11, gbc_textField_11);
-		textField_11.setColumns(10);
+		JLabel lblCouleurEditAnimal = new JLabel("Couleur");
+		lblCouleurEditAnimal.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
+		GridBagConstraints gbc_lblCouleurEditAnimal = new GridBagConstraints();
+		gbc_lblCouleurEditAnimal.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCouleurEditAnimal.gridx = 0;
+		gbc_lblCouleurEditAnimal.gridy = 4;
+		EditAnimal.getContentPane().add(lblCouleurEditAnimal, gbc_lblCouleurEditAnimal);
 		
-		JLabel lblNewLabel_1 = new JLabel("Esp\u00E8ce");
-		lblNewLabel_1.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
-		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1.gridx = 0;
-		gbc_lblNewLabel_1.gridy = 5;
-		frmGestionAnimal.getContentPane().add(lblNewLabel_1, gbc_lblNewLabel_1);
-		JComboBox comboBox = new JComboBox(Espece);
-		GridBagConstraints gbc_comboBox = new GridBagConstraints();
-		gbc_comboBox.gridwidth = 2;
-		comboBox.setBackground(new Color(255, 255, 255));
-		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox.gridx = 1;
-		gbc_comboBox.gridy = 5;
-		frmGestionAnimal.getContentPane().add(comboBox, gbc_comboBox);
+		textFieldCouleurEditAnimal = new JTextField();
+		GridBagConstraints gbc_textFieldCouleurEditAnimal = new GridBagConstraints();
+		gbc_textFieldCouleurEditAnimal.gridwidth = 3;
+		gbc_textFieldCouleurEditAnimal.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldCouleurEditAnimal.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldCouleurEditAnimal.gridx = 1;
+		gbc_textFieldCouleurEditAnimal.gridy = 4;
+		EditAnimal.getContentPane().add(textFieldCouleurEditAnimal, gbc_textFieldCouleurEditAnimal);
+		textFieldCouleurEditAnimal.setColumns(10);
 		
+		JLabel lblEspeceEditAnimal = new JLabel("Espece");
+		lblEspeceEditAnimal.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
+		GridBagConstraints gbc_lblEspeceEditAnimal = new GridBagConstraints();
+		gbc_lblEspeceEditAnimal.insets = new Insets(0, 0, 5, 5);
+		gbc_lblEspeceEditAnimal.gridx = 0;
+		gbc_lblEspeceEditAnimal.gridy = 5;
+		EditAnimal.getContentPane().add(lblEspeceEditAnimal, gbc_lblEspeceEditAnimal);
 		
-		String [] race = selectAnimal.getRace(comboBox.getSelectedItem().toString());
+		JComboBox<String>comboBoxEspeceEditAnimal = new JComboBox<String>(Espece);
+		GridBagConstraints gbc_comboBoxEspeceEditAnimal = new GridBagConstraints();
+		gbc_comboBoxEspeceEditAnimal.gridwidth = 2;
+		comboBoxEspeceEditAnimal.setBackground(new Color(255, 255, 255));
+		gbc_comboBoxEspeceEditAnimal.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBoxEspeceEditAnimal.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBoxEspeceEditAnimal.gridx = 1;
+		gbc_comboBoxEspeceEditAnimal.gridy = 5;
+		EditAnimal.getContentPane().add(comboBoxEspeceEditAnimal, gbc_comboBoxEspeceEditAnimal);
 		
-		JLabel lblNewLabel_2 = new JLabel("Race");
-		lblNewLabel_2.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
-		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_2.anchor = GridBagConstraints.EAST;
-		gbc_lblNewLabel_2.gridx = 3;
-		gbc_lblNewLabel_2.gridy = 5;
-		frmGestionAnimal.getContentPane().add(lblNewLabel_2, gbc_lblNewLabel_2);
-		JComboBox comboBox_1 = new JComboBox(race);
-		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
-		gbc_comboBox_1.gridwidth = 2;
-		comboBox_1.setBackground(new Color(255, 255, 255));
-		gbc_comboBox_1.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox_1.gridx = 4;
-		gbc_comboBox_1.gridy = 5;
-		frmGestionAnimal.getContentPane().add(comboBox_1, gbc_comboBox_1);
+		JLabel lblRaceEditAnimal = new JLabel("Race");
+		lblRaceEditAnimal.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
+		GridBagConstraints gbc_lblRaceEditAnimal = new GridBagConstraints();
+		gbc_lblRaceEditAnimal.insets = new Insets(0, 0, 5, 5);
+		gbc_lblRaceEditAnimal.anchor = GridBagConstraints.EAST;
+		gbc_lblRaceEditAnimal.gridx = 3;
+		gbc_lblRaceEditAnimal.gridy = 5;
+		EditAnimal.getContentPane().add(lblRaceEditAnimal, gbc_lblRaceEditAnimal);
 		
-		JLabel lblTatouage = new JLabel("Tatouage");
-		lblTatouage.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
-		GridBagConstraints gbc_lblTatouage = new GridBagConstraints();
-		gbc_lblTatouage.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTatouage.gridx = 0;
-		gbc_lblTatouage.gridy = 6;
-		frmGestionAnimal.getContentPane().add(lblTatouage, gbc_lblTatouage);
+		JComboBox<String>comboBoxRaceEditAnimal = new JComboBox<String>();
+		GridBagConstraints gbc_comboBoxRaceEditAnimal = new GridBagConstraints();
+		gbc_comboBoxRaceEditAnimal.gridwidth = 2;
+		comboBoxRaceEditAnimal.setBackground(new Color(255, 255, 255));
+		gbc_comboBoxRaceEditAnimal.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBoxRaceEditAnimal.fill = GridBagConstraints.HORIZONTAL;
+		gbc_comboBoxRaceEditAnimal.gridx = 4;
+		gbc_comboBoxRaceEditAnimal.gridy = 5;
+		EditAnimal.getContentPane().add(comboBoxRaceEditAnimal, gbc_comboBoxRaceEditAnimal);
 		
-		textField_12 = new JTextField();
-		GridBagConstraints gbc_textField_12 = new GridBagConstraints();
-		gbc_textField_12.gridwidth = 3;
-		gbc_textField_12.insets = new Insets(0, 0, 5, 5);
-		gbc_textField_12.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField_12.gridx = 1;
-		gbc_textField_12.gridy = 6;
-		frmGestionAnimal.getContentPane().add(textField_12, gbc_textField_12);
-		textField_12.setColumns(10);
+		JLabel lblTatouageEditAnimal = new JLabel("Tatouage");
+		lblTatouageEditAnimal.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
+		GridBagConstraints gbc_lblTatouageEditAnimal = new GridBagConstraints();
+		gbc_lblTatouageEditAnimal.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTatouageEditAnimal.gridx = 0;
+		gbc_lblTatouageEditAnimal.gridy = 6;
+		EditAnimal.getContentPane().add(lblTatouageEditAnimal, gbc_lblTatouageEditAnimal);
 		
-		JLabel lblAntecedents = new JLabel("Antecedents");
-		lblAntecedents.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
-		GridBagConstraints gbc_lblAntecedents = new GridBagConstraints();
-		gbc_lblAntecedents.insets = new Insets(0, 0, 5, 5);
-		gbc_lblAntecedents.gridx = 0;
-		gbc_lblAntecedents.gridy = 7;
-		frmGestionAnimal.getContentPane().add(lblAntecedents, gbc_lblAntecedents);
+		textFieldTatouageEditAnimal = new JTextField();
+		GridBagConstraints gbc_textFieldTatouageEditAnimal = new GridBagConstraints();
+		gbc_textFieldTatouageEditAnimal.gridwidth = 3;
+		gbc_textFieldTatouageEditAnimal.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldTatouageEditAnimal.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldTatouageEditAnimal.gridx = 1;
+		gbc_textFieldTatouageEditAnimal.gridy = 6;
+		EditAnimal.getContentPane().add(textFieldTatouageEditAnimal, gbc_textFieldTatouageEditAnimal);
+		textFieldTatouageEditAnimal.setColumns(10);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.gridheight = 2;
-		gbc_textField.gridwidth = 3;
-		gbc_textField.insets = new Insets(0, 0, 0, 5);
-		gbc_textField.fill = GridBagConstraints.BOTH;
-		gbc_textField.gridx = 1;
-		gbc_textField.gridy = 7;
-		frmGestionAnimal.getContentPane().add(textField, gbc_textField);
+		JLabel lblAntecedentsEditAnimal = new JLabel("Antecedents");
+		lblAntecedentsEditAnimal.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
+		GridBagConstraints gbc_lblAntecedentsEditAnimal = new GridBagConstraints();
+		gbc_lblAntecedentsEditAnimal.insets = new Insets(0, 0, 5, 5);
+		gbc_lblAntecedentsEditAnimal.gridx = 0;
+		gbc_lblAntecedentsEditAnimal.gridy = 7;
+		EditAnimal.getContentPane().add(lblAntecedentsEditAnimal, gbc_lblAntecedentsEditAnimal);
+		
+		textFieldAntecedentsEditAnimal = new JTextField();
+		textFieldAntecedentsEditAnimal.setColumns(10);
+		GridBagConstraints gbc_textFieldAntecedentsEditAnimal = new GridBagConstraints();
+		gbc_textFieldAntecedentsEditAnimal.gridheight = 2;
+		gbc_textFieldAntecedentsEditAnimal.gridwidth = 3;
+		gbc_textFieldAntecedentsEditAnimal.insets = new Insets(0, 0, 0, 5);
+		gbc_textFieldAntecedentsEditAnimal.fill = GridBagConstraints.BOTH;
+		gbc_textFieldAntecedentsEditAnimal.gridx = 1;
+		gbc_textFieldAntecedentsEditAnimal.gridy = 7;
+		EditAnimal.getContentPane().add(textFieldAntecedentsEditAnimal, gbc_textFieldAntecedentsEditAnimal);
 
 		//////////////////////////////////////////////////////////////////////////////
 
@@ -1067,8 +1072,8 @@ public class WindowClients {
 		btnEditAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				AddAnimal.setBounds(100, 100, 540, 375);
-				AddAnimal.setVisible(true);
+				EditAnimal.setBounds(100, 100, 540, 375);
+				EditAnimal.setVisible(true);
 			}
 		});
 
@@ -1106,6 +1111,20 @@ public class WindowClients {
 				comboboxModel = new DefaultComboBoxModel<String>(
 						controlleranimal.getRace(espece.getSelectedItem().toString()));
 				race.setModel(comboboxModel);
+			}
+		});
+		
+		btnValiderEditAnimal.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controlleranimal.updateClient();
+			}
+		});
+		
+		btnCancelEditClient.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				EditAnimal.setVisible(false);
 			}
 		});
 	}
