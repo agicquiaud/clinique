@@ -28,7 +28,19 @@ public class Animaux {
 		Antecedents = antecedents;
 		Archive = archive;
 	}
-
+	public Animaux(Integer codeAnimal, String nom, String sexe, String couleur, String race, String espece,
+			Integer codeClient, String tatouage, Boolean archive) {
+		super();
+		CodeAnimal = codeAnimal;
+		Nom = nom;
+		Sexe = sexe;
+		Couleur = couleur;
+		Race = race;
+		Espece = espece;
+		CodeClient = codeClient;
+		Tatouage = tatouage;
+		Archive = archive;
+	}
 	
 	
 	public Integer getCodeAnimal() {
@@ -113,28 +125,12 @@ public class Animaux {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Animaux [Nom=");
-		builder.append(Nom);
-		builder.append(", Sexe=");
-		builder.append(Sexe);
-		builder.append(", Couleur=");
-		builder.append(Couleur);
-		builder.append(", Race=");
-		builder.append(Race);
-		builder.append(", Espece=");
-		builder.append(Espece);
-		builder.append(", CodeClient=");
-		builder.append(CodeClient);
-		builder.append(", Tatouage=");
-		builder.append(Tatouage);
-		builder.append(", Antecedents=");
-		builder.append(Antecedents);
-		builder.append(", Archive=");
-		builder.append(Archive);
-		builder.append("]");
-		return builder.toString();
+		return "Animaux [CodeAnimal=" + CodeAnimal + ", Nom=" + Nom + ", Sexe=" + Sexe + ", Couleur=" + Couleur
+				+ ", Race=" + Race + ", Espece=" + Espece + ", CodeClient=" + CodeClient + ", Tatouage=" + Tatouage
+				+ ", Antecedents=" + Antecedents + ", Archive=" + Archive + "]";
 	}
+
+
 	
 	
 }

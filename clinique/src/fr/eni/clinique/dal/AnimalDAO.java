@@ -21,4 +21,10 @@ public interface AnimalDAO {
 		
 		//Selectionne un animal
 		public Animaux selectById(Integer id) throws DALException; 
+		
+		//Selectionne toutes les Especes d'animaux connu en BDD
+		public List<String> SelectAllEspece() throws DALException;
+		
+		//Selectionne les races par une espece
+		public List<String> SelectRaceByEspece(String espece) throws DALException;
 }
