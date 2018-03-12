@@ -7,6 +7,7 @@ import javax.swing.SwingUtilities;
 import fr.eni.clinique.bll.Animal;
 import fr.eni.clinique.bll.AnimalSingleton;
 import fr.eni.clinique.bo.Animaux;
+import fr.eni.clinique.bo.Clients;
 
 public class ControllerAnimaux {
 
@@ -33,8 +34,14 @@ public class ControllerAnimaux {
 		return tab;
 	}
 	
+	public void addAnimal(Integer codeAnimal, String nom, String sexe, String couleur, String race, String espece,
+			Integer codeClient, String tatouage, String antecedents) {
+		animal = new Animaux();
+		bllclients.insert(animal);
+	}
+	
 	public String[] getRace (String Espece){
-
+		
 		String tab [] = bllclients.bllRace(Espece);
 		
 		return tab;
