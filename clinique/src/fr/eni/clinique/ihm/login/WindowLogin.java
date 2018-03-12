@@ -4,15 +4,18 @@ import javax.swing.JFrame;
 import java.awt.GridBagLayout;
 
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
+import fr.eni.clinique.ihm.graphic.ImagePanel;
+import fr.eni.clinique.ihm.graphic.RoundButton;
 import fr.eni.clinique.ihm.graphic.RoundJPasswordField;
 import fr.eni.clinique.ihm.graphic.RoundJTextField;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
-import java.awt.Insets;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,6 +35,10 @@ public class WindowLogin {
 	private JLabel lblConnexion;
 	private ControllerLogin controller;
 	private JPasswordField textField_1 = new RoundJPasswordField(15);
+	private JDesktopPane desktopPane = new JDesktopPane();
+	private ImagePanel imgBack = new ImagePanel(new ImageIcon("Y:\\RL_AG_LV\\login-color.jpg").getImage());
+	private Border empty;
+
 
 	/**
 	 * Create the application.
@@ -48,35 +55,22 @@ public class WindowLogin {
 		frame.setBounds(100, 100, 315, 487);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		JLabel label = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
-		frame.setContentPane(label);
+		
 
-        
-		//-----------------------------------------------
-		
-		//Panneau Connexion------------------------------------
-		
+
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		frame.getContentPane().setLayout(gridBagLayout);
-		
-		JDesktopPane desktopPane = new JDesktopPane();
-		desktopPane.setBackground(Color.WHITE);
+
 		GridBagConstraints gbc_desktopPane = new GridBagConstraints();
 		gbc_desktopPane.gridheight = 2;
 		gbc_desktopPane.fill = GridBagConstraints.BOTH;
 		gbc_desktopPane.gridx = 0;
 		gbc_desktopPane.gridy = 0;
 		frame.getContentPane().add(desktopPane, gbc_desktopPane);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBackground(new Color(240, 240, 240));
-		lblNewLabel.setIcon(new ImageIcon("Y:\\RL_AG_LV\\logo-redi-login.png"));
-		lblNewLabel.setBounds(84, 23, 141, 142);
-		desktopPane.add(lblNewLabel);
 		
 		JLabel lblTre = new JLabel("");
 		lblTre.setIcon(new ImageIcon("Y:\\RL_AG_LV\\verrou.png"));
@@ -87,6 +81,11 @@ public class WindowLogin {
 		lblNewLabel_1.setIcon(new ImageIcon("Y:\\RL_AG_LV\\human-login.png"));
 		lblNewLabel_1.setBounds(77, 214, 24, 33);
 		desktopPane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("Y:\\RL_AG_LV\\logo-redi-login.png"));
+		lblNewLabel.setBounds(84, 23, 141, 142);
+		desktopPane.add(lblNewLabel);
 		
 		textField.setToolTipText("");
 		textField.setForeground(Color.DARK_GRAY);
@@ -100,14 +99,23 @@ public class WindowLogin {
 		desktopPane.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JButton btnValider = new JButton("Connexion");
-		btnValider.setBounds(105, 344, 89, 23);
+		empty = BorderFactory.createEmptyBorder();
+		JButton btnValider = new RoundButton("Connexion");
+		btnValider.setBounds(62, 344, 180, 29);
+		btnValider.setForeground(Color.DARK_GRAY);
+		btnValider.setFont(new Font("Malgun Gothic", Font.BOLD, 15));
+		btnValider.setOpaque(false);
+		btnValider.setFocusPainted(false);
+		btnValider.setBorderPainted(false);
+//		btnValider.setContentAreaFilled(false);
 		desktopPane.add(btnValider);
+
 		
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setBounds(129, 398, 46, 14);
-		desktopPane.add(lblNewLabel_2);
+		desktopPane.add(imgBack);
+		
 //------------------------------------------------------------------------
+		
+		
 		
 		btnValider.addActionListener(new ActionListener() {
 			@Override
