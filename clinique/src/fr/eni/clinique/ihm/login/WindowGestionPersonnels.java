@@ -226,7 +226,7 @@ public class WindowGestionPersonnels {
 		gbc_btnValiderModalReset.gridy = 7;
 		ResetMdp.getContentPane().add(btnValiderModalReset, gbc_btnValiderModalReset);
 
-		// Popup Remove Client
+		// Popup Remove Personnels
 		// --------------------------------------------------------------------------------------
 
 		GridBagLayout gbl_PopupDeleteClient = new GridBagLayout();
@@ -237,7 +237,7 @@ public class WindowGestionPersonnels {
 		gbl_PopupDeleteClient.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		PopupDeleteClient.setLayout(gbl_PopupDeleteClient);
 
-		JLabel lbltesvousSurDe = new JLabel("Etes-vous sur de vouloir supprimer ce client ?");
+		JLabel lbltesvousSurDe = new JLabel("Etes-vous sur de vouloir supprimer ce personnel ?");
 		GridBagConstraints gbc_lbltesvousSurDe = new GridBagConstraints();
 		gbc_lbltesvousSurDe.insets = new Insets(0, 0, 5, 5);
 		gbc_lbltesvousSurDe.gridx = 4;

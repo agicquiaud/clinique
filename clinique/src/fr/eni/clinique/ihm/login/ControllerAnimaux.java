@@ -34,14 +34,14 @@ public class ControllerAnimaux {
 		return tab;
 	}
 	
-	public void addClient(String Nom, String Prenom, String Adresse1, String CodePostal, String Ville, String NumTel,
-			String Email) {
+	public void addAnimal(Integer codeAnimal, String nom, String sexe, String couleur, String race, String espece,
+			Integer codeClient, String tatouage, String antecedents) {
 		animal = new Animaux();
 		bllclients.insert(animal);
 	}
 	
 	public String[] getRace (String Espece){
-
+		
 		String tab [] = bllclients.bllRace(Espece);
 		
 		return tab;
