@@ -6,7 +6,6 @@ import fr.eni.clinique.dal.ClientDAO;
 import fr.eni.clinique.dal.DALException;
 import fr.eni.clinique.dal.DAOFactory;
 import fr.eni.clinique.bo.Clients;
-import fr.eni.clinique.bo.User;
 
 public class ClientsUtilImpl implements ClientsUtil {
 	private ClientDAO con = new DAOFactory().getClientDAO();
@@ -21,7 +20,7 @@ public class ClientsUtilImpl implements ClientsUtil {
 			e.printStackTrace();
 		}
 		for (Clients client : liste) {
-			if(client.getArchive() == true){
+			if(client.getArchive()){
 				liste.remove(client);
 			}
 		}

@@ -2,12 +2,9 @@ package fr.eni.clinique.ihm.login;
 
 import java.util.List;
 
-import javax.swing.SwingUtilities;
-
 import fr.eni.clinique.bll.Animal;
 import fr.eni.clinique.bll.AnimalSingleton;
 import fr.eni.clinique.bo.Animaux;
-import fr.eni.clinique.bo.Clients;
 
 public class ControllerAnimaux {
 

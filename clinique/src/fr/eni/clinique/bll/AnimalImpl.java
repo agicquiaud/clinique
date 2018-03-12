@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.clinique.bo.Animaux;
-import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.dal.AnimalDAO;
 import fr.eni.clinique.dal.DALException;
 import fr.eni.clinique.dal.DAOFactory;
@@ -52,7 +51,7 @@ class AnimalImpl implements Animal {
 			e.printStackTrace();
 		}
 		for (Animaux animal : liste) {
-			if(animal.getArchive() == true){
+			if(animal.getArchive()){
 				liste.remove(animal);
 			}
 		}
