@@ -125,28 +125,12 @@ public class Animaux {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Animaux [Nom=");
-		builder.append(Nom);
-		builder.append(", Sexe=");
-		builder.append(Sexe);
-		builder.append(", Couleur=");
-		builder.append(Couleur);
-		builder.append(", Race=");
-		builder.append(Race);
-		builder.append(", Espece=");
-		builder.append(Espece);
-		builder.append(", CodeClient=");
-		builder.append(CodeClient);
-		builder.append(", Tatouage=");
-		builder.append(Tatouage);
-		builder.append(", Antecedents=");
-		builder.append(Antecedents);
-		builder.append(", Archive=");
-		builder.append(Archive);
-		builder.append("]");
-		return builder.toString();
+		return "Animaux [CodeAnimal=" + CodeAnimal + ", Nom=" + Nom + ", Sexe=" + Sexe + ", Couleur=" + Couleur
+				+ ", Race=" + Race + ", Espece=" + Espece + ", CodeClient=" + CodeClient + ", Tatouage=" + Tatouage
+				+ ", Antecedents=" + Antecedents + ", Archive=" + Archive + "]";
 	}
+
+
 	
 	
 }

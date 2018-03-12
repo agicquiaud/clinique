@@ -4,15 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.clinique.bo.Animaux;
+import fr.eni.clinique.bo.User;
 import fr.eni.clinique.dal.AnimalDAO;
 import fr.eni.clinique.dal.DALException;
 import fr.eni.clinique.dal.DAOFactory;
 
 class AnimalImpl implements Animal {
 	private AnimalDAO con = new DAOFactory().getAnimalDAO();
+	private List<Animaux> liste;
 
 	@Override
 	public void insert(Animaux animal) {
+		if(animal.getSexe().equals("Mâle")){
+			animal.setSexe("M");
+		}else if(animal.getSexe().equals("Femelle")){
+			animal.setSexe("F");
+		}else if(animal.getSexe().equals("Hermaphrodite")){
+			animal.setSexe("H");
+		}
 		try {
 			con.insert(animal);
 		} catch (DALException e) {
@@ -23,6 +32,13 @@ class AnimalImpl implements Animal {
 
 	@Override
 	public void update(Animaux animal) {
+		if(animal.getSexe().equals("Mâle")){
+			animal.setSexe("M");
+		}else if(animal.getSexe().equals("Femelle")){
+			animal.setSexe("F");
+		}else if(animal.getSexe().equals("Hermaphrodite")){
+			animal.setSexe("H");
+		}
 		try {
 			con.update(animal);
 		} catch (DALException e) {
@@ -44,18 +60,18 @@ class AnimalImpl implements Animal {
 
 	@Override
 	public List<Animaux> getAll() {
-		List<Animaux> liste = null;
+		List<Animaux> listereturn = new ArrayList<Animaux>();
 		try {
 			liste = con.selectAll();
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
 		for (Animaux animal : liste) {
-			if(animal.getArchive()){
-				liste.remove(animal);
+			if(animal.getArchive() == false){
+				listereturn.add(animal);
 			}
 		}
-		return liste;
+		return listereturn;
 	}
 
 	@Override
@@ -71,15 +87,15 @@ class AnimalImpl implements Animal {
 
 	@Override
 	public List<Animaux> animalByIdClient(Integer id) {
-		List<Animaux> liste = null;
+		List<Animaux> listereturn = new ArrayList<Animaux>();
 		try {
 			liste = con.selectByIdClient(id);
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
 		for (Animaux animal : liste) {
-			if(animal.getArchive() == true){
-				liste.remove(animal);
+			if(animal.getArchive() == false){
+				listereturn.add(animal);
 			}
 		}
 		return liste;

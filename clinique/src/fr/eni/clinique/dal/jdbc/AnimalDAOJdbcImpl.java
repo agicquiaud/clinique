@@ -18,8 +18,8 @@ public class AnimalDAOJdbcImpl implements AnimalDAO {
 			+ "Couleur, Race, Espece, CodeClient, Tatouage, Antecedents, Archive FROM Animaux";
 	private static final String sqlUpdate = "UPDATE Animaux SET NomAnimal=?, Sexe=?, "
 			+ "Couleur=?, Race=?, Espece=?, CodeClient=?, Tatouage=?, Antecedents=?, Archive=? WHERE CodeAnimal=?";
-	private static final String sqlInsert = "INSERT INTO Clients (NomAnimal, Sexe, "
-			+ "Couleur, Race, Espece, CodeClient, Tatouage, Antecedents, Archive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String sqlInsert = "INSERT INTO Animaux (NomAnimal, Sexe, "
+			+ "Couleur, Race, Espece, CodeClient, Tatouage, Antecedents, Archive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String sqlDelete = "DELETE FROM Animaux WHERE CodeAnimal=?";
 	private static final String sqlSelectByIdClient = "SELECT CodeAnimal, NomAnimal, Sexe, "
 			+ "Couleur, Race, Espece, CodeClient, Tatouage, Antecedents, Archive FROM Animaux WHERE CodeClient=?";
