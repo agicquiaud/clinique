@@ -21,12 +21,12 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 	private static final String sqlUpdate = "UPDATE Clients SET NomClient=?, PrenomClient=?, "
 			+ "Adresse1=?, CodePostal=?, Ville=?, NumTel=?, Email=?, Archive=? WHERE CodeClient=?";
 	private static final String sqlInsert = "INSERT INTO Clients (NomClient, PrenomClient, "
-			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Email, Archive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String sqlDelete = "DELETE FROM Clients WHERE CodeClient=?";
 	private static final String sqlSelectByNom = "SELECT CodeClient, NomClient, PrenomClient, "
 			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive FROM Clients WHERE NomClient LIKE ? OR PrenomClient LIKE ?";
 	private static final String sqlSelectById = "SELECT CodeClient, NomClient, PrenomClient, "
-			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive FROM Clients WHERE CodeClient=?";
+			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Email, Archive FROM Clients WHERE CodeClient=?";
 	
 	
 	public List<Clients> selectAll() throws DALException {
@@ -113,11 +113,12 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 			rqt.setString(1, data.getNom());
 			rqt.setString(2, data.getPrenom());
 			rqt.setString(3, data.getAdresse1());
-			rqt.setString(4, data.getCodePostal());
-			rqt.setString(5, data.getVille());
-			rqt.setString(6, data.getNumTel());
-			rqt.setString(7, data.getEmail());
-			rqt.setBoolean(8, data.getArchive());
+			rqt.setString(4, data.getAdresse2());
+			rqt.setString(5, data.getCodePostal());
+			rqt.setString(6, data.getVille());
+			rqt.setString(7, data.getNumTel());
+			rqt.setString(8, data.getEmail());
+			rqt.setBoolean(9, data.getArchive());
 
 			int nbRows = rqt.executeUpdate();
 			if (nbRows == 1) {
@@ -221,7 +222,7 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 			rs = rqt.executeQuery();
 			if (rs.next()) {
 				client = new Clients(rs.getInt("CodeClient"), rs.getString("NomClient"), rs.getString("PrenomClient"),
-						rs.getString("Adresse1"), rs.getString("CodePostal"), rs.getString("Ville"),
+						rs.getString("Adresse1"), rs.getString("Adresse2"), rs.getString("CodePostal"), rs.getString("Ville"),
 						rs.getString("NumTel"), rs.getString("Email"), rs.getBoolean("Archive"));
 
 				}

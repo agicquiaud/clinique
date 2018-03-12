@@ -58,6 +58,35 @@ public class Clients {
 		Archive = archive;
 	}
 
+	public Clients(Integer codeClient, String nom, String prenom, String adresse1, String adresse2, String codePostal,
+			String ville, String numTel, String email, Boolean archive) {
+		super();
+		CodeClient = codeClient;
+		Nom = nom;
+		Prenom = prenom;
+		this.adresse1 = adresse1;
+		this.adresse2 = adresse2;
+		CodePostal = codePostal;
+		Ville = ville;
+		NumTel = numTel;
+		Email = email;
+		Archive = archive;
+	}
+
+	public Clients(String nom, String prenom, String adresse1, String adresse2, String codePostal, String ville,
+			String numTel, String email, Boolean archive) {
+		super();
+		Nom = nom;
+		Prenom = prenom;
+		this.adresse1 = adresse1;
+		this.adresse2 = adresse2;
+		CodePostal = codePostal;
+		Ville = ville;
+		NumTel = numTel;
+		Email = email;
+		Archive = archive;
+	}
+
 	public Integer getCodeClient() {
 		return CodeClient;
 	}
@@ -67,7 +96,6 @@ public class Clients {
 	}
 
 	public Clients(){}
-
 
 	public String getNom() {
 		return Nom;
@@ -159,32 +187,13 @@ public class Clients {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Clients [Nom=");
-		builder.append(Nom);
-		builder.append(", Prenom=");
-		builder.append(Prenom);
-		builder.append(", adresse1=");
-		builder.append(adresse1);
-		builder.append(", adresse2=");
-		builder.append(adresse2);
-		builder.append(", CodePostal=");
-		builder.append(CodePostal);
-		builder.append(", Ville=");
-		builder.append(Ville);
-		builder.append(", NumTel=");
-		builder.append(NumTel);
-		builder.append(", Assurance=");
-		builder.append(Assurance);
-		builder.append(", Email=");
-		builder.append(Email);
-		builder.append(", Remarque=");
-		builder.append(Remarque);
-		builder.append(", Archive=");
-		builder.append(Archive);
-		builder.append("]");
-		return builder.toString();
-	};
+		return "Clients [CodeClient=" + CodeClient + ", Nom=" + Nom + ", Prenom=" + Prenom + ", adresse1=" + adresse1
+				+ ", adresse2=" + adresse2 + ", CodePostal=" + CodePostal + ", Ville=" + Ville + ", NumTel=" + NumTel
+				+ ", Assurance=" + Assurance + ", Email=" + Email + ", Remarque=" + Remarque + ", Archive=" + Archive
+				+ "]";
+	}
+
+
 	
 	
 }

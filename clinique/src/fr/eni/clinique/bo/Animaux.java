@@ -28,7 +28,19 @@ public class Animaux {
 		Antecedents = antecedents;
 		Archive = archive;
 	}
-
+	public Animaux(Integer codeAnimal, String nom, String sexe, String couleur, String race, String espece,
+			Integer codeClient, String tatouage, Boolean archive) {
+		super();
+		CodeAnimal = codeAnimal;
+		Nom = nom;
+		Sexe = sexe;
+		Couleur = couleur;
+		Race = race;
+		Espece = espece;
+		CodeClient = codeClient;
+		Tatouage = tatouage;
+		Archive = archive;
+	}
 	
 	
 	public Integer getCodeAnimal() {

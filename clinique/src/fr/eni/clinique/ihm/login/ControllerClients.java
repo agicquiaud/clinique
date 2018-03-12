@@ -17,9 +17,9 @@ public class ControllerClients {
 
 	}
 
-	public void addClient(String Nom, String Prenom, String Adresse1, String CodePostal, String Ville, String NumTel,
+	public void addClient(String Nom, String Prenom, String Adresse1, String Adresse2, String CodePostal, String Ville, String NumTel,
 			String Email) {
-		clients = new Clients(Nom, Prenom, Adresse1, CodePostal, Ville, NumTel, Email, false);
+		clients = new Clients(Nom, Prenom, Adresse1, Adresse2, CodePostal, Ville, NumTel, Email, false);
 		bllclients.insert(clients);
 	}
 
@@ -52,8 +52,9 @@ public class ControllerClients {
 		return tab;
 	}
 
-	public void removeClient(Integer codeclient) {
-		clients = bllclients.getClientById(codeclient);
+	public void removeClient(String codeclient) {
+		clients = bllclients.getClientById(Integer.parseInt(codeclient));
+		System.out.println(clients.toString());
 		clients.setArchive(true);
 		bllclients.update(clients);
 	}

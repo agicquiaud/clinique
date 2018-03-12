@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.clinique.bo.Animaux;
-import fr.eni.clinique.bo.Clients;
-import fr.eni.clinique.bo.User;
 import fr.eni.clinique.dal.AnimalDAO;
 import fr.eni.clinique.dal.DALException;
 
@@ -27,7 +25,9 @@ public class AnimalDAOJdbcImpl implements AnimalDAO {
 			+ "Couleur, Race, Espece, CodeClient, Tatouage, Antecedents, Archive FROM Animaux WHERE CodeClient=?";
 	private static final String sqlSelectById = "SELECT CodeAnimal, NomAnimal, Sexe, "
 			+ "Couleur, Race, Espece, CodeClient, Tatouage, Antecedents, Archive FROM Animaux WHERE CodeAnimal=?";
-	
+	private static final String sqlSelectAllEspece = "SELECT DISTINCT Espece FROM Races";
+	private static final String sqlSelectRaceByEspece = "SELECT Race FROM Races WHERE Espece=?";
+
 	public List<Animaux> selectAll() throws DALException {
 		Connection cnx = null;
 		Statement rqt = null;
@@ -46,9 +46,7 @@ public class AnimalDAOJdbcImpl implements AnimalDAO {
 
 				liste.add(animal);
 			}
-		} catch (
-
-		SQLException e) {
+		} catch (SQLException e) {
 			throw new DALException("selectAll failed - ", e);
 		} finally {
 			try {
@@ -66,7 +64,6 @@ public class AnimalDAOJdbcImpl implements AnimalDAO {
 			}
 		}
 		return liste;
-
 	}
 
 	public void update(Animaux data) throws DALException {
@@ -194,7 +191,7 @@ public class AnimalDAOJdbcImpl implements AnimalDAO {
 		} catch (
 
 		SQLException e) {
-			throw new DALException("selectByRole failed - ", e);
+			throw new DALException("selectByIdClient failed - id = " + id, e);
 		} finally {
 			try {
 				if (rs != null) {
@@ -213,7 +210,7 @@ public class AnimalDAOJdbcImpl implements AnimalDAO {
 		}
 		return liste;
 	}
-	
+
 	public Animaux selectById(Integer id) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
@@ -249,6 +246,80 @@ public class AnimalDAOJdbcImpl implements AnimalDAO {
 
 		}
 		return animal;
+	}
+
+	public List<String> SelectAllEspece() throws DALException {
+		Connection cnx = null;
+		Statement rqt = null;
+		ResultSet rs = null;
+		List<String> liste = new ArrayList<String>();
+		try {
+			cnx = JdbcTools.getConnection();
+			rqt = cnx.createStatement();
+			rs = rqt.executeQuery(sqlSelectAllEspece);
+			String str = null;
+
+			while (rs.next()) {
+				str = rs.getString("Espece");
+				liste.add(str);
+			}
+		} catch (SQLException e) {
+			throw new DALException("selectAllEspece failed - ", e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (rqt != null) {
+					rqt.close();
+				}
+				if (cnx != null) {
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return liste;
+	}
+
+	public List<String> SelectRaceByEspece(String espece) throws DALException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		List<String> liste = new ArrayList<String>();
+		try {
+			cnx = JdbcTools.getConnection();
+			rqt = cnx.prepareStatement(sqlSelectRaceByEspece);
+			rqt.setString(1, espece);
+			rs = rqt.executeQuery();
+			String str = null;
+
+			while (rs.next()) {
+				str = rs.getString("Race");
+				liste.add(str);
+			}
+		} catch (
+
+		SQLException e) {
+			throw new DALException("selectRaceByEspece failed - espece = " + espece, e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (rqt != null) {
+					rqt.close();
+				}
+				if (cnx != null) {
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return liste;
 	}
 
 }
