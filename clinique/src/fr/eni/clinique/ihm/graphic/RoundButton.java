@@ -5,54 +5,27 @@ import java.awt.geom.*;
 import javax.swing.*;
 import java.awt.event.*;
  
-public class RoundButton extends JButton {
- 
-  public RoundButton(String label) {
-    super(label);
- 
-    setBackground(new Color(0, 204, 204));
-    setFocusable(false);
- 
-    /*
-     These statements enlarge the button so that it 
-     becomes a circle rather than an oval.
-    */
-    Dimension size = getPreferredSize();
-    size.width = size.height = Math.max(size.width, size.height);
-    setPreferredSize(size);
- 
-    /*
-     This call causes the JButton not to paint the background.
-     This allows us to paint a round background.
-    */
-    setContentAreaFilled(false);
-	setBorderPainted(false);
-  }
- 
-  protected void paintComponent(Graphics g) {
-    if (getModel().isArmed()) {
-    } else {
-      g.setColor(getBackground());
+public class RoundButton extends JComponent {
+    @Override
+    public void paint(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g;
+
+        g2.setPaint(Color.RED);
+        g2.setStroke(new BasicStroke(2.0f));
+
+        double x = 50;
+        double y = 50;
+        double w = x + 250;
+        double h = y + 100;
+        g2.draw(new RoundRectangle2D.Double(x, y, w, h, 50, 50));
     }
-    g.fillOval(0, 0, getSize().width - 1, getSize().height - 1);
- 
-    super.paintComponent(g);
-  }
- 
-  protected void paintBorder(Graphics g) {
-    g.setColor(null);
-    g.drawOval(0, 0, getSize().width - 1, getSize().height - 1);
-  }
- 
-  // Hit detection.
-  Shape shape;
- 
-  public boolean contains(int x, int y) {
-    // If the button has changed size,  make a new shape object.
-    if (shape == null || !shape.getBounds().equals(getBounds())) {
-      shape = new RoundRectangle2D.Double(x, y, getWidth(), getHeight(), 10, 10);
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Rounded Rectangle Demo");
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.getContentPane().add(new DrawRoundRectangle(), BorderLayout.CENTER);
+        frame.pack();
+        frame.setSize(420, 300);
+        frame.setVisible(true);
     }
-    return shape.contains(x, y);
-  }
-  
 }

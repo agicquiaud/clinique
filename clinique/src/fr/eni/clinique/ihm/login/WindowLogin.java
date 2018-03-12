@@ -8,13 +8,17 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
+import fr.eni.clinique.ihm.graphic.DrawRoundRectangle;
 import fr.eni.clinique.ihm.graphic.ImagePanel;
-import fr.eni.clinique.ihm.graphic.RoundButton;
+
 import fr.eni.clinique.ihm.graphic.RoundJPasswordField;
 import fr.eni.clinique.ihm.graphic.RoundJTextField;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 
 
@@ -23,7 +27,7 @@ import java.awt.GridBagConstraints;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
@@ -102,7 +106,7 @@ public class WindowLogin {
 		desktopPane.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JButton btnValider = new RoundButton("Connexion");
+		JButton btnValider = new DrawRoundRectangle();
 		btnValider.setBounds(62, 344, 180, 29);
 		btnValider.setForeground(null);
 		btnValider.setFont(new Font("Malgun Gothic", Font.BOLD, 15));
