@@ -102,7 +102,6 @@ public class WindowLogin {
 		desktopPane.add(textField_1);
 		textField_1.setColumns(10);
 		
-		empty = BorderFactory.createEmptyBorder();
 		JButton btnValider = new RoundButton("Connexion");
 		btnValider.setBounds(62, 344, 180, 29);
 		btnValider.setForeground(Color.DARK_GRAY);
