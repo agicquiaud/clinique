@@ -39,7 +39,7 @@ public class WindowLogin {
 	private ControllerLogin controller;
 	private JPasswordField textField_1 = new RoundJPasswordField(15);
 	private JDesktopPane desktopPane = new JDesktopPane();
-	private ImagePanel imgBack = new ImagePanel(new ImageIcon("Y:\\RL_AG_LV\\login-color.jpg").getImage());
+	private ImagePanel imgBack = new ImagePanel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/login-color.jpg").getImage());
 	private Border empty;
 
 
@@ -76,17 +76,17 @@ public class WindowLogin {
 		frame.getContentPane().add(desktopPane, gbc_desktopPane);
 		
 		JLabel lblTre = new JLabel("");
-		lblTre.setIcon(new ImageIcon("Y:\\RL_AG_LV\\verrou.png"));
+		lblTre.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/verrou.png"));
 		lblTre.setBounds(77, 263, 24, 33);
 		desktopPane.add(lblTre);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("Y:\\RL_AG_LV\\human-login.png"));
+		lblNewLabel_1.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/human-login.png"));
 		lblNewLabel_1.setBounds(77, 214, 24, 33);
 		desktopPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("Y:\\RL_AG_LV\\logo-redi-login.png"));
+		lblNewLabel.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/logo-redi-login.png"));
 		lblNewLabel.setBounds(84, 23, 141, 142);
 		desktopPane.add(lblNewLabel);
 		
