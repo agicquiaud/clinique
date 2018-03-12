@@ -6,7 +6,6 @@ import java.awt.GridBagLayout;
 import javax.swing.JTextField;
 
 import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 
 import fr.eni.clinique.ihm.graphic.ImagePanel;
 import fr.eni.clinique.ihm.graphic.RoundButton;
@@ -16,10 +15,6 @@ import fr.eni.clinique.ihm.graphic.RoundJTextField;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
-
-
-
-
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
