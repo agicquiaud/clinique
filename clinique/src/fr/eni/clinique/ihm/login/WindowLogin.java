@@ -91,7 +91,7 @@ public class WindowLogin {
 		textField.setBounds(67, 203, 171, 49);
 		desktopPane.add(textField);
 		textField_1.setColumns(10);
-		
+		 
 		textField_1.setFont(new Font("Malgun Gothic", Font.BOLD, 15));
 		textField_1.setBounds(67, 252, 171, 49);
 		desktopPane.add(textField_1);

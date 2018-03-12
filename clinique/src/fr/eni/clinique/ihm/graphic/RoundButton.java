@@ -11,7 +11,7 @@ public class RoundButton extends JButton {
     super(label);
  
     setBackground(new Color(0, 204, 204));
-    setFocusable(false);
+    setFocusable(false); 
  
     /*
      These statements enlarge the button so that it 

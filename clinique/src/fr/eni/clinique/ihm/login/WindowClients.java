@@ -766,15 +766,15 @@ public class WindowClients {
 		////////////////////////////////////////////////////////////////////////////
 		
 		GridBagLayout gbl_EditAnimal = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 84, 0, 67, 0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{10, 0, 35, 35, 35, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0};
-		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		EditAnimal.getContentPane().setLayout(gridBagLayout);
+		gbl_EditAnimal.columnWidths = new int[]{0, 84, 0, 67, 0, 0, 0, 0};
+		gbl_EditAnimal.rowHeights = new int[]{10, 0, 35, 35, 35, 0, 0, 0, 0, 0};
+		gbl_EditAnimal.columnWeights = new double[]{1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0};
+		gbl_EditAnimal.rowWeights = new double[]{1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		EditAnimal.getContentPane().setLayout(gbl_EditAnimal);
 		
 		JDesktopPane desktopPaneEditAnimal = new JDesktopPane();
-		desktopPane.setBorder(null);
-		desktopPane.setBackground(new Color(255, 255, 255));
+		desktopPaneEditAnimal.setBorder(null);
+		desktopPaneEditAnimal.setBackground(new Color(255, 255, 255));
 		GridBagConstraints gbc_desktopPaneEditAnimal = new GridBagConstraints();
 		gbc_desktopPaneEditAnimal.gridwidth = 7;
 		gbc_desktopPaneEditAnimal.insets = new Insets(0, 0, 5, 5);
@@ -809,17 +809,16 @@ public class WindowClients {
 		EditAnimal.getContentPane().add(desktopPaneEditAnimal_1, gbc_desktopPaneEditAnimal_1);
 		
 		JLabel lblClientEditAnimal = new JLabel("Client :");
-		lblClient.setFont(new Font("Malgun Gothic", Font.BOLD, 12));
-		lblClient.setBounds(22, 11, 46, 14);
-		desktopPane_1.add(lblClientEditAnimal);
+		lblClientEditAnimal.setFont(new Font("Malgun Gothic", Font.BOLD, 12));
+		lblClientEditAnimal.setBounds(22, 11, 46, 14);
+		desktopPaneEditAnimal_1.add(lblClientEditAnimal);
 		
 		JLabel lblNewLabel_3 = new JLabel("Albert Kader");
 		lblNewLabel_3.setFont(new Font("Malgun Gothic", Font.PLAIN, 12));
 		lblNewLabel_3.setBounds(43, 32, 265, 14);
 		desktopPane_1.add(lblNewLabel_3);
 		
-		String [] Genre = {"Mâle", "Femelle"};
-		
+
 		JLabel lblNewLabel = new JLabel("Code");
 		lblNewLabel.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
