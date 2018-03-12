@@ -26,6 +26,7 @@ public class RoundButton extends JButton {
      This allows us to paint a round background.
     */
     setContentAreaFilled(false);
+	setBorderPainted(false);
   }
  
   protected void paintComponent(Graphics g) {
@@ -49,7 +50,7 @@ public class RoundButton extends JButton {
   public boolean contains(int x, int y) {
     // If the button has changed size,  make a new shape object.
     if (shape == null || !shape.getBounds().equals(getBounds())) {
-      shape = new Ellipse2D.Float(0, 0, getWidth(), getHeight());
+      shape = new RoundRectangle2D.Double(x, y, getWidth(), getHeight(), 10, 10);
     }
     return shape.contains(x, y);
   }

@@ -104,12 +104,11 @@ public class WindowLogin {
 		
 		JButton btnValider = new RoundButton("Connexion");
 		btnValider.setBounds(62, 344, 180, 29);
-		btnValider.setForeground(Color.DARK_GRAY);
+		btnValider.setForeground(null);
 		btnValider.setFont(new Font("Malgun Gothic", Font.BOLD, 15));
 		btnValider.setOpaque(false);
 		btnValider.setFocusPainted(false);
-		btnValider.setBorderPainted(false);
-//		btnValider.setContentAreaFilled(false);
+
 		desktopPane.add(btnValider);
 
 		
