@@ -15,8 +15,6 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import fr.eni.clinique.bo.User;
@@ -167,7 +165,7 @@ public class WindowGestionPersonnels {
 		AjoutPersonnel.getContentPane().add(lblNom, gbc_lblNom);
 
 		String[] role = { "", "adm", "vet", "sec" };
-		JComboBox comboBox = new JComboBox(role);
+		JComboBox<String> comboBox = new JComboBox<String>(role);
 		comboBox.setSelectedIndex(0);
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);

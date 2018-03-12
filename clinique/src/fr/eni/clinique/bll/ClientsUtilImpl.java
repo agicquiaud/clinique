@@ -1,11 +1,12 @@
 package fr.eni.clinique.bll;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.dal.ClientDAO;
 import fr.eni.clinique.dal.DALException;
 import fr.eni.clinique.dal.DAOFactory;
-import fr.eni.clinique.bo.Clients;
 
 public class ClientsUtilImpl implements ClientsUtil {
 	private ClientDAO con = new DAOFactory().getClientDAO();
@@ -14,13 +15,18 @@ public class ClientsUtilImpl implements ClientsUtil {
 	
 	@Override
 	public List<Clients> getAll() {
+		List<Clients> listereturn = new ArrayList<Clients>();
 		try {
 			liste = con.selectAll();
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return liste;
+		for (Clients client : liste) {
+			if(client.getArchive() == false){
+				listereturn.add(client);
+			}
+		}
+		return listereturn;
 	}
 
 	@Override
@@ -29,6 +35,11 @@ public class ClientsUtilImpl implements ClientsUtil {
 			liste = con.selectByNom(nom);
 		} catch (DALException e) {
 			e.printStackTrace();
+		}
+		for (Clients client : liste) {
+			if(client.getArchive() == true){
+				liste.remove(client);
+			}
 		}
 		return liste;
 	}

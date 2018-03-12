@@ -13,7 +13,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JDesktopPane;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -22,7 +21,8 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
-import javax.swing.event.ListDataListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 
@@ -42,7 +42,8 @@ public class WindowClients {
 	private JDialog GestionAnimal = new JDialog();
 	private JTextField textFieldNomClient;
 	private JTextField textFieldPrenomClient;
-	private JTextField textFieldAdresseClient;
+	private JTextField textFieldAdresse1Client;
+	private JTextField textFieldAdresse2Client;
 	private JTextField textFieldCodePostalClient;
 	private JTextField textFieldVilleClient;
 	private JTextField textFieldNumTelClient;
@@ -149,7 +150,7 @@ public class WindowClients {
 //		gbc_scrollPane_1.gridy = 3;
 //		frame.getContentPane().add(scrollPane_1, gbc_scrollPane_1);
 //		String[] entetes2 = { "CodeAnimal", "Nom", "Sexe", "Couleur", "Race", "Espece" };
-//		Object[][] donnee2 = controller.getList();
+//		Object[][] donnee2 = controlleranimal.getList();
 //		table_2 = new JTable(donnee2, entetes2);
 //		scrollPane_1.setViewportView(table_2);
 //
@@ -186,156 +187,158 @@ public class WindowClients {
 //		// --------------------------------------------------------------------------------------
 //
 //		GridBagLayout gridBagLayoutModalAddClient = new GridBagLayout();
-//		gridBagLayoutModalAddClient.columnWidths = new int[] { 50, 0, 0, 0, 0, 140, 0, 0, 0, 0, 0, 100, 0 };
-//		gridBagLayoutModalAddClient.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-//		gridBagLayoutModalAddClient.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 0.0, 0.0,
-//				0.0, 0.0, Double.MIN_VALUE };
+//		gridBagLayoutModalAddClient.columnWidths = new int[] { 0, 0, 0, 0, 140, 0, 0, 0, 0, 0, 0, 0 };
+//		gridBagLayoutModalAddClient.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+//		gridBagLayoutModalAddClient.columnWeights = new double[] { 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 1.0, 1.0, 0.0, 0.0,
+//				0.0, Double.MIN_VALUE };
 //		gridBagLayoutModalAddClient.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-//				0.0, 0.0, Double.MIN_VALUE };
+//				0.0, 0.0, 0.0, Double.MIN_VALUE };
 //		AddClient.getContentPane().setLayout(gridBagLayoutModalAddClient);
 //
 //		JLabel lblAddClient = new JLabel("Nouveau Client");
 //		GridBagConstraints gbc_lblAddClient = new GridBagConstraints();
 //		gbc_lblAddClient.gridwidth = 8;
 //		gbc_lblAddClient.insets = new Insets(0, 0, 5, 5);
-//		gbc_lblAddClient.gridx = 3;
+//		gbc_lblAddClient.gridx = 2;
 //		gbc_lblAddClient.gridy = 2;
 //		AddClient.getContentPane().add(lblAddClient, gbc_lblAddClient);
 //
 //		JLabel lblNomClient = new JLabel("Nom");
 //		GridBagConstraints gbc_lblNomClient = new GridBagConstraints();
 //		gbc_lblNomClient.insets = new Insets(0, 0, 5, 5);
-//		gbc_lblNomClient.gridx = 3;
+//		gbc_lblNomClient.gridx = 2;
 //		gbc_lblNomClient.gridy = 3;
 //		AddClient.getContentPane().add(lblNomClient, gbc_lblNomClient);
 //
 //		textFieldNomClient = new JTextField();
 //		GridBagConstraints gbc_textFieldNomClient = new GridBagConstraints();
-//		gbc_textFieldNomClient.gridwidth = 4;
+//		gbc_textFieldNomClient.gridwidth = 5;
 //		gbc_textFieldNomClient.insets = new Insets(0, 0, 5, 5);
 //		gbc_textFieldNomClient.fill = GridBagConstraints.HORIZONTAL;
-//		gbc_textFieldNomClient.gridx = 6;
+//		gbc_textFieldNomClient.gridx = 4;
 //		gbc_textFieldNomClient.gridy = 3;
 //		AddClient.getContentPane().add(textFieldNomClient, gbc_textFieldNomClient);
 //
 //		JLabel lblPrenomClient = new JLabel("Prenom");
 //		GridBagConstraints gbc_lblPrenomClient = new GridBagConstraints();
 //		gbc_lblPrenomClient.insets = new Insets(0, 0, 5, 5);
-//		gbc_lblPrenomClient.gridx = 3;
+//		gbc_lblPrenomClient.gridx = 2;
 //		gbc_lblPrenomClient.gridy = 4;
 //		AddClient.getContentPane().add(lblPrenomClient, gbc_lblPrenomClient);
 //
 //		textFieldPrenomClient = new JTextField();
 //		GridBagConstraints gbc_textFieldPrenomClient = new GridBagConstraints();
-//		gbc_textFieldPrenomClient.gridwidth = 4;
+//		gbc_textFieldPrenomClient.gridwidth = 5;
 //		gbc_textFieldPrenomClient.insets = new Insets(0, 0, 5, 5);
 //		gbc_textFieldPrenomClient.fill = GridBagConstraints.HORIZONTAL;
-//		gbc_textFieldPrenomClient.gridx = 6;
+//		gbc_textFieldPrenomClient.gridx = 4;
 //		gbc_textFieldPrenomClient.gridy = 4;
 //		AddClient.getContentPane().add(textFieldPrenomClient, gbc_textFieldPrenomClient);
 //
 //		JLabel lblAdresseClient = new JLabel("Adresse");
 //		GridBagConstraints gbc_lblAdresseClient = new GridBagConstraints();
 //		gbc_lblAdresseClient.insets = new Insets(0, 0, 5, 5);
-//		gbc_lblAdresseClient.gridx = 3;
+//		gbc_lblAdresseClient.gridx = 2;
 //		gbc_lblAdresseClient.gridy = 5;
 //		AddClient.getContentPane().add(lblAdresseClient, gbc_lblAdresseClient);
 //
-//		textFieldAdresseClient = new JTextField();
-//		GridBagConstraints gbc_textFieldAdresseClient = new GridBagConstraints();
-//		gbc_textFieldAdresseClient.gridwidth = 4;
-//		gbc_textFieldAdresseClient.insets = new Insets(0, 0, 5, 5);
-//		gbc_textFieldAdresseClient.fill = GridBagConstraints.HORIZONTAL;
-//		gbc_textFieldAdresseClient.gridx = 6;
-//		gbc_textFieldAdresseClient.gridy = 5;
-//		AddClient.getContentPane().add(textFieldAdresseClient, gbc_textFieldAdresseClient);
+//		textFieldAdresse1Client = new JTextField();
+//		GridBagConstraints gbc_textFieldAdresse1Client = new GridBagConstraints();
+//		gbc_textFieldAdresse1Client.gridwidth = 5;
+//		gbc_textFieldAdresse1Client.insets = new Insets(0, 0, 5, 5);
+//		gbc_textFieldAdresse1Client.fill = GridBagConstraints.HORIZONTAL;
+//		gbc_textFieldAdresse1Client.gridx = 4;
+//		gbc_textFieldAdresse1Client.gridy = 5;
+//		AddClient.getContentPane().add(textFieldAdresse1Client, gbc_textFieldAdresse1Client);
+//
+//		textFieldAdresse2Client = new JTextField();
+//		GridBagConstraints gbc_textFieldAdresse2Client = new GridBagConstraints();
+//		gbc_textFieldAdresse2Client.gridwidth = 5;
+//		gbc_textFieldAdresse2Client.insets = new Insets(0, 0, 5, 5);
+//		gbc_textFieldAdresse2Client.fill = GridBagConstraints.HORIZONTAL;
+//		gbc_textFieldAdresse2Client.gridx = 4;
+//		gbc_textFieldAdresse2Client.gridy = 6;
+//		AddClient.getContentPane().add(textFieldAdresse2Client, gbc_textFieldAdresse2Client);
 //
 //		JLabel lblCodePostalClient = new JLabel("Code Postal");
 //		GridBagConstraints gbc_lblCodePostalClient = new GridBagConstraints();
 //		gbc_lblCodePostalClient.insets = new Insets(0, 0, 5, 5);
-//		gbc_lblCodePostalClient.gridx = 3;
-//		gbc_lblCodePostalClient.gridy = 6;
+//		gbc_lblCodePostalClient.gridx = 2;
+//		gbc_lblCodePostalClient.gridy = 7;
 //		AddClient.getContentPane().add(lblCodePostalClient, gbc_lblCodePostalClient);
 //
 //		textFieldCodePostalClient = new JTextField();
 //		GridBagConstraints gbc_textFieldCodePostalClient = new GridBagConstraints();
-//		gbc_textFieldCodePostalClient.gridwidth = 4;
+//		gbc_textFieldCodePostalClient.gridwidth = 5;
 //		gbc_textFieldCodePostalClient.insets = new Insets(0, 0, 5, 5);
 //		gbc_textFieldCodePostalClient.fill = GridBagConstraints.HORIZONTAL;
-//		gbc_textFieldCodePostalClient.gridx = 6;
-//		gbc_textFieldCodePostalClient.gridy = 6;
+//		gbc_textFieldCodePostalClient.gridx = 4;
+//		gbc_textFieldCodePostalClient.gridy = 7;
 //		AddClient.getContentPane().add(textFieldCodePostalClient, gbc_textFieldCodePostalClient);
 //
 //		JLabel lblVilleClient = new JLabel("Ville");
 //		GridBagConstraints gbc_lblVilleClient = new GridBagConstraints();
 //		gbc_lblVilleClient.insets = new Insets(0, 0, 5, 5);
-//		gbc_lblVilleClient.gridx = 3;
-//		gbc_lblVilleClient.gridy = 7;
+//		gbc_lblVilleClient.gridx = 2;
+//		gbc_lblVilleClient.gridy = 8;
 //		AddClient.getContentPane().add(lblVilleClient, gbc_lblVilleClient);
 //
 //		textFieldVilleClient = new JTextField();
 //		GridBagConstraints gbc_textFieldVilleClient = new GridBagConstraints();
-//		gbc_textFieldVilleClient.gridwidth = 4;
+//		gbc_textFieldVilleClient.gridwidth = 5;
 //		gbc_textFieldVilleClient.insets = new Insets(0, 0, 5, 5);
 //		gbc_textFieldVilleClient.fill = GridBagConstraints.HORIZONTAL;
-//		gbc_textFieldVilleClient.gridx = 6;
-//		gbc_textFieldVilleClient.gridy = 7;
+//		gbc_textFieldVilleClient.gridx = 4;
+//		gbc_textFieldVilleClient.gridy = 8;
 //		AddClient.getContentPane().add(textFieldVilleClient, gbc_textFieldVilleClient);
 //
 //		JLabel lblNumTelClient = new JLabel("Num. Tel");
 //		GridBagConstraints gbc_lblNumTelClient = new GridBagConstraints();
 //		gbc_lblNumTelClient.insets = new Insets(0, 0, 5, 5);
-//		gbc_lblNumTelClient.gridx = 3;
-//		gbc_lblNumTelClient.gridy = 8;
+//		gbc_lblNumTelClient.gridx = 2;
+//		gbc_lblNumTelClient.gridy = 9;
 //		AddClient.getContentPane().add(lblNumTelClient, gbc_lblNumTelClient);
 //
 //		textFieldNumTelClient = new JTextField();
 //		GridBagConstraints gbc_textFieldNumTelClient = new GridBagConstraints();
-//		gbc_textFieldNumTelClient.gridwidth = 4;
+//		gbc_textFieldNumTelClient.gridwidth = 5;
 //		gbc_textFieldNumTelClient.insets = new Insets(0, 0, 5, 5);
 //		gbc_textFieldNumTelClient.fill = GridBagConstraints.HORIZONTAL;
-//		gbc_textFieldNumTelClient.gridx = 6;
-//		gbc_textFieldNumTelClient.gridy = 8;
+//		gbc_textFieldNumTelClient.gridx = 4;
+//		gbc_textFieldNumTelClient.gridy = 9;
 //		AddClient.getContentPane().add(textFieldNumTelClient, gbc_textFieldNumTelClient);
 //
 //		JLabel lblEmailClient = new JLabel("Email");
 //		GridBagConstraints gbc_lblEmailClient = new GridBagConstraints();
 //		gbc_lblEmailClient.insets = new Insets(0, 0, 5, 5);
-//		gbc_lblEmailClient.gridx = 3;
-//		gbc_lblEmailClient.gridy = 9;
+//		gbc_lblEmailClient.gridx = 2;
+//		gbc_lblEmailClient.gridy = 10;
 //		AddClient.getContentPane().add(lblEmailClient, gbc_lblEmailClient);
 //
 //		textFieldEmailClient = new JTextField();
 //		GridBagConstraints gbc_textFieldEmailClient = new GridBagConstraints();
-//		gbc_textFieldEmailClient.gridwidth = 4;
+//		gbc_textFieldEmailClient.gridwidth = 5;
 //		gbc_textFieldEmailClient.insets = new Insets(0, 0, 5, 5);
 //		gbc_textFieldEmailClient.fill = GridBagConstraints.HORIZONTAL;
-//		gbc_textFieldEmailClient.gridx = 6;
-//		gbc_textFieldEmailClient.gridy = 9;
+//		gbc_textFieldEmailClient.gridx = 4;
+//		gbc_textFieldEmailClient.gridy = 10;
 //		AddClient.getContentPane().add(textFieldEmailClient, gbc_textFieldEmailClient);
 //
 //		JButton btnValiderModalAddClient = new JButton("VALIDER");
 //		GridBagConstraints gbc_btnValiderModalAdd = new GridBagConstraints();
 //		gbc_btnValiderModalAdd.insets = new Insets(0, 0, 5, 5);
 //		gbc_btnValiderModalAdd.gridx = 8;
-//		gbc_btnValiderModalAdd.gridy = 10;
+//		gbc_btnValiderModalAdd.gridy = 11;
 //		AddClient.getContentPane().add(btnValiderModalAddClient, gbc_btnValiderModalAdd);
-//
-//		btnValiderModalAddClient.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//
-//			}
-//		});
 //
 //		JButton btnAnnulerModalCancelClient = new JButton("ANNULER");
 //		GridBagConstraints gbc_btnAnnulerModalCancelClient = new GridBagConstraints();
 //		gbc_btnAnnulerModalCancelClient.insets = new Insets(0, 0, 5, 5);
 //		gbc_btnAnnulerModalCancelClient.gridx = 9;
-//		gbc_btnAnnulerModalCancelClient.gridy = 10;
+//		gbc_btnAnnulerModalCancelClient.gridy = 11;
 //		AddClient.getContentPane().add(btnAnnulerModalCancelClient, gbc_btnAnnulerModalCancelClient);
 //
-//		// Popup Remove Client
+//		// Popup Remove
 //		// --------------------------------------------------------------------------------------
 //
 //		GridBagLayout gbl_PopupDeleteClient = new GridBagLayout();
@@ -353,19 +356,19 @@ public class WindowClients {
 //		gbc_lbltesvousSurDe.gridy = 2;
 //		PopupDeleteClient.add(lbltesvousSurDe, gbc_lbltesvousSurDe);
 //
-//		JButton btnPopupDeleteClient = new JButton("Oui");
-//		GridBagConstraints gbc_btnPopupDeleteClient = new GridBagConstraints();
-//		gbc_btnPopupDeleteClient.insets = new Insets(0, 0, 0, 5);
-//		gbc_btnPopupDeleteClient.gridx = 3;
-//		gbc_btnPopupDeleteClient.gridy = 6;
-//		PopupDeleteClient.add(btnPopupDeleteClient, gbc_btnPopupDeleteClient);
+//		JButton btnPopupDelete = new JButton("Oui");
+//		GridBagConstraints gbc_btnPopupDelete = new GridBagConstraints();
+//		gbc_btnPopupDelete.insets = new Insets(0, 0, 0, 5);
+//		gbc_btnPopupDelete.gridx = 3;
+//		gbc_btnPopupDelete.gridy = 6;
+//		PopupDeleteClient.add(btnPopupDelete, gbc_btnPopupDelete);
 //
-//		JButton btnPopupCancelDeleteClient = new JButton("Non");
-//		GridBagConstraints gbc_btnPopupCancelDeleteClient = new GridBagConstraints();
-//		gbc_btnPopupCancelDeleteClient.insets = new Insets(0, 0, 0, 5);
-//		gbc_btnPopupCancelDeleteClient.gridx = 5;
-//		gbc_btnPopupCancelDeleteClient.gridy = 6;
-//		PopupDeleteClient.add(btnPopupCancelDeleteClient, gbc_btnPopupCancelDeleteClient);
+//		JButton btnPopupCancelDelete = new JButton("Non");
+//		GridBagConstraints gbc_btnPopupCancelDelete = new GridBagConstraints();
+//		gbc_btnPopupCancelDelete.insets = new Insets(0, 0, 0, 5);
+//		gbc_btnPopupCancelDelete.gridx = 5;
+//		gbc_btnPopupCancelDelete.gridy = 6;
+//		PopupDeleteClient.add(btnPopupCancelDelete, gbc_btnPopupCancelDelete);
 //
 //		// Edit Client
 //		// --------------------------------------------------------------------------------------
@@ -603,19 +606,19 @@ public class WindowClients {
 		gbc_desktopPane.gridy = 0;
 		GestionAnimal.getContentPane().add(desktopPane, gbc_desktopPane);
 
-		JButton btnCancelAddAnimal = new JButton("");
-		btnCancelAddAnimal.setForeground(new Color(255, 255, 255));
-		btnCancelAddAnimal.setBackground(new Color(255, 255, 255));
-		btnCancelAddAnimal.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/checked32.png"));
-		btnCancelAddAnimal.setBounds(329, 11, 58, 44);
-		desktopPane.add(btnCancelAddAnimal);
-
 		JButton btnConfirmAddAnimal = new JButton("");
 		btnConfirmAddAnimal.setForeground(new Color(255, 255, 255));
 		btnConfirmAddAnimal.setBackground(new Color(255, 255, 255));
-		btnConfirmAddAnimal.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/cancel.png"));
-		btnConfirmAddAnimal.setBounds(423, 11, 58, 44);
+		btnConfirmAddAnimal.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/checked32.png"));
+		btnConfirmAddAnimal.setBounds(329, 11, 58, 44);
 		desktopPane.add(btnConfirmAddAnimal);
+
+		JButton btnCancelAddAnimal = new JButton("");
+		btnCancelAddAnimal.setForeground(new Color(255, 255, 255));
+		btnCancelAddAnimal.setBackground(new Color(255, 255, 255));
+		btnCancelAddAnimal.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/cancel.png"));
+		btnCancelAddAnimal.setBounds(423, 11, 58, 44);
+		desktopPane.add(btnCancelAddAnimal);
 
 		JDesktopPane desktopPane_1 = new JDesktopPane();
 		desktopPane_1.setBackground(UIManager.getColor("Button.background"));
@@ -634,9 +637,6 @@ public class WindowClients {
 		lblClient.setBounds(22, 11, 46, 14);
 		desktopPane_1.add(lblClient);
 
-		// JLabel lblNomPrenomClient = new JLabel((String)
-		// table_1.getValueAt(table_1.getSelectedRow(), 1) + " "
-		// + (String) table_1.getValueAt(table_1.getSelectedRow(), 2));
 		JLabel lblNomPrenomClient = new JLabel("");
 		lblNomPrenomClient.setFont(new Font("Malgun Gothic", Font.PLAIN, 12));
 		lblNomPrenomClient.setBounds(43, 32, 265, 14);
@@ -678,7 +678,7 @@ public class WindowClients {
 		GestionAnimal.getContentPane().add(textFieldNomAnimal, gbc_textFieldNomAnimal);
 		textFieldNomAnimal.setColumns(10);
 
-		String[] Genre = { "Mâle", "Femelle" };
+		String[] Genre = { "Mâle", "Femelle", "Hermaphrodite" };
 		JComboBox<String> comboBoxGenre = new JComboBox<String>(Genre);
 		GridBagConstraints gbc_comboBoxGenre = new GridBagConstraints();
 		comboBoxGenre.setBackground(new Color(255, 255, 255));
@@ -714,7 +714,7 @@ public class WindowClients {
 		gbc_lblEspeceAnimal.gridy = 6;
 		GestionAnimal.getContentPane().add(lblEspeceAnimal, gbc_lblEspeceAnimal);
 
-		String[] Espece = { "Chat", "Chien", "Serpent", "Souris", "Lapin" };
+		String[] Espece = controlleranimal.getEspece();
 		JComboBox<String> espece = new JComboBox<String>(Espece);
 		GridBagConstraints gbc_espece = new GridBagConstraints();
 		espece.setBackground(new Color(255, 255, 255));
@@ -764,6 +764,13 @@ public class WindowClients {
 
 		//////////////////////////////////////////////////////////////////////////////
 
+//		table_1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+//			@Override
+//			public void valueChanged(ListSelectionEvent e) {
+//				setUpTableData2(controlleranimal.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()), entetes2);
+//			}
+//		});
+//		
 //		btnSearchClient.addActionListener(new ActionListener() {
 //			@Override
 //			public void actionPerformed(ActionEvent e) {
@@ -783,10 +790,12 @@ public class WindowClients {
 //			@Override
 //			public void actionPerformed(ActionEvent e) {
 //				controller.addClient(textFieldNomClient.getText(), textFieldPrenomClient.getText(),
-//						textFieldAdresseClient.getText(), textFieldCodePostalClient.getText(),
+//						textFieldAdresse1Client.getText(), textFieldAdresse2Client.getText(), textFieldCodePostalClient.getText(),
 //						textFieldVilleClient.getText(), textFieldNumTelClient.getText(),
 //						textFieldEmailClient.getText());
+//				table_1.setCellSelectionEnabled(false);
 //				setUpTableData(controller.getList(), entetes1);
+//				table_1.setCellSelectionEnabled(true);
 //				AddClient.setVisible(false);
 //			}
 //		});
@@ -800,16 +809,20 @@ public class WindowClients {
 //			}
 //		});
 //
-//		btnPopupDeleteClient.addActionListener(new ActionListener() {
+//		btnPopupDelete.addActionListener(new ActionListener() {
 //			@Override
 //			public void actionPerformed(ActionEvent e) {
-//				controller.removeClient((Integer) table_1.getValueAt(table_1.getSelectedRow(), 0));
+//				if(lbltesvousSurDe.getText().contains("client")){
+//					controller.removeClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString());
+//				}else if (lbltesvousSurDe.getText().contains("animal")){
+//					controlleranimal.removeAnimal(table_2.getValueAt(table_2.getSelectedRow(), 0).toString());
+//				}
 //				setUpTableData(controller.getList(), entetes1);
 //				PopupDeleteClient.setVisible(false);
 //			}
 //		});
 //
-//		btnPopupCancelDeleteClient.addActionListener(new ActionListener() {
+//		btnPopupCancelDelete.addActionListener(new ActionListener() {
 //			@Override
 //			public void actionPerformed(ActionEvent e) {
 //				PopupDeleteClient.setVisible(false);
@@ -849,6 +862,8 @@ public class WindowClients {
 //			@Override
 //			public void actionPerformed(ActionEvent e) {
 //				GestionAnimal.setBounds(100, 100, 540, 375);
+//				lblNomPrenomClient.setText(table_1.getValueAt(table_1.getSelectedRow(), 1) + " "
+//				 + (String) table_1.getValueAt(table_1.getSelectedRow(), 2));
 //				GestionAnimal.setVisible(true);
 //			}
 //		});
@@ -869,30 +884,34 @@ public class WindowClients {
 //				PopupDeleteClient.setVisible(true);
 //			}
 //		});
-
-		btnCancelAddAnimal.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				GestionAnimal.setVisible(false);
-			}
-		});
-
-		btnConfirmAddAnimal.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				GestionAnimal.setVisible(false);
-			}
-		});
-
-		espece.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				comboboxModel = new DefaultComboBoxModel<String>(
-						controlleranimal.getRace(espece.getSelectedItem().toString()));
-				race.setModel(comboboxModel);
-			}
-		});
+//
+//		btnCancelAddAnimal.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				GestionAnimal.setVisible(false);
+//			}
+//		});
+//
+//		btnConfirmAddAnimal.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				controlleranimal.addAnimal(textFieldCodeAnimal.getText(), textFieldNomAnimal.getText(),
+//						comboBoxGenre.getSelectedItem().toString(), textFieldCouleurAnimal.getText(),
+//						race.getSelectedItem().toString(), espece.getSelectedItem().toString(),
+//						table_1.getValueAt(table_1.getSelectedRow(), 0).toString(), textFieldTatouageAnimal.getText());
+//				setUpTableData2(controlleranimal.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()), entetes2);
+//				GestionAnimal.setVisible(false);
+//			}
+//		});
+//
+//		espece.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				comboboxModel = new DefaultComboBoxModel<String>(
+//						controlleranimal.getRace(espece.getSelectedItem().toString()));
+//				race.setModel(comboboxModel);
+//			}
+//		});
 	}
 
 	private void setUpTableData(Object[][] data, String[] entetes) {
@@ -903,6 +922,17 @@ public class WindowClients {
 			}
 		};
 		table_1.setModel(tableModel);
+		tableModel.fireTableDataChanged();
+	}
+	
+	private void setUpTableData2(Object[][] data, String[] entetes) {
+		tableModel = new DefaultTableModel(data, entetes) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		table_2.setModel(tableModel);
 		tableModel.fireTableDataChanged();
 	}
 }
