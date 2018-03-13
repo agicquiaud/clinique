@@ -77,7 +77,7 @@ public class WindowAccueilGestionPersonnel {
 	btnNewButton.setBounds(92, 193, 140, 139);
 	desktopPane.add(btnNewButton);
 	
-	JLabel lblPriseDeRendezvous = new JLabel("Geston du Personnel");
+	JLabel lblPriseDeRendezvous = new JLabel("Gestion du Personnel");
 	lblPriseDeRendezvous.setFont(new Font("Malgun Gothic", Font.BOLD, 14));
 	lblPriseDeRendezvous.setBounds(92, 342, 150, 20);
 	desktopPane.add(lblPriseDeRendezvous);
