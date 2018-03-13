@@ -36,12 +36,11 @@ public class WindowPriseDeRendezVous extends JFrame{
 	private JPanel contentPaneSouthCenter = new JPanel();
 	private JPanel contentPaneSouthEst = new JPanel();
 	private Properties propierties = new Properties();
-	
 	private UtilDateModel model = new UtilDateModel();
 	private JDatePanelImpl datePanel = new JDatePanelImpl(model, propierties);
 	private JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
 	
-
+ 
 	/**
 	 * Create the frame.
 	 */
