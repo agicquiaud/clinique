@@ -196,6 +196,7 @@ public class WindowClients {
 		gbc_btnEditAnimal.gridx = 8;
 		gbc_btnEditAnimal.gridy = 4;
 		frame.getContentPane().add(btnEditAnimal, gbc_btnEditAnimal);
+		
 		// Modal Add Client
 		// --------------------------------------------------------------------------------------
 
