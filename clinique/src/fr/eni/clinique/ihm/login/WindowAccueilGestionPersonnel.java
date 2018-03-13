@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -77,9 +79,25 @@ public class WindowAccueilGestionPersonnel {
 	btnNewButton.setBounds(92, 193, 140, 139);
 	desktopPane.add(btnNewButton);
 	
-	JLabel lblPriseDeRendezvous = new JLabel("Geston du Personnel");
+	JLabel lblPriseDeRendezvous = new JLabel("Gestion du Personnel");
 	lblPriseDeRendezvous.setFont(new Font("Malgun Gothic", Font.BOLD, 14));
 	lblPriseDeRendezvous.setBounds(92, 342, 150, 20);
 	desktopPane.add(lblPriseDeRendezvous);
+	
+	btnNewButton.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			frame.dispose();
+			WindowGestionPersonnels windowGestionPersonnels  = new WindowGestionPersonnels();
+		}
+	});
+	
+	btnNewButton_2.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			frame.dispose();
+			WindowLogin windowClients = new WindowLogin();
+		}
+	});
 }
 }

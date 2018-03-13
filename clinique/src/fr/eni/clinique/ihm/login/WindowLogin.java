@@ -2,6 +2,7 @@ package fr.eni.clinique.ihm.login;
 
 import javax.swing.JFrame;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 import javax.swing.JTextField;
 
@@ -58,8 +59,6 @@ public class WindowLogin {
 		frame.setBounds(100, 100, 315, 487);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		
-
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
@@ -93,20 +92,14 @@ public class WindowLogin {
 		textField.setToolTipText("");
 		textField.setForeground(Color.DARK_GRAY);
 		textField.setFont(new Font("Malgun Gothic", Font.BOLD, 15));
-		textField.setBounds(67, 203, 171, 49);
-		textField.setBorder(BorderFactory.createCompoundBorder(
-				textField.getBorder(), 
-		        BorderFactory.createEmptyBorder(5, 50, 5, 5)));
+		textField.setBounds(67, 203, 171, 49); 
+		textField.setMargin(new Insets(8,45, 0, 0));
 		desktopPane.add(textField);
 		textField.setColumns(10);
-		
 
-		 
 		textField_1.setFont(new Font("Malgun Gothic", Font.BOLD, 15));
 		textField_1.setBounds(67, 252, 171, 49);
-		textField_1.setBorder(BorderFactory.createCompoundBorder(
-				textField_1.getBorder(), 
-		        BorderFactory.createEmptyBorder(5, 50, 5, 5)));
+		textField_1.setMargin(new Insets(8,45, 0, 0));
 		desktopPane.add(textField_1);
 		textField_1.setColumns(10);
 		
