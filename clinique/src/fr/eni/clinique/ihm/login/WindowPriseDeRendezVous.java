@@ -124,8 +124,8 @@ public class WindowPriseDeRendezVous extends JFrame{
 				contentPaneNorth.add(contentPaneNorthEst);
 				
 				String[] entete = {"Heure", "Nom du client", "Animal" ,"Race"};
-				
-				JTable table = new JTable(null, entete);
+				Object[][] donnee = {{"bonjour", "en revoir", "3", "4"}};
+				JTable table = new JTable(donnee, entete);
 				contentPaneCenter.add(table);
 				
 				contentPaneSouth.setLayout(new BoxLayout(contentPaneSouth, BoxLayout.LINE_AXIS));
