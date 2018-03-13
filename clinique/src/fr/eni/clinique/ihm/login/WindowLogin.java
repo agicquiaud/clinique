@@ -94,11 +94,19 @@ public class WindowLogin {
 		textField.setForeground(Color.DARK_GRAY);
 		textField.setFont(new Font("Malgun Gothic", Font.BOLD, 15));
 		textField.setBounds(67, 203, 171, 49);
+		textField.setBorder(BorderFactory.createCompoundBorder(
+				textField.getBorder(), 
+		        BorderFactory.createEmptyBorder(5, 50, 5, 5)));
 		desktopPane.add(textField);
-		textField_1.setColumns(10);
+		textField.setColumns(10);
+		
+
 		 
 		textField_1.setFont(new Font("Malgun Gothic", Font.BOLD, 15));
 		textField_1.setBounds(67, 252, 171, 49);
+		textField_1.setBorder(BorderFactory.createCompoundBorder(
+				textField_1.getBorder(), 
+		        BorderFactory.createEmptyBorder(5, 50, 5, 5)));
 		desktopPane.add(textField_1);
 		textField_1.setColumns(10);
 		
