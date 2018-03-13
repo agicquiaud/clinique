@@ -101,7 +101,11 @@ public class windowtest {
 		textField_14.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Connexion");
-		btnNewButton.setBounds(105, 344, 89, 23);
+		btnNewButton.setIcon(new ImageIcon("Y:\\RL_AG_LV\\fond-bouton-connexion.jpg"));
+		btnNewButton.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+		btnNewButton.setForeground(new Color(255, 0, 255));
+		btnNewButton.setBackground(new Color(0, 204, 204));
+		btnNewButton.setBounds(90, 344, 100, 23);
 		desktopPane.add(btnNewButton);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
