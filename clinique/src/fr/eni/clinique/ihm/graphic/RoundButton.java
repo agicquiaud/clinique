@@ -3,29 +3,35 @@ package fr.eni.clinique.ihm.graphic;
 import java.awt.*;
 import java.awt.geom.*;
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.awt.event.*;
  
-public class RoundButton extends JComponent {
-    @Override
-    public void paint(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g;
+public class RoundButton implements Border {
 
-        g2.setPaint(Color.RED);
-        g2.setStroke(new BasicStroke(2.0f));
+    private int radius;
 
-        double x = 50;
-        double y = 50;
-        double w = x + 250;
-        double h = y + 100;
-        g2.draw(new RoundRectangle2D.Double(x, y, w, h, 50, 50));
+
+    public RoundButton(int radius) {
+        this.radius = radius;
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Rounded Rectangle Demo");
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.getContentPane().add(new DrawRoundRectangle(), BorderLayout.CENTER);
-        frame.pack();
-        frame.setSize(420, 300);
-        frame.setVisible(true);
+
+    public Insets getBorderInsets(Component c) {
+    	
+        return new Insets(this.radius+1, this.radius+1, this.radius+2, this.radius);
+        
+    }
+
+
+    public boolean isBorderOpaque() {
+        return false;
+    }
+
+
+    public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+        g.drawRoundRect(x, y, width-1, height-1, radius, radius);
+        
+
     }
 }

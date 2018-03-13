@@ -7,9 +7,9 @@ import javax.swing.JTextField;
 
 import javax.swing.border.Border;
 
-import fr.eni.clinique.ihm.graphic.DrawRoundRectangle;
-import fr.eni.clinique.ihm.graphic.ImagePanel;
 
+import fr.eni.clinique.ihm.graphic.ImagePanel;
+import fr.eni.clinique.ihm.graphic.RoundButton;
 import fr.eni.clinique.ihm.graphic.RoundJPasswordField;
 import fr.eni.clinique.ihm.graphic.RoundJTextField;
 
@@ -26,6 +26,7 @@ import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
@@ -85,7 +86,7 @@ public class WindowLogin {
 		desktopPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/logo-redi-login.png"));
+		lblNewLabel.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/logo-redi-login-sf.png"));
 		lblNewLabel.setBounds(84, 23, 141, 142);
 		desktopPane.add(lblNewLabel);
 		
@@ -95,19 +96,22 @@ public class WindowLogin {
 		textField.setBounds(67, 203, 171, 49);
 		desktopPane.add(textField);
 		textField_1.setColumns(10);
-		
+		 
 		textField_1.setFont(new Font("Malgun Gothic", Font.BOLD, 15));
 		textField_1.setBounds(67, 252, 171, 49);
 		desktopPane.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JButton btnValider = new DrawRoundRectangle();
+		JButton btnValider = new JButton("connexion");
+		btnValider.setBorder(new RoundButton(25));
+		
 		btnValider.setBounds(62, 344, 180, 29);
 		btnValider.setForeground(null);
 		btnValider.setFont(new Font("Malgun Gothic", Font.BOLD, 15));
 		btnValider.setOpaque(false);
-		btnValider.setFocusPainted(false);
-
+		btnValider.setFocusPainted(true);
+		btnValider.setBackground(new Color(66, 208, 231));
+		btnValider.setBorderPainted(true);
 		desktopPane.add(btnValider);
 
 		
