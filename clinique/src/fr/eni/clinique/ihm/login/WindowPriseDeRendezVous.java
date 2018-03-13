@@ -107,7 +107,11 @@ public class WindowPriseDeRendezVous extends JFrame{
 	}
 
 }
-
+/**
+ * Formater la valeur du datepicker
+ * @author agicquiaud2017
+ *
+ */
 class DateLabelFormatter extends AbstractFormatter {
 
 	private String datePattern = "yyyy-MM-dd";
