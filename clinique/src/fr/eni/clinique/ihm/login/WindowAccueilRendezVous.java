@@ -14,14 +14,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class WindowAccueil {
+public class WindowAccueilRendezVous {
 	
 	private JFrame frame;
 
-		public WindowAccueil(){
+		public WindowAccueilRendezVous(){
 			frame = new JFrame();
 			
-			frame.setTitle("Accueil");
+			frame.setTitle("Accueil Rendez-vous");
 			frame.setBounds(100, 100, 348, 500);
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setVisible(true);
@@ -46,7 +46,7 @@ public class WindowAccueil {
 			btnNewButton_2.setBounds(134, 407, 65, 48);
 			desktopPane.add(btnNewButton_2);
 			btnNewButton_2.setMaximumSize(new Dimension(30, 30));
-			btnNewButton_2.setBackground(new Color(240, 240, 240));
+			btnNewButton_2.setBackground(Color.white);
 			btnNewButton_2.setIcon(new ImageIcon("Y:\\RL_AG_LV\\cancel.png"));
 			
 			JLabel lblNewLabel = new JLabel("");
