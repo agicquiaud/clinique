@@ -1,6 +1,7 @@
 package fr.eni.clinique.ihm.login;
 
 import java.awt.Component;
+import java.awt.Dimension;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -14,6 +15,7 @@ import javax.swing.JFormattedTextField.AbstractFormatter;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.JTable;
 
 import org.jdatepicker.JDatePicker;
@@ -22,6 +24,8 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
 import fr.eni.clinique.bo.Clients;
+import java.awt.GridLayout;
+import javax.swing.SpinnerNumberModel;
 
 public class WindowPriseDeRendezVous extends JFrame{
 
@@ -30,12 +34,17 @@ public class WindowPriseDeRendezVous extends JFrame{
 	private JPanel contentPaneNorthWest = new JPanel();
 	private JPanel contentPaneNorthCenter = new JPanel();
 	private JPanel contentPaneNorthEst = new JPanel();
+	private JPanel contentPaneNorthEstSouth = new JPanel();
 	private JPanel contentPaneCenter = new JPanel();
 	private JPanel contentPaneSouth= new JPanel();
 	private JPanel contentPaneSouthWest = new JPanel();
 	private JPanel contentPaneSouthCenter = new JPanel();
 	private JPanel contentPaneSouthEst = new JPanel();
 	private Properties propierties = new Properties();
+	private JComboBox<String> CBClient = new JComboBox<String>();
+	private JComboBox<String> CBAnimal = new JComboBox<String>();
+	private JComboBox<String> CBVet = new JComboBox<String>();
+	JTable table = new JTable();
 	
 	private UtilDateModel model = new UtilDateModel();
 	private JDatePanelImpl datePanel = new JDatePanelImpl(model, propierties);
@@ -59,31 +68,40 @@ public class WindowPriseDeRendezVous extends JFrame{
 	    propierties.put("text.year", "Year");
 				
 				contentPaneNorth.setLayout(new BoxLayout(contentPaneNorth, BoxLayout.LINE_AXIS));
-				
-				contentPaneNorthWest.setLayout(new BoxLayout(contentPaneNorthWest, BoxLayout.PAGE_AXIS));
+				contentPaneNorthWest.setLayout(new GridLayout(10, 1));
 				contentPaneNorthWest.add(new JLabel("Pour"));
-				contentPaneNorthWest.add(new JLabel("Client"));
-				contentPaneNorthWest.add(new JComboBox<String>());
-				contentPaneNorthWest.add(new JLabel("Animal"));
-				contentPaneNorthWest.add(new JComboBox<String>());
-				
-				contentPaneNorthCenter.setLayout(new BoxLayout(contentPaneNorthCenter, BoxLayout.PAGE_AXIS));
+				contentPaneNorthWest.add(new JLabel("Client :"));
+				contentPaneNorthWest.add(CBClient);
+				contentPaneNorthWest.add(new JLabel("Animal :"));
+				contentPaneNorthWest.add(CBAnimal);
+				contentPaneNorthCenter.setLayout(new GridLayout(10, 1));
 				contentPaneNorthCenter.add(new JLabel("Par"));
-				contentPaneNorthCenter.add(new JComboBox<String>());
-				
-				contentPaneNorthEst.setLayout(new BoxLayout(contentPaneNorthEst, BoxLayout.PAGE_AXIS));
+				contentPaneNorthCenter.add(new JLabel("Véterinaire :"));
+				contentPaneNorthCenter.add(CBVet);
+				contentPaneNorthEst.setLayout(new GridLayout(10, 1));
 				contentPaneNorthEst.add(new JLabel("Quand"));
-				contentPaneNorthEst.add(new JLabel("Date"));
+				contentPaneNorthEst.add(new JLabel("Date :"));
 				contentPaneNorthEst.add(datePicker);
-				contentPaneNorthEst.add(new JLabel("Heure"));
-				contentPaneNorthEst.add(new JButton());
+				contentPaneNorthEst.add(new JLabel());
+				contentPaneNorthEstSouth.setLayout(new GridLayout(1,4));
+				contentPaneNorthEstSouth.add(new JLabel("Heure :"));
+				JSpinner heure = new JSpinner();
+				heure.setModel(new SpinnerNumberModel(9, 9, 19, 1));
+				contentPaneNorthEstSouth.add(heure);
+				contentPaneNorthEstSouth.add(new JLabel("Minute :"));
+				JSpinner minute = new JSpinner();
+				minute.setModel(new SpinnerNumberModel(0, 0, 59, 1));
+				contentPaneNorthEstSouth.add(minute);
+				contentPaneNorthEst.add(contentPaneNorthEstSouth);
 				
 				contentPaneNorth.add(contentPaneNorthWest);
 				contentPaneNorth.add(contentPaneNorthCenter);
 				contentPaneNorth.add(contentPaneNorthEst);
 				
 				
-				contentPaneCenter.add(new JTable());
+				
+				
+				contentPaneCenter.add(table);
 				
 				contentPaneSouth.setLayout(new BoxLayout(contentPaneSouth, BoxLayout.LINE_AXIS));
 				
@@ -105,7 +123,11 @@ public class WindowPriseDeRendezVous extends JFrame{
 		
 		this.setVisible(true);
 	}
-
+	private Object[][] tab(){
+		
+		
+		return null;
+	}
 }
 /**
  * Formater la valeur du datepicker
