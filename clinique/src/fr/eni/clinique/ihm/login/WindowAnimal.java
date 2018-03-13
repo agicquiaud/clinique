@@ -14,10 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
-
-
 public class WindowAnimal {
-	
+
 	private JFrame EditAnimal;
 	private JFrame AddAnimal;
 	private JTextField textFieldNomAnimal;
@@ -29,8 +27,8 @@ public class WindowAnimal {
 	private JTextField textFieldCouleurEditAnimal;
 	private JTextField textFieldTatouageEditAnimal;
 	private JTextField textFieldAntecedentsEditAnimal;
-	
-	public WindowAnimal(){
+
+	public WindowAnimal() {
 		controlleranimal = new ControllerAnimaux();
 		EditAnimal = new JFrame();
 		EditAnimal.setForeground(new Color(240, 255, 255));
@@ -41,9 +39,9 @@ public class WindowAnimal {
 		EditAnimal.getContentPane().setBackground(new Color(255, 255, 255));
 		GridBagLayout gbl_EditAnimal = new GridBagLayout();
 		gbl_EditAnimal.columnWidths = new int[] { 0, 84, 0, 67, 0, 0, 0 };
-		gbl_EditAnimal.rowHeights = new int[] { 10, 0, 0, 35, 35, 0, 0, 0, 0, 0 };
+		gbl_EditAnimal.rowHeights = new int[] { 93, 64, 0, 35, 35, 0, 0, 0, 0, 0, 0 };
 		gbl_EditAnimal.columnWeights = new double[] { 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0 };
-		gbl_EditAnimal.rowWeights = new double[] { 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_EditAnimal.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		EditAnimal.getContentPane().setLayout(gbl_EditAnimal);
 
 		JDesktopPane desktopPaneEditAnimal = new JDesktopPane();
@@ -57,19 +55,19 @@ public class WindowAnimal {
 		gbc_desktopPaneEditAnimal.gridy = 0;
 		EditAnimal.getContentPane().add(desktopPaneEditAnimal, gbc_desktopPaneEditAnimal);
 
-		JButton btnAnnulerEditAnimal = new JButton();
-		btnAnnulerEditAnimal.setForeground(new Color(255, 255, 255));
-		btnAnnulerEditAnimal.setBackground(new Color(255, 255, 255));
-		btnAnnulerEditAnimal.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/checked32.png"));
-		btnAnnulerEditAnimal.setBounds(320, 18, 58, 44);
-		desktopPaneEditAnimal.add(btnAnnulerEditAnimal);
-
 		JButton btnValiderEditAnimal = new JButton();
 		btnValiderEditAnimal.setForeground(new Color(255, 255, 255));
 		btnValiderEditAnimal.setBackground(new Color(255, 255, 255));
-		btnValiderEditAnimal.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/cancel.png"));
-		btnValiderEditAnimal.setBounds(400, 18, 58, 44);
+		btnValiderEditAnimal.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/checked32.png"));
+		btnValiderEditAnimal.setBounds(320, 18, 58, 44);
 		desktopPaneEditAnimal.add(btnValiderEditAnimal);
+
+		JButton btnAnnulerEditAnimal = new JButton();
+		btnAnnulerEditAnimal.setForeground(new Color(255, 255, 255));
+		btnAnnulerEditAnimal.setBackground(new Color(255, 255, 255));
+		btnAnnulerEditAnimal.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/cancel.png"));
+		btnAnnulerEditAnimal.setBounds(400, 18, 58, 44);
+		desktopPaneEditAnimal.add(btnAnnulerEditAnimal);
 
 		JDesktopPane desktopPaneEditAnimal_1 = new JDesktopPane();
 		desktopPaneEditAnimal_1.setBackground(UIManager.getColor("Button.background"));
@@ -89,7 +87,7 @@ public class WindowAnimal {
 
 		JLabel lblNomClientEditAnimal = new JLabel();
 		lblNomClientEditAnimal.setFont(new Font("Malgun Gothic", Font.PLAIN, 12));
-		lblNomClientEditAnimal.setBounds(43, 41, 265, 14);
+		lblNomClientEditAnimal.setBounds(43, 30, 265, 14);
 		desktopPaneEditAnimal_1.add(lblNomClientEditAnimal);
 
 		JLabel lblCodeEditAnimal = new JLabel("Code : ");
@@ -221,7 +219,7 @@ public class WindowAnimal {
 		GridBagConstraints gbc_textFieldAntecedentsEditAnimal = new GridBagConstraints();
 		gbc_textFieldAntecedentsEditAnimal.gridheight = 2;
 		gbc_textFieldAntecedentsEditAnimal.gridwidth = 3;
-		gbc_textFieldAntecedentsEditAnimal.insets = new Insets(0, 0, 0, 5);
+		gbc_textFieldAntecedentsEditAnimal.insets = new Insets(0, 0, 5, 5);
 		gbc_textFieldAntecedentsEditAnimal.fill = GridBagConstraints.BOTH;
 		gbc_textFieldAntecedentsEditAnimal.gridx = 1;
 		gbc_textFieldAntecedentsEditAnimal.gridy = 7;

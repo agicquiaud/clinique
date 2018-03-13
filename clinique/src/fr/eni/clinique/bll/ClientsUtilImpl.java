@@ -31,17 +31,18 @@ public class ClientsUtilImpl implements ClientsUtil {
 
 	@Override
 	public List<Clients> getClientByNom(String nom) {
+		List<Clients> listereturn = new ArrayList<Clients>();
 		try {
 			liste = con.selectByNom(nom);
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
 		for (Clients client : liste) {
-			if(client.getArchive() == true){
-				liste.remove(client);
+			if(client.getArchive() == false){
+				listereturn.add(client);
 			}
 		}
-		return liste;
+		return listereturn;
 	}
 
 	@Override

@@ -1,6 +1,8 @@
 package fr.eni.clinique.ihm.login;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -18,13 +20,14 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
+import javax.swing.text.JTextComponent;
 
 public class WindowClients {
 
@@ -40,6 +43,7 @@ public class WindowClients {
 	private JDialog PopupDeleteClient = new JDialog();
 	private JDialog EditClient = new JDialog();
 	private JDialog AddAnimal = new JDialog();
+	private JDialog PopupDeleteAnimal = new JDialog();
 	private JDialog EditAnimal = new JDialog();
 	private JTextField textFieldNomClient;
 	private JTextField textFieldPrenomClient;
@@ -337,14 +341,14 @@ public class WindowClients {
 		gbc_btnValiderModalAdd.gridy = 11;
 		AddClient.getContentPane().add(btnValiderModalAddClient, gbc_btnValiderModalAdd);
 
-		JButton btnAnnulerModalCancelClient = new JButton("ANNULER");
-		GridBagConstraints gbc_btnAnnulerModalCancelClient = new GridBagConstraints();
-		gbc_btnAnnulerModalCancelClient.insets = new Insets(0, 0, 5, 5);
-		gbc_btnAnnulerModalCancelClient.gridx = 9;
-		gbc_btnAnnulerModalCancelClient.gridy = 11;
-		AddClient.getContentPane().add(btnAnnulerModalCancelClient, gbc_btnAnnulerModalCancelClient);
+		JButton btnAnnulerModalAddClient = new JButton("ANNULER");
+		GridBagConstraints gbc_btnAnnulerModalAddClient = new GridBagConstraints();
+		gbc_btnAnnulerModalAddClient.insets = new Insets(0, 0, 5, 5);
+		gbc_btnAnnulerModalAddClient.gridx = 9;
+		gbc_btnAnnulerModalAddClient.gridy = 11;
+		AddClient.getContentPane().add(btnAnnulerModalAddClient, gbc_btnAnnulerModalAddClient);
 
-		// Popup Remove
+		// Popup Remove Client
 		// --------------------------------------------------------------------------------------
 
 		GridBagLayout gbl_PopupDeleteClient = new GridBagLayout();
@@ -355,7 +359,7 @@ public class WindowClients {
 		gbl_PopupDeleteClient.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		PopupDeleteClient.setLayout(gbl_PopupDeleteClient);
 
-		JLabel lbltesvousSurDe = new JLabel("");
+		JLabel lbltesvousSurDe = new JLabel("Etes-vous sur de vouloir supprimer ce client ?");
 		GridBagConstraints gbc_lbltesvousSurDe = new GridBagConstraints();
 		gbc_lbltesvousSurDe.insets = new Insets(0, 0, 5, 5);
 		gbc_lbltesvousSurDe.gridx = 4;
@@ -763,14 +767,48 @@ public class WindowClients {
 		gbc_textFieldAntecedentsAnimal.gridy = 6;
 		AddAnimal.getContentPane().add(textFieldAntecedentsAnimal, gbc_textFieldAntecedentsAnimal);
 		
+		// Popup Remove
+		// --------------------------------------------------------------------------------------
+
+				GridBagLayout gbl_PopupDeleteAnimal = new GridBagLayout();
+				gbl_PopupDeleteAnimal.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+				gbl_PopupDeleteAnimal.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
+				gbl_PopupDeleteAnimal.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+						Double.MIN_VALUE };
+				gbl_PopupDeleteAnimal.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+				PopupDeleteAnimal.setLayout(gbl_PopupDeleteAnimal);
+
+				JLabel lblSupprAnimal = new JLabel("Etes-vous sur de vouloir supprimer ce client ?");
+				GridBagConstraints gbc_lblSupprAnimal = new GridBagConstraints();
+				gbc_lblSupprAnimal.insets = new Insets(0, 0, 5, 5);
+				gbc_lblSupprAnimal.gridx = 4;
+				gbc_lblSupprAnimal.gridy = 2;
+				PopupDeleteAnimal.add(lblSupprAnimal, gbc_lblSupprAnimal);
+
+				JButton btnPopupDeleteAnimal = new JButton("Oui");
+				GridBagConstraints gbc_btnPopupDeleteAnimal = new GridBagConstraints();
+				gbc_btnPopupDeleteAnimal.insets = new Insets(0, 0, 0, 5);
+				gbc_btnPopupDeleteAnimal.gridx = 3;
+				gbc_btnPopupDeleteAnimal.gridy = 6;
+				PopupDeleteAnimal.add(btnPopupDeleteAnimal, gbc_btnPopupDeleteAnimal);
+
+				JButton btnPopupCancelDeleteAnimal = new JButton("Non");
+				GridBagConstraints gbc_btnPopupCancelDeleteAnimal = new GridBagConstraints();
+				gbc_btnPopupCancelDelete.insets = new Insets(0, 0, 0, 5);
+				gbc_btnPopupCancelDelete.gridx = 5;
+				gbc_btnPopupCancelDelete.gridy = 6;
+				PopupDeleteAnimal.add(btnPopupCancelDeleteAnimal, gbc_btnPopupCancelDeleteAnimal);
+		
 		// Edit Animal
 		// --------------------------------------------------------------------------------------
 
+		EditAnimal.setFont(new Font("Malgun Gothic", Font.PLAIN, 13));
+		EditAnimal.setTitle("Gestion Animal");
 		GridBagLayout gbl_EditAnimal = new GridBagLayout();
 		gbl_EditAnimal.columnWidths = new int[] { 0, 84, 0, 67, 0, 0, 0 };
-		gbl_EditAnimal.rowHeights = new int[] { 10, 0, 0, 35, 35, 0, 0, 0, 0, 0 };
+		gbl_EditAnimal.rowHeights = new int[] { 93, 64, 0, 35, 35, 0, 0, 0, 0, 0, 0 };
 		gbl_EditAnimal.columnWeights = new double[] { 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0 };
-		gbl_EditAnimal.rowWeights = new double[] { 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_EditAnimal.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		EditAnimal.getContentPane().setLayout(gbl_EditAnimal);
 
 		JDesktopPane desktopPaneEditAnimal = new JDesktopPane();
@@ -816,7 +854,7 @@ public class WindowClients {
 
 		JLabel lblNomClientEditAnimal = new JLabel();
 		lblNomClientEditAnimal.setFont(new Font("Malgun Gothic", Font.PLAIN, 12));
-		lblNomClientEditAnimal.setBounds(43, 41, 265, 14);
+		lblNomClientEditAnimal.setBounds(43, 30, 265, 14);
 		desktopPaneEditAnimal_1.add(lblNomClientEditAnimal);
 
 		JLabel lblCodeEditAnimal = new JLabel("Code : ");
@@ -948,7 +986,6 @@ public class WindowClients {
 		GridBagConstraints gbc_textFieldAntecedentsEditAnimal = new GridBagConstraints();
 		gbc_textFieldAntecedentsEditAnimal.gridheight = 2;
 		gbc_textFieldAntecedentsEditAnimal.gridwidth = 3;
-		gbc_textFieldAntecedentsEditAnimal.insets = new Insets(0, 0, 0, 5);
 		gbc_textFieldAntecedentsEditAnimal.fill = GridBagConstraints.BOTH;
 		gbc_textFieldAntecedentsEditAnimal.gridx = 1;
 		gbc_textFieldAntecedentsEditAnimal.gridy = 7;
@@ -965,6 +1002,8 @@ public class WindowClients {
 			}
 		});
 
+		// Boutons Gestion Client 
+		
 		btnSearchClient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -991,14 +1030,22 @@ public class WindowClients {
 				setUpTableData(controller.getList(), entetes1);
 				table_1.setCellSelectionEnabled(true);
 				AddClient.setVisible(false);
+				resetTextField(AddClient.getContentPane());
+			}
+		});
+		
+		btnAnnulerModalAddClient.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				AddClient.setVisible(false);
+				resetTextField(AddClient.getContentPane());
 			}
 		});
 
 		btnDeleteClient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PopupDeleteClient.setBounds(100, 100, 418, 136);
-				lbltesvousSurDe.setText("Etes-vous sur de vouloir supprimer ce client ?");
+				PopupDeleteClient.setBounds(100, 100, 420, 140);
 				PopupDeleteClient.setVisible(true);
 			}
 		});
@@ -1035,6 +1082,7 @@ public class WindowClients {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				EditClient.setVisible(false);
+				resetTextField(EditClient.getContentPane());
 			}
 		});
 
@@ -1049,9 +1097,11 @@ public class WindowClients {
 						textFieldRemarqueClientEdit.getText());
 				setUpTableData(controller.getList(), entetes1);
 				EditClient.setVisible(false);
+				resetTextField(EditClient.getContentPane());
 			}
 		});
 
+		//Boutons Gestion Animal		
 		btnAddAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -1076,16 +1126,16 @@ public class WindowClients {
 		btnDeleteAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PopupDeleteClient.setBounds(100, 100, 418, 136);
-				lbltesvousSurDe.setText("Etes-vous sur de vouloir supprimer cet animal ?");
-				PopupDeleteClient.setVisible(true);
+				PopupDeleteAnimal.setBounds(100, 100, 420, 140);
+				PopupDeleteAnimal.setVisible(true);
 			}
 		});
-
+		
 		btnCancelAddAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				AddAnimal.setVisible(false);
+				resetTextField(AddAnimal.getContentPane());
 			}
 		});
 
@@ -1100,6 +1150,7 @@ public class WindowClients {
 						controlleranimal.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()),
 						entetes2);
 				AddAnimal.setVisible(false);
+				resetTextField(AddAnimal.getContentPane());
 			}
 		});
 
@@ -1121,6 +1172,7 @@ public class WindowClients {
 						comboBoxRaceEditAnimal.getSelectedItem().toString(), textFieldTatouageEditAnimal.getText(),
 						textFieldAntecedentsEditAnimal.getText());
 				EditAnimal.setVisible(false);
+				resetTextField(EditAnimal.getContentPane());
 			}
 		});
 
@@ -1128,6 +1180,15 @@ public class WindowClients {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				EditAnimal.setVisible(false);
+				resetTextField(EditAnimal.getContentPane());
+			}
+		});
+		
+		btnPopupDeleteAnimal.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controlleranimal.removeAnimal(table_2.getValueAt(table_2.getSelectedRow(), 0).toString());
+				PopupDeleteAnimal.setVisible(false);
 			}
 		});
 	}
@@ -1152,5 +1213,17 @@ public class WindowClients {
 		};
 		table_2.setModel(tableModel);
 		tableModel.fireTableDataChanged();
+	}
+
+	private void resetTextField(Container jpanel) {
+		JTextField temp = null;
+		for (Component c : jpanel.getComponents()) {
+			if (c instanceof JTextComponent) {
+				temp = (JTextField) c;
+				temp.setText("");
+			}
+
+		}
+
 	}
 }
