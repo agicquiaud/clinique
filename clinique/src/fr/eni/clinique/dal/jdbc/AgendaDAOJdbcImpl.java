@@ -1,6 +1,7 @@
 package fr.eni.clinique.dal.jdbc;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -145,7 +146,7 @@ public class AgendaDAOJdbcImpl {
 		}
 	}
 
-	public List<RendezVous> selectByIdClient(Integer id) throws DALException {
+	public List<RendezVous> sqlSelectByDate(Date date) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		ResultSet rs = null;
@@ -153,7 +154,7 @@ public class AgendaDAOJdbcImpl {
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlSelectByDate);
-			rqt.setInt(1, id);
+			rqt.setDate(1, date);
 			rs = rqt.executeQuery();
 			RendezVous rdv = null;
 
@@ -165,7 +166,7 @@ public class AgendaDAOJdbcImpl {
 		} catch (
 
 		SQLException e) {
-			throw new DALException("selectByIdClient failed - id = " + id, e);
+			throw new DALException("selectByDate failed - date = " + date, e);
 		} finally {
 			try {
 				if (rs != null) {
