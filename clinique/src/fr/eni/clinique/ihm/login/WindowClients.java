@@ -1147,6 +1147,15 @@ public class WindowClients {
 				race.setModel(comboboxModel);
 			}
 		});
+		
+		comboBoxEspeceEditAnimal.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				comboboxModel = new DefaultComboBoxModel<String>(
+						controlleranimal.getRace(comboBoxEspeceEditAnimal.getSelectedItem().toString()));
+				comboBoxRaceEditAnimal.setModel(comboboxModel);				
+			}
+		});
 
 		btnAddAnimal.addActionListener(new ActionListener() {
 			@Override
