@@ -56,30 +56,14 @@ public class WindowPriseDeRendezVous extends JFrame {
 	private JPanel contentPaneSouthWest = new JPanel();
 	private JPanel contentPaneSouthCenter = new JPanel();
 	private JPanel contentPaneSouthEst = new JPanel();
-	private Properties propierties = new Properties();
+	private Properties properties = new Properties();
 	private UtilDateModel model = new UtilDateModel();
-	private JDatePanelImpl datePanel = new JDatePanelImpl(model, propierties);
+	private JDatePanelImpl datePanel = new JDatePanelImpl(model, properties);
 	private JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
 	private ImageIcon icon = new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/plus.png");
-	private JDialog AddClient = new JDialog();
-	private JDialog AddAnimal = new JDialog();
-	private JTextField textFieldNomClient;
-	private JTextField textFieldPrenomClient;
-	private JTextField textFieldAdresse1Client;
-	private JTextField textFieldAdresse2Client;
-	private JTextField textFieldCodePostalClient;
-	private JTextField textFieldVilleClient;
-	private JTextField textFieldNumTelClient;
-	private JTextField textFieldEmailClient;
-	private JTextField textFieldNomAnimal;
-	private JTextField textFieldCouleurAnimal;
-	private JTextField textFieldTatouageAnimal;
-	private JTextField textFieldAntecedentsAnimal;
-	private DefaultComboBoxModel<String> comboboxModel;
 	private JComboBox<String> CBAnimal = new JComboBox<String>();
 	private JComboBox<String> CBVet = new JComboBox<String>();
 	private ControllerClients controllerClients = new ControllerClients();
-	private ControllerAnimaux controllerAnimaux = new ControllerAnimaux();
 
 	/**
 	 * Create the frame.
@@ -93,9 +77,9 @@ public class WindowPriseDeRendezVous extends JFrame {
 
 		this.setLocationRelativeTo(null);
 
-		propierties.put("text.today", "Today");
-		propierties.put("text.month", "Month");
-		propierties.put("text.year", "Year");
+		properties.put("text.today", "Today");
+		properties.put("text.month", "Month");
+		properties.put("text.year", "Year");
 
 		contentPaneNorth.setLayout(new BoxLayout(contentPaneNorth, BoxLayout.LINE_AXIS));
 		contentPaneNorthWest.setBorder(new EmptyBorder(0, 2, 2, 3));
@@ -114,7 +98,7 @@ public class WindowPriseDeRendezVous extends JFrame {
 		label1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				AddClient.setVisible(true);;
+				new WindowAddClient();
 			}
 		});
 		label1.setBorder(new EmptyBorder(0, 2, 0, 2));
@@ -129,7 +113,7 @@ public class WindowPriseDeRendezVous extends JFrame {
 		label2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				AddAnimal.setVisible(true);
+				new WindowAddAnimal();
 			}
 		});
 		label2.setBorder(new EmptyBorder(0, 2, 0, 2));
