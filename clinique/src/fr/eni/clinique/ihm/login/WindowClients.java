@@ -1235,6 +1235,7 @@ public class WindowClients {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				controlleranimal.removeAnimal(table_2.getValueAt(table_2.getSelectedRow(), 0).toString());
+				setUpTableData2(controlleranimal.getListByClient(table_1.getValueAt(table_1.getSelectedRow(),0).toString()), entetes2);
 				PopupDeleteAnimal.setVisible(false);
 			}
 		});
@@ -1242,7 +1243,7 @@ public class WindowClients {
 		btnPopupCancelDeleteAnimal.addActionListener(new ActionListener() { //Bouton NON
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				PopupDeleteAnimal.dispose();
 			}
 		});
 	}
@@ -1259,14 +1260,14 @@ public class WindowClients {
 	}
 
 	private void setUpTableData2(Object[][] data, String[] entetes) {
-		tableModel = new DefaultTableModel(data, entetes) {
+		tableModel = new DefaultTableModel(data, entetes) { //nouveau model
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
 		};
 		table_2.setModel(tableModel);
-		tableModel.fireTableDataChanged();
+		tableModel.fireTableDataChanged(); // maj tableau
 	}
 
 	private void resetTextField(Container frame) {
