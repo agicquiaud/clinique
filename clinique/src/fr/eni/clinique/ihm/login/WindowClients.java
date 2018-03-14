@@ -963,6 +963,7 @@ public class WindowClients {
 		gbc_lblRaceEditAnimal.gridy = 5;
 		EditAnimal.getContentPane().add(lblRaceEditAnimal, gbc_lblRaceEditAnimal);
 
+		
 		JComboBox<String> comboBoxRaceEditAnimal = new JComboBox<String>();
 		GridBagConstraints gbc_comboBoxRaceEditAnimal = new GridBagConstraints();
 		gbc_comboBoxRaceEditAnimal.gridwidth = 2;
@@ -1148,16 +1149,16 @@ public class WindowClients {
 		btnAddAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (table_1.getSelectedRow() == -1) {
-					lblError.setText("Aucun client sélectionné pour lui ajouter un animal");
-				} else {
-					lblError.setText("");
-					AddAnimal.setBounds(100, 100, 500, 340);
+				lblError.setText("");
+				AddAnimal.setBounds(100, 100, 500, 340);
+				try {
 					lblNomPrenomClient.setText(table_1.getValueAt(table_1.getSelectedRow(), 1) + " "
 							+ (String) table_1.getValueAt(table_1.getSelectedRow(), 2));
-					resetTextField(AddAnimal.getContentPane());
-					AddAnimal.setVisible(true);
+				} catch (Exception err) {
+
 				}
+				resetTextField(AddAnimal.getContentPane());
+				AddAnimal.setVisible(true);
 			}
 		});
 
