@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.GridLayout;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Properties;
@@ -57,10 +58,10 @@ public class WindowPriseDeRendezVous extends JFrame{
 	private JDatePanelImpl datePanel = new JDatePanelImpl(model, propierties);
 	private JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
 	private ImageIcon icon = new ImageIcon("\\\\3-UC31-14\\Partage_Stagiaires\\RL_AG_LV\\plus.png");
-	private JComboBox<String> CBClient = new JComboBox<String>();
+
 	private JComboBox<String> CBAnimal = new JComboBox<String>();
 	private JComboBox<String> CBVet = new JComboBox<String>();
-	
+	private ControllerClients controllerClients = new ControllerClients();
  
 	/**
 	 * Create the frame.
@@ -84,8 +85,13 @@ public class WindowPriseDeRendezVous extends JFrame{
 				contentPaneNorthWest.add(new JLabel("Pour"));
 				contentPaneNorthWest.add(new JLabel("Client :"));
 				contentPaneNorthWestClient.setLayout(new GridLayout(1, 2));
-				CBClient.setBorder(new EmptyBorder(0, 2, 0, 2));
-				contentPaneNorthWestClient.add(CBClient);
+				System.out.println(controllerClients.getList());
+				Object tabClient [][]; 
+				tabClient = controllerClients.getList();
+			System.out.println(Arrays.deepToString(tabClient));
+//				JComboBox<String> CBClient = new JComboBox<String>(tabClient);
+//				CBClient.setBorder(new EmptyBorder(0, 2, 0, 2));
+//				contentPaneNorthWestClient.add(CBClient);
 				JLabel label1 = new JLabel(icon);
 				label1.addMouseListener(new MouseAdapter() {
 					@Override
