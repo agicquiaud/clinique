@@ -155,6 +155,7 @@ public class WindowPriseDeRendezVous extends JFrame{
 				contentPaneCenter.setLayout(new BorderLayout());
 				table.setAutoCreateRowSorter(true);
 				contentPaneCenter.add(scrollPane);
+
 				
 				contentPaneSouth.setLayout(new BoxLayout(contentPaneSouth, BoxLayout.LINE_AXIS));
 				

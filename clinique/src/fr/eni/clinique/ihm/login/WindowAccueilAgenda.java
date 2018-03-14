@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -80,5 +82,13 @@ public class WindowAccueilAgenda {
 		lblPriseDeRendezvous.setFont(new Font("Malgun Gothic", Font.BOLD, 14));
 		lblPriseDeRendezvous.setBounds(141, 342, 73, 20);
 		desktopPane.add(lblPriseDeRendezvous);
+		
+		btnNewButton_2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				WindowLogin windowClients = new WindowLogin();
+			}
+		});
 	}
 }

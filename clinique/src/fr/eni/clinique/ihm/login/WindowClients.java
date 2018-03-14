@@ -1,6 +1,8 @@
 package fr.eni.clinique.ihm.login;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -17,14 +19,14 @@ import javax.swing.JDesktopPane;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
+import javax.swing.text.JTextComponent;
 
 public class WindowClients {
 
@@ -35,11 +37,12 @@ public class WindowClients {
 	private JTable table_2;
 	private ControllerClients controller;
 	private ControllerAnimaux controlleranimal;
-	private JTextField textField;
+	private JTextField textFieldSearch;
 	private JDialog AddClient = new JDialog();
 	private JDialog PopupDeleteClient = new JDialog();
 	private JDialog EditClient = new JDialog();
 	private JDialog AddAnimal = new JDialog();
+	private JDialog PopupDeleteAnimal = new JDialog();
 	private JDialog EditAnimal = new JDialog();
 	private JTextField textFieldNomClient;
 	private JTextField textFieldPrenomClient;
@@ -75,69 +78,70 @@ public class WindowClients {
 		controlleranimal = new ControllerAnimaux();
 		frame = new JFrame();
 		frame.setTitle("Gestion Clients");
-		frame.setBounds(100, 100, 730, 470);
+		frame.setBounds(100, 100, 730, 430);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 0, 146, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-		gridBagLayout.rowHeights = new int[] { 0, 0, 0, 232, 38, 0, 0 };
-		gridBagLayout.columnWeights = new double[] { 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0,
+		gridBagLayout.columnWidths = new int[] { 23, 66, 135, 0, 0, 53, 70, 83, 104, 0, 0, 0 };
+		gridBagLayout.rowHeights = new int[] { 20, 0, 0, 232, 38, 0 };
+		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
 				Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, Double.MIN_VALUE };
+		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
 		frame.getContentPane().setLayout(gridBagLayout);
 
-		JPanel panel = new JPanel();
-		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.insets = new Insets(0, 0, 5, 5);
-		gbc_panel.fill = GridBagConstraints.BOTH;
-		gbc_panel.gridx = 3;
-		gbc_panel.gridy = 0;
-		frame.getContentPane().add(panel, gbc_panel);
+		JLabel lblClient = new JLabel("Client :");
+		GridBagConstraints gbc_lblClient = new GridBagConstraints();
+		gbc_lblClient.insets = new Insets(0, 0, 5, 5);
+		gbc_lblClient.gridx = 1;
+		gbc_lblClient.gridy = 1;
+		frame.getContentPane().add(lblClient, gbc_lblClient);
 
-		textField = new JTextField();
+		textFieldSearch = new JTextField();
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.insets = new Insets(0, 0, 5, 5);
 		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 1;
+		gbc_textField.gridx = 2;
 		gbc_textField.gridy = 1;
-		frame.getContentPane().add(textField, gbc_textField);
-		textField.setColumns(10);
+		frame.getContentPane().add(textFieldSearch, gbc_textField);
+		textFieldSearch.setColumns(10);
 
 		JButton btnSearchClient = new JButton("Rechercher");
 		GridBagConstraints gbc_btnSearchClient = new GridBagConstraints();
 		gbc_btnSearchClient.gridwidth = 2;
 		gbc_btnSearchClient.insets = new Insets(0, 0, 5, 5);
-		gbc_btnSearchClient.gridx = 2;
+		gbc_btnSearchClient.gridx = 3;
 		gbc_btnSearchClient.gridy = 1;
 		frame.getContentPane().add(btnSearchClient, gbc_btnSearchClient);
 
 		JButton btnAddClient = new JButton("Ajouter");
 		GridBagConstraints gbc_btnAddClient = new GridBagConstraints();
+		gbc_btnAddClient.fill = GridBagConstraints.VERTICAL;
 		gbc_btnAddClient.insets = new Insets(0, 0, 5, 5);
-		gbc_btnAddClient.gridx = 4;
+		gbc_btnAddClient.gridx = 5;
 		gbc_btnAddClient.gridy = 1;
 		frame.getContentPane().add(btnAddClient, gbc_btnAddClient);
 
 		JButton btnDeleteClient = new JButton("Supprimer");
 		GridBagConstraints gbc_btnDeleteClient = new GridBagConstraints();
-		gbc_btnDeleteClient.gridwidth = 2;
+		gbc_btnDeleteClient.anchor = GridBagConstraints.WEST;
 		gbc_btnDeleteClient.insets = new Insets(0, 0, 5, 5);
-		gbc_btnDeleteClient.gridx = 5;
+		gbc_btnDeleteClient.gridx = 6;
 		gbc_btnDeleteClient.gridy = 1;
 		frame.getContentPane().add(btnDeleteClient, gbc_btnDeleteClient);
 
 		JButton btnEditClient = new JButton("Editer");
 		GridBagConstraints gbc_btnEditClient = new GridBagConstraints();
+		gbc_btnEditClient.gridwidth = 2;
 		gbc_btnEditClient.insets = new Insets(0, 0, 5, 5);
-		gbc_btnEditClient.gridx = 9;
+		gbc_btnEditClient.gridx = 8;
 		gbc_btnEditClient.gridy = 1;
 		frame.getContentPane().add(btnEditClient, gbc_btnEditClient);
 
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
+		gbc_scrollPane.gridwidth = 5;
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
-		gbc_scrollPane.gridwidth = 4;
 		gbc_scrollPane.insets = new Insets(0, 0, 5, 5);
 		gbc_scrollPane.gridx = 1;
 		gbc_scrollPane.gridy = 3;
@@ -160,35 +164,39 @@ public class WindowClients {
 		table_2 = new JTable(donnee2, entetes2);
 		scrollPane_1.setViewportView(table_2);
 
-		JPanel panel_1 = new JPanel();
-		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
-		gbc_panel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_panel_1.fill = GridBagConstraints.BOTH;
-		gbc_panel_1.gridx = 0;
-		gbc_panel_1.gridy = 4;
-		frame.getContentPane().add(panel_1, gbc_panel_1);
+		JLabel lblAnimaux = new JLabel("Animal : ");
+		GridBagConstraints gbc_lblAnimaux = new GridBagConstraints();
+		gbc_lblAnimaux.insets = new Insets(0, 0, 0, 5);
+		gbc_lblAnimaux.gridx = 5;
+		gbc_lblAnimaux.gridy = 4;
+		frame.getContentPane().add(lblAnimaux, gbc_lblAnimaux);
 
 		JButton btnAddAnimal = new JButton("Ajouter");
+		btnAddAnimal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		GridBagConstraints gbc_btnAddAnimal = new GridBagConstraints();
-		gbc_btnAddAnimal.insets = new Insets(0, 0, 5, 5);
-		gbc_btnAddAnimal.gridx = 7;
+		gbc_btnAddAnimal.insets = new Insets(0, 0, 0, 5);
+		gbc_btnAddAnimal.gridx = 6;
 		gbc_btnAddAnimal.gridy = 4;
 		frame.getContentPane().add(btnAddAnimal, gbc_btnAddAnimal);
 
 		JButton btnDeleteAnimal = new JButton("Supprimer");
 		GridBagConstraints gbc_btnDeleteAnimal = new GridBagConstraints();
-		gbc_btnDeleteAnimal.insets = new Insets(0, 0, 5, 5);
-		gbc_btnDeleteAnimal.gridx = 8;
+		gbc_btnDeleteAnimal.insets = new Insets(0, 0, 0, 5);
+		gbc_btnDeleteAnimal.gridx = 7;
 		gbc_btnDeleteAnimal.gridy = 4;
 		frame.getContentPane().add(btnDeleteAnimal, gbc_btnDeleteAnimal);
 
 		JButton btnEditAnimal = new JButton("Editer");
 		GridBagConstraints gbc_btnEditAnimal = new GridBagConstraints();
-		gbc_btnEditAnimal.insets = new Insets(0, 0, 5, 5);
-		gbc_btnEditAnimal.gridx = 9;
+		gbc_btnEditAnimal.gridwidth = 2;
+		gbc_btnEditAnimal.insets = new Insets(0, 0, 0, 5);
+		gbc_btnEditAnimal.gridx = 8;
 		gbc_btnEditAnimal.gridy = 4;
 		frame.getContentPane().add(btnEditAnimal, gbc_btnEditAnimal);
-
+		
 		// Modal Add Client
 		// --------------------------------------------------------------------------------------
 
@@ -337,14 +345,14 @@ public class WindowClients {
 		gbc_btnValiderModalAdd.gridy = 11;
 		AddClient.getContentPane().add(btnValiderModalAddClient, gbc_btnValiderModalAdd);
 
-		JButton btnAnnulerModalCancelClient = new JButton("ANNULER");
-		GridBagConstraints gbc_btnAnnulerModalCancelClient = new GridBagConstraints();
-		gbc_btnAnnulerModalCancelClient.insets = new Insets(0, 0, 5, 5);
-		gbc_btnAnnulerModalCancelClient.gridx = 9;
-		gbc_btnAnnulerModalCancelClient.gridy = 11;
-		AddClient.getContentPane().add(btnAnnulerModalCancelClient, gbc_btnAnnulerModalCancelClient);
+		JButton btnAnnulerModalAddClient = new JButton("ANNULER");
+		GridBagConstraints gbc_btnAnnulerModalAddClient = new GridBagConstraints();
+		gbc_btnAnnulerModalAddClient.insets = new Insets(0, 0, 5, 5);
+		gbc_btnAnnulerModalAddClient.gridx = 9;
+		gbc_btnAnnulerModalAddClient.gridy = 11;
+		AddClient.getContentPane().add(btnAnnulerModalAddClient, gbc_btnAnnulerModalAddClient);
 
-		// Popup Remove
+		// Popup Remove Client
 		// --------------------------------------------------------------------------------------
 
 		GridBagLayout gbl_PopupDeleteClient = new GridBagLayout();
@@ -355,7 +363,7 @@ public class WindowClients {
 		gbl_PopupDeleteClient.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		PopupDeleteClient.setLayout(gbl_PopupDeleteClient);
 
-		JLabel lbltesvousSurDe = new JLabel("");
+		JLabel lbltesvousSurDe = new JLabel("Etes-vous sur de vouloir supprimer ce client ?");
 		GridBagConstraints gbc_lbltesvousSurDe = new GridBagConstraints();
 		gbc_lbltesvousSurDe.insets = new Insets(0, 0, 5, 5);
 		gbc_lbltesvousSurDe.gridx = 4;
@@ -642,10 +650,10 @@ public class WindowClients {
 		gbc_desktopPane_1.gridy = 1;
 		AddAnimal.getContentPane().add(desktopPane_1, gbc_desktopPane_1);
 
-		JLabel lblClient = new JLabel("Client :");
-		lblClient.setFont(new Font("Malgun Gothic", Font.BOLD, 12));
-		lblClient.setBounds(22, 11, 46, 14);
-		desktopPane_1.add(lblClient);
+		JLabel lblClientAddAnimal = new JLabel("Client :");
+		lblClientAddAnimal.setFont(new Font("Malgun Gothic", Font.BOLD, 12));
+		lblClientAddAnimal.setBounds(22, 11, 46, 14);
+		desktopPane_1.add(lblClientAddAnimal);
 
 		JLabel lblNomPrenomClient = new JLabel("");
 		lblNomPrenomClient.setFont(new Font("Malgun Gothic", Font.PLAIN, 12));
@@ -669,7 +677,8 @@ public class WindowClients {
 		AddAnimal.getContentPane().add(textFieldNomAnimal, gbc_textFieldNomAnimal);
 		textFieldNomAnimal.setColumns(10);
 
-		JComboBox<String> comboBoxGenre = new JComboBox<String>();
+		String[] Genre = { "Mâle", "Femelle", "Hermaphrodite" };
+		JComboBox<String> comboBoxGenre = new JComboBox<String>(Genre);
 		GridBagConstraints gbc_comboBoxGenre = new GridBagConstraints();
 		gbc_comboBoxGenre.fill = GridBagConstraints.HORIZONTAL;
 		comboBoxGenre.setBackground(new Color(255, 255, 255));
@@ -703,7 +712,7 @@ public class WindowClients {
 		gbc_lblEspeceAnimal.gridy = 4;
 		AddAnimal.getContentPane().add(lblEspeceAnimal, gbc_lblEspeceAnimal);
 
-		JComboBox<String> espece = new JComboBox<String>();
+		JComboBox<String> espece = new JComboBox<String>(controlleranimal.getEspece());
 		GridBagConstraints gbc_espece = new GridBagConstraints();
 		espece.setBackground(new Color(255, 255, 255));
 		gbc_espece.insets = new Insets(0, 0, 5, 5);
@@ -763,15 +772,49 @@ public class WindowClients {
 		gbc_textFieldAntecedentsAnimal.gridx = 1;
 		gbc_textFieldAntecedentsAnimal.gridy = 6;
 		AddAnimal.getContentPane().add(textFieldAntecedentsAnimal, gbc_textFieldAntecedentsAnimal);
-		
+
+		// Popup Remove
+		// --------------------------------------------------------------------------------------
+
+		GridBagLayout gbl_PopupDeleteAnimal = new GridBagLayout();
+		gbl_PopupDeleteAnimal.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_PopupDeleteAnimal.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_PopupDeleteAnimal.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+				Double.MIN_VALUE };
+		gbl_PopupDeleteAnimal.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		PopupDeleteAnimal.setLayout(gbl_PopupDeleteAnimal);
+
+		JLabel lblSupprAnimal = new JLabel("Etes-vous sur de vouloir supprimer ce client ?");
+		GridBagConstraints gbc_lblSupprAnimal = new GridBagConstraints();
+		gbc_lblSupprAnimal.insets = new Insets(0, 0, 5, 5);
+		gbc_lblSupprAnimal.gridx = 4;
+		gbc_lblSupprAnimal.gridy = 2;
+		PopupDeleteAnimal.add(lblSupprAnimal, gbc_lblSupprAnimal);
+
+		JButton btnPopupDeleteAnimal = new JButton("Oui");
+		GridBagConstraints gbc_btnPopupDeleteAnimal = new GridBagConstraints();
+		gbc_btnPopupDeleteAnimal.insets = new Insets(0, 0, 0, 5);
+		gbc_btnPopupDeleteAnimal.gridx = 3;
+		gbc_btnPopupDeleteAnimal.gridy = 6;
+		PopupDeleteAnimal.add(btnPopupDeleteAnimal, gbc_btnPopupDeleteAnimal);
+
+		JButton btnPopupCancelDeleteAnimal = new JButton("Non");
+		GridBagConstraints gbc_btnPopupCancelDeleteAnimal = new GridBagConstraints();
+		gbc_btnPopupCancelDelete.insets = new Insets(0, 0, 0, 5);
+		gbc_btnPopupCancelDelete.gridx = 5;
+		gbc_btnPopupCancelDelete.gridy = 6;
+		PopupDeleteAnimal.add(btnPopupCancelDeleteAnimal, gbc_btnPopupCancelDeleteAnimal);
+
 		// Edit Animal
 		// --------------------------------------------------------------------------------------
 
+		EditAnimal.setFont(new Font("Malgun Gothic", Font.PLAIN, 13));
+		EditAnimal.setTitle("Gestion Animal");
 		GridBagLayout gbl_EditAnimal = new GridBagLayout();
 		gbl_EditAnimal.columnWidths = new int[] { 0, 84, 0, 67, 0, 0, 0 };
-		gbl_EditAnimal.rowHeights = new int[] { 10, 0, 0, 35, 35, 0, 0, 0, 0, 0 };
+		gbl_EditAnimal.rowHeights = new int[] { 93, 64, 0, 35, 35, 0, 0, 0, 0, 0, 0 };
 		gbl_EditAnimal.columnWeights = new double[] { 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0 };
-		gbl_EditAnimal.rowWeights = new double[] { 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_EditAnimal.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		EditAnimal.getContentPane().setLayout(gbl_EditAnimal);
 
 		JDesktopPane desktopPaneEditAnimal = new JDesktopPane();
@@ -817,7 +860,7 @@ public class WindowClients {
 
 		JLabel lblNomClientEditAnimal = new JLabel();
 		lblNomClientEditAnimal.setFont(new Font("Malgun Gothic", Font.PLAIN, 12));
-		lblNomClientEditAnimal.setBounds(43, 41, 265, 14);
+		lblNomClientEditAnimal.setBounds(43, 30, 265, 14);
 		desktopPaneEditAnimal_1.add(lblNomClientEditAnimal);
 
 		JLabel lblCodeEditAnimal = new JLabel("Code : ");
@@ -854,7 +897,7 @@ public class WindowClients {
 		EditAnimal.getContentPane().add(textFieldNomAnimalEditAnimal, gbc_textFieldNomAnimalEditAnimal);
 		textFieldNomAnimalEditAnimal.setColumns(10);
 
-		JComboBox<String> comboboxgenreEditAnimal = new JComboBox<String>();
+		JComboBox<String> comboboxgenreEditAnimal = new JComboBox<String>(Genre);
 		GridBagConstraints gbc_comboboxgenreEditAnimal = new GridBagConstraints();
 		comboboxgenreEditAnimal.setBackground(new Color(255, 255, 255));
 		gbc_comboboxgenreEditAnimal.insets = new Insets(0, 0, 5, 5);
@@ -889,7 +932,7 @@ public class WindowClients {
 		gbc_lblEspeceEditAnimal.gridy = 5;
 		EditAnimal.getContentPane().add(lblEspeceEditAnimal, gbc_lblEspeceEditAnimal);
 
-		JComboBox<String> comboBoxEspeceEditAnimal = new JComboBox<String>();
+		JComboBox<String> comboBoxEspeceEditAnimal = new JComboBox<String>(controlleranimal.getEspece());
 		GridBagConstraints gbc_comboBoxEspeceEditAnimal = new GridBagConstraints();
 		gbc_comboBoxEspeceEditAnimal.gridwidth = 2;
 		comboBoxEspeceEditAnimal.setBackground(new Color(255, 255, 255));
@@ -949,27 +992,31 @@ public class WindowClients {
 		GridBagConstraints gbc_textFieldAntecedentsEditAnimal = new GridBagConstraints();
 		gbc_textFieldAntecedentsEditAnimal.gridheight = 2;
 		gbc_textFieldAntecedentsEditAnimal.gridwidth = 3;
-		gbc_textFieldAntecedentsEditAnimal.insets = new Insets(0, 0, 0, 5);
 		gbc_textFieldAntecedentsEditAnimal.fill = GridBagConstraints.BOTH;
 		gbc_textFieldAntecedentsEditAnimal.gridx = 1;
 		gbc_textFieldAntecedentsEditAnimal.gridy = 7;
 		EditAnimal.getContentPane().add(textFieldAntecedentsEditAnimal, gbc_textFieldAntecedentsEditAnimal);
-		
+
 		//////////////////////////////////////////////////////////////////////////////
 
 		table_1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				setUpTableData2(
-						controlleranimal.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()),
-						entetes2);
+				try {
+					setUpTableData2(controlleranimal
+							.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()), entetes2);
+				} catch (Exception err) {
+					setUpTableData2(controlleranimal.getList(), entetes2);
+				}
 			}
 		});
+
+		// Boutons Gestion Client
 
 		btnSearchClient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setUpTableData(controller.getClient(textField.getText()), entetes1);
+				setUpTableData(controller.getClient(textFieldSearch.getText()), entetes1);
 			}
 		});
 
@@ -977,6 +1024,7 @@ public class WindowClients {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				AddClient.setBounds(100, 100, 450, 300);
+				resetTextField(AddClient.getContentPane());
 				AddClient.setVisible(true);
 			}
 		});
@@ -988,9 +1036,18 @@ public class WindowClients {
 						textFieldAdresse1Client.getText(), textFieldAdresse2Client.getText(),
 						textFieldCodePostalClient.getText(), textFieldVilleClient.getText(),
 						textFieldNumTelClient.getText(), textFieldEmailClient.getText());
-				table_1.setCellSelectionEnabled(false);
-				setUpTableData(controller.getList(), entetes1);
-				table_1.setCellSelectionEnabled(true);
+				try {
+					setUpTableData(controller.getList(), entetes1);
+				} catch (Exception err) {
+
+				}
+				AddClient.setVisible(false);
+			}
+		});
+
+		btnAnnulerModalAddClient.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
 				AddClient.setVisible(false);
 			}
 		});
@@ -998,8 +1055,7 @@ public class WindowClients {
 		btnDeleteClient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PopupDeleteClient.setBounds(100, 100, 418, 136);
-				lbltesvousSurDe.setText("Etes-vous sur de vouloir supprimer ce client ?");
+				PopupDeleteClient.setBounds(100, 100, 420, 140);
 				PopupDeleteClient.setVisible(true);
 			}
 		});
@@ -1028,6 +1084,7 @@ public class WindowClients {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				EditClient.setBounds(100, 100, 480, 330);
+				resetTextField(EditClient.getContentPane());
 				EditClient.setVisible(true);
 			}
 		});
@@ -1053,12 +1110,27 @@ public class WindowClients {
 			}
 		});
 
+		// Boutons Gestion Animal
+		espece.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				comboboxModel = new DefaultComboBoxModel<String>(
+						controlleranimal.getRace(espece.getSelectedItem().toString()));
+				race.setModel(comboboxModel);
+			}
+		});
+
 		btnAddAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				AddAnimal.setBounds(100, 100, 500, 340);
-				lblNomPrenomClient.setText(table_1.getValueAt(table_1.getSelectedRow(), 1) + " "
-						+ (String) table_1.getValueAt(table_1.getSelectedRow(), 2));
+				try {
+					lblNomPrenomClient.setText(table_1.getValueAt(table_1.getSelectedRow(), 1) + " "
+							+ (String) table_1.getValueAt(table_1.getSelectedRow(), 2));
+				} catch (Exception err) {
+
+				}
+				resetTextField(AddAnimal.getContentPane());
 				AddAnimal.setVisible(true);
 			}
 		});
@@ -1070,6 +1142,7 @@ public class WindowClients {
 						+ (String) table_1.getValueAt(table_1.getSelectedRow(), 2));
 				lblNCodeEditAnimal.setText(table_2.getValueAt(table_2.getSelectedRow(), 0).toString());
 				EditAnimal.setBounds(100, 100, 500, 400);
+				resetTextField(EditAnimal.getContentPane());
 				EditAnimal.setVisible(true);
 			}
 		});
@@ -1077,9 +1150,8 @@ public class WindowClients {
 		btnDeleteAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PopupDeleteClient.setBounds(100, 100, 418, 136);
-				lbltesvousSurDe.setText("Etes-vous sur de vouloir supprimer cet animal ?");
-				PopupDeleteClient.setVisible(true);
+				PopupDeleteAnimal.setBounds(100, 100, 420, 140);
+				PopupDeleteAnimal.setVisible(true);
 			}
 		});
 
@@ -1104,15 +1176,6 @@ public class WindowClients {
 			}
 		});
 
-		espece.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				comboboxModel = new DefaultComboBoxModel<String>(
-						controlleranimal.getRace(espece.getSelectedItem().toString()));
-				race.setModel(comboboxModel);
-			}
-		});
-
 		btnValiderEditAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -1129,6 +1192,21 @@ public class WindowClients {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				EditAnimal.setVisible(false);
+			}
+		});
+
+		btnPopupDeleteAnimal.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controlleranimal.removeAnimal(table_2.getValueAt(table_2.getSelectedRow(), 0).toString());
+				PopupDeleteAnimal.setVisible(false);
+			}
+		});
+
+		btnPopupCancelDeleteAnimal.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
 			}
 		});
 	}
@@ -1154,4 +1232,15 @@ public class WindowClients {
 		table_2.setModel(tableModel);
 		tableModel.fireTableDataChanged();
 	}
+
+	private void resetTextField(Container frame) {
+		JTextField temp = null;
+		for (Component c : frame.getComponents()) {
+			if (c instanceof JTextComponent) {
+				temp = (JTextField) c;
+				temp.setText("");
+			}
+		}
+	}
+
 }
