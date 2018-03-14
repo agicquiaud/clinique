@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -780,33 +781,41 @@ public class WindowClients {
 		// --------------------------------------------------------------------------------------
 
 		GridBagLayout gbl_PopupDeleteAnimal = new GridBagLayout();
-		gbl_PopupDeleteAnimal.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-		gbl_PopupDeleteAnimal.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
-		gbl_PopupDeleteAnimal.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-				Double.MIN_VALUE };
-		gbl_PopupDeleteAnimal.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
-		PopupDeleteAnimal.setLayout(gbl_PopupDeleteAnimal);
-
-		JLabel lblSupprAnimal = new JLabel("Etes-vous sur de vouloir supprimer ce client ?");
+		GridBagConstraints gbc_btnPopupCancelDelete1 = new GridBagConstraints();
+		gbl_PopupDeleteAnimal.columnWidths = new int[] { 44, 201, 39, 0 };
+		gbl_PopupDeleteAnimal.rowHeights = new int[] { 0, 0, 0, 0, 0, 0 };
+		gbl_PopupDeleteAnimal.columnWeights = new double[] { 0.0, 1.0, 0.0,Double.MIN_VALUE };
+		gbl_PopupDeleteAnimal.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		PopupDeleteAnimal.getContentPane().setLayout(gbl_PopupDeleteAnimal);
+		gbc_btnPopupCancelDelete1.insets = new Insets(0, 0, 0, 5);
+		gbc_btnPopupCancelDelete1.gridx = 5;
+		gbc_btnPopupCancelDelete1.gridy = 6;
+				
+		JLabel lblSupprAnimal = new JLabel("Etes-vous sur de vouloir supprimer cette animal ?");
+		lblSupprAnimal.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
 		GridBagConstraints gbc_lblSupprAnimal = new GridBagConstraints();
 		gbc_lblSupprAnimal.insets = new Insets(0, 0, 5, 5);
-		gbc_lblSupprAnimal.gridx = 4;
-		gbc_lblSupprAnimal.gridy = 2;
-		PopupDeleteAnimal.add(lblSupprAnimal, gbc_lblSupprAnimal);
-
+		gbc_lblSupprAnimal.gridx = 1;
+		gbc_lblSupprAnimal.gridy = 1;
+		PopupDeleteAnimal.getContentPane().add(lblSupprAnimal, gbc_lblSupprAnimal);
+				
+		JDesktopPane desktopPane1 = new JDesktopPane();
+		desktopPane1.setBackground(SystemColor.control);
+		GridBagConstraints gbc_desktopPane1 = new GridBagConstraints();
+		gbc_desktopPane1.gridheight = 3;
+		gbc_desktopPane1.insets = new Insets(0, 0, 0, 5);
+		gbc_desktopPane1.fill = GridBagConstraints.BOTH;
+		gbc_desktopPane1.gridx = 1;
+		gbc_desktopPane1.gridy = 2;
+		PopupDeleteAnimal.getContentPane().add(desktopPane1, gbc_desktopPane1);
+				
 		JButton btnPopupDeleteAnimal = new JButton("Oui");
-		GridBagConstraints gbc_btnPopupDeleteAnimal = new GridBagConstraints();
-		gbc_btnPopupDeleteAnimal.insets = new Insets(0, 0, 0, 5);
-		gbc_btnPopupDeleteAnimal.gridx = 3;
-		gbc_btnPopupDeleteAnimal.gridy = 6;
-		PopupDeleteAnimal.add(btnPopupDeleteAnimal, gbc_btnPopupDeleteAnimal);
-
+		btnPopupDeleteAnimal.setBounds(80, 28, 60, 22);
+		desktopPane1.add(btnPopupDeleteAnimal);
+				
 		JButton btnPopupCancelDeleteAnimal = new JButton("Non");
-		GridBagConstraints gbc_btnPopupCancelDeleteAnimal = new GridBagConstraints();
-		gbc_btnPopupCancelDelete.insets = new Insets(0, 0, 0, 5);
-		gbc_btnPopupCancelDelete.gridx = 5;
-		gbc_btnPopupCancelDelete.gridy = 6;
-		PopupDeleteAnimal.add(btnPopupCancelDeleteAnimal, gbc_btnPopupCancelDeleteAnimal);
+		btnPopupCancelDeleteAnimal.setBounds(155, 28, 60, 22);
+		desktopPane1.add(btnPopupCancelDeleteAnimal);
 
 		// Edit Animal
 		// --------------------------------------------------------------------------------------
@@ -1222,7 +1231,7 @@ public class WindowClients {
 			}
 		});
 
-		btnPopupDeleteAnimal.addActionListener(new ActionListener() {
+		btnPopupDeleteAnimal.addActionListener(new ActionListener() { //Bouton OUI
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				controlleranimal.removeAnimal(table_2.getValueAt(table_2.getSelectedRow(), 0).toString());
@@ -1230,7 +1239,7 @@ public class WindowClients {
 			}
 		});
 
-		btnPopupCancelDeleteAnimal.addActionListener(new ActionListener() {
+		btnPopupCancelDeleteAnimal.addActionListener(new ActionListener() { //Bouton NON
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
