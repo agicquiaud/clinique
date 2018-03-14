@@ -22,7 +22,7 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Email, Archive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String sqlDelete = "DELETE FROM Clients WHERE CodeClient=?";
 	private static final String sqlSelectByNom = "SELECT CodeClient, NomClient, PrenomClient, "
-			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive FROM Clients WHERE NomClient LIKE '%?%' OR PrenomClient LIKE '%?%'";
+			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive FROM Clients WHERE NomClient LIKE ? OR PrenomClient LIKE ? ORDER BY NomClient ASC";
 	private static final String sqlSelectById = "SELECT CodeClient, NomClient, PrenomClient, "
 			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Email, Archive FROM Clients WHERE CodeClient=?";
 
@@ -172,14 +172,15 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 		PreparedStatement rqt = null;
 		ResultSet rs = null;
 		List<Clients> liste = new ArrayList<Clients>();
-		Clients client = null;
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlSelectByNom);
-			rqt.setString(1, nom);
-			rqt.setString(2, nom);
+			rqt.setString(1, "%" + nom + "%");
+			rqt.setString(2, "%" + nom + "%");
 			rs = rqt.executeQuery();
-			if (rs.next()) {
+			Clients client = null;
+			
+			while (rs.next()) {
 				client = new Clients(rs.getInt("CodeClient"), rs.getString("NomClient"), rs.getString("PrenomClient"),
 						rs.getString("Adresse1"), rs.getString("CodePostal"), rs.getString("Ville"),
 						rs.getString("NumTel"), rs.getString("Email"), rs.getBoolean("Archive"));

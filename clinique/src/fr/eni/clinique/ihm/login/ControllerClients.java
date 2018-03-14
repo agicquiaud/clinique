@@ -39,7 +39,6 @@ public class ControllerClients {
 
 	public Object[][] getClient(String nom) {
 		liste = bllclients.getClientByNom(nom);
-		System.out.println(liste.toString());
 		Object[][] tab = new Object[liste.size()][6];
 		for (int i = 0; i < liste.size(); i++) {
 			tab[i][0] = liste.get(i).getCodeClient();
