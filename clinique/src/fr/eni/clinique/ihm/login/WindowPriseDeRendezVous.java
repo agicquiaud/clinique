@@ -86,12 +86,12 @@ public class WindowPriseDeRendezVous extends JFrame{
 				contentPaneNorthWest.add(new JLabel("Client :"));
 				contentPaneNorthWestClient.setLayout(new GridLayout(1, 2));
 				System.out.println(controllerClients.getList());
-				Object tabClient [][]; 
-				tabClient = controllerClients.getList();
-			System.out.println(Arrays.deepToString(tabClient));
-//				JComboBox<String> CBClient = new JComboBox<String>(tabClient);
-//				CBClient.setBorder(new EmptyBorder(0, 2, 0, 2));
-//				contentPaneNorthWestClient.add(CBClient);
+				String tabClient []; 
+				tabClient = controllerClients.getNomPrenomList();
+
+				JComboBox<String> CBClient = new JComboBox<String>(tabClient);
+				CBClient.setBorder(new EmptyBorder(0, 2, 0, 2));
+				contentPaneNorthWestClient.add(CBClient);
 				JLabel label1 = new JLabel(icon);
 				label1.addMouseListener(new MouseAdapter() {
 					@Override
