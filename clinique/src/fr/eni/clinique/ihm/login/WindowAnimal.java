@@ -1,21 +1,16 @@
 package fr.eni.clinique.ihm.login;
 
+
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -43,12 +38,12 @@ public class WindowAnimal {
 		controlleranimal = new ControllerAnimaux();
 		frame = new JFrame();
 		frame.setTitle("Gestion Clients");
-		frame.setBounds(100, 100, 722, 430);
+		frame.setBounds(100, 100, 800, 485);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[] { 23, 66, 135, 0, 0, 53, 70, 83, 104, 0, 0, 0 };
+		gridBagLayout.columnWidths = new int[] { 23, 66, 135, 0, 0, 53, 70, 83, 104, 69, 0, 0 };
 		gridBagLayout.rowHeights = new int[] { 20, 0, 0, 232, 38, 0 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
 				Double.MIN_VALUE };
@@ -94,14 +89,14 @@ public class WindowAnimal {
 		gbc_btnDeleteClient.gridx = 6;
 		gbc_btnDeleteClient.gridy = 1;
 		frame.getContentPane().add(btnDeleteClient, gbc_btnDeleteClient);
-
-		JButton btnEditClient = new JButton("Editer");
-		GridBagConstraints gbc_btnEditClient = new GridBagConstraints();
-		gbc_btnEditClient.gridwidth = 2;
-		gbc_btnEditClient.insets = new Insets(0, 0, 5, 5);
-		gbc_btnEditClient.gridx = 8;
-		gbc_btnEditClient.gridy = 1;
-		frame.getContentPane().add(btnEditClient, gbc_btnEditClient);
+		
+				JButton btnEditClient = new JButton("Editer");
+				GridBagConstraints gbc_btnEditClient = new GridBagConstraints();
+				gbc_btnEditClient.gridwidth = 2;
+				gbc_btnEditClient.insets = new Insets(0, 0, 5, 5);
+				gbc_btnEditClient.gridx = 8;
+				gbc_btnEditClient.gridy = 1;
+				frame.getContentPane().add(btnEditClient, gbc_btnEditClient);
 
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
@@ -128,6 +123,15 @@ public class WindowAnimal {
 		Object[][] donnee2 = controlleranimal.getList();
 		table_2 = new JTable(donnee2, entetes2);
 		scrollPane_1.setViewportView(table_2);
+		
+		JLabel lblError = new JLabel("Erreur, veuillez selectionner un client pour le supprimer");
+		lblError.setForeground(Color.RED);
+		GridBagConstraints gbc_lblError = new GridBagConstraints();
+		gbc_lblError.gridwidth = 2;
+		gbc_lblError.insets = new Insets(0, 0, 0, 5);
+		gbc_lblError.gridx = 1;
+		gbc_lblError.gridy = 4;
+		frame.getContentPane().add(lblError, gbc_lblError);
 
 		JLabel lblAnimaux = new JLabel("Animal : ");
 		GridBagConstraints gbc_lblAnimaux = new GridBagConstraints();
