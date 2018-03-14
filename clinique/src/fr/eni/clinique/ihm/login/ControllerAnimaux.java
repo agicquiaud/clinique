@@ -70,6 +70,7 @@ public class ControllerAnimaux {
 	
 	public void removeAnimal(String codeanimal) {
 		animal = mgerAnimal.animalById(Integer.parseInt(codeanimal));
+		mgerAnimal.delete(animal);
 	}
 	
 	public void updateClient(String codeAnimal, String nom, String sexe, String couleur, String race, String espece,
