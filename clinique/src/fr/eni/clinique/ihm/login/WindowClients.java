@@ -10,6 +10,8 @@ import java.awt.Insets;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
@@ -899,7 +901,7 @@ public class WindowClients {
 		gbc_lblNomAnimalEditAnimal.gridy = 3;
 		EditAnimal.getContentPane().add(lblNomAnimalEditAnimal, gbc_lblNomAnimalEditAnimal);
 
-		textFieldNomAnimalEditAnimal = new JTextField();
+		textFieldNomAnimalEditAnimal = new JTextField("allezr lze");
 		GridBagConstraints gbc_textFieldNomAnimalEditAnimal = new GridBagConstraints();
 		gbc_textFieldNomAnimalEditAnimal.gridwidth = 3;
 		gbc_textFieldNomAnimalEditAnimal.insets = new Insets(0, 0, 5, 5);
@@ -962,8 +964,9 @@ public class WindowClients {
 		gbc_lblRaceEditAnimal.gridx = 3;
 		gbc_lblRaceEditAnimal.gridy = 5;
 		EditAnimal.getContentPane().add(lblRaceEditAnimal, gbc_lblRaceEditAnimal);
-
-		JComboBox<String> comboBoxRaceEditAnimal = new JComboBox<String>();
+		
+		
+		JComboBox<String> comboBoxRaceEditAnimal = new JComboBox<String>(controlleranimal.getRace(comboBoxEspeceEditAnimal.getSelectedItem().toString()));
 		GridBagConstraints gbc_comboBoxRaceEditAnimal = new GridBagConstraints();
 		gbc_comboBoxRaceEditAnimal.gridwidth = 2;
 		comboBoxRaceEditAnimal.setBackground(new Color(255, 255, 255));
@@ -1164,19 +1167,25 @@ public class WindowClients {
 		btnEditAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				try {
-					lblError.setText("");
-					// lblNomClientEditAnimal.setText(table_1.getValueAt(table_1.getSelectedRow(),
-					// 1) + " "
-					// + (String) table_1.getValueAt(table_1.getSelectedRow(),
-					// 2));
-					lblNCodeEditAnimal.setText(table_2.getValueAt(table_2.getSelectedRow(), 0).toString());
-					EditAnimal.setBounds(100, 100, 500, 400);
+
 					resetTextField(EditAnimal.getContentPane());
+					lblError.setText("");
+					 lblNomClientEditAnimal.setText(table_1.getValueAt(table_1.getSelectedRow(),1) + " "
+					 + (String) table_1.getValueAt(table_1.getSelectedRow(),2));
+					lblNCodeEditAnimal.setText(table_2.getValueAt(table_2.getSelectedRow(), 0).toString());
+					List<String> list = new ArrayList<String>();
+					list = controlleranimal.getAnimalById(table_2.getValueAt(table_2.getSelectedRow(), 0).toString());
+					
+					textFieldNomAnimalEditAnimal.setText(list.get(0));
+					textFieldCouleurEditAnimal.setText(list.get(1));
+					textFieldTatouageEditAnimal.setText(list.get(2));
+					textFieldAntecedentsEditAnimal.setText(list.get(3));
+					comboboxgenreEditAnimal.setSelectedItem(list.get(4));
+					comboBoxEspeceEditAnimal.setSelectedItem(list.get(5));
+					comboBoxRaceEditAnimal.setSelectedItem(list.get(6));
+					EditAnimal.setBounds(100, 100, 500, 400);
 					EditAnimal.setVisible(true);
-				} catch (Exception err) {
-					lblError.setText("Aucun animal selectionné pour le modifier");
-				}
+
 			}
 		});
 
