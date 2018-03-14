@@ -64,7 +64,6 @@ public class WindowClients {
 	private JTextField textFieldAssuranceClientEdit;
 	private JTextField textFieldEmailClientEdit;
 	private JTextField textFieldRemarqueClientEdit;
-	private JTextField textFieldCodeAnimal;
 	private JTextField textFieldNomAnimal;
 	private JTextField textFieldCouleurAnimal;
 	private JTextField textFieldTatouageAnimal;
@@ -638,11 +637,6 @@ public class WindowClients {
 		desktopPane.add(btnConfirmAddAnimal);
 
 		JButton btnCancelAddAnimal = new JButton();
-		btnCancelAddAnimal.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				AddAnimal.setVisible(false);
-			}
-		});
 		btnCancelAddAnimal.setForeground(new Color(255, 255, 255));
 		btnCancelAddAnimal.setBackground(new Color(255, 255, 255));
 		btnCancelAddAnimal.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/cancel.png"));
@@ -1207,7 +1201,7 @@ public class WindowClients {
 		btnConfirmAddAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controlleranimal.addAnimal(textFieldCodeAnimal.getText(), textFieldNomAnimal.getText(),
+				controlleranimal.addAnimal(textFieldNomAnimal.getText(),
 						comboBoxGenre.getSelectedItem().toString(), textFieldCouleurAnimal.getText(),
 						race.getSelectedItem().toString(), espece.getSelectedItem().toString(),
 						table_1.getValueAt(table_1.getSelectedRow(), 0).toString(), textFieldTatouageAnimal.getText());

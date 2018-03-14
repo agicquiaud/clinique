@@ -25,6 +25,8 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive FROM Clients WHERE NomClient LIKE ? OR PrenomClient LIKE ? ORDER BY NomClient ASC";
 	private static final String sqlSelectById = "SELECT CodeClient, NomClient, PrenomClient, "
 			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Email, Archive FROM Clients WHERE CodeClient=?";
+	private static final String sqlSelectByNomPrenom = "SELECT CodeClient, NomClient, PrenomClient, "
+			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Email, Archive FROM Clients WHERE NomClient=? AND PrenomClient=? ORDER BY NomClient ASC";
 
 	public List<Clients> selectAll() throws DALException {
 		Connection cnx = null;
@@ -226,6 +228,45 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 
 		} catch (SQLException e) {
 			throw new DALException("selectById failed - Id = " + id, e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (rqt != null) {
+					rqt.close();
+				}
+				if (cnx != null) {
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return client;
+	}
+
+	@Override
+	public Clients selectByNomPrenom(String prenom, String nom) throws DALException{
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		Clients client = null;
+		try {
+			cnx = JdbcTools.getConnection();
+			rqt = cnx.prepareStatement(sqlSelectById);
+			rqt.setString(1, nom);
+			rqt.setString(2, prenom);
+			rs = rqt.executeQuery();
+			if (rs.next()) {
+				client = new Clients(rs.getInt("CodeClient"), rs.getString("NomClient"), rs.getString("PrenomClient"),
+						rs.getString("Adresse1"), rs.getString("Adresse2"), rs.getString("CodePostal"),
+						rs.getString("Ville"), rs.getString("NumTel"), rs.getString("Email"), rs.getBoolean("Archive"));
+			}
+
+		} catch (SQLException e) {
+			throw new DALException("selectByNomPrenom failed - nomprenom = " + nom + " " +prenom, e);
 		} finally {
 			try {
 				if (rs != null) {

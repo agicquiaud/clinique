@@ -23,4 +23,7 @@ public interface ClientDAO {
 	
 	//Selectioner un client par son id
 	public Clients selectById(Integer id) throws DALException;
+
+	//Selectionner un client par son nom et prenom
+	public Clients selectByNomPrenom(String prenom, String nom) throws DALException;
 }
