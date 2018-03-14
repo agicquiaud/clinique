@@ -22,11 +22,10 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Email, Archive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String sqlDelete = "DELETE FROM Clients WHERE CodeClient=?";
 	private static final String sqlSelectByNom = "SELECT CodeClient, NomClient, PrenomClient, "
-			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive FROM Clients WHERE NomClient LIKE ? OR PrenomClient LIKE ?";
+			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive FROM Clients WHERE NomClient LIKE '%?%' OR PrenomClient LIKE '%?%'";
 	private static final String sqlSelectById = "SELECT CodeClient, NomClient, PrenomClient, "
 			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Email, Archive FROM Clients WHERE CodeClient=?";
-	
-	
+
 	public List<Clients> selectAll() throws DALException {
 		Connection cnx = null;
 		Statement rqt = null;
@@ -177,8 +176,8 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlSelectByNom);
-			rqt.setString(1, "%" + nom + "%");
-			rqt.setString(2, "%" + nom + "%");
+			rqt.setString(1, nom);
+			rqt.setString(2, nom);
 			rs = rqt.executeQuery();
 			if (rs.next()) {
 				client = new Clients(rs.getInt("CodeClient"), rs.getString("NomClient"), rs.getString("PrenomClient"),
@@ -207,7 +206,7 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 		}
 		return liste;
 	}
-	
+
 	public Clients selectById(Integer id) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
@@ -220,10 +219,9 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 			rs = rqt.executeQuery();
 			if (rs.next()) {
 				client = new Clients(rs.getInt("CodeClient"), rs.getString("NomClient"), rs.getString("PrenomClient"),
-						rs.getString("Adresse1"), rs.getString("Adresse2"), rs.getString("CodePostal"), rs.getString("Ville"),
-						rs.getString("NumTel"), rs.getString("Email"), rs.getBoolean("Archive"));
-
-				}
+						rs.getString("Adresse1"), rs.getString("Adresse2"), rs.getString("CodePostal"),
+						rs.getString("Ville"), rs.getString("NumTel"), rs.getString("Email"), rs.getBoolean("Archive"));
+			}
 
 		} catch (SQLException e) {
 			throw new DALException("selectById failed - Id = " + id, e);

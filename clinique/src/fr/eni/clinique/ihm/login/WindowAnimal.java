@@ -50,8 +50,8 @@ public class WindowAnimal {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 23, 66, 135, 0, 0, 53, 70, 83, 104, 0, 0, 0 };
 		gridBagLayout.rowHeights = new int[] { 20, 0, 0, 232, 38, 0 };
-		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-				0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+				Double.MIN_VALUE };
 		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE };
 		frame.getContentPane().setLayout(gridBagLayout);
 
@@ -78,14 +78,14 @@ public class WindowAnimal {
 		gbc_btnSearchClient.gridx = 3;
 		gbc_btnSearchClient.gridy = 1;
 		frame.getContentPane().add(btnSearchClient, gbc_btnSearchClient);
-		
-				JButton btnAddClient = new JButton("Ajouter");
-				GridBagConstraints gbc_btnAddClient = new GridBagConstraints();
-				gbc_btnAddClient.fill = GridBagConstraints.VERTICAL;
-				gbc_btnAddClient.insets = new Insets(0, 0, 5, 5);
-				gbc_btnAddClient.gridx = 5;
-				gbc_btnAddClient.gridy = 1;
-				frame.getContentPane().add(btnAddClient, gbc_btnAddClient);
+
+		JButton btnAddClient = new JButton("Ajouter");
+		GridBagConstraints gbc_btnAddClient = new GridBagConstraints();
+		gbc_btnAddClient.fill = GridBagConstraints.VERTICAL;
+		gbc_btnAddClient.insets = new Insets(0, 0, 5, 5);
+		gbc_btnAddClient.gridx = 5;
+		gbc_btnAddClient.gridy = 1;
+		frame.getContentPane().add(btnAddClient, gbc_btnAddClient);
 
 		JButton btnDeleteClient = new JButton("Supprimer");
 		GridBagConstraints gbc_btnDeleteClient = new GridBagConstraints();
@@ -135,32 +135,32 @@ public class WindowAnimal {
 		gbc_lblAnimaux.gridx = 5;
 		gbc_lblAnimaux.gridy = 4;
 		frame.getContentPane().add(lblAnimaux, gbc_lblAnimaux);
-						
-								JButton btnAddAnimal = new JButton("Ajouter");
-								btnAddAnimal.addActionListener(new ActionListener() {
-									public void actionPerformed(ActionEvent e) {
-									}
-								});
-								GridBagConstraints gbc_btnAddAnimal = new GridBagConstraints();
-								gbc_btnAddAnimal.insets = new Insets(0, 0, 0, 5);
-								gbc_btnAddAnimal.gridx = 6;
-								gbc_btnAddAnimal.gridy = 4;
-								frame.getContentPane().add(btnAddAnimal, gbc_btnAddAnimal);
-				
-						JButton btnDeleteAnimal = new JButton("Supprimer");
-						GridBagConstraints gbc_btnDeleteAnimal = new GridBagConstraints();
-						gbc_btnDeleteAnimal.insets = new Insets(0, 0, 0, 5);
-						gbc_btnDeleteAnimal.gridx = 7;
-						gbc_btnDeleteAnimal.gridy = 4;
-						frame.getContentPane().add(btnDeleteAnimal, gbc_btnDeleteAnimal);
-		
-				JButton btnEditAnimal = new JButton("Editer");
-				GridBagConstraints gbc_btnEditAnimal = new GridBagConstraints();
-				gbc_btnEditAnimal.gridwidth = 2;
-				gbc_btnEditAnimal.insets = new Insets(0, 0, 0, 5);
-				gbc_btnEditAnimal.gridx = 8;
-				gbc_btnEditAnimal.gridy = 4;
-				frame.getContentPane().add(btnEditAnimal, gbc_btnEditAnimal);
+
+		JButton btnAddAnimal = new JButton("Ajouter");
+		btnAddAnimal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		GridBagConstraints gbc_btnAddAnimal = new GridBagConstraints();
+		gbc_btnAddAnimal.insets = new Insets(0, 0, 0, 5);
+		gbc_btnAddAnimal.gridx = 6;
+		gbc_btnAddAnimal.gridy = 4;
+		frame.getContentPane().add(btnAddAnimal, gbc_btnAddAnimal);
+
+		JButton btnDeleteAnimal = new JButton("Supprimer");
+		GridBagConstraints gbc_btnDeleteAnimal = new GridBagConstraints();
+		gbc_btnDeleteAnimal.insets = new Insets(0, 0, 0, 5);
+		gbc_btnDeleteAnimal.gridx = 7;
+		gbc_btnDeleteAnimal.gridy = 4;
+		frame.getContentPane().add(btnDeleteAnimal, gbc_btnDeleteAnimal);
+
+		JButton btnEditAnimal = new JButton("Editer");
+		GridBagConstraints gbc_btnEditAnimal = new GridBagConstraints();
+		gbc_btnEditAnimal.gridwidth = 2;
+		gbc_btnEditAnimal.insets = new Insets(0, 0, 0, 5);
+		gbc_btnEditAnimal.gridx = 8;
+		gbc_btnEditAnimal.gridy = 4;
+		frame.getContentPane().add(btnEditAnimal, gbc_btnEditAnimal);
 
 	}
 }

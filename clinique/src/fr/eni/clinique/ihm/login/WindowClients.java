@@ -147,8 +147,8 @@ public class WindowClients {
 		gbc_scrollPane.gridy = 3;
 		frame.getContentPane().add(scrollPane, gbc_scrollPane);
 		String[] entetes1 = { "CodeClient", "Prenom", "Nom", "Code Postal", "Ville" };
-		Object[][] donnee1 = controller.getList();
-		table_1 = new JTable(donnee1, entetes1);
+		table_1 = new JTable();
+		setUpTableData(controller.getList(), entetes1);
 		scrollPane.setViewportView(table_1);
 
 		JScrollPane scrollPane_1 = new JScrollPane();
@@ -160,8 +160,8 @@ public class WindowClients {
 		gbc_scrollPane_1.gridy = 3;
 		frame.getContentPane().add(scrollPane_1, gbc_scrollPane_1);
 		String[] entetes2 = { "CodeAnimal", "Nom", "Sexe", "Couleur", "Race", "Espece" };
-		Object[][] donnee2 = controlleranimal.getList();
-		table_2 = new JTable(donnee2, entetes2);
+		table_2 = new JTable();
+		setUpTableData2(controlleranimal.getList(), entetes2);
 		scrollPane_1.setViewportView(table_2);
 
 		JLabel lblAnimaux = new JLabel("Animal : ");
@@ -1016,6 +1016,9 @@ public class WindowClients {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setUpTableData(controller.getClient(textFieldSearch.getText()), entetes1);
+				if(textFieldSearch.getText().equals("")){
+					setUpTableData(controller.getList(), entetes1);
+				}
 			}
 		});
 
@@ -1241,5 +1244,4 @@ public class WindowClients {
 			}
 		}
 	}
-
 }
