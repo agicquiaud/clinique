@@ -30,8 +30,8 @@ public class ControllerClients {
 			tab[i][0] = liste.get(i).getCodeClient();
 			tab[i][1] = liste.get(i).getPrenom();
 			tab[i][2] = liste.get(i).getNom();
-			tab[i][3] = liste.get(i).getVille();
-			tab[i][4] = liste.get(i).getCodePostal();
+			tab[i][3] = liste.get(i).getCodePostal();
+			tab[i][4] = liste.get(i).getVille();
 			tab[i][5] = liste.get(i).getAdresse1();
 		}
 		return tab;
@@ -47,6 +47,15 @@ public class ControllerClients {
 			tab[i][3] = liste.get(i).getVille();
 			tab[i][4] = liste.get(i).getCodePostal();
 			tab[i][5] = liste.get(i).getAdresse1();
+		}
+		return tab;
+	}
+	
+	public String[] getNomPrenomList(){
+		liste = bllclients.getAll();
+		String[] tab = new String[liste.size()];
+		for (int i = 0; i < liste.size(); i++) {
+			tab[i] = liste.get(i).getPrenom() + " " + liste.get(i).getNom();
 		}
 		return tab;
 	}
