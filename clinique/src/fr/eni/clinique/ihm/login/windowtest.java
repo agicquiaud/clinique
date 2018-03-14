@@ -18,6 +18,8 @@ import javax.swing.JTable;
 import javax.swing.JList;
 import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
+import javax.swing.JDialog;
+
 import java.awt.Color;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
@@ -50,69 +52,111 @@ public class windowtest {
 	private JTextField textField_12;
 	private JTextField textField_13;
 	private JTextField textField_14;
+	private JDialog PopupDeleteAnimal = new JDialog();
 
 	/**
 	 * Create the application.
 	 */
 	public windowtest() {
 		frame = new JFrame();
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, Double.MIN_VALUE};
-		frame.getContentPane().setLayout(gridBagLayout);
 		
-		JDesktopPane desktopPane = new JDesktopPane();
-		desktopPane.setBackground(Color.WHITE);
-		GridBagConstraints gbc_desktopPane = new GridBagConstraints();
-		gbc_desktopPane.fill = GridBagConstraints.BOTH;
-		gbc_desktopPane.gridx = 0;
-		gbc_desktopPane.gridy = 0;
-		frame.getContentPane().add(desktopPane, gbc_desktopPane);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("Y:\\RL_AG_LV\\logo.jpg"));
-		lblNewLabel.setBounds(117, 11, 90, 96);
-		desktopPane.add(lblNewLabel);
+		GridBagLayout gbl_PopupDeleteAnimal = new GridBagLayout();
+		GridBagConstraints gbc_btnPopupCancelDelete = new GridBagConstraints();
+		gbl_PopupDeleteAnimal.columnWidths = new int[] { 44, 201, 39, 0 };
+		gbl_PopupDeleteAnimal.rowHeights = new int[] { 0, 0, 0, 0, 0, 0 };
+		gbl_PopupDeleteAnimal.columnWeights = new double[] { 0.0, 1.0, 0.0,
+				Double.MIN_VALUE };
+		gbl_PopupDeleteAnimal.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+		PopupDeleteAnimal.getContentPane().setLayout(gbl_PopupDeleteAnimal);
+		gbc_btnPopupCancelDelete.insets = new Insets(0, 0, 0, 5);
+		gbc_btnPopupCancelDelete.gridx = 5;
+		gbc_btnPopupCancelDelete.gridy = 6;
+				
+						JLabel lblSupprAnimal = new JLabel("Etes-vous sur de vouloir supprimer cette animal ?");
+						lblSupprAnimal.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
+						GridBagConstraints gbc_lblSupprAnimal = new GridBagConstraints();
+						gbc_lblSupprAnimal.insets = new Insets(0, 0, 5, 5);
+						gbc_lblSupprAnimal.gridx = 1;
+						gbc_lblSupprAnimal.gridy = 1;
+						PopupDeleteAnimal.getContentPane().add(lblSupprAnimal, gbc_lblSupprAnimal);
+				
+				JDesktopPane desktopPane = new JDesktopPane();
+				desktopPane.setBackground(SystemColor.control);
+				GridBagConstraints gbc_desktopPane = new GridBagConstraints();
+				gbc_desktopPane.gridheight = 3;
+				gbc_desktopPane.insets = new Insets(0, 0, 0, 5);
+				gbc_desktopPane.fill = GridBagConstraints.BOTH;
+				gbc_desktopPane.gridx = 1;
+				gbc_desktopPane.gridy = 2;
+				PopupDeleteAnimal.getContentPane().add(desktopPane, gbc_desktopPane);
+				
+						JButton btnPopupDeleteAnimal = new JButton("Oui");
+						btnPopupDeleteAnimal.setBounds(88, 28, 49, 22);
+						desktopPane.add(btnPopupDeleteAnimal);
+				
+				JButton btnPopupCancelDeleteAnimal = new JButton("Non");
+				btnPopupCancelDeleteAnimal.setBounds(147, 28, 51, 22);
+				desktopPane.add(btnPopupCancelDeleteAnimal);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(94, 141, 229));
-		panel.setBounds(0, 122, 332, 39);
-		desktopPane.add(panel);
-		
-		JLabel lblGestionRendezvous = new JLabel("Gestion du Personnel");
-		panel.add(lblGestionRendezvous);
-		lblGestionRendezvous.setBackground(Color.CYAN);
-		lblGestionRendezvous.setForeground(Color.WHITE);
-		lblGestionRendezvous.setFont(new Font("Malgun Gothic", Font.BOLD, 15));
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(109, 159, 254));
-		panel_1.setBounds(0, 0, 332, 123);
-		desktopPane.add(panel_1);
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(94, 141, 229));
-		panel_2.setBounds(0, 400, 332, 63);
-		desktopPane.add(panel_2);
-		
-		JButton btnNewButton_2 = new JButton("");
-		panel_2.add(btnNewButton_2);
-		btnNewButton_2.setMaximumSize(new Dimension(30, 30));
-		btnNewButton_2.setBackground(new Color(240, 240, 240));
-		btnNewButton_2.setIcon(new ImageIcon("Y:\\RL_AG_LV\\cancel.png"));
-		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setIcon(new ImageIcon("Y:\\RL_AG_LV\\ico_gp.jpg"));
-		btnNewButton.setBounds(92, 193, 140, 139);
-		desktopPane.add(btnNewButton);
-		
-		JLabel lblPriseDeRendezvous = new JLabel("Geston du Personnel");
-		lblPriseDeRendezvous.setFont(new Font("Malgun Gothic", Font.BOLD, 14));
-		lblPriseDeRendezvous.setBounds(92, 342, 150, 20);
-		desktopPane.add(lblPriseDeRendezvous);
-		
+//		------------------------------------------------------------------------------Gestion du personnel
+//		GridBagLayout gridBagLayout = new GridBagLayout();
+//		gridBagLayout.columnWidths = new int[]{0, 0};
+//		gridBagLayout.rowHeights = new int[]{0, 0};
+//		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+//		gridBagLayout.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+//		frame.getContentPane().setLayout(gridBagLayout);
+//		
+//		JDesktopPane desktopPane = new JDesktopPane();
+//		desktopPane.setBackground(Color.WHITE);
+//		GridBagConstraints gbc_desktopPane = new GridBagConstraints();
+//		gbc_desktopPane.fill = GridBagConstraints.BOTH;
+//		gbc_desktopPane.gridx = 0;
+//		gbc_desktopPane.gridy = 0;
+//		frame.getContentPane().add(desktopPane, gbc_desktopPane);
+//		
+//		JLabel lblNewLabel = new JLabel("");
+//		lblNewLabel.setIcon(new ImageIcon("Y:\\RL_AG_LV\\logo.jpg"));
+//		lblNewLabel.setBounds(117, 11, 90, 96);
+//		desktopPane.add(lblNewLabel);
+//		
+//		JPanel panel = new JPanel();
+//		panel.setBackground(new Color(94, 141, 229));
+//		panel.setBounds(0, 122, 332, 39);
+//		desktopPane.add(panel);
+//		
+//		JLabel lblGestionRendezvous = new JLabel("Gestion du Personnel");
+//		panel.add(lblGestionRendezvous);
+//		lblGestionRendezvous.setBackground(Color.CYAN);
+//		lblGestionRendezvous.setForeground(Color.WHITE);
+//		lblGestionRendezvous.setFont(new Font("Malgun Gothic", Font.BOLD, 15));
+//		
+//		JPanel panel_1 = new JPanel();
+//		panel_1.setBackground(new Color(109, 159, 254));
+//		panel_1.setBounds(0, 0, 332, 123);
+//		desktopPane.add(panel_1);
+//		
+//		JPanel panel_2 = new JPanel();
+//		panel_2.setBackground(new Color(94, 141, 229));
+//		panel_2.setBounds(0, 400, 332, 63);
+//		desktopPane.add(panel_2);
+//		
+//		JButton btnNewButton_2 = new JButton("");
+//		panel_2.add(btnNewButton_2);
+//		btnNewButton_2.setMaximumSize(new Dimension(30, 30));
+//		btnNewButton_2.setBackground(new Color(240, 240, 240));
+//		btnNewButton_2.setIcon(new ImageIcon("Y:\\RL_AG_LV\\cancel.png"));
+//		
+//		JButton btnNewButton = new JButton("");
+//		btnNewButton.setIcon(new ImageIcon("Y:\\RL_AG_LV\\ico_gp.jpg"));
+//		btnNewButton.setBounds(92, 193, 140, 139);
+//		desktopPane.add(btnNewButton);
+//		
+//		JLabel lblPriseDeRendezvous = new JLabel("Geston du Personnel");
+//		lblPriseDeRendezvous.setFont(new Font("Malgun Gothic", Font.BOLD, 14));
+//		lblPriseDeRendezvous.setBounds(92, 342, 150, 20);
+//		desktopPane.add(lblPriseDeRendezvous);
+//		
 //		Accueil Agenda------------------------------------------------------------------------
 //		GridBagLayout gridBagLayout = new GridBagLayout();
 //		gridBagLayout.columnWidths = new int[]{0, 0};
