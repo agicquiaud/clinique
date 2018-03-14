@@ -10,9 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.clinique.bo.RendezVous;
+import fr.eni.clinique.dal.AgendaDAO;
 import fr.eni.clinique.dal.DALException;
 
-public class AgendaDAOJdbcImpl {
+public class AgendaDAOJdbcImpl implements AgendaDAO{
 	private static final String sqlSelectAll = "SELECT CodeVeto, DateRdv, CodeAnimal FROM Agendas";
 	private static final String sqlUpdate = "UPDATE Agendas SET CodeVeto=?, DateRdv=?, CodeAnimal=? WHERE CodeAnimal=?";
 	private static final String sqlInsert = "INSERT INTO Agendas (CodeVeto, DateRdv, CodeAnimal) VALUES (?, ?, ?)";

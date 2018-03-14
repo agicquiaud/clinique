@@ -85,4 +85,14 @@ public class ClientsUtilImpl implements ClientsUtil {
 		return clients;
 	}
 
+	@Override
+	public Clients getClientByNomPrenom(String Prenom, String Nom) {
+		try {
+			clients = con.selectByNomPrenom(Prenom, Nom);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		return clients;
+	}
+
 }

@@ -10,4 +10,5 @@ public interface ClientsUtil {
 	public void update (Clients client);
 	public void delete (Integer id);
 	public Clients getClientById(Integer id);
+	public Clients getClientByNomPrenom(String Prenom, String Nom);
 }
