@@ -963,7 +963,6 @@ public class WindowClients {
 		gbc_lblRaceEditAnimal.gridy = 5;
 		EditAnimal.getContentPane().add(lblRaceEditAnimal, gbc_lblRaceEditAnimal);
 
-		
 		JComboBox<String> comboBoxRaceEditAnimal = new JComboBox<String>();
 		GridBagConstraints gbc_comboBoxRaceEditAnimal = new GridBagConstraints();
 		gbc_comboBoxRaceEditAnimal.gridwidth = 2;
@@ -1074,12 +1073,12 @@ public class WindowClients {
 		btnDeleteClient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (table_1.getSelectedRow() == -1) {
-					lblError.setText("Aucun client selectionné pour le supprimer");
-				} else {
+				try {
 					lblError.setText("");
 					PopupDeleteClient.setBounds(100, 100, 420, 140);
 					PopupDeleteClient.setVisible(true);
+				} catch (Exception err) {
+					lblError.setText("Aucun client selectionné pour le supprimer");
 				}
 
 			}
@@ -1104,13 +1103,13 @@ public class WindowClients {
 		btnEditClient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (table_1.getSelectedRow() == -1) {
-					lblError.setText("Aucun client selectionné pour le modifier");
-				} else {
+				try {
 					lblError.setText("");
 					EditClient.setBounds(100, 100, 480, 330);
 					resetTextField(EditClient.getContentPane());
 					EditClient.setVisible(true);
+				} catch (Exception err) {
+					lblError.setText("Aucun client selectionné pour le modifier");
 				}
 			}
 		});
@@ -1149,32 +1148,34 @@ public class WindowClients {
 		btnAddAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				lblError.setText("");
-				AddAnimal.setBounds(100, 100, 500, 340);
 				try {
+					lblError.setText("");
+					AddAnimal.setBounds(100, 100, 500, 340);
 					lblNomPrenomClient.setText(table_1.getValueAt(table_1.getSelectedRow(), 1) + " "
 							+ (String) table_1.getValueAt(table_1.getSelectedRow(), 2));
+					resetTextField(AddAnimal.getContentPane());
+					AddAnimal.setVisible(true);
 				} catch (Exception err) {
-
+					lblError.setText("Aucun client selectionné pour luil ajouter un animal");
 				}
-				resetTextField(AddAnimal.getContentPane());
-				AddAnimal.setVisible(true);
 			}
 		});
 
 		btnEditAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (table_2.getSelectedRow() == -1) {
-					lblError.setText("Aucun animal selectionné pour le modifier");
-				} else {
+				try {
 					lblError.setText("");
-					lblNomClientEditAnimal.setText(table_1.getValueAt(table_1.getSelectedRow(), 1) + " "
-							+ (String) table_1.getValueAt(table_1.getSelectedRow(), 2));
+					// lblNomClientEditAnimal.setText(table_1.getValueAt(table_1.getSelectedRow(),
+					// 1) + " "
+					// + (String) table_1.getValueAt(table_1.getSelectedRow(),
+					// 2));
 					lblNCodeEditAnimal.setText(table_2.getValueAt(table_2.getSelectedRow(), 0).toString());
 					EditAnimal.setBounds(100, 100, 500, 400);
 					resetTextField(EditAnimal.getContentPane());
 					EditAnimal.setVisible(true);
+				} catch (Exception err) {
+					lblError.setText("Aucun animal selectionné pour le modifier");
 				}
 			}
 		});
@@ -1182,12 +1183,12 @@ public class WindowClients {
 		btnDeleteAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (table_2.getSelectedRow() == -1) {
-					lblError.setText("Aucun animal selectionné pour le modifier");
-				} else {
+				try {
 					lblError.setText("");
 					PopupDeleteAnimal.setBounds(100, 100, 420, 140);
 					PopupDeleteAnimal.setVisible(true);
+				} catch (Exception err) {
+					lblError.setText("Aucun animal selectionné pour le modifier");
 				}
 			}
 		});
@@ -1236,21 +1237,20 @@ public class WindowClients {
 																		// OUI
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (table_1.getSelectedRow() == -1) {
-					controlleranimal.removeAnimal(table_2.getValueAt(table_2.getSelectedRow(), 0).toString());
-					setUpTableData2(controlleranimal.getList(), entetes2);
-					PopupDeleteAnimal.setVisible(false);
-				} else {
+				try {
 					controlleranimal.removeAnimal(table_2.getValueAt(table_2.getSelectedRow(), 0).toString());
 					setUpTableData2(controlleranimal
 							.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()), entetes2);
+					PopupDeleteAnimal.setVisible(false);	
+				} catch (Exception err) {
+					controlleranimal.removeAnimal(table_2.getValueAt(table_2.getSelectedRow(), 0).toString());
+					setUpTableData2(controlleranimal.getList(), entetes2);
 					PopupDeleteAnimal.setVisible(false);
 				}
 			}
 		});
 
-		btnPopupCancelDeleteAnimal.addActionListener(new ActionListener() { // Bouton
-																			// NON
+		btnPopupCancelDeleteAnimal.addActionListener(new ActionListener() { // Bouton NON
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				PopupDeleteAnimal.dispose();
