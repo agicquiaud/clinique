@@ -784,13 +784,13 @@ public class WindowClients {
 		GridBagConstraints gbc_btnPopupCancelDelete1 = new GridBagConstraints();
 		gbl_PopupDeleteAnimal.columnWidths = new int[] { 44, 201, 39, 0 };
 		gbl_PopupDeleteAnimal.rowHeights = new int[] { 0, 0, 0, 0, 0, 0 };
-		gbl_PopupDeleteAnimal.columnWeights = new double[] { 0.0, 1.0, 0.0,Double.MIN_VALUE };
+		gbl_PopupDeleteAnimal.columnWeights = new double[] { 0.0, 1.0, 0.0, Double.MIN_VALUE };
 		gbl_PopupDeleteAnimal.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
 		PopupDeleteAnimal.getContentPane().setLayout(gbl_PopupDeleteAnimal);
 		gbc_btnPopupCancelDelete1.insets = new Insets(0, 0, 0, 5);
 		gbc_btnPopupCancelDelete1.gridx = 5;
 		gbc_btnPopupCancelDelete1.gridy = 6;
-				
+
 		JLabel lblSupprAnimal = new JLabel("Etes-vous sur de vouloir supprimer cette animal ?");
 		lblSupprAnimal.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
 		GridBagConstraints gbc_lblSupprAnimal = new GridBagConstraints();
@@ -798,7 +798,7 @@ public class WindowClients {
 		gbc_lblSupprAnimal.gridx = 1;
 		gbc_lblSupprAnimal.gridy = 1;
 		PopupDeleteAnimal.getContentPane().add(lblSupprAnimal, gbc_lblSupprAnimal);
-				
+
 		JDesktopPane desktopPane1 = new JDesktopPane();
 		desktopPane1.setBackground(SystemColor.control);
 		GridBagConstraints gbc_desktopPane1 = new GridBagConstraints();
@@ -808,11 +808,11 @@ public class WindowClients {
 		gbc_desktopPane1.gridx = 1;
 		gbc_desktopPane1.gridy = 2;
 		PopupDeleteAnimal.getContentPane().add(desktopPane1, gbc_desktopPane1);
-				
+
 		JButton btnPopupDeleteAnimal = new JButton("Oui");
 		btnPopupDeleteAnimal.setBounds(80, 28, 60, 22);
 		desktopPane1.add(btnPopupDeleteAnimal);
-				
+
 		JButton btnPopupCancelDeleteAnimal = new JButton("Non");
 		btnPopupCancelDeleteAnimal.setBounds(155, 28, 60, 22);
 		desktopPane1.add(btnPopupCancelDeleteAnimal);
@@ -1201,10 +1201,10 @@ public class WindowClients {
 		btnConfirmAddAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controlleranimal.addAnimal(textFieldNomAnimal.getText(),
-						comboBoxGenre.getSelectedItem().toString(), textFieldCouleurAnimal.getText(),
-						race.getSelectedItem().toString(), espece.getSelectedItem().toString(),
-						table_1.getValueAt(table_1.getSelectedRow(), 0).toString(), textFieldTatouageAnimal.getText());
+				controlleranimal.addAnimal(textFieldNomAnimal.getText(), comboBoxGenre.getSelectedItem().toString(),
+						textFieldCouleurAnimal.getText(), race.getSelectedItem().toString(),
+						espece.getSelectedItem().toString(), table_1.getValueAt(table_1.getSelectedRow(), 0).toString(),
+						textFieldTatouageAnimal.getText());
 				setUpTableData2(
 						controlleranimal.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()),
 						entetes2);
@@ -1231,16 +1231,25 @@ public class WindowClients {
 			}
 		});
 
-		btnPopupDeleteAnimal.addActionListener(new ActionListener() { //Bouton OUI
+		btnPopupDeleteAnimal.addActionListener(new ActionListener() { // Bouton
+																		// OUI
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controlleranimal.removeAnimal(table_2.getValueAt(table_2.getSelectedRow(), 0).toString());
-				setUpTableData2(controlleranimal.getListByClient(table_1.getValueAt(table_1.getSelectedRow(),0).toString()), entetes2);
-				PopupDeleteAnimal.setVisible(false);
+				if (table_1.getSelectedRow() == -1) {
+					controlleranimal.removeAnimal(table_2.getValueAt(table_2.getSelectedRow(), 0).toString());
+					setUpTableData2(controlleranimal.getList(), entetes2);
+					PopupDeleteAnimal.setVisible(false);
+				} else {
+					controlleranimal.removeAnimal(table_2.getValueAt(table_2.getSelectedRow(), 0).toString());
+					setUpTableData2(controlleranimal
+							.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()), entetes2);
+					PopupDeleteAnimal.setVisible(false);
+				}
 			}
 		});
 
-		btnPopupCancelDeleteAnimal.addActionListener(new ActionListener() { //Bouton NON
+		btnPopupCancelDeleteAnimal.addActionListener(new ActionListener() { // Bouton
+																			// NON
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				PopupDeleteAnimal.dispose();
@@ -1260,7 +1269,7 @@ public class WindowClients {
 	}
 
 	private void setUpTableData2(Object[][] data, String[] entetes) {
-		tableModel = new DefaultTableModel(data, entetes) { //nouveau model
+		tableModel = new DefaultTableModel(data, entetes) { // nouveau model
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;

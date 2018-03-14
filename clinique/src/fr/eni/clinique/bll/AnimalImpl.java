@@ -98,7 +98,7 @@ class AnimalImpl implements Animal {
 				listereturn.add(animal);
 			}
 		}
-		return liste;
+		return listereturn;
 	}
 
 	@Override
