@@ -15,10 +15,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class WindowAccueilAgenda {
+public class WindowAccueilVeterinaire {
 	private JFrame frame;
 	
-	public WindowAccueilAgenda() {
+	public WindowAccueilVeterinaire() {
 		frame = new JFrame();
 		
 		frame.setTitle("Accueil Agenda");

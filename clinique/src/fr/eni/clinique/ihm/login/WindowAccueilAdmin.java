@@ -15,11 +15,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class WindowAccueilGestionPersonnel {
+public class WindowAccueilAdmin {
 	JFrame frame;
 	
 	
-	public WindowAccueilGestionPersonnel(){
+	public WindowAccueilAdmin(){
 	frame = new JFrame();
 	frame.setTitle("Accueil Gestion Personnel");
 	frame.setBounds(100, 100, 348, 500);
