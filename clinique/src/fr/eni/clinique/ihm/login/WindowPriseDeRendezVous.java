@@ -1,5 +1,6 @@
 package fr.eni.clinique.ihm.login;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.text.ParseException;
@@ -16,6 +17,7 @@ import javax.swing.JFormattedTextField.AbstractFormatter;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.SpinnerNumberModel;
@@ -28,6 +30,12 @@ import org.jdatepicker.impl.UtilDateModel;
 import fr.eni.clinique.bo.Clients;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class WindowPriseDeRendezVous extends JFrame{
 
@@ -48,7 +56,7 @@ public class WindowPriseDeRendezVous extends JFrame{
 	private UtilDateModel model = new UtilDateModel();
 	private JDatePanelImpl datePanel = new JDatePanelImpl(model, propierties);
 	private JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
-	
+	private ImageIcon icon = new ImageIcon("\\\\3-UC31-14\\Partage_Stagiaires\\RL_AG_LV\\plus.png");
 	private JComboBox<String> CBClient = new JComboBox<String>();
 	private JComboBox<String> CBAnimal = new JComboBox<String>();
 	private JComboBox<String> CBVet = new JComboBox<String>();
@@ -78,16 +86,31 @@ public class WindowPriseDeRendezVous extends JFrame{
 				contentPaneNorthWestClient.setLayout(new GridLayout(1, 2));
 				CBClient.setBorder(new EmptyBorder(0, 2, 0, 2));
 				contentPaneNorthWestClient.add(CBClient);
-				JButton button_1 = new JButton();
-				button_1.setBorder(new EmptyBorder(0, 2, 0, 2));
-				contentPaneNorthWestClient.add(button_1);
+				JLabel label1 = new JLabel(icon);
+				label1.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+						new WindowAddClient();
+					}
+				});
+				label1.setBorder(new EmptyBorder(0, 2, 0, 2));
+				label1.setSize(26, 26);
+				contentPaneNorthWestClient.add(label1);
+				contentPaneNorthWestClient.repaint();
 				contentPaneNorthWest.add(contentPaneNorthWestClient);
 				contentPaneNorthWest.add(new JLabel("Animal :"));
 				contentPaneNorthWestAnimal.setLayout(new GridLayout(1, 2));
 				contentPaneNorthWestAnimal.add(CBAnimal);
-				JButton button_2 = new JButton();
-				button_2.setBorder(new EmptyBorder(0, 2, 0, 2));
-				contentPaneNorthWestAnimal.add(button_2);
+				JLabel label2 = new JLabel(icon);
+				label2.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent arg0) {
+						new WindowAddAnimal();
+					}
+				});
+				label2.setBorder(new EmptyBorder(0, 2, 0, 2));
+				label2.setSize(26, 26);
+				contentPaneNorthWestAnimal.add(label2);
 				contentPaneNorthWest.add(contentPaneNorthWestAnimal);
 				contentPaneNorthCenter.setBorder(new EmptyBorder(0, 3, 0, 3));
 				contentPaneNorthCenter.setLayout(new GridLayout(10, 1));
@@ -124,9 +147,15 @@ public class WindowPriseDeRendezVous extends JFrame{
 				contentPaneNorth.add(contentPaneNorthEst);
 				
 				String[] entete = {"Heure", "Nom du client", "Animal" ,"Race"};
-				Object[][] donnee = {{"bonjour", "en revoir", "3", "4"}};
+				Object[][] donnee = {{"10:45", "Bosapin", "Rex", "Labrador"}};
+				
 				JTable table = new JTable(donnee, entete);
-				contentPaneCenter.add(table);
+				JScrollPane scrollPane = new JScrollPane(table);
+				scrollPane.setColumnHeaderView(table.getTableHeader());
+				contentPaneCenter.setLayout(new BorderLayout());
+				table.setAutoCreateRowSorter(true);
+				contentPaneCenter.add(scrollPane);
+
 				
 				contentPaneSouth.setLayout(new BoxLayout(contentPaneSouth, BoxLayout.LINE_AXIS));
 				

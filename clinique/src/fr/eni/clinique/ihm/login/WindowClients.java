@@ -630,6 +630,7 @@ public class WindowClients {
 		JButton btnCancelAddAnimal = new JButton();
 		btnCancelAddAnimal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				AddAnimal.setVisible(false);
 			}
 		});
 		btnCancelAddAnimal.setForeground(new Color(255, 255, 255));
