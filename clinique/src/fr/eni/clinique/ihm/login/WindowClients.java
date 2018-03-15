@@ -901,7 +901,7 @@ public class WindowClients {
 		gbc_lblNomAnimalEditAnimal.gridy = 3;
 		EditAnimal.getContentPane().add(lblNomAnimalEditAnimal, gbc_lblNomAnimalEditAnimal);
 
-		textFieldNomAnimalEditAnimal = new JTextField("allezr lze");
+		textFieldNomAnimalEditAnimal = new JTextField();
 		GridBagConstraints gbc_textFieldNomAnimalEditAnimal = new GridBagConstraints();
 		gbc_textFieldNomAnimalEditAnimal.gridwidth = 3;
 		gbc_textFieldNomAnimalEditAnimal.insets = new Insets(0, 0, 5, 5);

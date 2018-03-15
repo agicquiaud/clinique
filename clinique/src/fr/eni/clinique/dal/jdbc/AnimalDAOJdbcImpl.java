@@ -17,7 +17,7 @@ public class AnimalDAOJdbcImpl implements AnimalDAO {
 	private static final String sqlSelectAll = "SELECT CodeAnimal, NomAnimal, Sexe, "
 			+ "Couleur, Race, Espece, CodeClient, Tatouage, Antecedents, Archive FROM Animaux";
 	private static final String sqlUpdate = "UPDATE Animaux SET NomAnimal=?, Sexe=?, "
-			+ "Couleur=?, Race=?, Espece=?, Tatouage=?, Antecedents=?, Archive=? WHERE CodeAnimal=?";
+			+ "Couleur=?, Tatouage=?, Antecedents=?, Archive=? WHERE CodeAnimal=?";
 	private static final String sqlInsert = "INSERT INTO Animaux (NomAnimal, Sexe, "
 			+ "Couleur, Race, Espece, CodeClient, Tatouage, Antecedents, Archive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String sqlDelete = "DELETE FROM Animaux WHERE CodeAnimal=?";
@@ -75,12 +75,10 @@ public class AnimalDAOJdbcImpl implements AnimalDAO {
 			rqt.setString(1, data.getNom());
 			rqt.setString(2, data.getSexe());
 			rqt.setString(3, data.getCouleur());
-			rqt.setString(4, data.getRace());
-			rqt.setString(5, data.getEspece());
-			rqt.setString(6, data.getTatouage());
-			rqt.setString(7, data.getAntecedents());
-			rqt.setBoolean(8, data.getArchive());
-			rqt.setInt(9, data.getCodeAnimal());
+			rqt.setString(4, data.getTatouage());
+			rqt.setString(5, data.getAntecedents());
+			rqt.setBoolean(6, data.getArchive());
+			rqt.setInt(7, data.getCodeAnimal());
 
 			rqt.executeUpdate();
 
