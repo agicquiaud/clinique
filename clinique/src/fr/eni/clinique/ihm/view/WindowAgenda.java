@@ -99,7 +99,7 @@ public class WindowAgenda {
 		btnDossierMedical.setFont(new Font("Malgun Gothic", Font.BOLD, 15));
 		btnDossierMedical.setOpaque(false);
 		btnDossierMedical.setFocusPainted(true);
-		btnDossierMedical.setBackground(new Color(66, 208, 231));
+		btnDossierMedical.setBackground(new Color(66, 210, 230));
 		btnDossierMedical.setBorderPainted(false);
 		GridBagConstraints gbc_btnDossierMedical = new GridBagConstraints();
 		gbc_btnDossierMedical.insets = new Insets(0, 0, 5, 5);
