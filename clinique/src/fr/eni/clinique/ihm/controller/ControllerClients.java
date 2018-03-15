@@ -71,6 +71,11 @@ public class ControllerClients {
 		}
 		return tab;
 	}
+	
+	public Clients getClientbyId(String id){
+		clients = bllclients.getClientById(Integer.parseInt(id));
+		return clients;
+	}
 
 	public void removeClient(String codeclient) {
 		clients = bllclients.getClientById(Integer.parseInt(codeclient));
