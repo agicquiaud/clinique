@@ -105,11 +105,11 @@ public class WindowAgenda {
 		scrollPane.setViewportView(table);
 		
 		JButton btnDossierMedical = new JButton(foldericon);
-		btnDossierMedical.setBounds(62, 344, 180, 29);
+		btnDossierMedical.setBounds(62, 344, 90, 29);
 		btnDossierMedical.setForeground(null);
 		btnDossierMedical.setFont(new Font("Malgun Gothic", Font.BOLD, 15));
 		btnDossierMedical.setOpaque(false);
-		btnDossierMedical.setFocusPainted(true);
+		btnDossierMedical.setFocusPainted(false);
 		btnDossierMedical.setBackground(new Color(66, 210, 230));
 		btnDossierMedical.setBorderPainted(false);
 		GridBagConstraints gbc_btnDossierMedical = new GridBagConstraints();

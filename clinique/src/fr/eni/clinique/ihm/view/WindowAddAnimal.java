@@ -33,14 +33,10 @@ public class WindowAddAnimal {
 	private JTextField textFieldTatouageAnimal;
 	private JTextField textFieldAntecedentsAnimal;
 	private ComboBoxModel<String> comboboxModel;
-	
-	public WindowAddAnimal(){
-		new WindowAddAnimal();
-	}
 
 	public WindowAddAnimal(String nom){
 		
-		AddAnimal.setDefaultCloseOperation(0);
+		AddAnimal.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		AddAnimal.setSize(600, 485);
 		AddAnimal.setVisible(true);
 		
