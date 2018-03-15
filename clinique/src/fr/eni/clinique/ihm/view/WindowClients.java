@@ -1113,7 +1113,19 @@ public class WindowClients {
 				try {
 					lblError.setText("");
 					EditClient.setBounds(100, 100, 480, 330);
-					resetTextField(EditClient.getContentPane());
+					
+					textFieldCodeClientEdit.setText(t);
+					textFieldAssuranceClientEdit.setText(t);
+					textFieldNomClientEdit.setText(t);
+					textFieldEmailClientEdit.setText(t);
+					textFieldPrenomClientEdit.setText(t);
+					textFieldRemarqueClientEdit.setText(t);
+					textFieldAdresse1ClientEdit.setText(t);
+					textFieldAdresse2ClientEdit.setText(t);
+					textFieldVilleClientEdit.setText(t);
+					textFieldCodePostalClientEdit.setText(t);
+					textFieldNumTelClientEdit.setText(t);
+					
 					EditClient.setVisible(true);
 				} catch (Exception err) {
 					lblError.setText("Aucun client selectionné pour le modifier");
