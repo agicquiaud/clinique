@@ -8,6 +8,8 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -17,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+import javax.swing.event.ListSelectionEvent;
 
 import fr.eni.clinique.ihm.controller.ControllerAnimaux;
 
@@ -29,14 +32,16 @@ public class WindowAddAnimal {
 	private JTextField textFieldCouleurAnimal;
 	private JTextField textFieldTatouageAnimal;
 	private JTextField textFieldAntecedentsAnimal;
-	private String nom = null;
+	private ComboBoxModel<String> comboboxModel;
 	
-	public WindowAddAnimal(String nom){
-		this.nom = nom;
+	public WindowAddAnimal(){
 		new WindowAddAnimal();
 	}
 
-	public WindowAddAnimal(){
+	public WindowAddAnimal(String nom){
+		
+		AddAnimal.setSize(600, 485);
+		AddAnimal.setVisible(true);
 		
 		GridBagLayout gbl_AddAnimal = new GridBagLayout();
 		gbl_AddAnimal.columnWidths = new int[] { 115, 210, 0, 124, 0 };
@@ -91,7 +96,7 @@ public class WindowAddAnimal {
 		lblClient.setBounds(22, 11, 46, 14);
 		desktopPane_1.add(lblClient);
 
-		JLabel lblNomPrenomClient = new JLabel("");
+		JLabel lblNomPrenomClient = new JLabel(nom);
 		lblNomPrenomClient.setFont(new Font("Malgun Gothic", Font.PLAIN, 12));
 		lblNomPrenomClient.setBounds(43, 36, 265, 14);
 		desktopPane_1.add(lblNomPrenomClient);
@@ -113,7 +118,8 @@ public class WindowAddAnimal {
 		AddAnimal.getContentPane().add(textFieldNomAnimal, gbc_textFieldNomAnimal);
 		textFieldNomAnimal.setColumns(10);
 
-		JComboBox<String> comboBoxGenre = new JComboBox<String>();
+		String[] tabGenre = {"Masculin", "Féminin"};
+		JComboBox<String> comboBoxGenre = new JComboBox<String>(tabGenre);
 		GridBagConstraints gbc_comboBoxGenre = new GridBagConstraints();
 		gbc_comboBoxGenre.fill = GridBagConstraints.HORIZONTAL;
 		comboBoxGenre.setBackground(new Color(255, 255, 255));
@@ -146,8 +152,8 @@ public class WindowAddAnimal {
 		gbc_lblEspeceAnimal.gridx = 0;
 		gbc_lblEspeceAnimal.gridy = 4;
 		AddAnimal.getContentPane().add(lblEspeceAnimal, gbc_lblEspeceAnimal);
-
-		JComboBox<String> espece = new JComboBox<String>();
+		
+		JComboBox<String> espece = new JComboBox<String>(controlleranimal.getEspece());
 		GridBagConstraints gbc_espece = new GridBagConstraints();
 		espece.setBackground(new Color(255, 255, 255));
 		gbc_espece.insets = new Insets(0, 0, 5, 5);
@@ -165,7 +171,8 @@ public class WindowAddAnimal {
 		gbc_lblRaceAnimal.gridy = 4;
 		AddAnimal.getContentPane().add(lblRaceAnimal, gbc_lblRaceAnimal);
 
-		JComboBox<String> race = new JComboBox<String>();
+		
+		JComboBox<String> race = new JComboBox<String>(controlleranimal.getRace(espece.getSelectedItem().toString()));
 		GridBagConstraints gbc_race = new GridBagConstraints();
 		gbc_race.fill = GridBagConstraints.HORIZONTAL;
 		race.setBackground(new Color(255, 255, 255));
@@ -208,6 +215,8 @@ public class WindowAddAnimal {
 		gbc_textFieldAntecedentsAnimal.gridy = 6;
 		AddAnimal.getContentPane().add(textFieldAntecedentsAnimal, gbc_textFieldAntecedentsAnimal);
 		
+		
+		
 		btnConfirmAddAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -215,6 +224,15 @@ public class WindowAddAnimal {
 						, textFieldCouleurAnimal.getText(), race.getSelectedItem().toString(), espece.getSelectedItem().toString()
 						, nom, textFieldTatouageAnimal.getText());
 				AddAnimal.setVisible(false);
+			}
+		});
+		
+		espece.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				comboboxModel = new DefaultComboBoxModel<String>(
+						controlleranimal.getRace(espece.getSelectedItem().toString()));
+				race.setModel(comboboxModel);
 			}
 		});
 	}
