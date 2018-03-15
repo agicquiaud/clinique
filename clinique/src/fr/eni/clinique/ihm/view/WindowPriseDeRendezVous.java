@@ -1,9 +1,15 @@
 package fr.eni.clinique.ihm.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.List;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Properties;
@@ -55,17 +61,16 @@ public class WindowPriseDeRendezVous extends JFrame {
 	private ControllerClients controllerClients = new ControllerClients();
 	private ControllerAnimaux controlleranimal = new ControllerAnimaux();
 	private List liste = new List();
+	private final JButton btnAddClient = new JButton(icon);
+	private final JButton btnAddAnimal = new JButton(icon);
 
 	/**
 	 * Create the frame.
 	 */
 	public WindowPriseDeRendezVous() {
 		this.setTitle("Prise de rendez-vous");
-
 		this.setSize(1000, 800);
-
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 		this.setLocationRelativeTo(null);
 
 		properties.put("text.today", "Today");
@@ -79,52 +84,51 @@ public class WindowPriseDeRendezVous extends JFrame {
 		contentPaneNorthWest.add(new JLabel("Client :"));
 		contentPaneNorthWestClient.setLayout(new GridLayout(1, 2));
 		Integer i = 1;
-		Clients[] client  = new Clients[controllerClients.listeClient().length];
+		Clients[] client = new Clients[controllerClients.listeClient().length];
 		client = controllerClients.listeClient();
-		String[] tabNomClient = new String[controllerClients.listeClient().length +1];
+		String[] tabNomClient = new String[controllerClients.listeClient().length + 1];
 		tabNomClient[0] = "";
 		for (Clients cli : client) {
 			tabNomClient[i] = cli.getNom() + " " + cli.getPrenom();
 			i++;
 		}
-		
-		//tabClient = controllerClients.getNomPrenomList();
+		// tabClient = controllerClients.getNomPrenomList();
 
 		JComboBox<String> CBClient = new JComboBox<String>(tabNomClient);
 		CBClient.setBorder(new EmptyBorder(0, 2, 0, 2));
 		contentPaneNorthWestClient.add(CBClient);
-		JLabel label1 = new JLabel(icon);
-		label1.addMouseListener(new MouseAdapter() {
+		contentPaneNorthWestClient.repaint();
+		contentPaneNorthWest.add(contentPaneNorthWestClient);
+		contentPaneNorthWestClient.add(btnAddClient);
+		contentPaneNorthWest.add(new JLabel("Animal :"));
+		contentPaneNorthWestAnimal.setLayout(new GridLayout(1, 2));
+
+		btnAddClient.setOpaque(false);
+		btnAddClient.setBackground(new Color(66, 210, 230));
+		btnAddClient.setBorderPainted(false);
+		btnAddClient.addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				new WindowAddClient();
 			}
 		});
-		label1.setBorder(new EmptyBorder(0, 2, 0, 2));
-		label1.setSize(26, 26);
-		contentPaneNorthWestClient.add(label1);
-		contentPaneNorthWestClient.repaint();
-		contentPaneNorthWest.add(contentPaneNorthWestClient);
-		contentPaneNorthWest.add(new JLabel("Animal :"));
-		contentPaneNorthWestAnimal.setLayout(new GridLayout(1, 2));
-		
-		//CBAnimal = controlleranimal.getListByClient("gicquiaud");
-		contentPaneNorthWestAnimal.add(CBAnimal);
-		JLabel label2 = new JLabel(icon);
-		label2.addMouseListener(new MouseAdapter() {
+
+		btnAddAnimal.setOpaque(false);
+		btnAddAnimal.setBackground(new Color(66, 210, 230));
+		btnAddAnimal.setBorderPainted(false);
+		btnAddAnimal.addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				if (CBClient.getItemCount() == 1){
-					new WindowAddAnimal();
-				}else {
-					new JDialog();
+			public void actionPerformed(ActionEvent e) {
+				if (!CBClient.getSelectedItem().toString().equals("")) {
+					new WindowAddAnimal(CBClient.getSelectedItem().toString());
 				}
 			}
 		});
-		label2.setBorder(new EmptyBorder(0, 2, 0, 2));
-		label2.setSize(26, 26);
-		contentPaneNorthWestAnimal.add(label2);
+
+		// CBAnimal = controlleranimal.getListByClient("gicquiaud");
+		contentPaneNorthWestAnimal.add(CBAnimal);
 		contentPaneNorthWest.add(contentPaneNorthWestAnimal);
+		contentPaneNorthWestAnimal.add(btnAddAnimal);
 		contentPaneNorthCenter.setBorder(new EmptyBorder(0, 3, 0, 3));
 		contentPaneNorthCenter.setLayout(new GridLayout(10, 1));
 		contentPaneNorthCenter.add(new JLabel("Par"));
