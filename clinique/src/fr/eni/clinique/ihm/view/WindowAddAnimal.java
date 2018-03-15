@@ -27,7 +27,6 @@ public class WindowAddAnimal {
 	
 	private JDialog AddAnimal = new JDialog();
 	private ControllerAnimaux controlleranimal = new ControllerAnimaux();
-	private JTextField textFieldCodeAnimal;
 	private JTextField textFieldNomAnimal;
 	private JTextField textFieldCouleurAnimal;
 	private JTextField textFieldTatouageAnimal;
@@ -36,7 +35,6 @@ public class WindowAddAnimal {
 
 	public WindowAddAnimal(String nom){
 		
-		AddAnimal.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		AddAnimal.setSize(600, 485);
 		AddAnimal.setVisible(true);
 		
@@ -66,11 +64,6 @@ public class WindowAddAnimal {
 		desktopPane.add(btnConfirmAddAnimal);
 
 		JButton btnCancelAddAnimal = new JButton();
-		btnCancelAddAnimal.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				AddAnimal.setVisible(false);
-			}
-		});
 		btnCancelAddAnimal.setForeground(new Color(255, 255, 255));
 		btnCancelAddAnimal.setBackground(new Color(255, 255, 255));
 		btnCancelAddAnimal.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/cancel.png"));
@@ -212,15 +205,13 @@ public class WindowAddAnimal {
 		gbc_textFieldAntecedentsAnimal.gridy = 6;
 		AddAnimal.getContentPane().add(textFieldAntecedentsAnimal, gbc_textFieldAntecedentsAnimal);
 		
-		
-		
 		btnConfirmAddAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				controlleranimal.addAnimalByNomClient(textFieldNomAnimal.getText(), comboBoxGenre.getSelectedItem().toString()
 						, textFieldCouleurAnimal.getText(), race.getSelectedItem().toString(), espece.getSelectedItem().toString()
 						, nom, textFieldTatouageAnimal.getText());
-				AddAnimal.setVisible(false);
+				AddAnimal.dispose();
 			}
 		});
 		
@@ -230,6 +221,12 @@ public class WindowAddAnimal {
 				comboboxModel = new DefaultComboBoxModel<String>(
 						controlleranimal.getRace(espece.getSelectedItem().toString()));
 				race.setModel(comboboxModel);
+			}
+		});
+		
+		btnCancelAddAnimal.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AddAnimal.dispose();
 			}
 		});
 	}
