@@ -8,7 +8,8 @@ public class AppliTestIHM {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				new WindowClients();
+				
+				WindowAddAnimal anim = new WindowAddAnimal();
 			}
 		});
 	}

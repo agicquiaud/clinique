@@ -38,6 +38,8 @@ public class WindowAddAnimal {
 
 	public WindowAddAnimal(){
 		
+		AddAnimal.setVisible(true);
+		
 		GridBagLayout gbl_AddAnimal = new GridBagLayout();
 		gbl_AddAnimal.columnWidths = new int[] { 115, 210, 0, 124, 0 };
 		gbl_AddAnimal.rowHeights = new int[] { 71, 68, 35, 35, 35, 0, 0, 0 };
@@ -207,6 +209,8 @@ public class WindowAddAnimal {
 		gbc_textFieldAntecedentsAnimal.gridx = 1;
 		gbc_textFieldAntecedentsAnimal.gridy = 6;
 		AddAnimal.getContentPane().add(textFieldAntecedentsAnimal, gbc_textFieldAntecedentsAnimal);
+		
+		
 		
 		btnConfirmAddAnimal.addActionListener(new ActionListener() {
 			@Override
