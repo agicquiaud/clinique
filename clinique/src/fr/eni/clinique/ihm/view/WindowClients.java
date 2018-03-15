@@ -1238,9 +1238,7 @@ public class WindowClients {
 		
 		//bouton checked Edit Animal Jdialogue Edit
 		btnValiderEditAnimal.addActionListener(new ActionListener() {
-			
-			
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				controlleranimal.updateClient(table_2.getValueAt(table_2.getSelectedRow(), 0).toString(),
@@ -1252,7 +1250,7 @@ public class WindowClients {
 						lblNCodeEditAnimal.getText(),
 						textFieldTatouageEditAnimal.getText(),
 						textFieldAntecedentsEditAnimal.getText());
-				
+				setUpTableData2(controlleranimal.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()), entetes2);
 				EditAnimal.setVisible(false);
 			}
 		});
