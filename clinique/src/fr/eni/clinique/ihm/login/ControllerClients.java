@@ -22,6 +22,18 @@ public class ControllerClients {
 		clients = new Clients(Nom, Prenom, Adresse1, Adresse2, CodePostal, Ville, NumTel, Email, false);
 		bllclients.insert(clients);
 	}
+	/**
+	 * fonction qui récupère une liste de clients
+	 * @return un tableau a une dimension de client
+	 */
+	public Clients[] listeClient(){
+		liste = bllclients.getAll();
+		Clients[] tab = new Clients[liste.size()];
+		for (Clients clients : liste) {
+			tab[liste.indexOf(clients)] = clients;
+		}
+		return tab;
+	}
 
 	public Object[][] getList() {
 		liste = bllclients.getAll();
