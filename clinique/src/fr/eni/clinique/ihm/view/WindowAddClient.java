@@ -29,11 +29,9 @@ public class WindowAddClient{
 	
 	public WindowAddClient(){
 		
-		
-		
 		controller = new ControllerClients();
 		frame.setTitle("Ajouter un client");
-		frame.setBounds(100, 100, 730, 470);
+		frame.setBounds(100, 100, 740, 300);
 		frame.setVisible(true);
 		
 		
@@ -196,7 +194,14 @@ public class WindowAddClient{
 						textFieldAdresse1Client.getText(), textFieldAdresse2Client.getText(),
 						textFieldCodePostalClient.getText(), textFieldVilleClient.getText(),
 						textFieldNumTelClient.getText(), textFieldEmailClient.getText());
-				frame.setVisible(false);
+				frame.dispose();
+			}
+		});
+		
+		btnAnnulerModalCancelClient.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
 			}
 		});
 	}

@@ -3,12 +3,9 @@ package fr.eni.clinique.ihm.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-
 import java.awt.GridLayout;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import java.util.Properties;
 
 import javax.swing.BoxLayout;
@@ -32,8 +29,9 @@ import org.jdatepicker.impl.UtilDateModel;
 import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.ihm.controller.ControllerClients;
 
-public class WindowPriseDeRendezVous extends JFrame {
+public class WindowPriseDeRendezVous2 {
 
+	private JFrame frame = new JFrame();
 	private JPanel contentPaneNorth = new JPanel();
 	private JPanel contentPaneNorthWest = new JPanel();
 	private JPanel contentPaneNorthWestClient = new JPanel();
@@ -60,11 +58,12 @@ public class WindowPriseDeRendezVous extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public WindowPriseDeRendezVous() {
-		this.setTitle("Prise de rendez-vous");
-		this.setSize(1000, 800);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null);
+	public WindowPriseDeRendezVous2() {
+
+		frame.setTitle("Prise de rendez-vous");
+		frame.setSize(1000, 800);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
 
 		properties.put("text.today", "Today");
 		properties.put("text.month", "Month");
@@ -87,7 +86,7 @@ public class WindowPriseDeRendezVous extends JFrame {
 		}
 		// tabClient = controllerClients.getNomPrenomList();
 
-		JComboBox<String> CBClient = new JComboBox<String>(tabNomClient);
+		JComboBox<String> CBClient = new JComboBox<String>();
 		CBClient.setBorder(new EmptyBorder(0, 2, 0, 2));
 		contentPaneNorthWestClient.add(CBClient);
 		contentPaneNorthWestClient.repaint();
@@ -182,13 +181,11 @@ public class WindowPriseDeRendezVous extends JFrame {
 		contentPaneSouth.add(contentPaneSouthWest);
 		contentPaneSouth.add(contentPaneSouthCenter);
 		contentPaneSouth.add(contentPaneSouthEst);
-		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-		this.getContentPane().add(contentPaneNorth);
-		this.getContentPane().add(contentPaneCenter);
-		this.getContentPane().add(contentPaneSouth);
+		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+		frame.getContentPane().add(contentPaneNorth);
+		frame.getContentPane().add(contentPaneCenter);
+		frame.getContentPane().add(contentPaneSouth);
 
-		this.setVisible(true);
-
+		frame.setVisible(true);
 	}
-
 }
