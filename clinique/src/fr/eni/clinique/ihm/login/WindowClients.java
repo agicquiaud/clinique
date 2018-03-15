@@ -1217,7 +1217,8 @@ public class WindowClients {
 				AddAnimal.setVisible(false);
 			}
 		});
-
+		
+		//bouton checked Add Animal Fenêtre Principale
 		btnConfirmAddAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -1231,15 +1232,24 @@ public class WindowClients {
 				AddAnimal.setVisible(false);
 			}
 		});
-
+		
+		//bouton checked Edit Animal Jdialogue Edit
 		btnValiderEditAnimal.addActionListener(new ActionListener() {
+			
+			
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				controlleranimal.updateClient(table_2.getValueAt(table_2.getSelectedRow(), 0).toString(),
-						textFieldNomAnimalEditAnimal.getText(), comboboxgenreEditAnimal.getSelectedItem().toString(),
-						textFieldCouleurEditAnimal.getText(), comboBoxEspeceEditAnimal.getSelectedItem().toString(),
-						comboBoxRaceEditAnimal.getSelectedItem().toString(), textFieldTatouageEditAnimal.getText(),
+						textFieldNomAnimalEditAnimal.getText(), 
+						comboboxgenreEditAnimal.getSelectedItem().toString(),
+						textFieldCouleurEditAnimal.getText(), 
+						comboBoxRaceEditAnimal.getSelectedItem().toString(), 
+						comboBoxEspeceEditAnimal.getSelectedItem().toString(),
+						lblNCodeEditAnimal.getText(),
+						textFieldTatouageEditAnimal.getText(),
 						textFieldAntecedentsEditAnimal.getText());
+				
 				EditAnimal.setVisible(false);
 			}
 		});
