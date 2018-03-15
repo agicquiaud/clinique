@@ -78,7 +78,7 @@ class AnimalImpl implements Animal {
 	public Animaux animalById(Integer id) {
 		Animaux anim = null;
 		try {
-			anim = con.selectById(id);
+			anim = con.selectById(id); //Con est un animalDAO
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
@@ -98,7 +98,7 @@ class AnimalImpl implements Animal {
 				listereturn.add(animal);
 			}
 		}
-		return liste;
+		return listereturn;
 	}
 
 	@Override

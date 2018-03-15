@@ -42,6 +42,18 @@ public class Animaux {
 		Archive = archive;
 	}
 	
+	public Animaux(String nom, String sexe, String couleur, String race, String espece,
+			Integer codeClient, String tatouage, Boolean archive) {
+		super();
+		Nom = nom;
+		Sexe = sexe;
+		Couleur = couleur;
+		Race = race;
+		Espece = espece;
+		CodeClient = codeClient;
+		Tatouage = tatouage;
+		Archive = archive;
+	}
 	
 	public Integer getCodeAnimal() {
 		return CodeAnimal;

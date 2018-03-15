@@ -16,11 +16,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class WindowAccueilRendezVous {
+public class WindowAccueilSecretaire {
 	
 	private JFrame frame;
 
-		public WindowAccueilRendezVous(){
+		public WindowAccueilSecretaire(){
 			frame = new JFrame();
 			
 			frame.setTitle("Accueil Rendez-vous");

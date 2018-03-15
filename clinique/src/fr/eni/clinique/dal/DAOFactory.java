@@ -7,13 +7,10 @@ public class DAOFactory {
 		try {
 			userDAO=(UserDAO ) Class.forName("fr.eni.clinique.dal.jdbc.UserDAOJdbcImpl").newInstance();
 		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return userDAO; 
@@ -24,13 +21,10 @@ public class DAOFactory {
 		try {
 			clientDAO=(ClientDAO ) Class.forName("fr.eni.clinique.dal.jdbc.ClientDAOJdbcImpl").newInstance();
 		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return clientDAO; 
@@ -41,15 +35,26 @@ public class DAOFactory {
 		try {
 			animalDAO =(AnimalDAO ) Class.forName("fr.eni.clinique.dal.jdbc.AnimalDAOJdbcImpl").newInstance();
 		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return animalDAO; 
+	}
+	
+	public AgendaDAO getAgendaDAO()  {
+		AgendaDAO agendaDAO=null;
+		try {
+			agendaDAO=(AgendaDAO ) Class.forName("fr.eni.clinique.dal.jdbc.AgendaDAOJdbcImpl").newInstance();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return agendaDAO; 
 	}
 }
