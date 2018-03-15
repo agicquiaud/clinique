@@ -40,7 +40,6 @@ public class WindowAddAnimal {
 
 	public WindowAddAnimal(String nom){
 		
-		AddAnimal.setDefaultCloseOperation(0);
 		AddAnimal.setSize(600, 485);
 		AddAnimal.setVisible(true);
 		

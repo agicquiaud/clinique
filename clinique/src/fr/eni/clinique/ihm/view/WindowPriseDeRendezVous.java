@@ -114,7 +114,7 @@ public class WindowPriseDeRendezVous extends JFrame {
 		label2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				if (CBClient.getItemCount() == 1){
+				if (CBClient.getSelectedIndex() != 0){
 					new WindowAddAnimal();
 				}else {
 					new JDialog();
