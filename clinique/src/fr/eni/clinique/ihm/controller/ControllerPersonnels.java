@@ -25,12 +25,12 @@ public class ControllerPersonnels {
 		user = mger.getUser(nom);
 		mger.archive(user);
 	}
-	
-	public Object[][] getList(){
+
+	public Object[][] getList() {
 		liste = mger.getAll();
 		Object[][] tab = new Object[liste.size()][3];
 		String pass = "*****";
-		for (int i = 0; i < liste.size(); i++){
+		for (int i = 0; i < liste.size(); i++) {
 			tab[i][0] = liste.get(i).getLogin();
 			tab[i][1] = pass;
 			tab[i][2] = liste.get(i).getType();
@@ -38,20 +38,28 @@ public class ControllerPersonnels {
 		return tab;
 	}
 
-
 	public void resetMotDePasse(String login, String mdp) {
 		user = mger.getUser(login);
 		user.setPassword(mdp);
 		mger.resetMotDePasse(user);
 	}
-	
-	public Boolean verifDroit(){
+
+	public Boolean verifDroit() {
 		Boolean droit = false;
 		String nom = WindowLogin.getNom();
 		user = mger.getUser(nom);
-		if(user.getType().equals("adm")){
+		if (user.getType().equals("adm")) {
 			droit = true;
 		}
 		return droit;
+	}
+
+	public String[] getNomVeterinaires() {
+		liste = mger.getVeterinaires();
+		String[] tab = new String[liste.size()];
+		for (int i = 0; i < liste.size(); i++) {
+			tab[i] = liste.get(i).getLogin();
+		}
+		return tab;
 	}
 }

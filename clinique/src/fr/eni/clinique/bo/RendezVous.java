@@ -5,13 +5,13 @@ import java.util.Date;
 public class RendezVous {
 
 	private Integer CodeVeto;
-	private Date date;
+	private Date Date;
 	private Integer CodeAnimal;
 
 	public RendezVous(Integer codeVeto, Date date, Integer codeAnimal) {
 		super();
 		CodeVeto = codeVeto;
-		this.date = date;
+		Date = date;
 		CodeAnimal = codeAnimal;
 	}
 
@@ -20,11 +20,11 @@ public class RendezVous {
 	}
 
 	public Date getDate() {
-		return date;
+		return Date;
 	}
 
 	public void setDate(Date date) {
-		this.date = date;
+		Date = date;
 	}
 
 	public Integer getCodeVeto() {
@@ -45,7 +45,7 @@ public class RendezVous {
 
 	@Override
 	public String toString() {
-		return "RendezVous [date=" + date + ", CodeVeto=" + CodeVeto + ", CodeAnimal=" + CodeAnimal + "]";
+		return "RendezVous [date=" + Date + ", CodeVeto=" + CodeVeto + ", CodeAnimal=" + CodeAnimal + "]";
 	}
 
 }

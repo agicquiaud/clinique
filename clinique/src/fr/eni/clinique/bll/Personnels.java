@@ -10,5 +10,5 @@ public interface Personnels {
 	public void resetMotDePasse(User p);
 	public User getUser(String nom);
 	public List<User> getAll();
-	
+	public List<User> getVeterinaires();	
 }
