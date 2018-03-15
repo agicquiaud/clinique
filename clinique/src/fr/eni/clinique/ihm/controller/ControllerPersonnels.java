@@ -1,10 +1,11 @@
-package fr.eni.clinique.ihm.login;
+package fr.eni.clinique.ihm.controller;
 
 import java.util.List;
 
 import fr.eni.clinique.bll.Personnels;
 import fr.eni.clinique.bll.PersonnelsSingleton;
 import fr.eni.clinique.bo.User;
+import fr.eni.clinique.ihm.view.WindowLogin;
 
 public class ControllerPersonnels {
 

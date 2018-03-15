@@ -1,4 +1,4 @@
-package fr.eni.clinique.ihm.login;
+package fr.eni.clinique.ihm.view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -17,6 +17,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+
+import fr.eni.clinique.ihm.controller.ControllerAnimaux;
 
 public class WindowAddAnimal {
 	

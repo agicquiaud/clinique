@@ -1,4 +1,4 @@
-package fr.eni.clinique.ihm.login;
+package fr.eni.clinique.ihm.view;
 
 import javax.swing.JFrame;
 import java.awt.GridBagLayout;
@@ -8,7 +8,7 @@ import javax.swing.JTextField;
 
 import javax.swing.border.Border;
 
-
+import fr.eni.clinique.ihm.controller.ControllerLogin;
 import fr.eni.clinique.ihm.graphic.ImagePanel;
 import fr.eni.clinique.ihm.graphic.RoundButton;
 import fr.eni.clinique.ihm.graphic.RoundJPasswordField;
@@ -41,7 +41,6 @@ public class WindowLogin {
 	private JPasswordField textField_1 = new RoundJPasswordField(15);
 	private JDesktopPane desktopPane = new JDesktopPane();
 	private ImagePanel imgBack = new ImagePanel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/login-color.jpg").getImage());
-	private Border empty;
 
 
 	/**
@@ -105,7 +104,6 @@ public class WindowLogin {
 		
 		JButton btnValider = new JButton("connexion");
 		btnValider.setBorder(new RoundButton(25));
-		
 		btnValider.setBounds(62, 344, 180, 29);
 		btnValider.setForeground(null);
 		btnValider.setFont(new Font("Malgun Gothic", Font.BOLD, 15));
@@ -115,12 +113,9 @@ public class WindowLogin {
 		btnValider.setBorderPainted(true);
 		desktopPane.add(btnValider);
 
-		
 		desktopPane.add(imgBack);
 		
-//------------------------------------------------------------------------
-		
-		
+//------------------------------------------------------------------------		
 		
 		btnValider.addActionListener(new ActionListener() {
 			@Override

@@ -1,4 +1,4 @@
-package fr.eni.clinique.ihm.login;
+package fr.eni.clinique.ihm.view;
 
 import javax.swing.SwingUtilities;
 
@@ -8,7 +8,7 @@ public class AppliTestIHM {
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				new WindowClients();
+				new WindowAgenda();
 			}
 		});
 	}
