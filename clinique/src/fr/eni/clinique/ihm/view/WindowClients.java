@@ -1,4 +1,4 @@
-package fr.eni.clinique.ihm.login;
+package fr.eni.clinique.ihm.view;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -31,6 +31,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.JTextComponent;
 
+import fr.eni.clinique.ihm.controller.ControllerAnimaux;
 import fr.eni.clinique.ihm.controller.ControllerClients;
 
 public class WindowClients {
@@ -1219,8 +1220,7 @@ public class WindowClients {
 				AddAnimal.setVisible(false);
 			}
 		});
-		
-		//bouton checked Add Animal Fenêtre Principale
+
 		btnConfirmAddAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -1234,24 +1234,15 @@ public class WindowClients {
 				AddAnimal.setVisible(false);
 			}
 		});
-		
-		//bouton checked Edit Animal Jdialogue Edit
+
 		btnValiderEditAnimal.addActionListener(new ActionListener() {
-			
-			
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				controlleranimal.updateClient(table_2.getValueAt(table_2.getSelectedRow(), 0).toString(),
-						textFieldNomAnimalEditAnimal.getText(), 
-						comboboxgenreEditAnimal.getSelectedItem().toString(),
-						textFieldCouleurEditAnimal.getText(), 
-						comboBoxRaceEditAnimal.getSelectedItem().toString(), 
-						comboBoxEspeceEditAnimal.getSelectedItem().toString(),
-						lblNCodeEditAnimal.getText(),
-						textFieldTatouageEditAnimal.getText(),
+						textFieldNomAnimalEditAnimal.getText(), comboboxgenreEditAnimal.getSelectedItem().toString(),
+						textFieldCouleurEditAnimal.getText(), comboBoxEspeceEditAnimal.getSelectedItem().toString(),
+						comboBoxRaceEditAnimal.getSelectedItem().toString(), textFieldTatouageEditAnimal.getText(),
 						textFieldAntecedentsEditAnimal.getText());
-				
 				EditAnimal.setVisible(false);
 			}
 		});
