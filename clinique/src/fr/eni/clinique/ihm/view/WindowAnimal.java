@@ -1,4 +1,4 @@
-package fr.eni.clinique.ihm.login;
+package fr.eni.clinique.ihm.view;
 
 
 import java.awt.Color;
@@ -11,6 +11,10 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+
+import fr.eni.clinique.ihm.controller.ControllerAnimaux;
+import fr.eni.clinique.ihm.controller.ControllerClients;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 

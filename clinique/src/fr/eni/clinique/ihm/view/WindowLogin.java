@@ -1,4 +1,4 @@
-package fr.eni.clinique.ihm.login;
+package fr.eni.clinique.ihm.view;
 
 import javax.swing.JFrame;
 import java.awt.GridBagLayout;
@@ -8,7 +8,7 @@ import javax.swing.JTextField;
 
 import javax.swing.border.Border;
 
-
+import fr.eni.clinique.ihm.controller.ControllerLogin;
 import fr.eni.clinique.ihm.graphic.ImagePanel;
 import fr.eni.clinique.ihm.graphic.RoundButton;
 import fr.eni.clinique.ihm.graphic.RoundJPasswordField;

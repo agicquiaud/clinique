@@ -1,4 +1,4 @@
-package fr.eni.clinique.ihm.login;
+package fr.eni.clinique.ihm.view;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -30,6 +30,9 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.JTextComponent;
+
+import fr.eni.clinique.ihm.controller.ControllerAnimaux;
+import fr.eni.clinique.ihm.controller.ControllerClients;
 
 public class WindowClients {
 

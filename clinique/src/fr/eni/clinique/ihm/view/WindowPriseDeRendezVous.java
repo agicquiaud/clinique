@@ -1,4 +1,4 @@
-package fr.eni.clinique.ihm.login;
+package fr.eni.clinique.ihm.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -41,6 +41,8 @@ import javax.swing.border.EmptyBorder;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
+
+import fr.eni.clinique.ihm.controller.ControllerClients;
 
 public class WindowPriseDeRendezVous extends JFrame {
 

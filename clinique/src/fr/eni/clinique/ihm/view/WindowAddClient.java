@@ -1,6 +1,5 @@
-package fr.eni.clinique.ihm.login;
+package fr.eni.clinique.ihm.view;
 
-import fr.eni.clinique.ihm.login.ControllerClients;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -12,6 +11,8 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import fr.eni.clinique.ihm.controller.ControllerClients;
 
 public class WindowAddClient{
 	

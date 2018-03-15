@@ -1,4 +1,4 @@
-package fr.eni.clinique.ihm.login;
+package fr.eni.clinique.ihm.view;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import fr.eni.clinique.bo.User;
+import fr.eni.clinique.ihm.controller.ControllerPersonnels;
 
 public class WindowGestionPersonnels {
 
