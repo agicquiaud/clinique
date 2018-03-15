@@ -5,10 +5,9 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Date;
 import java.util.Properties;
 
 import javax.swing.ImageIcon;
@@ -18,29 +17,30 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JFormattedTextField.AbstractFormatter;
+import javax.swing.table.DefaultTableModel;
 
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
 import fr.eni.clinique.ihm.controller.ControllerClients;
-import fr.eni.clinique.ihm.graphic.RoundButton;
+import fr.eni.clinique.ihm.controller.ControllerPersonnels;
 
 public class WindowAgenda {
 	
 	private JFrame frame;
 	private JTable table;
+	private DefaultTableModel tableModel;
 	private ImageIcon foldericon = new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/folder-icon.png");
 	private Properties properties = new Properties();
 	private UtilDateModel model = new UtilDateModel();
 	private JDatePanelImpl datePanel = new JDatePanelImpl(model, properties);
-	private JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
-	private ControllerClients controllerclients;
+	private JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());;
+	private ControllerPersonnels controllerpersonnels;
 	
 	public WindowAgenda(){		
 		
-		controllerclients = new ControllerClients();
+		controllerpersonnels = new ControllerPersonnels();
 		frame = new JFrame();
 		frame.setTitle("Agenda");
 		frame.setBounds(100, 100, 585, 470);
@@ -61,8 +61,8 @@ public class WindowAgenda {
 		gbc_lblVeterinaire.gridy = 1;
 		frame.getContentPane().add(lblVeterinaire, gbc_lblVeterinaire);
 		
-		String [] tabClient = controllerclients.getNomPrenomList();
-		JComboBox<String>comboBox = new JComboBox<String>(tabClient);
+		String [] tabVet = controllerpersonnels.getNomVeterinaires();
+		JComboBox<String>comboBox = new JComboBox<String>(tabVet);
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
@@ -76,6 +76,17 @@ public class WindowAgenda {
 		gbc_lblDate.gridx = 4;
 		gbc_lblDate.gridy = 1;
 		frame.getContentPane().add(lblDate, gbc_lblDate);
+		
+		//initialisation de la date d'aujourd'hui
+		model.setValue(new Date());
+		datePicker.setTextEditable(true);
+		GridBagConstraints gbc_DatePicker = new GridBagConstraints();
+		gbc_DatePicker.gridwidth = 2;
+		gbc_DatePicker.fill = GridBagConstraints.HORIZONTAL;
+		gbc_DatePicker.insets = new Insets(0, 0, 5, 5);
+		gbc_DatePicker.gridx = 5;
+		gbc_DatePicker.gridy = 1;
+		frame.getContentPane().add(datePicker, gbc_DatePicker);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
@@ -107,6 +118,23 @@ public class WindowAgenda {
 		gbc_btnDossierMedical.gridy = 6;
 		frame.getContentPane().add(btnDossierMedical, gbc_btnDossierMedical);
 		
+		datePicker.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});	
+	}
+	
+	private void setUpTableData(Object[][] data, String[] entetes) {
+		tableModel = new DefaultTableModel(data, entetes) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		table.setModel(tableModel);
+		tableModel.fireTableDataChanged();
 	}
 	
 }

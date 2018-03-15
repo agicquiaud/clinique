@@ -7,19 +7,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import fr.eni.clinique.bo.RendezVous;
 import fr.eni.clinique.dal.AgendaDAO;
 import fr.eni.clinique.dal.DALException;
 
-public class AgendaDAOJdbcImpl implements AgendaDAO{
+public class AgendaDAOJdbcImpl implements AgendaDAO {
 	private static final String sqlSelectAll = "SELECT CodeVeto, DateRdv, CodeAnimal FROM Agendas";
 	private static final String sqlUpdate = "UPDATE Agendas SET CodeVeto=?, DateRdv=?, CodeAnimal=? WHERE CodeAnimal=?";
 	private static final String sqlInsert = "INSERT INTO Agendas (CodeVeto, DateRdv, CodeAnimal) VALUES (?, ?, ?)";
 	private static final String sqlDelete = "DELETE FROM Agendas WHERE DateRdv=?";
-	private static final String sqlSelectByDate = "SELECT CodeVeto, DateRdv, CodeAnimal FROM Agendas WHERE DateRdv=?";
-
+	private static final String sqlSelectByHour = "SELECT CodeVeto, DateRdv, CodeAnimal FROM Agendas WHERE DateRdv<=? AND DateRdv>=?";
+	private static final String sqlSelectByDay = "SELECT CodeVeto, DateRdv, CodeAnimal FROM Agendas WHERE DateRdv<=? AND DateRdv>=?";
+	
 	public List<RendezVous> selectAll() throws DALException {
 		Connection cnx = null;
 		Statement rqt = null;
@@ -32,7 +34,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO{
 			RendezVous rdv = null;
 
 			while (rs.next()) {
-				
+
 				rdv = new RendezVous();
 
 				liste.add(rdv);
@@ -147,15 +149,20 @@ public class AgendaDAOJdbcImpl implements AgendaDAO{
 		}
 	}
 
-	public List<RendezVous> sqlSelectByDate(Date date) throws DALException {
+	@Override
+	public List<RendezVous> selectByHour(Date date) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		ResultSet rs = null;
+		Calendar cal = Calendar.getInstance();
 		List<RendezVous> liste = new ArrayList<RendezVous>();
 		try {
 			cnx = JdbcTools.getConnection();
-			rqt = cnx.prepareStatement(sqlSelectByDate);
+			rqt = cnx.prepareStatement(sqlSelectByHour);
+			cal.setTime(date);
+			cal.add(Calendar.HOUR, 1);
 			rqt.setDate(1, date);
+			rqt.setDate(2, (Date) cal.getTime());
 			rs = rqt.executeQuery();
 			RendezVous rdv = null;
 
@@ -164,9 +171,49 @@ public class AgendaDAOJdbcImpl implements AgendaDAO{
 
 				liste.add(rdv);
 			}
-		} catch (
+		} catch (SQLException e) {
+			throw new DALException("selectByDate failed - date = " + date, e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (rqt != null) {
+					rqt.close();
+				}
+				if (cnx != null) {
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return liste;
+	}
 
-		SQLException e) {
+	@Override
+	public List<RendezVous> selectByDay(Date date) throws DALException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		Calendar cal = Calendar.getInstance();
+		List<RendezVous> liste = new ArrayList<RendezVous>();
+		try {
+			cnx = JdbcTools.getConnection();
+			rqt = cnx.prepareStatement(sqlSelectByDay);
+			cal.setTime(date);
+			cal.add(Calendar.DATE, 1);
+			rqt.setDate(1, date);
+			rqt.setDate(2, (Date) cal.getTime());
+			rs = rqt.executeQuery();
+			RendezVous rdv = null;
+
+			while (rs.next()) {
+				rdv = new RendezVous();
+
+				liste.add(rdv);
+			}
+		} catch (SQLException e) {
 			throw new DALException("selectByDate failed - date = " + date, e);
 		} finally {
 			try {

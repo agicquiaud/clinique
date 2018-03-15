@@ -8,11 +8,11 @@ import fr.eni.clinique.dal.DALException;
 import fr.eni.clinique.dal.DAOFactory;
 import fr.eni.clinique.dal.UserDAO;
 
-public class PersonnelsImpl implements Personnels{
+public class PersonnelsImpl implements Personnels {
 	private UserDAO con = new DAOFactory().getUserDAO();
 	private User user;
 	private List<User> liste;
-	
+
 	@Override
 	public void add(User p) {
 		try {
@@ -20,7 +20,7 @@ public class PersonnelsImpl implements Personnels{
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	@Override
@@ -31,7 +31,7 @@ public class PersonnelsImpl implements Personnels{
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	@Override
@@ -62,11 +62,20 @@ public class PersonnelsImpl implements Personnels{
 			e.printStackTrace();
 		}
 		for (User user : liste) {
-			if(user.getArchive() == false){
+			if (user.getArchive() == false) {
 				listereturn.add(user);
 			}
 		}
 		return listereturn;
 	}
-	
+
+	public List<User> getVeterinaires() {
+		try {
+			liste = con.selectByPoste("vet");
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		return liste;
+	}
+
 }

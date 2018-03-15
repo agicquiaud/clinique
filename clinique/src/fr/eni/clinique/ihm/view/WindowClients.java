@@ -165,7 +165,7 @@ public class WindowClients {
 		gbc_scrollPane_1.gridy = 3;
 		frame.getContentPane().add(scrollPane_1, gbc_scrollPane_1);
 		String[] entetes2 = { "CodeAnimal", "Nom", "Sexe", "Couleur", "Race", "Espece" };
-		Object[][] donnee2 = controlleranimal.getList();
+		Object[][] donnee2 = new Object[0][0];
 		table_2 = new JTable(donnee2, entetes2);
 		scrollPane_1.setViewportView(table_2);
 
@@ -1021,10 +1021,10 @@ public class WindowClients {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				try {
-					setUpTableData2(controlleranimal
-							.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()), entetes2);
+					//fait une maj du tableau avec les nouvelles données
+					setUpTableData2(controlleranimal.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()), entetes2);
 				} catch (Exception err) {
-					setUpTableData2(controlleranimal.getList(), entetes2);
+					setUpTableData2(null, entetes2);
 				}
 			}
 		});
@@ -1035,9 +1035,10 @@ public class WindowClients {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				lblError.setText("");
-				setUpTableData(controller.getClient(textFieldSearch.getText()), entetes1);
 				if (textFieldSearch.getText().equals("")) {
 					setUpTableData(controller.getList(), entetes1);
+				} else {
+					setUpTableData(controller.getClient(textFieldSearch.getText()), entetes1);
 				}
 			}
 		});
@@ -1229,9 +1230,7 @@ public class WindowClients {
 						textFieldCouleurAnimal.getText(), race.getSelectedItem().toString(),
 						espece.getSelectedItem().toString(), table_1.getValueAt(table_1.getSelectedRow(), 0).toString(),
 						textFieldTatouageAnimal.getText());
-				setUpTableData2(
-						controlleranimal.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()),
-						entetes2);
+				setUpTableData2(controlleranimal.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()),entetes2);
 				AddAnimal.setVisible(false);
 			}
 		});

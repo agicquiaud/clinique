@@ -15,5 +15,7 @@ public interface AgendaDAO {
 	
 	public void delete(int id) throws DALException;
 	
-	public List<RendezVous> sqlSelectByDate(Date date) throws DALException;
+	public List<RendezVous> selectByHour(Date date) throws DALException;
+	
+	public List<RendezVous> selectByDay(Date date) throws DALException;
 }
