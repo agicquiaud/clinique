@@ -29,6 +29,12 @@ public class WindowAddAnimal {
 	private JTextField textFieldCouleurAnimal;
 	private JTextField textFieldTatouageAnimal;
 	private JTextField textFieldAntecedentsAnimal;
+	private String nom = null;
+	
+	public WindowAddAnimal(String nom){
+		this.nom = nom;
+		new WindowAddAnimal();
+	}
 
 	public WindowAddAnimal(){
 		
@@ -205,13 +211,9 @@ public class WindowAddAnimal {
 		btnConfirmAddAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controlleranimal.addAnimal(textFieldCodeAnimal.getText(), textFieldNomAnimal.getText(),
-						comboBoxGenre.getSelectedItem().toString(), textFieldCouleurAnimal.getText(),
-						race.getSelectedItem().toString(), espece.getSelectedItem().toString(),
-						table_1.getValueAt(table_1.getSelectedRow(), 0).toString(), textFieldTatouageAnimal.getText());
-				setUpTableData2(
-						controlleranimal.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()),
-						entetes2);
+				controlleranimal.addAnimalByNomClient(textFieldNomAnimal.getText(), comboBoxGenre.getSelectedItem().toString()
+						, textFieldCouleurAnimal.getText(), race.getSelectedItem().toString(), espece.getSelectedItem().toString()
+						, nom, textFieldTatouageAnimal.getText());
 				AddAnimal.setVisible(false);
 			}
 		});

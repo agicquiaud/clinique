@@ -1,47 +1,34 @@
 package fr.eni.clinique.ihm.view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.List;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
 import java.util.Properties;
 
 import javax.swing.BoxLayout;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JDesktopPane;
 import javax.swing.JDialog;
-import javax.swing.JFormattedTextField.AbstractFormatter;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
+import fr.eni.clinique.bo.Clients;
+import fr.eni.clinique.ihm.controller.ControllerAnimaux;
 import fr.eni.clinique.ihm.controller.ControllerClients;
 
 public class WindowPriseDeRendezVous extends JFrame {
@@ -66,6 +53,8 @@ public class WindowPriseDeRendezVous extends JFrame {
 	private JComboBox<String> CBAnimal = new JComboBox<String>();
 	private JComboBox<String> CBVet = new JComboBox<String>();
 	private ControllerClients controllerClients = new ControllerClients();
+	private ControllerAnimaux controlleranimal = new ControllerAnimaux();
+	private List liste = new List();
 
 	/**
 	 * Create the frame.
@@ -89,11 +78,19 @@ public class WindowPriseDeRendezVous extends JFrame {
 		contentPaneNorthWest.add(new JLabel("Pour"));
 		contentPaneNorthWest.add(new JLabel("Client :"));
 		contentPaneNorthWestClient.setLayout(new GridLayout(1, 2));
-		System.out.println(controllerClients.getList());
-		String tabClient[];
-		tabClient = controllerClients.getNomPrenomList();
+		Integer i = 1;
+		Clients[] client  = new Clients[controllerClients.listeClient().length];
+		client = controllerClients.listeClient();
+		String[] tabNomClient = new String[controllerClients.listeClient().length +1];
+		tabNomClient[0] = "";
+		for (Clients cli : client) {
+			tabNomClient[i] = cli.getNom() + " " + cli.getPrenom();
+			i++;
+		}
+		
+		//tabClient = controllerClients.getNomPrenomList();
 
-		JComboBox<String> CBClient = new JComboBox<String>(tabClient);
+		JComboBox<String> CBClient = new JComboBox<String>(tabNomClient);
 		CBClient.setBorder(new EmptyBorder(0, 2, 0, 2));
 		contentPaneNorthWestClient.add(CBClient);
 		JLabel label1 = new JLabel(icon);
@@ -110,12 +107,18 @@ public class WindowPriseDeRendezVous extends JFrame {
 		contentPaneNorthWest.add(contentPaneNorthWestClient);
 		contentPaneNorthWest.add(new JLabel("Animal :"));
 		contentPaneNorthWestAnimal.setLayout(new GridLayout(1, 2));
+		
+		//CBAnimal = controlleranimal.getListByClient("gicquiaud");
 		contentPaneNorthWestAnimal.add(CBAnimal);
 		JLabel label2 = new JLabel(icon);
 		label2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				new WindowAddAnimal();
+				if (CBClient.getItemCount() == 1){
+					new WindowAddAnimal();
+				}else {
+					new JDialog();
+				}
 			}
 		});
 		label2.setBorder(new EmptyBorder(0, 2, 0, 2));
@@ -188,32 +191,6 @@ public class WindowPriseDeRendezVous extends JFrame {
 		this.getContentPane().add(contentPaneSouth);
 
 		this.setVisible(true);
-
-	}
-
-}
-
-class DateLabelFormatter extends AbstractFormatter {
-
-	private String datePattern = "yyyy-MM-dd";
-	private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern, Locale.ENGLISH);
-
-	public Object stringToValue(String text) throws ParseException {
-
-		return dateFormatter.parseObject(text);
-
-	}
-
-	public String valueToString(Object value) throws ParseException {
-
-		if (value != null) {
-
-			Calendar cal = (Calendar) value;
-			return dateFormatter.format(cal.getTime());
-
-		}
-
-		return "";
 
 	}
 

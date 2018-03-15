@@ -18,7 +18,7 @@ public class ControllerAnimaux {
 	private Animaux animal;
 
 	public ControllerAnimaux() {
-		mgerAnimal = AnimalSingleton.getinstance();
+		mgerAnimal = AnimalSingleton.getinstance(); //Instance AnimalImpl
 		mgerClient = ClientsUtilSingleton.getinstance();
 	}
 	
@@ -93,8 +93,9 @@ public class ControllerAnimaux {
 	}
 	
 	public void updateClient(String codeAnimal, String nom, String sexe, String couleur, String race, String espece,
-			String codeClient, String tatouage) {
-		animal = new Animaux(Integer.parseInt(codeAnimal), nom, sexe, couleur, race, espece, Integer.parseInt(codeClient), tatouage, false);
+			String codeClient, String antecedent, String tatouage) {
+		animal = new Animaux(Integer.parseInt(codeAnimal), nom, sexe, couleur, race, espece, Integer.parseInt(codeClient), antecedent, tatouage, false);
+		animal.toString();
 		mgerAnimal.update(animal);
 	}
 
