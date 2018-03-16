@@ -87,6 +87,20 @@ public class ControllerAnimaux {
 		return list;
 	}
 	
+	public Animaux[] getAnimalByIdClient(Integer id){
+		List<Animaux> str;
+		str = mgerAnimal.animalByIdClient(id);
+		System.out.println(str.size());
+		Animaux[] tabAnimaux = new Animaux[str.size()];
+		System.out.println(tabAnimaux.length );
+		for (Animaux animaux : str) {
+			System.out.println(str.lastIndexOf(animaux)+1);
+			tabAnimaux[str.lastIndexOf(animaux)] = animaux;
+		}
+		System.out.println(tabAnimaux[0]);
+		return tabAnimaux;
+	}
+	
 	public void removeAnimal(String codeanimal) {
 		animal = mgerAnimal.animalById(Integer.parseInt(codeanimal));
 		mgerAnimal.delete(animal);
