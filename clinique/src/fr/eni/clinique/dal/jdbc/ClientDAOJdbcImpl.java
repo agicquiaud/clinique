@@ -17,7 +17,7 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 	private static final String sqlSelectAll = "SELECT CodeClient, NomClient, PrenomClient, "
 			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive FROM Clients";
 	private static final String sqlUpdate = "UPDATE Clients SET NomClient=?, PrenomClient=?, "
-			+ "Adresse1=?, Adresse2=?, CodePostal=?, Ville=?, NumTel=?, Assurance=?, Email=?, Remarque=? Archive=? WHERE CodeClient=?";
+			+ "Adresse1=?, Adresse2=?, CodePostal=?, Ville=?, NumTel=?, Assurance=?, Email=?, Remarque=?, Archive=? WHERE CodeClient=?";
 	private static final String sqlInsert = "INSERT INTO Clients (NomClient, PrenomClient, "
 			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Email, Archive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String sqlDelete = "DELETE FROM Clients WHERE CodeClient=?";
@@ -86,6 +86,7 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 			rqt.setString(9, data.getEmail());
 			rqt.setString(10, data.getRemarque());
 			rqt.setBoolean(11, data.getArchive());
+			rqt.setInt(12, data.getCodeClient());
 
 			rqt.executeUpdate();
 
