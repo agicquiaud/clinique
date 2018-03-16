@@ -28,10 +28,12 @@ import org.jdatepicker.impl.UtilDateModel;
 
 import fr.eni.clinique.ihm.controller.ControllerAgenda;
 import fr.eni.clinique.ihm.controller.ControllerPersonnels;
+import fr.eni.clinique.ihm.graphic.ImagePanel;
 
 public class WindowAgenda {
 	
 	private JFrame frame;
+	private ImagePanel imgBack = new ImagePanel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/login-color.jpg").getImage());
 	private JTable table;
 	private DefaultTableModel tableModel;
 	private ImageIcon foldericon = new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/folder-icon.png");
@@ -105,7 +107,8 @@ public class WindowAgenda {
 		String[] entete = { "Heure", "Nom", "Animal", "Race" };
 		System.out.println(comboBoxVet.getSelectedItem().toString());
 		System.out.println(datePicker.getJFormattedTextField().getText());
-		Object[][] donnee = controlleragenda.getTabAgenda(comboBoxVet.getSelectedItem().toString(), datePicker.getJFormattedTextField().getText());
+		System.out.println(controlleragenda.getTabAgenda(comboBoxVet.getSelectedItem().toString(), datePicker.getJFormattedTextField().getText()));
+		Object[][] donnee = {{ "Heure", "Nom", "Animal", "Race" }};
 		table = new JTable(donnee, entete);
 		scrollPane.setViewportView(table);
 		

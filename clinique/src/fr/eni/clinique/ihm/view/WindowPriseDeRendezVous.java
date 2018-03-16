@@ -108,7 +108,7 @@ public class WindowPriseDeRendezVous extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (!CBClient.getSelectedItem().toString().equals("")) {
-					new WindowAddAnimal(CBClient.getSelectedItem().toString());
+					new WindowAddAnimal((Clients) CBClient.getSelectedItem());
 				}
 			}
 		});
