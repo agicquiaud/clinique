@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.ihm.controller.ControllerAnimaux;
 
 public class WindowAddAnimal {
@@ -31,7 +32,7 @@ public class WindowAddAnimal {
 	private JTextField textFieldAntecedentsAnimal;
 	private ComboBoxModel<String> comboboxModel;
 
-	public WindowAddAnimal(String nom){
+	public WindowAddAnimal(Clients client){
 		
 		AddAnimal.setSize(600, 485);
 		AddAnimal.setVisible(true);
@@ -84,7 +85,7 @@ public class WindowAddAnimal {
 		lblClient.setBounds(22, 11, 46, 14);
 		desktopPane_1.add(lblClient);
 
-		JLabel lblNomPrenomClient = new JLabel(nom);
+		JLabel lblNomPrenomClient = new JLabel(client.getNom() + " " + client.getPrenom());
 		lblNomPrenomClient.setFont(new Font("Malgun Gothic", Font.PLAIN, 12));
 		lblNomPrenomClient.setBounds(43, 36, 265, 14);
 		desktopPane_1.add(lblNomPrenomClient);
@@ -206,9 +207,9 @@ public class WindowAddAnimal {
 		btnConfirmAddAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controlleranimal.addAnimalByNomClient(textFieldNomAnimal.getText(), comboBoxGenre.getSelectedItem().toString()
+				controlleranimal.addAnimal(textFieldNomAnimal.getText(), comboBoxGenre.getSelectedItem().toString()
 						, textFieldCouleurAnimal.getText(), race.getSelectedItem().toString(), espece.getSelectedItem().toString()
-						, nom, textFieldTatouageAnimal.getText());
+						, client.getCodeClient().toString(), textFieldTatouageAnimal.getText());
 				AddAnimal.dispose();
 			}
 		});
