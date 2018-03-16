@@ -17,7 +17,7 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 	private static final String sqlSelectAll = "SELECT CodeClient, NomClient, PrenomClient, "
 			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive FROM Clients";
 	private static final String sqlUpdate = "UPDATE Clients SET NomClient=?, PrenomClient=?, "
-			+ "Adresse1=?, CodePostal=?, Ville=?, NumTel=?, Email=?, Archive=? WHERE CodeClient=?";
+			+ "Adresse1=?, Adresse2=?, CodePostal=?, Ville=?, NumTel=?, Assurance=?, Email=?, Remarque=?, Archive=? WHERE CodeClient=?";
 	private static final String sqlInsert = "INSERT INTO Clients (NomClient, PrenomClient, "
 			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Email, Archive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String sqlDelete = "DELETE FROM Clients WHERE CodeClient=?";
@@ -78,12 +78,15 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 			rqt.setString(1, data.getNom());
 			rqt.setString(2, data.getPrenom());
 			rqt.setString(3, data.getAdresse1());
-			rqt.setString(4, data.getCodePostal());
-			rqt.setString(5, data.getVille());
-			rqt.setString(6, data.getNumTel());
-			rqt.setString(7, data.getEmail());
-			rqt.setBoolean(8, data.getArchive());
-			rqt.setInt(9, data.getCodeClient());
+			rqt.setString(4, data.getAdresse2());
+			rqt.setString(5, data.getCodePostal());
+			rqt.setString(6, data.getVille());
+			rqt.setString(7, data.getNumTel());
+			rqt.setString(8, data.getAssurance());
+			rqt.setString(9, data.getEmail());
+			rqt.setString(10, data.getRemarque());
+			rqt.setBoolean(11, data.getArchive());
+			rqt.setInt(12, data.getCodeClient());
 
 			rqt.executeUpdate();
 
