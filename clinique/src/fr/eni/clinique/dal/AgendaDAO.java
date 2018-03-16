@@ -23,6 +23,6 @@ public interface AgendaDAO {
 	
 	public List<RendezVous> selectByIdVet(Integer id) throws DALException;
 	
-	public List<RendezVous> selectDayByVet (Date pdate) throws DALException;
+	public List<RendezVous> selectDayByVet (Date date, Integer id) throws DALException;
 	
 }
