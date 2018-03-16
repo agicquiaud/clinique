@@ -14,14 +14,16 @@ import fr.eni.clinique.bll.ClientsManager;
 import fr.eni.clinique.bll.ClientsManagerSingleton;
 import fr.eni.clinique.bo.Animaux;
 import fr.eni.clinique.bo.Clients;
+import fr.eni.clinique.bo.RendezVous;
 
 public class ControllerAgenda {
 
 	private AnimalManager mgerAnimal;
 	private ClientsManager mgerClient;
 	private AgendaManager mgerAgenda;
-	private List<Clients> listeclients;
-	private List<Animaux> listeanimaux;
+	private List<RendezVous> listerdv;
+	private Clients clients;
+	private Animaux animaux;
 	
 	public ControllerAgenda(){
 		mgerAnimal = AnimalManagerSingleton.getinstance(); //Instance AnimalImpl
@@ -37,15 +39,13 @@ public class ControllerAgenda {
 			e.printStackTrace();
 		}
 		
-		listeclients = mgerClient.getAll();
-		listeanimaux = mgerAnimal.getAll();
-		Object[][] tab = new Object[listeclients.size()][5];
-		for (int i = 0; i < listeclients.size(); i++) {
-			tab[i][0] = listeclients.get(i).getCodeClient();
-			tab[i][1] = listeclients.get(i).getPrenom();
-			tab[i][2] = listeclients.get(i).getNom();
-			tab[i][3] = listeclients.get(i).getCodePostal();
-			tab[i][4] = listeclients.get(i).getVille();
+		Object[][] tab = new Object[listerdv.size()][5];
+		for (int i = 0; i < listerdv.size(); i++) {
+//			tab[i][0] = listerdv.get(i).getCodeClient();
+//			tab[i][1] = listerdv.get(i).getPrenom();
+//			tab[i][2] = listerdv.get(i).getNom();
+//			tab[i][3] = listerdv.get(i).getCodePostal();
+//			tab[i][4] = listerdv.get(i).getVille();
 		}
 		return tab;
 	}
