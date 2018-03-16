@@ -323,7 +323,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 		List<RendezVous> liste = new ArrayList<RendezVous>();
 		try {
 			cnx = JdbcTools.getConnection();
-			rqt = cnx.prepareStatement(sqlSelectByDay);
+			rqt = cnx.prepareStatement(sqlSelectDayByVet);
 			cal.setTime(new Date(date.getTime()));
 			cal.add(Calendar.DATE, 1);
 			rqt.setDate(1, new java.sql.Date(date.getTime()));
