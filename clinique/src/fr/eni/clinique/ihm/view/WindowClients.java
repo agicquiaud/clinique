@@ -1199,9 +1199,15 @@ public class WindowClients {
 		btnEditAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				System.out.println(table_1.toString());
+				System.out.println(table_1.getSelectedColumn());
+				System.out.println(table_1.getSelectedRow());
+				lblError.setText("");
+				if (table_2.getSelectedRow() == -1 && table_2.getSelectedColumn() == -1){
+					lblError.setText("Aucun animal sélectionner !");
+				}else{
 					resetTextField(EditAnimal.getContentPane());
-					lblError.setText("");
+					
 					 lblNomClientEditAnimal.setText(table_1.getValueAt(table_1.getSelectedRow(),1) + " "
 					 + (String) table_1.getValueAt(table_1.getSelectedRow(),2));
 					lblNCodeEditAnimal.setText(table_2.getValueAt(table_2.getSelectedRow(), 0).toString());
@@ -1217,6 +1223,8 @@ public class WindowClients {
 					comboBoxRaceEditAnimal.setSelectedItem(list.get(6));
 					EditAnimal.setBounds(100, 100, 500, 400);
 					EditAnimal.setVisible(true);
+				}
+					
 
 			}
 		});
