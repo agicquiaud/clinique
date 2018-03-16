@@ -1,5 +1,6 @@
 package fr.eni.clinique.ihm.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.clinique.bll.ClientsUtil;
@@ -72,9 +73,23 @@ public class ControllerClients {
 		return tab;
 	}
 	
-	public Clients getClientbyId(String id){
+	public List<String> getClientbyId(String id){
 		clients = bllclients.getClientById(Integer.parseInt(id));
-		return clients;
+		ArrayList<String> list = new ArrayList<String>();
+		
+		list.add((clients.getCodeClient()).toString());
+		list.add(clients.getAssurance());
+		list.add(clients.getNom());
+		list.add(clients.getEmail());
+		list.add(clients.getPrenom());
+		list.add(clients.getRemarque());
+		list.add(clients.getAdresse1());
+		list.add(clients.getAdresse2());
+		list.add(clients.getVille());
+		list.add(clients.getCodePostal());
+		list.add(clients.getNumTel());
+
+		return list;
 	}
 
 	public void removeClient(String codeclient) {

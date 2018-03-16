@@ -255,7 +255,7 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 		Clients client = null;
 		try {
 			cnx = JdbcTools.getConnection();
-			rqt = cnx.prepareStatement(sqlSelectById);
+			rqt = cnx.prepareStatement(sqlSelectByNomPrenom);
 			rqt.setString(1, nom);
 			rqt.setString(2, prenom);
 			rs = rqt.executeQuery();
