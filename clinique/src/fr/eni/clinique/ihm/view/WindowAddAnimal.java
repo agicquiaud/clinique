@@ -15,11 +15,9 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
-import javax.swing.event.ListSelectionEvent;
 
 import fr.eni.clinique.ihm.controller.ControllerAnimaux;
 

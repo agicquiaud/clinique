@@ -1,33 +1,19 @@
 package fr.eni.clinique.ihm.view;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.GridBagLayout;
 import javax.swing.JTextField;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import javax.swing.SwingConstants;
-import javax.swing.JPanel;
 import javax.swing.JLabel;
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.JTable;
-import javax.swing.JList;
-import javax.swing.JComboBox;
 import javax.swing.JDesktopPane;
 import javax.swing.JDialog;
 
-import java.awt.Color;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.UIManager;
 import java.awt.Font;
-import javax.swing.ImageIcon;
 import java.awt.SystemColor;
-import java.awt.Dimension;
 
 public class windowtest {
 
