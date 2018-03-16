@@ -45,7 +45,7 @@ public class WindowAgenda {
 	private ControllerAgenda controlleragenda;
 	
 	public WindowAgenda(){		
-		
+		controlleragenda = new ControllerAgenda();
 		controllerpersonnels = new ControllerPersonnels();
 		frame = new JFrame();
 		frame.setTitle("Agenda");
@@ -106,9 +106,7 @@ public class WindowAgenda {
 		
 		String[] entete = { "Heure", "Nom", "Animal", "Race" };
 		System.out.println(comboBoxVet.getSelectedItem().toString());
-		System.out.println(datePicker.getJFormattedTextField().getText());
-		System.out.println(controlleragenda.getTabAgenda(comboBoxVet.getSelectedItem().toString(), datePicker.getJFormattedTextField().getText()));
-		Object[][] donnee = {{ "Heure", "Nom", "Animal", "Race" }};
+		Object[][] donnee = controlleragenda.getTabAgenda(comboBoxVet.getSelectedItem().toString(), datePicker.getJFormattedTextField().getText());
 		table = new JTable(donnee, entete);
 		scrollPane.setViewportView(table);
 		
