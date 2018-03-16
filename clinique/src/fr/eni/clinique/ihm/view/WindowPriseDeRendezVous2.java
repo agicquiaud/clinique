@@ -73,6 +73,10 @@ public class WindowPriseDeRendezVous2 {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
 		
+		properties.put("text.today", "Today");
+		properties.put("text.month", "Month");
+		properties.put("text.year", "Year");
+		
 		btnAddClient.setOpaque(false);
 		btnAddClient.setBackground(new Color(66, 210, 230));
 		btnAddClient.setBorderPainted(false);
@@ -236,9 +240,6 @@ public class WindowPriseDeRendezVous2 {
 		gbc_btnSupprimer.gridy = 7;
 		frame.getContentPane().add(btnSupprimer, gbc_btnSupprimer);
 
-		properties.put("text.today", "Today");
-		properties.put("text.month", "Month");
-		properties.put("text.year", "Year");
 		Integer i = 1;
 		Clients[] client = new Clients[controllerClients.listeClient().length];
 		client = controllerClients.listeClient();
