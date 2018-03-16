@@ -20,10 +20,10 @@ public class WindowDossierMedicalAnimal {
 	private ControllerClients controller;
 	private JTextField textFieldNomClient;
 
-	public WindowDossierMedicalAnimal() {//String id
+	public WindowDossierMedicalAnimal() {// String id
 		controller = new ControllerClients();
-//		List<String> liste = controller.getClientbyId(id);
-		
+		// List<String> liste = controller.getClientbyId(id);
+
 		frame.setTitle("Dossier Medical");
 		frame.setBounds(100, 100, 570, 300);
 		frame.setVisible(true);
@@ -50,13 +50,6 @@ public class WindowDossierMedicalAnimal {
 		gbc_btnAnnulerModalCancelClient.gridx = 7;
 		gbc_btnAnnulerModalCancelClient.gridy = 1;
 		frame.getContentPane().add(btnAnnulerModalCancelClient, gbc_btnAnnulerModalCancelClient);
-
-		btnAnnulerModalCancelClient.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-			}
-		});
 
 		JLabel lblClients = new JLabel("Clients :");
 		GridBagConstraints gbc_lblClients = new GridBagConstraints();
@@ -118,13 +111,13 @@ public class WindowDossierMedicalAnimal {
 		gbc_lblRoguz.gridx = 2;
 		gbc_lblRoguz.gridy = 6;
 		frame.getContentPane().add(lblRoguz, gbc_lblRoguz);
-		
-				JLabel lblGenre = new JLabel("Genre");
-				GridBagConstraints gbc_lblGenre = new GridBagConstraints();
-				gbc_lblGenre.insets = new Insets(0, 0, 5, 5);
-				gbc_lblGenre.gridx = 3;
-				gbc_lblGenre.gridy = 6;
-				frame.getContentPane().add(lblGenre, gbc_lblGenre);
+
+		JLabel lblGenre = new JLabel("Genre");
+		GridBagConstraints gbc_lblGenre = new GridBagConstraints();
+		gbc_lblGenre.insets = new Insets(0, 0, 5, 5);
+		gbc_lblGenre.gridx = 3;
+		gbc_lblGenre.gridy = 6;
+		frame.getContentPane().add(lblGenre, gbc_lblGenre);
 
 		JLabel lblEspece = new JLabel("Espece + race");
 		GridBagConstraints gbc_lblEspece = new GridBagConstraints();
@@ -139,6 +132,14 @@ public class WindowDossierMedicalAnimal {
 		gbc_lblTatouage.gridx = 2;
 		gbc_lblTatouage.gridy = 8;
 		frame.getContentPane().add(lblTatouage, gbc_lblTatouage);
+
+		// Action listener du btn Annuler de la JDialog
+		btnAnnulerModalCancelClient.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 	}
 
 }

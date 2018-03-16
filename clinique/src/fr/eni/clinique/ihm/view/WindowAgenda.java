@@ -23,7 +23,6 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
-import fr.eni.clinique.ihm.controller.ControllerClients;
 import fr.eni.clinique.ihm.controller.ControllerPersonnels;
 
 public class WindowAgenda {
@@ -118,12 +117,23 @@ public class WindowAgenda {
 		gbc_btnDossierMedical.gridy = 6;
 		frame.getContentPane().add(btnDossierMedical, gbc_btnDossierMedical);
 		
+		//Action Listener DatePicker for refresh JTable
 		datePicker.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 			}
-		});	
+		});
+		
+		//Action Listener buttonDossierMedical for the Popup
+		btnDossierMedical.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new WindowDossierMedicalAnimal();
+			}
+		});
+		
+		
 	}
 	
 	private void setUpTableData(Object[][] data, String[] entetes) {
