@@ -79,7 +79,6 @@ public class AgendaManagerImpl implements AgendaManager{
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
-		System.out.println(liste.toString());
 		return liste;
 	}
 	
