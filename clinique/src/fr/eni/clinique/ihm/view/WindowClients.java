@@ -1113,19 +1113,20 @@ public class WindowClients {
 				try {
 					lblError.setText("");
 					EditClient.setBounds(100, 100, 480, 330);
-				
+					List<String> list;
+					list = controller.getClientbyId(table_1.getValueAt(table_1.getSelectedRow(), 0).toString());
 					
-//					textFieldCodeClientEdit.setText(controller.getClientbyId());
-//					textFieldAssuranceClientEdit.setText(t);
-//					textFieldNomClientEdit.setText(t);
-//					textFieldEmailClientEdit.setText(t);
-//					textFieldPrenomClientEdit.setText(t);
-//					textFieldRemarqueClientEdit.setText(t);
-//					textFieldAdresse1ClientEdit.setText(t);
-//					textFieldAdresse2ClientEdit.setText(t);
-//					textFieldVilleClientEdit.setText(t);
-//					textFieldCodePostalClientEdit.setText(t);
-//					textFieldNumTelClientEdit.setText(t);
+					textFieldCodeClientEdit.setText(list.get(0));
+					textFieldAssuranceClientEdit.setText(list.get(1));
+					textFieldNomClientEdit.setText(list.get(2));
+					textFieldEmailClientEdit.setText(list.get(3));
+					textFieldPrenomClientEdit.setText(list.get(4));
+					textFieldRemarqueClientEdit.setText(list.get(5));
+					textFieldAdresse1ClientEdit.setText(list.get(6));
+					textFieldAdresse2ClientEdit.setText(list.get(7));
+					textFieldVilleClientEdit.setText(list.get(8));
+					textFieldCodePostalClientEdit.setText(list.get(9));
+					textFieldNumTelClientEdit.setText(list.get(10));
 					
 					EditClient.setVisible(true);
 				} catch (Exception err) {
@@ -1144,11 +1145,16 @@ public class WindowClients {
 		btnConfirmEditClient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.updateClient(textFieldCodeClientEdit.getText(), textFieldNomClientEdit.getText(),
-						textFieldPrenomClientEdit.getText(), textFieldAdresse1ClientEdit.getText(),
-						textFieldAdresse2ClientEdit.getText(), textFieldCodePostalClientEdit.getText(),
-						textFieldVilleClientEdit.getText(), textFieldNumTelClientEdit.getText(),
-						textFieldAssuranceClientEdit.getText(), textFieldEmailClientEdit.getText(),
+				controller.updateClient(textFieldCodeClientEdit.getText(), 
+						textFieldNomClientEdit.getText(),
+						textFieldPrenomClientEdit.getText(), 
+						textFieldAdresse1ClientEdit.getText(),
+						textFieldAdresse2ClientEdit.getText(), 
+						textFieldCodePostalClientEdit.getText(),
+						textFieldVilleClientEdit.getText(), 
+						textFieldNumTelClientEdit.getText(),
+						textFieldAssuranceClientEdit.getText(), 
+						textFieldEmailClientEdit.getText(),
 						textFieldRemarqueClientEdit.getText());
 				setUpTableData(controller.getList(), entetes1);
 				EditClient.setVisible(false);
@@ -1193,9 +1199,15 @@ public class WindowClients {
 		btnEditAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				System.out.println(table_1.toString());
+				System.out.println(table_1.getSelectedColumn());
+				System.out.println(table_1.getSelectedRow());
+				lblError.setText("");
+				if (table_2.getSelectedRow() == -1 && table_2.getSelectedColumn() == -1){
+					lblError.setText("Aucun animal sélectionner !");
+				}else{
 					resetTextField(EditAnimal.getContentPane());
-					lblError.setText("");
+					
 					 lblNomClientEditAnimal.setText(table_1.getValueAt(table_1.getSelectedRow(),1) + " "
 					 + (String) table_1.getValueAt(table_1.getSelectedRow(),2));
 					lblNCodeEditAnimal.setText(table_2.getValueAt(table_2.getSelectedRow(), 0).toString());
@@ -1211,6 +1223,8 @@ public class WindowClients {
 					comboBoxRaceEditAnimal.setSelectedItem(list.get(6));
 					EditAnimal.setBounds(100, 100, 500, 400);
 					EditAnimal.setVisible(true);
+				}
+					
 
 			}
 		});
