@@ -31,6 +31,7 @@ import org.jdatepicker.impl.UtilDateModel;
 
 import fr.eni.clinique.bo.Animaux;
 import fr.eni.clinique.bo.Clients;
+import fr.eni.clinique.ihm.controller.ControllerAgenda;
 import fr.eni.clinique.ihm.controller.ControllerAnimaux;
 import fr.eni.clinique.ihm.controller.ControllerClients;
 import fr.eni.clinique.ihm.controller.ControllerPersonnels;
@@ -168,6 +169,16 @@ public class WindowPriseDeRendezVous extends JFrame {
 
 		contentPaneSouthEst.setLayout(new BoxLayout(contentPaneSouthEst, BoxLayout.PAGE_AXIS));
 		JButton button = new JButton("Supprimer");
+		button.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ControllerAgenda CA = new ControllerAgenda();
+				
+				System.out.println(table.getValueAt(table.getSelectedRow(), table.getSelectedColumn()));
+				
+			}
+		});
 		contentPaneSouthEst.add(button);
 		contentPaneSouthEst.add(new JButton("Valider"));
 
