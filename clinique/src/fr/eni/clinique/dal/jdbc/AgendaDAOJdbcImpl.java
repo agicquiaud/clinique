@@ -66,7 +66,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlUpdate);
 			rqt.setInt(1, data.getCodeVeto());
-			rqt.setDate(4, new java.sql.Date(data.getDate().getTime())); // TODO
+			rqt.setDate(4, new java.sql.Date(data.getDate().getTime())); 
 			rqt.setInt(3, data.getCodeAnimal());
 			rqt.setDate(4, new java.sql.Date(data.getDate().getTime()));
 
@@ -122,7 +122,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 		}
 	}
 
-	public void delete(int id) throws DALException {
+	public void delete(RendezVous prdv) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		try {
@@ -130,10 +130,10 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 			// l'intégrité référentielle s'occupe d'invalider la suppression
 			// si l'article est référencé dans une ligne de commande
 			rqt = cnx.prepareStatement(sqlDelete);
-			rqt.setInt(1, id);
+			rqt.setInt(1, prdv.getCodeAnimal());
 			rqt.executeUpdate();
 		} catch (SQLException e) {
-			throw new DALException("Delete animal failed - id=" + id, e);
+			throw new DALException("Delete animal failed - id=" + prdv.getCodeAnimal(), e);
 		} finally {
 			try {
 				if (rqt != null) {
@@ -150,7 +150,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 	}
 
 	@Override
-	public List<RendezVous> selectByHour(Date date) throws DALException {
+	public List<RendezVous> selectByHour(java.util.Date date) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		ResultSet rs = null;
@@ -159,9 +159,9 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlSelectByHour);
-			cal.setTime(date);
+			cal.setTime(new Date(date.getTime()));
 			cal.add(Calendar.HOUR, 1);
-			rqt.setDate(1, date);
+			rqt.setDate(1, new Date(date.getTime()));
 			rqt.setDate(2, (Date) cal.getTime());
 			rs = rqt.executeQuery();
 			RendezVous rdv = null;
@@ -192,7 +192,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 	}
 
 	@Override
-	public List<RendezVous> selectByDay(Date date) throws DALException {
+	public List<RendezVous> selectByDay(java.util.Date date) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		ResultSet rs = null;
@@ -201,9 +201,9 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlSelectByDay);
-			cal.setTime(date);
+			cal.setTime(new Date(date.getTime()));
 			cal.add(Calendar.DATE, 1);
-			rqt.setDate(1, date);
+			rqt.setDate(1, new Date(date.getTime()));
 			rqt.setDate(2, (Date) cal.getTime());
 			rs = rqt.executeQuery();
 			RendezVous rdv = null;
@@ -231,5 +231,20 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 			}
 		}
 		return liste;
+	}
+
+	@Override
+	public List<RendezVous> selectByIdAnimal(Integer id) throws DALException {
+		return null;
+	}
+
+	@Override
+	public List<RendezVous> selectByIdVet(Integer id) throws DALException {
+		return null;
+	}
+
+	@Override
+	public List<RendezVous> selectDayByVet(java.util.Date pdate) throws DALException {
+		return null;
 	}
 }

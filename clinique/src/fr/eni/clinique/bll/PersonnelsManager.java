@@ -4,7 +4,7 @@ import java.util.List;
 
 import fr.eni.clinique.bo.User;
 
-public interface Personnels {
+public interface PersonnelsManager {
 	public void add(User p);
 	public void archive(User p);
 	public void resetMotDePasse(User p);

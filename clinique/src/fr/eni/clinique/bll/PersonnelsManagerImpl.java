@@ -8,7 +8,7 @@ import fr.eni.clinique.dal.DALException;
 import fr.eni.clinique.dal.DAOFactory;
 import fr.eni.clinique.dal.UserDAO;
 
-public class PersonnelsImpl implements Personnels {
+public class PersonnelsManagerImpl implements PersonnelsManager {
 	private UserDAO con = new DAOFactory().getUserDAO();
 	private User user;
 	private List<User> liste;

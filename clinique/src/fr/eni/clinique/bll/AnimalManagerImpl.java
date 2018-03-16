@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.clinique.bo.Animaux;
-import fr.eni.clinique.bo.User;
 import fr.eni.clinique.dal.AnimalDAO;
 import fr.eni.clinique.dal.DALException;
 import fr.eni.clinique.dal.DAOFactory;
 
-class AnimalImpl implements Animal {
+class AnimalManagerImpl implements AnimalManager {
 	private AnimalDAO con = new DAOFactory().getAnimalDAO();
 	private List<Animaux> liste;
 

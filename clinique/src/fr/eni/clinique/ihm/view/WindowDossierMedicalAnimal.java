@@ -5,7 +5,6 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -20,43 +19,36 @@ public class WindowDossierMedicalAnimal {
 	private ControllerClients controller;
 	private JTextField textFieldNomClient;
 
-	public WindowDossierMedicalAnimal() {//String id
+	public WindowDossierMedicalAnimal() {// String id
 		controller = new ControllerClients();
-//		List<String> liste = controller.getClientbyId(id);
-		
+		// List<String> liste = controller.getClientbyId(id);
+
 		frame.setTitle("Dossier Medical");
 		frame.setBounds(100, 100, 570, 300);
 		frame.setVisible(true);
 
-		GridBagLayout gridBagLayoutModalAddClient = new GridBagLayout();
-		gridBagLayoutModalAddClient.columnWidths = new int[] { 0, 80, 0, 0, 75, 65, 0, 73, 33, 0 };
-		gridBagLayoutModalAddClient.rowHeights = new int[] { 0, 0, 30, 30, 0, 0, 0, 0, 0, 0, 0 };
-		gridBagLayoutModalAddClient.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+		GridBagLayout gridBagLayoutDossierAnimal = new GridBagLayout();
+		gridBagLayoutDossierAnimal.columnWidths = new int[] { 0, 80, 0, 0, 75, 65, 0, 73, 33, 0 };
+		gridBagLayoutDossierAnimal.rowHeights = new int[] { 0, 0, 30, 30, 0, 0, 0, 0, 0, 0, 0 };
+		gridBagLayoutDossierAnimal.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
 				Double.MIN_VALUE };
-		gridBagLayoutModalAddClient.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+		gridBagLayoutDossierAnimal.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
 				Double.MIN_VALUE };
-		frame.getContentPane().setLayout(gridBagLayoutModalAddClient);
+		frame.getContentPane().setLayout(gridBagLayoutDossierAnimal);
 
-		JButton btnValiderModalAddClient = new JButton("VALIDER");
-		GridBagConstraints gbc_btnValiderModalAdd = new GridBagConstraints();
-		gbc_btnValiderModalAdd.insets = new Insets(0, 0, 5, 5);
-		gbc_btnValiderModalAdd.gridx = 6;
-		gbc_btnValiderModalAdd.gridy = 1;
-		frame.getContentPane().add(btnValiderModalAddClient, gbc_btnValiderModalAdd);
+		JButton btnValider = new JButton("VALIDER");
+		GridBagConstraints gbc_btnValider = new GridBagConstraints();
+		gbc_btnValider.insets = new Insets(0, 0, 5, 5);
+		gbc_btnValider.gridx = 6;
+		gbc_btnValider.gridy = 1;
+		frame.getContentPane().add(btnValider, gbc_btnValider);
 
-		JButton btnAnnulerModalCancelClient = new JButton("ANNULER");
-		GridBagConstraints gbc_btnAnnulerModalCancelClient = new GridBagConstraints();
-		gbc_btnAnnulerModalCancelClient.insets = new Insets(0, 0, 5, 5);
-		gbc_btnAnnulerModalCancelClient.gridx = 7;
-		gbc_btnAnnulerModalCancelClient.gridy = 1;
-		frame.getContentPane().add(btnAnnulerModalCancelClient, gbc_btnAnnulerModalCancelClient);
-
-		btnAnnulerModalCancelClient.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-			}
-		});
+		JButton btnAnnuler = new JButton("ANNULER");
+		GridBagConstraints gbc_btnAnnuler = new GridBagConstraints();
+		gbc_btnAnnuler.insets = new Insets(0, 0, 5, 5);
+		gbc_btnAnnuler.gridx = 7;
+		gbc_btnAnnuler.gridy = 1;
+		frame.getContentPane().add(btnAnnuler, gbc_btnAnnuler);
 
 		JLabel lblClients = new JLabel("Clients :");
 		GridBagConstraints gbc_lblClients = new GridBagConstraints();
@@ -65,13 +57,13 @@ public class WindowDossierMedicalAnimal {
 		gbc_lblClients.gridy = 2;
 		frame.getContentPane().add(lblClients, gbc_lblClients);
 
-		JLabel lblAntcedentsconsultations = new JLabel("Ant\u00E9c\u00E9dents/Consultations");
-		GridBagConstraints gbc_lblAntcedentsconsultations = new GridBagConstraints();
-		gbc_lblAntcedentsconsultations.gridwidth = 2;
-		gbc_lblAntcedentsconsultations.insets = new Insets(0, 0, 5, 5);
-		gbc_lblAntcedentsconsultations.gridx = 4;
-		gbc_lblAntcedentsconsultations.gridy = 2;
-		frame.getContentPane().add(lblAntcedentsconsultations, gbc_lblAntcedentsconsultations);
+		JLabel lblAntecedentsconsultations = new JLabel("Antécédents Consultations");
+		GridBagConstraints gbc_lblAntecedentsconsultations = new GridBagConstraints();
+		gbc_lblAntecedentsconsultations.gridwidth = 2;
+		gbc_lblAntecedentsconsultations.insets = new Insets(0, 0, 5, 5);
+		gbc_lblAntecedentsconsultations.gridx = 4;
+		gbc_lblAntecedentsconsultations.gridy = 2;
+		frame.getContentPane().add(lblAntecedentsconsultations, gbc_lblAntecedentsconsultations);
 
 		JLabel lblNomClient = new JLabel("Nom Client");
 		GridBagConstraints gbc_lblNomClient = new GridBagConstraints();
@@ -118,13 +110,13 @@ public class WindowDossierMedicalAnimal {
 		gbc_lblRoguz.gridx = 2;
 		gbc_lblRoguz.gridy = 6;
 		frame.getContentPane().add(lblRoguz, gbc_lblRoguz);
-		
-				JLabel lblGenre = new JLabel("Genre");
-				GridBagConstraints gbc_lblGenre = new GridBagConstraints();
-				gbc_lblGenre.insets = new Insets(0, 0, 5, 5);
-				gbc_lblGenre.gridx = 3;
-				gbc_lblGenre.gridy = 6;
-				frame.getContentPane().add(lblGenre, gbc_lblGenre);
+
+		JLabel lblGenre = new JLabel("Genre");
+		GridBagConstraints gbc_lblGenre = new GridBagConstraints();
+		gbc_lblGenre.insets = new Insets(0, 0, 5, 5);
+		gbc_lblGenre.gridx = 3;
+		gbc_lblGenre.gridy = 6;
+		frame.getContentPane().add(lblGenre, gbc_lblGenre);
 
 		JLabel lblEspece = new JLabel("Espece + race");
 		GridBagConstraints gbc_lblEspece = new GridBagConstraints();
@@ -139,6 +131,14 @@ public class WindowDossierMedicalAnimal {
 		gbc_lblTatouage.gridx = 2;
 		gbc_lblTatouage.gridy = 8;
 		frame.getContentPane().add(lblTatouage, gbc_lblTatouage);
+
+		// Action listener du btn Annuler de la JDialog
+		btnAnnuler.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 	}
 
 }

@@ -1145,7 +1145,8 @@ public class WindowClients {
 		btnConfirmEditClient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.updateClient(textFieldCodeClientEdit.getText(), 
+				controller.updateClient(
+						textFieldCodeClientEdit.getText(), 
 						textFieldNomClientEdit.getText(),
 						textFieldPrenomClientEdit.getText(), 
 						textFieldAdresse1ClientEdit.getText(),

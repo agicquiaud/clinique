@@ -27,7 +27,7 @@ public class AnimalDAOJdbcImpl implements AnimalDAO {
 			+ "Couleur, Race, Espece, CodeClient, Tatouage, Antecedents, Archive FROM Animaux WHERE CodeAnimal=?";
 	private static final String sqlSelectAllEspece = "SELECT DISTINCT Espece FROM Races";
 	private static final String sqlSelectRaceByEspece = "SELECT Race FROM Races WHERE Espece=?";
-
+	
 	public List<Animaux> selectAll() throws DALException {
 		Connection cnx = null;
 		Statement rqt = null;

@@ -3,23 +3,23 @@ package fr.eni.clinique.ihm.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eni.clinique.bll.Animal;
-import fr.eni.clinique.bll.AnimalSingleton;
-import fr.eni.clinique.bll.ClientsUtil;
-import fr.eni.clinique.bll.ClientsUtilSingleton;
+import fr.eni.clinique.bll.AnimalManager;
+import fr.eni.clinique.bll.AnimalManagerSingleton;
+import fr.eni.clinique.bll.ClientsManager;
+import fr.eni.clinique.bll.ClientsManagerSingleton;
 import fr.eni.clinique.bo.Animaux;
 import fr.eni.clinique.bo.Clients;
 
 public class ControllerAnimaux {
 
-	private Animal mgerAnimal;
-	private ClientsUtil mgerClient;
+	private AnimalManager mgerAnimal;
+	private ClientsManager mgerClient;
 	private List<Animaux> liste;
 	private Animaux animal;
 
 	public ControllerAnimaux() {
-		mgerAnimal = AnimalSingleton.getinstance(); //Instance AnimalImpl
-		mgerClient = ClientsUtilSingleton.getinstance();
+		mgerAnimal = AnimalManagerSingleton.getinstance(); //Instance AnimalImpl
+		mgerClient = ClientsManagerSingleton.getinstance();
 	}
 	
 	public Object[][] getList() {
@@ -107,6 +107,14 @@ public class ControllerAnimaux {
 		System.out.println(animal.toString());
 		mgerAnimal.insert(animal);
 	
+	}
+	
+	public Object[] getAnimalAndMaitre(String id){
+		Object tab [] = new Object[2];
+		tab[1] = mgerAnimal.animalById(Integer.parseInt(id));
+		tab[2] = mgerClient.getClientById(((Animaux) tab[1]).getCodeClient());
+				
+		return tab;
 	}
 	
 	
