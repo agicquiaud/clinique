@@ -15,6 +15,9 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -23,6 +26,7 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
+import fr.eni.clinique.ihm.controller.ControllerAgenda;
 import fr.eni.clinique.ihm.controller.ControllerPersonnels;
 
 public class WindowAgenda {
@@ -36,6 +40,7 @@ public class WindowAgenda {
 	private JDatePanelImpl datePanel = new JDatePanelImpl(model, properties);
 	private JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());;
 	private ControllerPersonnels controllerpersonnels;
+	private ControllerAgenda controlleragenda;
 	
 	public WindowAgenda(){		
 		
@@ -61,13 +66,13 @@ public class WindowAgenda {
 		frame.getContentPane().add(lblVeterinaire, gbc_lblVeterinaire);
 		
 		String [] tabVet = controllerpersonnels.getNomVeterinaires();
-		JComboBox<String>comboBox = new JComboBox<String>(tabVet);
+		JComboBox<String>comboBoxVet = new JComboBox<String>(tabVet);
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_comboBox.gridx = 2;
 		gbc_comboBox.gridy = 1;
-		frame.getContentPane().add(comboBox, gbc_comboBox);
+		frame.getContentPane().add(comboBoxVet, gbc_comboBox);
 		
 		JLabel lblDate = new JLabel("Date : ");
 		GridBagConstraints gbc_lblDate = new GridBagConstraints();
@@ -98,7 +103,9 @@ public class WindowAgenda {
 		frame.getContentPane().add(scrollPane, gbc_scrollPane);
 		
 		String[] entete = { "Heure", "Nom", "Animal", "Race" };
-		Object[][] donnee = { { "10:45", "Bosapin", "Rex", "Labrador" } };
+		System.out.println(comboBoxVet.getSelectedItem().toString());
+		System.out.println(datePicker.getJFormattedTextField().getText());
+		Object[][] donnee = controlleragenda.getTabAgenda(comboBoxVet.getSelectedItem().toString(), datePicker.getJFormattedTextField().getText());
 		table = new JTable(donnee, entete);
 		scrollPane.setViewportView(table);
 		
@@ -116,6 +123,15 @@ public class WindowAgenda {
 		gbc_btnDossierMedical.gridy = 6;
 		frame.getContentPane().add(btnDossierMedical, gbc_btnDossierMedical);
 		
+		JMenuBar menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);
+		
+		JMenu mnConnexion = new JMenu("Connexion");
+		menuBar.add(mnConnexion);
+		
+		JMenuItem mntmDeconnexion = new JMenuItem("Deconnexion");
+		mnConnexion.add(mntmDeconnexion);
+		
 		//Action Listener DatePicker for refresh JTable
 		datePicker.addActionListener(new ActionListener() {
 			@Override
@@ -129,6 +145,14 @@ public class WindowAgenda {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new WindowDossierMedicalAnimal();
+			}
+		});
+		
+		mntmDeconnexion.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new WindowLogin();
 			}
 		});
 		
