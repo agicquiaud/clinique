@@ -4,7 +4,7 @@ import java.util.List;
 
 import fr.eni.clinique.bo.Animaux;
 
-public interface Animal {
+public interface AnimalManager {
 	public void insert(Animaux animal);
 	public void update (Animaux animal);
 	public void delete (Animaux animal);

@@ -3,7 +3,7 @@ package fr.eni.clinique.bll;
 import java.util.List;
 import fr.eni.clinique.bo.Clients;
 
-public interface ClientsUtil {
+public interface ClientsManager {
 	public List<Clients> getAll();
 	public List<Clients> getClientByNom(String nom);
 	public void insert(Clients client);

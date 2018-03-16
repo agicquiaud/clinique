@@ -3,18 +3,18 @@ package fr.eni.clinique.ihm.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.eni.clinique.bll.ClientsUtil;
-import fr.eni.clinique.bll.ClientsUtilSingleton;
+import fr.eni.clinique.bll.ClientsManager;
+import fr.eni.clinique.bll.ClientsManagerSingleton;
 import fr.eni.clinique.bo.Clients;
 
 public class ControllerClients {
 
-	private ClientsUtil bllclients;
+	private ClientsManager bllclients;
 	private List<Clients> liste;
 	private Clients clients;
 
 	public ControllerClients() {
-		bllclients = ClientsUtilSingleton.getinstance();
+		bllclients = ClientsManagerSingleton.getinstance();
 
 	}
 
