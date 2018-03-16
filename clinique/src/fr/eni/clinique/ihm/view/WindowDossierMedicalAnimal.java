@@ -8,14 +8,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import fr.eni.clinique.ihm.controller.ControllerClients;
 
-public class WindowAddClient{
-	
+public class WindowDossierMedicalAnimal {
+
 	private JDialog frame = new JDialog();
 	private ControllerClients controller;
 	private JTextField textFieldNomClient;
@@ -27,13 +26,12 @@ public class WindowAddClient{
 	private JTextField textFieldNumTelClient;
 	private JTextField textFieldEmailClient;
 	
-	public WindowAddClient(){
-		
+	public WindowDossierMedicalAnimal() {
 		controller = new ControllerClients();
 		frame.setTitle("Ajouter un client");
 		frame.setBounds(100, 100, 740, 300);
 		frame.setVisible(true);
-		
+
 		GridBagLayout gridBagLayoutModalAddClient = new GridBagLayout();
 		gridBagLayoutModalAddClient.columnWidths = new int[] { 0, 0, 0, 0, 140, 0, 0, 0, 0, 0, 0, 0 };
 		gridBagLayoutModalAddClient.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -196,7 +194,7 @@ public class WindowAddClient{
 				frame.dispose();
 			}
 		});
-		
+
 		btnAnnulerModalCancelClient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -206,4 +204,3 @@ public class WindowAddClient{
 	}
 	
 }
-
