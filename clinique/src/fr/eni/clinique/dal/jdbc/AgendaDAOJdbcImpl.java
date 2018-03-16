@@ -326,8 +326,11 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 			rqt = cnx.prepareStatement(sqlSelectDayByVet);
 			cal.setTime(new Date(date.getTime()));
 			cal.add(Calendar.DATE, 1);
+			System.out.println(date.getTime());
 			rqt.setDate(1, new java.sql.Date(date.getTime()));
-			rqt.setDate(2, (java.sql.Date) cal.getTime());
+			System.out.println(cal.getTime().getTime());
+			rqt.setDate(2, new java.sql.Date(cal.getTime().getTime()));
+			System.out.println(idVet.toString());
 			rqt.setInt(3, idVet);
 			rs = rqt.executeQuery();
 			RendezVous rdv = null;
@@ -354,6 +357,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 				e.printStackTrace();
 			}
 		}
+		System.out.println(liste.toString());
 		return liste;
 	}
 }
