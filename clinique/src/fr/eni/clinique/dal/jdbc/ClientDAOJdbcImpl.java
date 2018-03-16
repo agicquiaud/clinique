@@ -82,7 +82,9 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 			rqt.setString(4, data.getCodePostal());
 			rqt.setString(5, data.getVille());
 			rqt.setString(6, data.getNumTel());
+			rqt.setString(6, data.getAssurance());
 			rqt.setString(7, data.getEmail());
+			rqt.setString(7, data.getRemarque());
 			rqt.setBoolean(8, data.getArchive());
 			rqt.setInt(9, data.getCodeClient());
 
