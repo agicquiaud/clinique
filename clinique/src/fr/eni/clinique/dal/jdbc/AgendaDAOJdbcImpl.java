@@ -5,10 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Date;
+import java.util.List;
 
 import fr.eni.clinique.bo.RendezVous;
 import fr.eni.clinique.dal.AgendaDAO;
@@ -23,7 +25,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 	private static final String sqlSelectByDay = "SELECT CodeVeto, DateRdv, CodeAnimal FROM Agendas WHERE DateRdv<=? AND DateRdv>=?";
 	private static final String sqlSelectByIdAnimal ="SELECT CodeVeto, CodeAnimal, DateRdv FROM Agendas WHERE CodeAnimal=?";
 	private static final String sqlSelectByIdVet = "SELECT CodeVeto, CodeAnimal, DateRdv FROM Agendas WHERE CodeVeto=?";
-	private static final String sqlSelectDayByVet = "SELECT CodeVeto, CodeAnimal, DateRdv FROM Agendas WHERE DateRdv<=? AND DateRdv>=? AND CodeVeto=?";
+	private static final String sqlSelectDayByVet = "SELECT CodeVeto, CodeAnimal, DateRdv FROM Agendas WHERE DateRdv BETWEEN ? AND ? AND CodeVeto=?";
 	
 	public List<RendezVous> selectAll() throws DALException {
 		Connection cnx = null;
@@ -320,24 +322,21 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 		PreparedStatement rqt = null;
 		ResultSet rs = null;
 		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date(date.getTime()));
+		cal.add(Calendar.DATE, 1);
+		Date edate = new Date(cal.getTime().getTime());
 		List<RendezVous> liste = new ArrayList<RendezVous>();
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlSelectDayByVet);
-			cal.setTime(new Date(date.getTime()));
-			cal.add(Calendar.DATE, 1);
-			System.out.println(date.getTime());
 			rqt.setDate(1, new java.sql.Date(date.getTime()));
-			System.out.println(cal.getTime().getTime());
-			rqt.setDate(2, new java.sql.Date(cal.getTime().getTime()));
-			System.out.println(idVet.toString());
+			rqt.setDate(2, new java.sql.Date(edate.getTime()));
 			rqt.setInt(3, idVet);
 			rs = rqt.executeQuery();
 			RendezVous rdv = null;
 
 			while (rs.next()) {
-				rdv = new RendezVous(rs.getInt("CodeVeto"), rs.getDate("DateRdv"), rs.getInt("CodeAnimal"));
-
+				rdv = new RendezVous(rs.getInt("CodeVeto"), rs.getTimestamp("DateRdv"), rs.getInt("CodeAnimal"));
 				liste.add(rdv);
 			}
 		} catch (SQLException e) {
@@ -357,7 +356,6 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 				e.printStackTrace();
 			}
 		}
-		System.out.println(liste.toString());
 		return liste;
 	}
 }
