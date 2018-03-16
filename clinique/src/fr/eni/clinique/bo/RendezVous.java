@@ -1,18 +1,24 @@
 package fr.eni.clinique.bo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class RendezVous {
 
-	private Integer CodeVeto;
-	private Date Date;
-	private Integer CodeAnimal;
+	private Integer codeVeto;
+	private Date date;
+	private Integer codeAnimal;
 
-	public RendezVous(Integer codeVeto, Date date, Integer codeAnimal) {
+	public RendezVous(Integer pcodeVeto, Date pdate, Integer pcodeAnimal) {
 		super();
-		CodeVeto = codeVeto;
-		Date = date;
-		CodeAnimal = codeAnimal;
+		codeVeto = pcodeVeto;
+		date = pdate;
+		codeAnimal = pcodeAnimal;
+	}
+	
+	public RendezVous(Integer pcodeVeto, Date pdate) {
+		super();
+		codeVeto = pcodeVeto;
+		date = pdate;
 	}
 
 	public RendezVous() {
@@ -20,32 +26,32 @@ public class RendezVous {
 	}
 
 	public Date getDate() {
-		return Date;
+		return date;
 	}
 
 	public void setDate(Date date) {
-		Date = date;
+		date = date;
 	}
 
 	public Integer getCodeVeto() {
-		return CodeVeto;
+		return codeVeto;
 	}
 
 	public void setCodeVeto(Integer codeVeto) {
-		CodeVeto = codeVeto;
+		codeVeto = codeVeto;
 	}
 
 	public Integer getCodeAnimal() {
-		return CodeAnimal;
+		return codeAnimal;
 	}
 
 	public void setCodeAnimal(Integer codeAnimal) {
-		CodeAnimal = codeAnimal;
+		codeAnimal = codeAnimal;
 	}
 
 	@Override
 	public String toString() {
-		return "RendezVous [date=" + Date + ", CodeVeto=" + CodeVeto + ", CodeAnimal=" + CodeAnimal + "]";
+		return "RendezVous [date=" + date + ", CodeVeto=" + codeVeto + ", CodeAnimal=" + codeAnimal + "]";
 	}
 
 }
