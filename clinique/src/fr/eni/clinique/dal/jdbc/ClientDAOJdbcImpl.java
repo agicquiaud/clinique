@@ -142,7 +142,6 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 			} catch (SQLException e) {
 				throw new DALException("close failed - ", e);
 			}
-
 		}
 	}
 
