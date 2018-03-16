@@ -29,8 +29,11 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
+import fr.eni.clinique.bo.Animaux;
 import fr.eni.clinique.bo.Clients;
+import fr.eni.clinique.ihm.controller.ControllerAnimaux;
 import fr.eni.clinique.ihm.controller.ControllerClients;
+import fr.eni.clinique.ihm.controller.ControllerPersonnels;
 
 public class WindowPriseDeRendezVous extends JFrame {
 
@@ -51,8 +54,7 @@ public class WindowPriseDeRendezVous extends JFrame {
 	private JDatePanelImpl datePanel = new JDatePanelImpl(model, properties);
 	private JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
 	private ImageIcon icon = new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/plus.png");
-	private JComboBox<String> CBAnimal = new JComboBox<String>();
-	private JComboBox<String> CBVet = new JComboBox<String>();
+	private ControllerAnimaux controllerAnimal = new ControllerAnimaux();
 	private ControllerClients controllerClients = new ControllerClients();
 	private final JButton btnAddClient = new JButton(icon);
 	private final JButton btnAddAnimal = new JButton(icon);
@@ -79,15 +81,8 @@ public class WindowPriseDeRendezVous extends JFrame {
 		Integer i = 1;
 		Clients[] client = new Clients[controllerClients.listeClient().length];
 		client = controllerClients.listeClient();
-		String[] tabNomClient = new String[controllerClients.listeClient().length + 1];
-		tabNomClient[0] = "";
-		for (Clients cli : client) {
-			tabNomClient[i] = cli.getNom() + " " + cli.getPrenom();
-			i++;
-		}
-		// tabClient = controllerClients.getNomPrenomList();
 
-		JComboBox<String> CBClient = new JComboBox<String>(tabNomClient);
+		JComboBox<Clients> CBClient = new JComboBox<Clients>(client);
 		CBClient.setBorder(new EmptyBorder(0, 2, 0, 2));
 		contentPaneNorthWestClient.add(CBClient);
 		contentPaneNorthWestClient.repaint();
@@ -117,8 +112,8 @@ public class WindowPriseDeRendezVous extends JFrame {
 				}
 			}
 		});
-
-		// CBAnimal = controlleranimal.getListByClient("gicquiaud");
+		
+		JComboBox<Animaux> CBAnimal = new JComboBox<Animaux>(controllerAnimal.getAnimalByIdClient(18));
 		contentPaneNorthWestAnimal.add(CBAnimal);
 		contentPaneNorthWest.add(contentPaneNorthWestAnimal);
 		contentPaneNorthWestAnimal.add(btnAddAnimal);
@@ -126,6 +121,9 @@ public class WindowPriseDeRendezVous extends JFrame {
 		contentPaneNorthCenter.setLayout(new GridLayout(10, 1));
 		contentPaneNorthCenter.add(new JLabel("Par"));
 		contentPaneNorthCenter.add(new JLabel("Véterinaire :"));
+		ControllerPersonnels cp = new ControllerPersonnels();
+		String[] listeVeto= cp.getNomVeterinaires();
+		JComboBox<String> CBVet = new JComboBox<String>(listeVeto);
 		contentPaneNorthCenter.add(CBVet);
 		contentPaneNorthEst.setBorder(new EmptyBorder(0, 3, 0, 2));
 		contentPaneNorthEst.setLayout(new GridLayout(10, 1));
@@ -135,20 +133,14 @@ public class WindowPriseDeRendezVous extends JFrame {
 		contentPaneNorthEst.add(new JLabel());
 		contentPaneNorthEstSouth.setLayout(new GridLayout(1, 4));
 		JLabel label = new JLabel("Heure :");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setHorizontalTextPosition(SwingConstants.RIGHT);
-		label.setAlignmentX(Component.CENTER_ALIGNMENT);
 		contentPaneNorthEstSouth.add(label);
 		JSpinner heure = new JSpinner();
 		heure.setModel(new SpinnerNumberModel(9, 9, 19, 1));
 		contentPaneNorthEstSouth.add(heure);
 		JLabel labelMin = new JLabel("Minute :");
-		labelMin.setHorizontalAlignment(SwingConstants.CENTER);
-		labelMin.setHorizontalTextPosition(SwingConstants.RIGHT);
-		labelMin.setAlignmentX(Component.CENTER_ALIGNMENT);
 		contentPaneNorthEstSouth.add(labelMin);
 		JSpinner minute = new JSpinner();
-		minute.setModel(new SpinnerNumberModel(0, 0, 59, 1));
+		minute.setModel(new SpinnerNumberModel(00, 0, 45, 15));
 		contentPaneNorthEstSouth.add(minute);
 		contentPaneNorthEst.add(contentPaneNorthEstSouth);
 
