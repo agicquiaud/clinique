@@ -3,16 +3,19 @@ package fr.eni.clinique.ihm.controller;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.sql.Date;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 import fr.eni.clinique.bll.AgendaManager;
+import fr.eni.clinique.bll.AgendaManagerSingleton;
 import fr.eni.clinique.bll.AnimalManager;
 import fr.eni.clinique.bll.AnimalManagerSingleton;
 import fr.eni.clinique.bll.ClientsManager;
 import fr.eni.clinique.bll.ClientsManagerSingleton;
 import fr.eni.clinique.bll.PersonnelsManager;
+import fr.eni.clinique.bll.PersonnelsManagerSingleton;
 import fr.eni.clinique.bo.Animaux;
 import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.bo.RendezVous;
@@ -31,12 +34,13 @@ public class ControllerAgenda {
 	public ControllerAgenda(){
 		mgerAnimal = AnimalManagerSingleton.getinstance(); //Instance AnimalImpl
 		mgerClient = ClientsManagerSingleton.getinstance();
+		mgerPersonnel = PersonnelsManagerSingleton.getInstance();
+		mgerAgenda = AgendaManagerSingleton.getinstance();
 	}
 	
 	
 	public Object[][] getTabAgenda(String NomVeto, String pdate) {
-		DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.FRENCH);
-		System.out.println(pdate);
+		DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.FRENCH);
 		Date date = null;
 		User Veto = mgerPersonnel.getUser(NomVeto);
 		try {
@@ -45,8 +49,11 @@ public class ControllerAgenda {
 			e.printStackTrace();
 		}
 		System.out.println(date.toString());
+		System.out.println(Veto.toString());
 		RendezVous rdv = new RendezVous(Veto.getId(), date);
+		System.out.println(rdv.toString());
 		liste = mgerAgenda.getRdvVetByDay(rdv);
+		System.out.println(liste.toString());
 		Object[][] tab = new Object[liste.size()][4];
 		for (int i = 0; i < liste.size(); i++) {
 			animaux = mgerAnimal.animalById(liste.get(i).getCodeAnimal());

@@ -9,6 +9,7 @@ public class AppliTestIHM {
 			@Override
 			public void run() {
 				new WindowAgenda();
+				
 			}
 		});
 	}
