@@ -152,7 +152,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 		}
 	}
 
-	@Override
+	@Override 
 	public List<RendezVous> selectByHour(Date date) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
