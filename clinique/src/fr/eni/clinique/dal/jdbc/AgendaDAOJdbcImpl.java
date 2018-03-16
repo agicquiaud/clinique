@@ -66,7 +66,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlUpdate);
 			rqt.setInt(1, data.getCodeVeto());
-			rqt.setDate(4, new java.sql.Date(data.getDate().getTime()));
+			rqt.setDate(4, new java.sql.Date(data.getDate().getTime())); // TODO
 			rqt.setInt(3, data.getCodeAnimal());
 			rqt.setDate(4, new java.sql.Date(data.getDate().getTime()));
 

@@ -74,6 +74,7 @@ public class ControllerClients {
 	
 	public Clients getClientbyId(String id){
 		clients = bllclients.getClientById(Integer.parseInt(id));
+
 		return clients;
 	}
 

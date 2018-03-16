@@ -1115,17 +1115,17 @@ public class WindowClients {
 					EditClient.setBounds(100, 100, 480, 330);
 				
 					
-//					textFieldCodeClientEdit.setText(controller.getClientbyId());
-//					textFieldAssuranceClientEdit.setText(t);
-//					textFieldNomClientEdit.setText(t);
-//					textFieldEmailClientEdit.setText(t);
-//					textFieldPrenomClientEdit.setText(t);
-//					textFieldRemarqueClientEdit.setText(t);
-//					textFieldAdresse1ClientEdit.setText(t);
-//					textFieldAdresse2ClientEdit.setText(t);
-//					textFieldVilleClientEdit.setText(t);
-//					textFieldCodePostalClientEdit.setText(t);
-//					textFieldNumTelClientEdit.setText(t);
+					textFieldCodeClientEdit.setText(controller.getClientbyId());
+					textFieldAssuranceClientEdit.setText(t);
+					textFieldNomClientEdit.setText(t);
+					textFieldEmailClientEdit.setText(t);
+					textFieldPrenomClientEdit.setText(t);
+					textFieldRemarqueClientEdit.setText(t);
+					textFieldAdresse1ClientEdit.setText(t);
+					textFieldAdresse2ClientEdit.setText(t);
+					textFieldVilleClientEdit.setText(t);
+					textFieldCodePostalClientEdit.setText(t);
+					textFieldNumTelClientEdit.setText(t);
 					
 					EditClient.setVisible(true);
 				} catch (Exception err) {
