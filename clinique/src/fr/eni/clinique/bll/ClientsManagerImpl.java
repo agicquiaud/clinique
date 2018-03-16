@@ -8,7 +8,7 @@ import fr.eni.clinique.dal.ClientDAO;
 import fr.eni.clinique.dal.DALException;
 import fr.eni.clinique.dal.DAOFactory;
 
-public class ClientsUtilImpl implements ClientsUtil {
+public class ClientsManagerImpl implements ClientsManager {
 	private ClientDAO con = new DAOFactory().getClientDAO();
 	List<Clients> liste;
 	Clients clients;

@@ -99,7 +99,6 @@ public class WindowAgenda {
 		
 		String[] entete = { "Heure", "Nom", "Animal", "Race" };
 		Object[][] donnee = { { "10:45", "Bosapin", "Rex", "Labrador" } };
-		
 		table = new JTable(donnee, entete);
 		scrollPane.setViewportView(table);
 		

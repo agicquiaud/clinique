@@ -28,28 +28,28 @@ public class WindowDossierMedicalAnimal {
 		frame.setBounds(100, 100, 570, 300);
 		frame.setVisible(true);
 
-		GridBagLayout gridBagLayoutModalAddClient = new GridBagLayout();
-		gridBagLayoutModalAddClient.columnWidths = new int[] { 0, 80, 0, 0, 75, 65, 0, 73, 33, 0 };
-		gridBagLayoutModalAddClient.rowHeights = new int[] { 0, 0, 30, 30, 0, 0, 0, 0, 0, 0, 0 };
-		gridBagLayoutModalAddClient.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+		GridBagLayout gridBagLayoutDossierAnimal = new GridBagLayout();
+		gridBagLayoutDossierAnimal.columnWidths = new int[] { 0, 80, 0, 0, 75, 65, 0, 73, 33, 0 };
+		gridBagLayoutDossierAnimal.rowHeights = new int[] { 0, 0, 30, 30, 0, 0, 0, 0, 0, 0, 0 };
+		gridBagLayoutDossierAnimal.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
 				Double.MIN_VALUE };
-		gridBagLayoutModalAddClient.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+		gridBagLayoutDossierAnimal.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
 				Double.MIN_VALUE };
-		frame.getContentPane().setLayout(gridBagLayoutModalAddClient);
+		frame.getContentPane().setLayout(gridBagLayoutDossierAnimal);
 
-		JButton btnValiderModalAddClient = new JButton("VALIDER");
-		GridBagConstraints gbc_btnValiderModalAdd = new GridBagConstraints();
-		gbc_btnValiderModalAdd.insets = new Insets(0, 0, 5, 5);
-		gbc_btnValiderModalAdd.gridx = 6;
-		gbc_btnValiderModalAdd.gridy = 1;
-		frame.getContentPane().add(btnValiderModalAddClient, gbc_btnValiderModalAdd);
+		JButton btnValider = new JButton("VALIDER");
+		GridBagConstraints gbc_btnValider = new GridBagConstraints();
+		gbc_btnValider.insets = new Insets(0, 0, 5, 5);
+		gbc_btnValider.gridx = 6;
+		gbc_btnValider.gridy = 1;
+		frame.getContentPane().add(btnValider, gbc_btnValider);
 
-		JButton btnAnnulerModalCancelClient = new JButton("ANNULER");
-		GridBagConstraints gbc_btnAnnulerModalCancelClient = new GridBagConstraints();
-		gbc_btnAnnulerModalCancelClient.insets = new Insets(0, 0, 5, 5);
-		gbc_btnAnnulerModalCancelClient.gridx = 7;
-		gbc_btnAnnulerModalCancelClient.gridy = 1;
-		frame.getContentPane().add(btnAnnulerModalCancelClient, gbc_btnAnnulerModalCancelClient);
+		JButton btnAnnuler = new JButton("ANNULER");
+		GridBagConstraints gbc_btnAnnuler = new GridBagConstraints();
+		gbc_btnAnnuler.insets = new Insets(0, 0, 5, 5);
+		gbc_btnAnnuler.gridx = 7;
+		gbc_btnAnnuler.gridy = 1;
+		frame.getContentPane().add(btnAnnuler, gbc_btnAnnuler);
 
 		JLabel lblClients = new JLabel("Clients :");
 		GridBagConstraints gbc_lblClients = new GridBagConstraints();
@@ -58,13 +58,13 @@ public class WindowDossierMedicalAnimal {
 		gbc_lblClients.gridy = 2;
 		frame.getContentPane().add(lblClients, gbc_lblClients);
 
-		JLabel lblAntcedentsconsultations = new JLabel("Ant\u00E9c\u00E9dents/Consultations");
-		GridBagConstraints gbc_lblAntcedentsconsultations = new GridBagConstraints();
-		gbc_lblAntcedentsconsultations.gridwidth = 2;
-		gbc_lblAntcedentsconsultations.insets = new Insets(0, 0, 5, 5);
-		gbc_lblAntcedentsconsultations.gridx = 4;
-		gbc_lblAntcedentsconsultations.gridy = 2;
-		frame.getContentPane().add(lblAntcedentsconsultations, gbc_lblAntcedentsconsultations);
+		JLabel lblAntecedentsconsultations = new JLabel("Antécédents Consultations");
+		GridBagConstraints gbc_lblAntecedentsconsultations = new GridBagConstraints();
+		gbc_lblAntecedentsconsultations.gridwidth = 2;
+		gbc_lblAntecedentsconsultations.insets = new Insets(0, 0, 5, 5);
+		gbc_lblAntecedentsconsultations.gridx = 4;
+		gbc_lblAntecedentsconsultations.gridy = 2;
+		frame.getContentPane().add(lblAntecedentsconsultations, gbc_lblAntecedentsconsultations);
 
 		JLabel lblNomClient = new JLabel("Nom Client");
 		GridBagConstraints gbc_lblNomClient = new GridBagConstraints();
@@ -134,7 +134,7 @@ public class WindowDossierMedicalAnimal {
 		frame.getContentPane().add(lblTatouage, gbc_lblTatouage);
 
 		// Action listener du btn Annuler de la JDialog
-		btnAnnulerModalCancelClient.addActionListener(new ActionListener() {
+		btnAnnuler.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();

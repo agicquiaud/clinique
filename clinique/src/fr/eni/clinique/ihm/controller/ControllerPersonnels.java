@@ -2,19 +2,19 @@ package fr.eni.clinique.ihm.controller;
 
 import java.util.List;
 
-import fr.eni.clinique.bll.Personnels;
-import fr.eni.clinique.bll.PersonnelsSingleton;
+import fr.eni.clinique.bll.PersonnelsManager;
+import fr.eni.clinique.bll.PersonnelsManagerSingleton;
 import fr.eni.clinique.bo.User;
 import fr.eni.clinique.ihm.view.WindowLogin;
 
 public class ControllerPersonnels {
 
-	private static Personnels mger;
+	private static PersonnelsManager mger;
 	private List<User> liste;
 	private User user;
 
 	public ControllerPersonnels() {
-		mger = PersonnelsSingleton.getInstance();
+		mger = PersonnelsManagerSingleton.getInstance();
 	}
 
 	public void addPersonnel(User p) {
