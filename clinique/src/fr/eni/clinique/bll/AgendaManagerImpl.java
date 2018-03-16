@@ -75,7 +75,7 @@ public class AgendaManagerImpl implements AgendaManager{
 	@Override
 	public List<RendezVous> getRdvVetByDay(RendezVous prdv) {
 		try {
-			liste = agendaDAO.selectDayByVet(prdv.getDate());
+			liste = agendaDAO.selectDayByVet(prdv.getDate(), prdv.getCodeVeto());
 		} catch (DALException e) {
 			e.printStackTrace();
 		}

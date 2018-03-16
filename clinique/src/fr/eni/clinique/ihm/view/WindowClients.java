@@ -967,9 +967,9 @@ public class WindowClients {
 		gbc_lblRaceEditAnimal.gridx = 3;
 		gbc_lblRaceEditAnimal.gridy = 5;
 		EditAnimal.getContentPane().add(lblRaceEditAnimal, gbc_lblRaceEditAnimal);
-		
-		
-		JComboBox<String> comboBoxRaceEditAnimal = new JComboBox<String>(controlleranimal.getRace(comboBoxEspeceEditAnimal.getSelectedItem().toString()));
+
+		JComboBox<String> comboBoxRaceEditAnimal = new JComboBox<String>(
+				controlleranimal.getRace(comboBoxEspeceEditAnimal.getSelectedItem().toString()));
 		GridBagConstraints gbc_comboBoxRaceEditAnimal = new GridBagConstraints();
 		gbc_comboBoxRaceEditAnimal.gridwidth = 2;
 		comboBoxRaceEditAnimal.setBackground(new Color(255, 255, 255));
@@ -1021,8 +1021,9 @@ public class WindowClients {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				try {
-					//fait une maj du tableau avec les nouvelles données
-					setUpTableData2(controlleranimal.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()), entetes2);
+					// fait une maj du tableau avec les nouvelles données
+					setUpTableData2(controlleranimal
+							.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()), entetes2);
 				} catch (Exception err) {
 					setUpTableData2(null, entetes2);
 				}
@@ -1115,7 +1116,7 @@ public class WindowClients {
 					EditClient.setBounds(100, 100, 480, 330);
 					List<String> list;
 					list = controller.getClientbyId(table_1.getValueAt(table_1.getSelectedRow(), 0).toString());
-					
+
 					textFieldCodeClientEdit.setText(list.get(0));
 					textFieldAssuranceClientEdit.setText(list.get(1));
 					textFieldNomClientEdit.setText(list.get(2));
@@ -1127,7 +1128,7 @@ public class WindowClients {
 					textFieldVilleClientEdit.setText(list.get(8));
 					textFieldCodePostalClientEdit.setText(list.get(9));
 					textFieldNumTelClientEdit.setText(list.get(10));
-					
+
 					EditClient.setVisible(true);
 				} catch (Exception err) {
 					lblError.setText("Aucun client selectionné pour le modifier");
@@ -1145,17 +1146,11 @@ public class WindowClients {
 		btnConfirmEditClient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.updateClient(
-						textFieldCodeClientEdit.getText(), 
-						textFieldNomClientEdit.getText(),
-						textFieldPrenomClientEdit.getText(), 
-						textFieldAdresse1ClientEdit.getText(),
-						textFieldAdresse2ClientEdit.getText(), 
-						textFieldCodePostalClientEdit.getText(),
-						textFieldVilleClientEdit.getText(), 
-						textFieldNumTelClientEdit.getText(),
-						textFieldAssuranceClientEdit.getText(), 
-						textFieldEmailClientEdit.getText(),
+				controller.updateClient(textFieldCodeClientEdit.getText(), textFieldNomClientEdit.getText(),
+						textFieldPrenomClientEdit.getText(), textFieldAdresse1ClientEdit.getText(),
+						textFieldAdresse2ClientEdit.getText(), textFieldCodePostalClientEdit.getText(),
+						textFieldVilleClientEdit.getText(), textFieldNumTelClientEdit.getText(),
+						textFieldAssuranceClientEdit.getText(), textFieldEmailClientEdit.getText(),
 						textFieldRemarqueClientEdit.getText());
 				setUpTableData(controller.getList(), entetes1);
 				EditClient.setVisible(false);
@@ -1171,13 +1166,13 @@ public class WindowClients {
 				race.setModel(comboboxModel);
 			}
 		});
-		
+
 		comboBoxEspeceEditAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				comboboxModel = new DefaultComboBoxModel<String>(
 						controlleranimal.getRace(comboBoxEspeceEditAnimal.getSelectedItem().toString()));
-				comboBoxRaceEditAnimal.setModel(comboboxModel);				
+				comboBoxRaceEditAnimal.setModel(comboboxModel);
 			}
 		});
 
@@ -1204,17 +1199,17 @@ public class WindowClients {
 				System.out.println(table_1.getSelectedColumn());
 				System.out.println(table_1.getSelectedRow());
 				lblError.setText("");
-				if (table_2.getSelectedRow() == -1 && table_2.getSelectedColumn() == -1){
+				if (table_2.getSelectedRow() == -1 && table_2.getSelectedColumn() == -1) {
 					lblError.setText("Aucun animal sélectionner !");
-				}else{
+				} else {
 					resetTextField(EditAnimal.getContentPane());
-					
-					 lblNomClientEditAnimal.setText(table_1.getValueAt(table_1.getSelectedRow(),1) + " "
-					 + (String) table_1.getValueAt(table_1.getSelectedRow(),2));
+
+					lblNomClientEditAnimal.setText(table_1.getValueAt(table_1.getSelectedRow(), 1) + " "
+							+ (String) table_1.getValueAt(table_1.getSelectedRow(), 2));
 					lblNCodeEditAnimal.setText(table_2.getValueAt(table_2.getSelectedRow(), 0).toString());
 					List<String> list = new ArrayList<String>();
 					list = controlleranimal.getAnimalById(table_2.getValueAt(table_2.getSelectedRow(), 0).toString());
-					
+
 					textFieldNomAnimalEditAnimal.setText(list.get(0));
 					textFieldCouleurEditAnimal.setText(list.get(1));
 					textFieldTatouageEditAnimal.setText(list.get(2));
@@ -1225,7 +1220,6 @@ public class WindowClients {
 					EditAnimal.setBounds(100, 100, 500, 400);
 					EditAnimal.setVisible(true);
 				}
-					
 
 			}
 		});
@@ -1249,8 +1243,8 @@ public class WindowClients {
 				AddAnimal.setVisible(false);
 			}
 		});
-		
-		//bouton checked Add Animal Fenêtre Principale
+
+		// bouton checked Add Animal Fenêtre Principale
 		btnConfirmAddAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -1258,26 +1252,26 @@ public class WindowClients {
 						textFieldCouleurAnimal.getText(), race.getSelectedItem().toString(),
 						espece.getSelectedItem().toString(), table_1.getValueAt(table_1.getSelectedRow(), 0).toString(),
 						textFieldTatouageAnimal.getText());
-				setUpTableData2(controlleranimal.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()),entetes2);
+				setUpTableData2(
+						controlleranimal.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()),
+						entetes2);
 				AddAnimal.setVisible(false);
 			}
 		});
-		
-		//bouton checked Edit Animal Jdialogue Edit
+
+		// bouton checked Edit Animal Jdialogue Edit
 		btnValiderEditAnimal.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				controlleranimal.updateClient(table_2.getValueAt(table_2.getSelectedRow(), 0).toString(),
-						textFieldNomAnimalEditAnimal.getText(), 
-						comboboxgenreEditAnimal.getSelectedItem().toString(),
-						textFieldCouleurEditAnimal.getText(), 
-						comboBoxRaceEditAnimal.getSelectedItem().toString(), 
-						comboBoxEspeceEditAnimal.getSelectedItem().toString(),
-						lblNCodeEditAnimal.getText(),
-						textFieldTatouageEditAnimal.getText(),
-						textFieldAntecedentsEditAnimal.getText());
-				setUpTableData2(controlleranimal.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()), entetes2);
+						textFieldNomAnimalEditAnimal.getText(), comboboxgenreEditAnimal.getSelectedItem().toString(),
+						textFieldCouleurEditAnimal.getText(), comboBoxRaceEditAnimal.getSelectedItem().toString(),
+						comboBoxEspeceEditAnimal.getSelectedItem().toString(), lblNCodeEditAnimal.getText(),
+						textFieldTatouageEditAnimal.getText(), textFieldAntecedentsEditAnimal.getText());
+				setUpTableData2(
+						controlleranimal.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()),
+						entetes2);
 				EditAnimal.setVisible(false);
 			}
 		});
@@ -1297,7 +1291,7 @@ public class WindowClients {
 					controlleranimal.removeAnimal(table_2.getValueAt(table_2.getSelectedRow(), 0).toString());
 					setUpTableData2(controlleranimal
 							.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()), entetes2);
-					PopupDeleteAnimal.setVisible(false);	
+					PopupDeleteAnimal.setVisible(false);
 				} catch (Exception err) {
 					controlleranimal.removeAnimal(table_2.getValueAt(table_2.getSelectedRow(), 0).toString());
 					setUpTableData2(controlleranimal.getList(), entetes2);
@@ -1306,7 +1300,8 @@ public class WindowClients {
 			}
 		});
 
-		btnPopupCancelDeleteAnimal.addActionListener(new ActionListener() { // Bouton NON
+		btnPopupCancelDeleteAnimal.addActionListener(new ActionListener() { // Bouton
+																			// NON
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				PopupDeleteAnimal.dispose();
