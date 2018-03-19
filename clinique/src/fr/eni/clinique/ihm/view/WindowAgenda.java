@@ -105,7 +105,6 @@ public class WindowAgenda {
 		frame.getContentPane().add(scrollPane, gbc_scrollPane);
 		
 		String[] entete = { "Heure", "Nom", "Animal", "Race" };
-		System.out.println(comboBoxVet.getSelectedItem().toString());
 		Object[][] donnee = controlleragenda.getTabAgenda(comboBoxVet.getSelectedItem().toString(), datePicker.getJFormattedTextField().getText());
 		table = new JTable(donnee, entete);
 		scrollPane.setViewportView(table);
@@ -137,7 +136,16 @@ public class WindowAgenda {
 		datePicker.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				setUpTableData(controlleragenda.getTabAgenda(comboBoxVet.getSelectedItem().toString(), datePicker.getJFormattedTextField().getText())
+						, entete);
+			}
+		});
+		//Action Listener combobox actualisation du tableau
+		comboBoxVet.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setUpTableData(controlleragenda.getTabAgenda(comboBoxVet.getSelectedItem().toString(), datePicker.getJFormattedTextField().getText())
+		, entete);
 			}
 		});
 		
@@ -148,7 +156,7 @@ public class WindowAgenda {
 				new WindowDossierMedicalAnimal();
 			}
 		});
-		
+		//Action listener deconnexion
 		mntmDeconnexion.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

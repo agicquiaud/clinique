@@ -31,9 +31,10 @@ public class ControllerAgenda {
 	private List<RendezVous> liste;
 	private Clients clients;
 	private Animaux animaux;
-	
-	public ControllerAgenda(){
-		mgerAnimal = AnimalManagerSingleton.getinstance(); //Instance AnimalImpl
+
+	public ControllerAgenda() {
+		mgerAnimal = AnimalManagerSingleton.getinstance(); // Instance
+															// AnimalImpl
 		mgerClient = ClientsManagerSingleton.getinstance();
 		mgerPersonnel = PersonnelsManagerSingleton.getInstance();
 		mgerAgenda = AgendaManagerSingleton.getinstance();
@@ -55,9 +56,9 @@ public class ControllerAgenda {
 		System.out.println(cal.getTime());
 		mgerAgenda.insert(new RendezVous(veto.getId(), cal.getTime(), animal.getCodeAnimal()));
 	}
-	
+
 	public Object[][] getTabAgenda(String NomVeto, String pdate) {
-		DateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.FRENCH);
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = null;
 		User Veto = mgerPersonnel.getUser(NomVeto);
 		try {
@@ -65,22 +66,19 @@ public class ControllerAgenda {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		System.out.println(date.toString());
-		System.out.println(Veto.toString());
 		RendezVous rdv = new RendezVous(Veto.getId(), date);
-		System.out.println(rdv.toString());
 		liste = mgerAgenda.getRdvVetByDay(rdv);
-		System.out.println(liste.toString());
 		Object[][] tab = new Object[liste.size()][4];
+		format.applyPattern("HH:mm");
 		for (int i = 0; i < liste.size(); i++) {
 			animaux = mgerAnimal.animalById(liste.get(i).getCodeAnimal());
 			clients = mgerClient.getClientById(animaux.getCodeClient());
-			tab[i][0] = liste.get(i).getDate().toString();
+			tab[i][0] = format.format(liste.get(i).getDate());
 			tab[i][1] = clients.getNom() + " " + clients.getPrenom();
 			tab[i][2] = animaux.getNom();
 			tab[i][3] = animaux.getRace();
 		}
 		return tab;
 	}
-	
+
 }
