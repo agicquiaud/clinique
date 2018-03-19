@@ -219,6 +219,15 @@ public class WindowAddAnimal {
 		gbc_textFieldAntecedentsAnimal.gridy = 6;
 		AddAnimal.getContentPane().add(textFieldAntecedentsAnimal, gbc_textFieldAntecedentsAnimal);
 		
+		JLabel lblErreur = new JLabel("erreur");
+		GridBagConstraints gbc_lblErreur = new GridBagConstraints();
+		gbc_lblErreur.insets = new Insets(0, 0, 0, 5);
+		gbc_lblErreur.gridx = 1;
+		gbc_lblErreur.gridy = 7;
+		AddAnimal.getContentPane().add(lblErreur, gbc_lblErreur);
+		
+		
+		
 		//Actions Listeners
 		btnConfirmAddAnimal.addActionListener(new ActionListener() {
 			@Override

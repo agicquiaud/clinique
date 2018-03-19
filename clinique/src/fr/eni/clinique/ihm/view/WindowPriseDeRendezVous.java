@@ -3,30 +3,28 @@ package fr.eni.clinique.ihm.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-
 import java.awt.GridLayout;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
 
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTable;
+import javax.swing.ListCellRenderer;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -44,6 +42,7 @@ import fr.eni.clinique.ihm.controller.ControllerPersonnels;
 
 public class WindowPriseDeRendezVous extends JFrame {
 
+	private static final long serialVersionUID = 2363352550943035894L;
 	private JPanel contentPaneNorth = new JPanel();
 	private JPanel contentPaneNorthWest = new JPanel();
 	private JPanel contentPaneNorthWestClient = new JPanel();
@@ -80,8 +79,6 @@ public class WindowPriseDeRendezVous extends JFrame {
 		this.setSize(1000, 800);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
-		
-		
 
 		properties.put("text.today", "Today");
 		properties.put("text.month", "Month");
@@ -101,6 +98,15 @@ public class WindowPriseDeRendezVous extends JFrame {
 		client = controllerClients.listeClient();
 
 		JComboBox<Clients> CBClient = new JComboBox<Clients>(client);
+		CBClient.setRenderer(new ListCellRenderer<Clients>() {
+			@Override
+			public Component getListCellRendererComponent(JList<? extends Clients> list, Clients value, int index,
+					boolean isSelected, boolean cellHasFocus) {
+				DefaultListCellRenderer renderer = new DefaultListCellRenderer();
+				renderer.setText(value.getNom() + " " + value.getPrenom());
+				return renderer;
+			}
+		});
 		CBClient.setBorder(new EmptyBorder(0, 2, 0, 2));
 		contentPaneNorthWestClient.add(CBClient);
 		contentPaneNorthWestClient.repaint();
@@ -134,6 +140,15 @@ public class WindowPriseDeRendezVous extends JFrame {
 		});
 		
 		JComboBox<Animaux> CBAnimal = new JComboBox<Animaux>(controllerAnimal.getAnimalByIdClient(18));
+		CBAnimal.setRenderer(new ListCellRenderer<Animaux>() {
+			@Override
+			public Component getListCellRendererComponent(JList<? extends Animaux> list, Animaux value, int index,
+					boolean isSelected, boolean cellHasFocus) {
+				DefaultListCellRenderer renderer = new DefaultListCellRenderer();
+				renderer.setText(value.getNom());
+				return renderer;
+			}
+		});
 		contentPaneNorthWestAnimal.add(CBAnimal);
 		contentPaneNorthWest.add(contentPaneNorthWestAnimal);
 		contentPaneNorthWestAnimal.add(btnAddAnimal);
@@ -184,13 +199,9 @@ public class WindowPriseDeRendezVous extends JFrame {
 		minute.setModel(new SpinnerNumberModel(00, 0, 45, 15));
 		contentPaneNorthEstSouth.add(minute);
 		contentPaneNorthEst.add(contentPaneNorthEstSouth);
-
 		contentPaneNorth.add(contentPaneNorthWest);
 		contentPaneNorth.add(contentPaneNorthCenter);
-		contentPaneNorth.add(contentPaneNorthEst);
-		
-		
-		
+		contentPaneNorth.add(contentPaneNorthEst);		
 		
 		table = new JTable(donnee, entete);
 		JScrollPane scrollPane = new JScrollPane(table);
@@ -225,7 +236,6 @@ public class WindowPriseDeRendezVous extends JFrame {
 						System.out.println("Aucune ligne sélectionner");
 					
 				} catch (NumberFormatException | ParseException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				
@@ -243,10 +253,8 @@ public class WindowPriseDeRendezVous extends JFrame {
 					setUpTableData(CA.getTabAgenda(CBVet.getSelectedItem().toString(), formatDate.valueToString(datePicker)), entete);
 					
 				} catch (NumberFormatException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				
