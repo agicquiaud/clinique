@@ -8,7 +8,11 @@ import java.awt.GridLayout;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Properties;
 
 import javax.swing.BoxLayout;
@@ -24,6 +28,7 @@ import javax.swing.JTable;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
@@ -53,36 +58,45 @@ public class WindowPriseDeRendezVous extends JFrame {
 	private JPanel contentPaneSouthEst = new JPanel();
 	private Properties properties = new Properties();
 	private UtilDateModel model = new UtilDateModel();
-	private JDatePanelImpl datePanel = new JDatePanelImpl(model, properties);
-	private DateLabelFormatter formatDate = new DateLabelFormatter();
-	private JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+	private JDatePanelImpl datePanel;
+	private DateLabelFormatter formatDate;
+	private JDatePickerImpl datePicker;
 	private ImageIcon icon = new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/plus.png");
 	private ControllerAnimaux controllerAnimal = new ControllerAnimaux();
 	private ControllerClients controllerClients = new ControllerClients();
 	private final JButton btnAddClient = new JButton(icon);
 	private final JButton btnAddAnimal = new JButton(icon);
-	ControllerAgenda CA = new ControllerAgenda();
+	private ControllerAgenda CA = new ControllerAgenda();
+	private DefaultTableModel tableModel;
+	private JTable table;
+	private SimpleDateFormat sdf;
+	private JComboBox<String> CBVet;
 
 	/**
 	 * Create the frame.
 	 */
-	public WindowPriseDeRendezVous() {
+	public WindowPriseDeRendezVous(){
 		this.setTitle("Prise de rendez-vous");
 		this.setSize(1000, 800);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
+		
+		
 
 		properties.put("text.today", "Today");
 		properties.put("text.month", "Month");
 		properties.put("text.year", "Year");
-
+		model.setValue(new Date());
+		datePanel = new JDatePanelImpl(model, properties);
+		formatDate = new DateLabelFormatter();
+		datePicker = new JDatePickerImpl(datePanel, formatDate);
+		
 		contentPaneNorth.setLayout(new BoxLayout(contentPaneNorth, BoxLayout.LINE_AXIS));
 		contentPaneNorthWest.setBorder(new EmptyBorder(0, 2, 2, 3));
 		contentPaneNorthWest.setLayout(new GridLayout(10, 0));
 		contentPaneNorthWest.add(new JLabel("Pour"));
 		contentPaneNorthWest.add(new JLabel("Client :"));
 		contentPaneNorthWestClient.setLayout(new GridLayout(1, 2));
-		Integer i = 1;
 		Clients[] client = new Clients[controllerClients.listeClient().length];
 		client = controllerClients.listeClient();
 
@@ -127,12 +141,33 @@ public class WindowPriseDeRendezVous extends JFrame {
 		contentPaneNorthCenter.add(new JLabel("Véterinaire :"));
 		ControllerPersonnels cp = new ControllerPersonnels();
 		String[] listeVeto= cp.getNomVeterinaires();
-		JComboBox<String> CBVet = new JComboBox<String>(listeVeto);
+		CBVet = new JComboBox<String>(listeVeto);
+		sdf = new SimpleDateFormat("dd/MM/yyyy");
+		sdf.format(model.getValue());
+		String[] entete = { "Heure", "Nom du client", "Animal", "Race" };
+		Object[][] donnee = CA.getTabAgenda(CBVet.getSelectedItem().toString(), sdf.format(model.getValue()));
+		CBVet.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setUpTableData(CA.getTabAgenda(CBVet.getSelectedItem().toString(), sdf.format(model.getValue())), entete);
+				
+			}
+		});
+		
 		contentPaneNorthCenter.add(CBVet);
 		contentPaneNorthEst.setBorder(new EmptyBorder(0, 3, 0, 2));
 		contentPaneNorthEst.setLayout(new GridLayout(10, 1));
 		contentPaneNorthEst.add(new JLabel("Quand"));
 		contentPaneNorthEst.add(new JLabel("Date :"));
+		datePicker.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setUpTableData(CA.getTabAgenda(CBVet.getSelectedItem().toString(), sdf.format(datePicker.getModel().getValue())), entete);
+				
+			}
+		});
 		contentPaneNorthEst.add(datePicker);
 		contentPaneNorthEst.add(new JLabel());
 		contentPaneNorthEstSouth.setLayout(new GridLayout(1, 4));
@@ -151,11 +186,11 @@ public class WindowPriseDeRendezVous extends JFrame {
 		contentPaneNorth.add(contentPaneNorthWest);
 		contentPaneNorth.add(contentPaneNorthCenter);
 		contentPaneNorth.add(contentPaneNorthEst);
-
-		String[] entete = { "Heure", "Nom du client", "Animal", "Race" };
-		Object[][] donnee = { { "10:45", "Bosapin", "Rex", "Labrador" } };
-
-		JTable table = new JTable(donnee, entete);
+		
+		
+		
+		
+		table = new JTable(donnee, entete);
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setColumnHeaderView(table.getTableHeader());
 		contentPaneCenter.setLayout(new BorderLayout());
@@ -180,8 +215,13 @@ public class WindowPriseDeRendezVous extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-					CA.removeRDV((User) CBVet.getSelectedItem(),formatDate.valueToString(datePicker) , Integer.parseInt(heure.toString())
-							, Integer.parseInt(minute.toString()), (Animaux) CBAnimal.getSelectedItem());
+					if(table.getSelectedColumn()> -1 && table.getSelectedRow()>-1){
+						CA.removeRDV((User) CBVet.getSelectedItem(),formatDate.valueToString(datePicker) , Integer.parseInt(heure.toString())
+								, Integer.parseInt(minute.toString()), (Animaux) CBAnimal.getSelectedItem());
+						setUpTableData(CA.getTabAgenda(CBVet.getSelectedItem().toString(), formatDate.valueToString(datePicker)), entete);
+					}else
+						System.out.println("Aucune ligne sélectionner");
+					
 				} catch (NumberFormatException | ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -198,6 +238,8 @@ public class WindowPriseDeRendezVous extends JFrame {
 				try {
 					CA.addRDV((User) CBVet.getSelectedItem(), formatDate.valueToString(datePicker), Integer.parseInt(heure.toString())
 							, Integer.parseInt(minute.toString()), (Animaux) CBAnimal.getSelectedItem());
+					setUpTableData(CA.getTabAgenda(CBVet.getSelectedItem().toString(), formatDate.valueToString(datePicker)), entete);
+					
 				} catch (NumberFormatException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -219,6 +261,16 @@ public class WindowPriseDeRendezVous extends JFrame {
 
 		this.setVisible(true);
 
+	}
+	private void setUpTableData(Object[][] data, String[] entetes) {
+		tableModel = new DefaultTableModel(data, entetes) { // nouveau model
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		table.setModel(tableModel);
+		tableModel.fireTableDataChanged(); // maj tableau
 	}
 
 }

@@ -56,6 +56,13 @@ public class ControllerAgenda {
 		System.out.println(cal.getTime());
 		mgerAgenda.insert(new RendezVous(veto.getId(), cal.getTime(), animal.getCodeAnimal()));
 	}
+	
+	public List<RendezVous> getRdv(User veto, String date, Integer heure, Integer minute){
+		String[] str = date.split("/");
+		Calendar cal = null;
+		cal.set(Integer.parseInt(str[0]), Integer.parseInt(str[1]), Integer.parseInt(str[2]), heure, minute);
+		return mgerAgenda.getRdvVetByDay(new RendezVous(veto.getId(), cal.getTime()));
+	}
 
 	public Object[][] getTabAgenda(String NomVeto, String pdate) {
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
