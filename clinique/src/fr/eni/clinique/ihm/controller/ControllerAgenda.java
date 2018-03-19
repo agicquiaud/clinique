@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -38,7 +39,31 @@ public class ControllerAgenda {
 		mgerPersonnel = PersonnelsManagerSingleton.getInstance();
 		mgerAgenda = AgendaManagerSingleton.getinstance();
 	}
+	
+	public void addRDV(User veto, String date, Integer heure, Integer minute, Animaux animal){
+		String[] str = date.split("/");
+		Calendar cal = null;
+		cal.set(Integer.parseInt(str[0]), Integer.parseInt(str[1]), Integer.parseInt(str[2]), heure, minute);
+		System.out.println(cal.getTime());
+		mgerAgenda.insert(new RendezVous(veto.getId(), cal.getTime(), animal.getCodeAnimal()));
+	}
 
+public void removeRDV(User veto, String date, Integer heure, Integer minute, Animaux animal){
+	String[] str = date.split("/");
+	Calendar cal = null;
+	cal.set(Integer.parseInt(str[0]), Integer.parseInt(str[1]), Integer.parseInt(str[2]), heure, minute);
+	System.out.println(cal.getTime());
+	mgerAgenda.delete(new RendezVous(veto.getId(), cal.getTime(), animal.getCodeAnimal()));
+	
+}
+	
+	public List<RendezVous> getRdv(User veto, String date, Integer heure, Integer minute){
+		String[] str = date.split("/");
+		Calendar cal = null;
+		cal.set(Integer.parseInt(str[0]), Integer.parseInt(str[1]), Integer.parseInt(str[2]), heure, minute);
+		return mgerAgenda.getRdvVetByDay(new RendezVous(veto.getId(), cal.getTime()));
+	}
+	
 	public Object[][] getTabAgenda(String NomVeto, String pdate) {
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = null;
