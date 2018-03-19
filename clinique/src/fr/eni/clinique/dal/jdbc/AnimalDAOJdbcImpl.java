@@ -219,9 +219,17 @@ public class AnimalDAOJdbcImpl implements AnimalDAO {
 			rqt.setInt(1, id);
 			rs = rqt.executeQuery();
 			if (rs.next()) {
-				animal = new Animaux(rs.getInt("CodeAnimal"), rs.getString("NomAnimal"), rs.getString("Sexe"),
-						rs.getString("Couleur"), rs.getString("Race"), rs.getString("Espece"), rs.getInt("CodeClient"),
-						rs.getString("Tatouage"), rs.getString("Antecedents"), rs.getBoolean("Archive"));
+				animal = new Animaux(
+						rs.getInt("CodeAnimal"), 
+						rs.getString("NomAnimal"), 
+						rs.getString("Sexe"),
+						rs.getString("Couleur"), 
+						rs.getString("Race"), 
+						rs.getString("Espece"), 
+						rs.getInt("CodeClient"),
+						rs.getString("Tatouage"), 
+						rs.getString("Antecedents"), 
+						rs.getBoolean("Archive"));
 			}
 
 		} catch (SQLException e) {

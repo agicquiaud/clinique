@@ -47,7 +47,7 @@ public class WindowAgenda {
 	private JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());;
 	private ControllerPersonnels controllerpersonnels;
 	private ControllerAgenda controlleragenda;
-	private ControllerAnimaux controlleranimaux;
+	private ControllerAnimaux controlleranimaux = new ControllerAnimaux();
 	
 	public WindowAgenda(){		
 		controlleragenda = new ControllerAgenda();
@@ -158,7 +158,8 @@ public class WindowAgenda {
 		btnDossierMedical.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new WindowDossierMedicalAnimal(table.getModel().getValueAt(table.getSelectedRow(), 1).toString(), (Animaux) donnee[table.getSelectedRow()][4]);
+				Animaux animaux = (Animaux) donnee[table.getSelectedRow()][4];
+				new WindowDossierMedicalAnimal(table.getModel().getValueAt(table.getSelectedRow(), 1).toString(), controlleranimaux.getAnimalById(animaux.getCodeAnimal().toString()));
 			}
 		});
 		//Action listener deconnexion
@@ -179,8 +180,7 @@ public class WindowAgenda {
 			}
 		};
 		table.setModel(tableModel);
-		tableModel.fireTableDataChanged();
-	}
+		tableModel.fireTableDataChanged();	}
 	
 }
 
