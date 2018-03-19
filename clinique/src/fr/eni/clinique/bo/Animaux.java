@@ -137,10 +137,9 @@ public class Animaux {
 
 	@Override
 	public String toString() {
-		return Nom;
-//		return "Animaux [CodeAnimal=" + CodeAnimal + ", Nom=" + Nom + ", Sexe=" + Sexe + ", Couleur=" + Couleur
-//				+ ", Race=" + Race + ", Espece=" + Espece + ", CodeClient=" + CodeClient + ", Tatouage=" + Tatouage
-//				+ ", Antecedents=" + Antecedents + ", Archive=" + Archive + "]";
+		return "Animaux [CodeAnimal=" + CodeAnimal + ", Nom=" + Nom + ", Sexe=" + Sexe + ", Couleur=" + Couleur
+				+ ", Race=" + Race + ", Espece=" + Espece + ", CodeClient=" + CodeClient + ", Tatouage=" + Tatouage
+				+ ", Antecedents=" + Antecedents + ", Archive=" + Archive + "]";
 	}
 
 

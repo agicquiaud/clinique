@@ -66,7 +66,8 @@ public class WindowClients {
 		controlleranimal = new ControllerAnimaux();
 		frame = new JFrame();
 		frame.setTitle("Gestion Clients");
-		frame.setBounds(100, 100, 890, 485);
+		frame.setSize(850, 485);
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 
@@ -717,7 +718,7 @@ public class WindowClients {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					lblError.setText("");
-					new WindowAddAnimal(new Clients());
+					new WindowAddAnimal(controller.getClientbyId(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()));
 				} catch (Exception err) {
 					lblError.setText("Aucun client selectionné pour luil ajouter un animal");
 				}
