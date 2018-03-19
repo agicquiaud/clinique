@@ -29,24 +29,24 @@ public class RendezVous {
 		return date;
 	}
 
-	public void setDate(Date date) {
-		date = date;
+	public void setDate(Date pdate) {
+		date = pdate;
 	}
 
 	public Integer getCodeVeto() {
 		return codeVeto;
 	}
 
-	public void setCodeVeto(Integer codeVeto) {
-		codeVeto = codeVeto;
+	public void setCodeVeto(Integer pcodeVeto) {
+		codeVeto = pcodeVeto;
 	}
 
 	public Integer getCodeAnimal() {
 		return codeAnimal;
 	}
 
-	public void setCodeAnimal(Integer codeAnimal) {
-		codeAnimal = codeAnimal;
+	public void setCodeAnimal(Integer pcodeAnimal) {
+		codeAnimal = pcodeAnimal;
 	}
 
 	@Override
