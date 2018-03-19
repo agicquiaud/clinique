@@ -73,7 +73,7 @@ public class WindowDossierMedicalAnimal {
 		gbc_lblNomClient.gridy = 3;
 		frame.getContentPane().add(lblNomClient, gbc_lblNomClient);
 
-		textFieldNomClient = new JTextField();
+		JTextField textFieldNomClient = new JTextField();
 		GridBagConstraints gbc_textFieldNomClient = new GridBagConstraints();
 		gbc_textFieldNomClient.gridheight = 6;
 		gbc_textFieldNomClient.gridwidth = 4;
@@ -104,7 +104,7 @@ public class WindowDossierMedicalAnimal {
 		gbc_lblNom.gridy = 5;
 		frame.getContentPane().add(lblNom, gbc_lblNom);
 
-		JLabel lblRoguz = new JLabel("Rouge");
+		JLabel lblRoguz = new JLabel("Couleur");
 		GridBagConstraints gbc_lblRoguz = new GridBagConstraints();
 		gbc_lblRoguz.insets = new Insets(0, 0, 5, 5);
 		gbc_lblRoguz.gridx = 2;

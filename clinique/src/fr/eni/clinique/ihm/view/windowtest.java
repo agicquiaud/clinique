@@ -46,44 +46,153 @@ public class windowtest {
 	public windowtest() {
 		frame = new JFrame();
 		
-		
-		GridBagLayout gbl_PopupDeleteAnimal = new GridBagLayout();
-		GridBagConstraints gbc_btnPopupCancelDelete = new GridBagConstraints();
-		gbl_PopupDeleteAnimal.columnWidths = new int[] { 44, 201, 39, 0 };
-		gbl_PopupDeleteAnimal.rowHeights = new int[] { 0, 0, 0, 0, 0, 0 };
-		gbl_PopupDeleteAnimal.columnWeights = new double[] { 0.0, 1.0, 0.0,
+		frame.setTitle("Dossier Medical");
+		frame.setBounds(100, 100, 570, 300);
+		frame.setVisible(true);
+
+		GridBagLayout gridBagLayoutDossierAnimal = new GridBagLayout();
+		gridBagLayoutDossierAnimal.columnWidths = new int[] { 0, 80, 0, 0, 75, 65, 0, 73, 33, 0 };
+		gridBagLayoutDossierAnimal.rowHeights = new int[] { 0, 0, 30, 30, 0, 0, 0, 0, 0, 0, 0 };
+		gridBagLayoutDossierAnimal.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
 				Double.MIN_VALUE };
-		gbl_PopupDeleteAnimal.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
-		PopupDeleteAnimal.getContentPane().setLayout(gbl_PopupDeleteAnimal);
-		gbc_btnPopupCancelDelete.insets = new Insets(0, 0, 0, 5);
-		gbc_btnPopupCancelDelete.gridx = 5;
-		gbc_btnPopupCancelDelete.gridy = 6;
-				
-						JLabel lblSupprAnimal = new JLabel("Etes-vous sur de vouloir supprimer cette animal ?");
-						lblSupprAnimal.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
-						GridBagConstraints gbc_lblSupprAnimal = new GridBagConstraints();
-						gbc_lblSupprAnimal.insets = new Insets(0, 0, 5, 5);
-						gbc_lblSupprAnimal.gridx = 1;
-						gbc_lblSupprAnimal.gridy = 1;
-						PopupDeleteAnimal.getContentPane().add(lblSupprAnimal, gbc_lblSupprAnimal);
-				
-				JDesktopPane desktopPane = new JDesktopPane();
-				desktopPane.setBackground(SystemColor.control);
-				GridBagConstraints gbc_desktopPane = new GridBagConstraints();
-				gbc_desktopPane.gridheight = 3;
-				gbc_desktopPane.insets = new Insets(0, 0, 0, 5);
-				gbc_desktopPane.fill = GridBagConstraints.BOTH;
-				gbc_desktopPane.gridx = 1;
-				gbc_desktopPane.gridy = 2;
-				PopupDeleteAnimal.getContentPane().add(desktopPane, gbc_desktopPane);
-				
-						JButton btnPopupDeleteAnimal = new JButton("Oui");
-						btnPopupDeleteAnimal.setBounds(88, 28, 49, 22);
-						desktopPane.add(btnPopupDeleteAnimal);
-				
-				JButton btnPopupCancelDeleteAnimal = new JButton("Non");
-				btnPopupCancelDeleteAnimal.setBounds(147, 28, 51, 22);
-				desktopPane.add(btnPopupCancelDeleteAnimal);
+		gridBagLayoutDossierAnimal.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+				Double.MIN_VALUE };
+		frame.getContentPane().setLayout(gridBagLayoutDossierAnimal);
+
+		JButton btnValider = new JButton("VALIDER");
+		GridBagConstraints gbc_btnValider = new GridBagConstraints();
+		gbc_btnValider.insets = new Insets(0, 0, 5, 5);
+		gbc_btnValider.gridx = 6;
+		gbc_btnValider.gridy = 1;
+		frame.getContentPane().add(btnValider, gbc_btnValider);
+
+		JButton btnAnnuler = new JButton("ANNULER");
+		GridBagConstraints gbc_btnAnnuler = new GridBagConstraints();
+		gbc_btnAnnuler.insets = new Insets(0, 0, 5, 5);
+		gbc_btnAnnuler.gridx = 7;
+		gbc_btnAnnuler.gridy = 1;
+		frame.getContentPane().add(btnAnnuler, gbc_btnAnnuler);
+
+		JLabel lblClients = new JLabel("Clients :");
+		GridBagConstraints gbc_lblClients = new GridBagConstraints();
+		gbc_lblClients.insets = new Insets(0, 0, 5, 5);
+		gbc_lblClients.gridx = 1;
+		gbc_lblClients.gridy = 2;
+		frame.getContentPane().add(lblClients, gbc_lblClients);
+
+		JLabel lblAntecedentsconsultations = new JLabel("Antécédents Consultations");
+		GridBagConstraints gbc_lblAntecedentsconsultations = new GridBagConstraints();
+		gbc_lblAntecedentsconsultations.gridwidth = 2;
+		gbc_lblAntecedentsconsultations.insets = new Insets(0, 0, 5, 5);
+		gbc_lblAntecedentsconsultations.gridx = 4;
+		gbc_lblAntecedentsconsultations.gridy = 2;
+		frame.getContentPane().add(lblAntecedentsconsultations, gbc_lblAntecedentsconsultations);
+
+		JLabel lblNomClient = new JLabel("Nom Client");
+		GridBagConstraints gbc_lblNomClient = new GridBagConstraints();
+		gbc_lblNomClient.gridwidth = 2;
+		gbc_lblNomClient.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNomClient.gridx = 1;
+		gbc_lblNomClient.gridy = 3;
+		frame.getContentPane().add(lblNomClient, gbc_lblNomClient);
+
+		JTextField textFieldNomClient = new JTextField();
+		GridBagConstraints gbc_textFieldNomClient = new GridBagConstraints();
+		gbc_textFieldNomClient.gridheight = 6;
+		gbc_textFieldNomClient.gridwidth = 4;
+		gbc_textFieldNomClient.insets = new Insets(0, 0, 5, 5);
+		gbc_textFieldNomClient.fill = GridBagConstraints.BOTH;
+		gbc_textFieldNomClient.gridx = 4;
+		gbc_textFieldNomClient.gridy = 3;
+		frame.getContentPane().add(textFieldNomClient, gbc_textFieldNomClient);
+
+		JLabel lblAnimal = new JLabel("Animal : ");
+		GridBagConstraints gbc_lblAnimal = new GridBagConstraints();
+		gbc_lblAnimal.insets = new Insets(0, 0, 5, 5);
+		gbc_lblAnimal.gridx = 1;
+		gbc_lblAnimal.gridy = 4;
+		frame.getContentPane().add(lblAnimal, gbc_lblAnimal);
+
+		JLabel lblCodeanimal = new JLabel("codeanimal");
+		GridBagConstraints gbc_lblCodeanimal = new GridBagConstraints();
+		gbc_lblCodeanimal.insets = new Insets(0, 0, 5, 5);
+		gbc_lblCodeanimal.gridx = 2;
+		gbc_lblCodeanimal.gridy = 4;
+		frame.getContentPane().add(lblCodeanimal, gbc_lblCodeanimal);
+
+		JLabel lblNom = new JLabel("Nom");
+		GridBagConstraints gbc_lblNom = new GridBagConstraints();
+		gbc_lblNom.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNom.gridx = 2;
+		gbc_lblNom.gridy = 5;
+		frame.getContentPane().add(lblNom, gbc_lblNom);
+
+		JLabel lblRoguz = new JLabel("Couleur");
+		GridBagConstraints gbc_lblRoguz = new GridBagConstraints();
+		gbc_lblRoguz.insets = new Insets(0, 0, 5, 5);
+		gbc_lblRoguz.gridx = 2;
+		gbc_lblRoguz.gridy = 6;
+		frame.getContentPane().add(lblRoguz, gbc_lblRoguz);
+
+		JLabel lblGenre = new JLabel("Genre");
+		GridBagConstraints gbc_lblGenre = new GridBagConstraints();
+		gbc_lblGenre.insets = new Insets(0, 0, 5, 5);
+		gbc_lblGenre.gridx = 3;
+		gbc_lblGenre.gridy = 6;
+		frame.getContentPane().add(lblGenre, gbc_lblGenre);
+
+		JLabel lblEspece = new JLabel("Espece + race");
+		GridBagConstraints gbc_lblEspece = new GridBagConstraints();
+		gbc_lblEspece.insets = new Insets(0, 0, 5, 5);
+		gbc_lblEspece.gridx = 2;
+		gbc_lblEspece.gridy = 7;
+		frame.getContentPane().add(lblEspece, gbc_lblEspece);
+
+		JLabel lblTatouage = new JLabel("tatouage");
+		GridBagConstraints gbc_lblTatouage = new GridBagConstraints();
+		gbc_lblTatouage.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTatouage.gridx = 2;
+		gbc_lblTatouage.gridy = 8;
+		frame.getContentPane().add(lblTatouage, gbc_lblTatouage);
+		
+//-----------------------------------------------------------------------------------------------		
+//		GridBagLayout gbl_PopupDeleteAnimal = new GridBagLayout();
+//		GridBagConstraints gbc_btnPopupCancelDelete = new GridBagConstraints();
+//		gbl_PopupDeleteAnimal.columnWidths = new int[] { 44, 201, 39, 0 };
+//		gbl_PopupDeleteAnimal.rowHeights = new int[] { 0, 0, 0, 0, 0, 0 };
+//		gbl_PopupDeleteAnimal.columnWeights = new double[] { 0.0, 1.0, 0.0,
+//				Double.MIN_VALUE };
+//		gbl_PopupDeleteAnimal.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
+//		PopupDeleteAnimal.getContentPane().setLayout(gbl_PopupDeleteAnimal);
+//		gbc_btnPopupCancelDelete.insets = new Insets(0, 0, 0, 5);
+//		gbc_btnPopupCancelDelete.gridx = 5;
+//		gbc_btnPopupCancelDelete.gridy = 6;
+//				
+//						JLabel lblSupprAnimal = new JLabel("Etes-vous sur de vouloir supprimer cette animal ?");
+//						lblSupprAnimal.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
+//						GridBagConstraints gbc_lblSupprAnimal = new GridBagConstraints();
+//						gbc_lblSupprAnimal.insets = new Insets(0, 0, 5, 5);
+//						gbc_lblSupprAnimal.gridx = 1;
+//						gbc_lblSupprAnimal.gridy = 1;
+//						PopupDeleteAnimal.getContentPane().add(lblSupprAnimal, gbc_lblSupprAnimal);
+//				
+//				JDesktopPane desktopPane = new JDesktopPane();
+//				desktopPane.setBackground(SystemColor.control);
+//				GridBagConstraints gbc_desktopPane = new GridBagConstraints();
+//				gbc_desktopPane.gridheight = 3;
+//				gbc_desktopPane.insets = new Insets(0, 0, 0, 5);
+//				gbc_desktopPane.fill = GridBagConstraints.BOTH;
+//				gbc_desktopPane.gridx = 1;
+//				gbc_desktopPane.gridy = 2;
+//				PopupDeleteAnimal.getContentPane().add(desktopPane, gbc_desktopPane);
+//				
+//						JButton btnPopupDeleteAnimal = new JButton("Oui");
+//						btnPopupDeleteAnimal.setBounds(88, 28, 49, 22);
+//						desktopPane.add(btnPopupDeleteAnimal);
+//				
+//				JButton btnPopupCancelDeleteAnimal = new JButton("Non");
+//				btnPopupCancelDeleteAnimal.setBounds(147, 28, 51, 22);
+//				desktopPane.add(btnPopupCancelDeleteAnimal);
 		
 //		------------------------------------------------------------------------------Gestion du personnel
 //		GridBagLayout gridBagLayout = new GridBagLayout();
