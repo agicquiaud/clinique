@@ -30,17 +30,20 @@ public class WindowAddAnimal {
 	private JTextField textFieldCouleurAnimal;
 	private JTextField textFieldTatouageAnimal;
 	private JTextField textFieldAntecedentsAnimal;
+	private ImageIcon icon = new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/plus.png");
 	private ComboBoxModel<String> comboboxModel;
 
 	public WindowAddAnimal(Clients client){
 		
-		AddAnimal.setSize(600, 485);
+		AddAnimal.setTitle("Ajouter un animal");
+		AddAnimal.setSize(620, 370);
+		AddAnimal.setLocationRelativeTo(null);
 		AddAnimal.setVisible(true);
 		
 		GridBagLayout gbl_AddAnimal = new GridBagLayout();
-		gbl_AddAnimal.columnWidths = new int[] { 115, 210, 0, 124, 0 };
+		gbl_AddAnimal.columnWidths = new int[] { 115, 210, 38, 38, 124, 63 };
 		gbl_AddAnimal.rowHeights = new int[] { 71, 68, 35, 35, 35, 0, 0, 0 };
-		gbl_AddAnimal.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0 };
+		gbl_AddAnimal.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 		gbl_AddAnimal.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		AddAnimal.getContentPane().setLayout(gbl_AddAnimal);
 
@@ -48,8 +51,8 @@ public class WindowAddAnimal {
 		desktopPane.setBorder(null);
 		desktopPane.setBackground(new Color(255, 255, 255));
 		GridBagConstraints gbc_desktopPane = new GridBagConstraints();
-		gbc_desktopPane.gridwidth = 5;
-		gbc_desktopPane.insets = new Insets(0, 0, 5, 5);
+		gbc_desktopPane.gridwidth = 6;
+		gbc_desktopPane.insets = new Insets(0, 0, 5, 0);
 		gbc_desktopPane.fill = GridBagConstraints.BOTH;
 		gbc_desktopPane.gridx = 0;
 		gbc_desktopPane.gridy = 0;
@@ -59,22 +62,22 @@ public class WindowAddAnimal {
 		btnConfirmAddAnimal.setForeground(new Color(255, 255, 255));
 		btnConfirmAddAnimal.setBackground(new Color(255, 255, 255));
 		btnConfirmAddAnimal.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/checked32.png"));
-		btnConfirmAddAnimal.setBounds(315, 11, 58, 44);
+		btnConfirmAddAnimal.setBounds(420, 11, 58, 44);
 		desktopPane.add(btnConfirmAddAnimal);
 
 		JButton btnCancelAddAnimal = new JButton();
 		btnCancelAddAnimal.setForeground(new Color(255, 255, 255));
 		btnCancelAddAnimal.setBackground(new Color(255, 255, 255));
 		btnCancelAddAnimal.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/cancel.png"));
-		btnCancelAddAnimal.setBounds(396, 11, 58, 44);
+		btnCancelAddAnimal.setBounds(500, 11, 58, 44);
 		desktopPane.add(btnCancelAddAnimal);
 
 		JDesktopPane desktopPane_1 = new JDesktopPane();
 		desktopPane_1.setBackground(UIManager.getColor("Button.background"));
 		desktopPane_1.setBorder(null);
 		GridBagConstraints gbc_desktopPane_1 = new GridBagConstraints();
-		gbc_desktopPane_1.gridwidth = 5;
-		gbc_desktopPane_1.insets = new Insets(0, 0, 5, 5);
+		gbc_desktopPane_1.gridwidth = 6;
+		gbc_desktopPane_1.insets = new Insets(0, 0, 5, 0);
 		gbc_desktopPane_1.fill = GridBagConstraints.BOTH;
 		gbc_desktopPane_1.gridx = 0;
 		gbc_desktopPane_1.gridy = 1;
@@ -107,13 +110,13 @@ public class WindowAddAnimal {
 		AddAnimal.getContentPane().add(textFieldNomAnimal, gbc_textFieldNomAnimal);
 		textFieldNomAnimal.setColumns(10);
 
-		String[] tabGenre = {"Masculin", "Féminin"};
-		JComboBox<String> comboBoxGenre = new JComboBox<String>(tabGenre);
+		String[] tabGenre = {"Masculin", "Féminin", "Hermaphrodite"};
+		JComboBox<String> comboBoxGenre = new JComboBox<String>();
 		GridBagConstraints gbc_comboBoxGenre = new GridBagConstraints();
 		gbc_comboBoxGenre.fill = GridBagConstraints.HORIZONTAL;
 		comboBoxGenre.setBackground(new Color(255, 255, 255));
 		gbc_comboBoxGenre.insets = new Insets(0, 0, 5, 5);
-		gbc_comboBoxGenre.gridx = 3;
+		gbc_comboBoxGenre.gridx = 4;
 		gbc_comboBoxGenre.gridy = 2;
 		AddAnimal.getContentPane().add(comboBoxGenre, gbc_comboBoxGenre);
 
@@ -142,7 +145,7 @@ public class WindowAddAnimal {
 		gbc_lblEspeceAnimal.gridy = 4;
 		AddAnimal.getContentPane().add(lblEspeceAnimal, gbc_lblEspeceAnimal);
 		
-		JComboBox<String> espece = new JComboBox<String>(controlleranimal.getEspece());
+		JComboBox<String> espece = new JComboBox<String>();
 		GridBagConstraints gbc_espece = new GridBagConstraints();
 		espece.setBackground(new Color(255, 255, 255));
 		gbc_espece.insets = new Insets(0, 0, 5, 5);
@@ -150,25 +153,48 @@ public class WindowAddAnimal {
 		gbc_espece.gridx = 1;
 		gbc_espece.gridy = 4;
 		AddAnimal.getContentPane().add(espece, gbc_espece);
+		
+		JButton buttonAddEspece = new JButton(icon);
+		buttonAddEspece.setOpaque(false);
+		buttonAddEspece.setBackground(new Color(66, 210, 230));
+		buttonAddEspece.setBorderPainted(false);
+		buttonAddEspece.setFocusPainted(false);
+		GridBagConstraints gbc_buttonAddEspece = new GridBagConstraints();
+		gbc_buttonAddEspece.anchor = GridBagConstraints.WEST;
+		gbc_buttonAddEspece.insets = new Insets(0, 0, 5, 5);
+		gbc_buttonAddEspece.gridx = 2;
+		gbc_buttonAddEspece.gridy = 4;
+		AddAnimal.getContentPane().add(buttonAddEspece, gbc_buttonAddEspece);
 
 		JLabel lblRaceAnimal = new JLabel("Race");
 		lblRaceAnimal.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
 		GridBagConstraints gbc_lblRaceAnimal = new GridBagConstraints();
 		gbc_lblRaceAnimal.insets = new Insets(0, 0, 5, 5);
 		gbc_lblRaceAnimal.anchor = GridBagConstraints.EAST;
-		gbc_lblRaceAnimal.gridx = 2;
+		gbc_lblRaceAnimal.gridx = 3;
 		gbc_lblRaceAnimal.gridy = 4;
 		AddAnimal.getContentPane().add(lblRaceAnimal, gbc_lblRaceAnimal);
 
-		
-		JComboBox<String> race = new JComboBox<String>(controlleranimal.getRace(espece.getSelectedItem().toString()));
+		JComboBox<String> race = new JComboBox<String>();
 		GridBagConstraints gbc_race = new GridBagConstraints();
 		gbc_race.fill = GridBagConstraints.HORIZONTAL;
 		race.setBackground(new Color(255, 255, 255));
 		gbc_race.insets = new Insets(0, 0, 5, 5);
-		gbc_race.gridx = 3;
+		gbc_race.gridx = 4;
 		gbc_race.gridy = 4;
 		AddAnimal.getContentPane().add(race, gbc_race);
+		
+		JButton buttonAddRace = new JButton(icon);
+		buttonAddRace.setOpaque(false);
+		buttonAddRace.setBackground(new Color(66, 210, 230));
+		buttonAddRace.setBorderPainted(false);
+		buttonAddRace.setFocusPainted(false);
+		GridBagConstraints gbc_buttonAddRace = new GridBagConstraints();
+		gbc_buttonAddRace.anchor = GridBagConstraints.WEST;
+		gbc_buttonAddRace.insets = new Insets(0, 0, 5, 0);
+		gbc_buttonAddRace.gridx = 5;
+		gbc_buttonAddRace.gridy = 4;
+		AddAnimal.getContentPane().add(buttonAddRace, gbc_buttonAddRace);
 
 		JLabel lblTatouageAnimal = new JLabel("Tatouage");
 		lblTatouageAnimal.setFont(new Font("Malgun Gothic", Font.BOLD, 11));
@@ -204,6 +230,12 @@ public class WindowAddAnimal {
 		gbc_textFieldAntecedentsAnimal.gridy = 6;
 		AddAnimal.getContentPane().add(textFieldAntecedentsAnimal, gbc_textFieldAntecedentsAnimal);
 		
+		//Popup Add Espece
+		
+		
+		
+		
+		//Actions Listeners
 		btnConfirmAddAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
