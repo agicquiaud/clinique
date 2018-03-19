@@ -73,27 +73,13 @@ public class ControllerClients {
 		return tab;
 	}
 	
-	public List<String> getClientbyId(String id){
+	public Clients getClientbyId(String id){
 		clients = bllclients.getClientById(Integer.parseInt(id));
-		ArrayList<String> list = new ArrayList<String>();
-		
-		list.add((clients.getCodeClient()).toString());
-		list.add(clients.getAssurance());
-		list.add(clients.getNom());
-		list.add(clients.getEmail());
-		list.add(clients.getPrenom());
-		list.add(clients.getRemarque());
-		list.add(clients.getAdresse1());
-		list.add(clients.getAdresse2());
-		list.add(clients.getVille());
-		list.add(clients.getCodePostal());
-		list.add(clients.getNumTel());
-
-		return list;
+		return clients;
 	}
 
-	public void removeClient(String codeclient) {
-		clients = bllclients.getClientById(Integer.parseInt(codeclient));
+	public void removeClient(Integer codeclient) {
+		clients = bllclients.getClientById(codeclient);
 		System.out.println(clients.toString());
 		clients.setArchive(true);
 		bllclients.update(clients);

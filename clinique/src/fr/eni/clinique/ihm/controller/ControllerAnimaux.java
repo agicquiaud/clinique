@@ -69,22 +69,9 @@ public class ControllerAnimaux {
 		return tab;
 	}
 	
-	public List<String> getAnimalById(String id){
-		
-		List<String> list = new ArrayList<String>();
-		
-		animal = mgerAnimal.animalById(Integer.parseInt(id));
-		
-		list.add(animal.getNom());
-		list.add(animal.getCouleur());
-		list.add(animal.getTatouage());
-		list.add(animal.getAntecedents());
-		list.add(animal.getSexe());
-		list.add(animal.getEspece());
-		list.add(animal.getRace());
-		
-		
-		return list;
+	public Animaux getAnimalById(String id){		
+		animal = mgerAnimal.animalById(Integer.parseInt(id));		
+		return animal;
 	}
 	
 	public Animaux[] getAnimalByIdClient(Integer id){
@@ -101,8 +88,8 @@ public class ControllerAnimaux {
 		return tabAnimaux;
 	}
 	
-	public void removeAnimal(String codeanimal) {
-		animal = mgerAnimal.animalById(Integer.parseInt(codeanimal));
+	public void removeAnimal(Integer codeanimal) {
+		animal = mgerAnimal.animalById(codeanimal);
 		mgerAnimal.delete(animal);
 	}
 	
@@ -129,7 +116,10 @@ public class ControllerAnimaux {
 				
 		return tab;
 	}
-	
+
+	public void addRace(String race, String espece) {
+		mgerAnimal.insertRace(race, espece);
+	}
 	
 }
 
