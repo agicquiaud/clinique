@@ -53,7 +53,7 @@ public void removeRDV(User veto, String date, Integer heure, Integer minute, Ani
 	Calendar cal = null;
 	cal.set(Integer.parseInt(str[0]), Integer.parseInt(str[1]), Integer.parseInt(str[2]), heure, minute);
 	System.out.println(cal.getTime());
-	//mgerAgenda.delete(new RendezVous(veto.getId(), cal.getTime(), animal.getCodeAnimal()));
+	mgerAgenda.delete(new RendezVous(veto.getId(), cal.getTime(), animal.getCodeAnimal()));
 	
 }
 	

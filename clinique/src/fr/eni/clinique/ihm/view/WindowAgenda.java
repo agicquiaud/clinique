@@ -26,7 +26,7 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
-import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
+
 
 import fr.eni.clinique.bo.Animaux;
 import fr.eni.clinique.ihm.controller.ControllerAgenda;
