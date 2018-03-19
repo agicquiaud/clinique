@@ -27,4 +27,7 @@ public interface AnimalDAO {
 		
 		//Selectionne les races par une espece
 		public List<String> SelectRaceByEspece(String espece) throws DALException;
+
+		//Ajoute une Race
+		public void insertRace(String race, String espece) throws DALException;
 }

@@ -13,4 +13,5 @@ public interface AnimalManager {
 	public List<Animaux> animalByIdClient(Integer id);
 	public String [] getRace (String espece);
 	public String [] getEspece ();
+	public void insertRace(String race, String espece);
 }

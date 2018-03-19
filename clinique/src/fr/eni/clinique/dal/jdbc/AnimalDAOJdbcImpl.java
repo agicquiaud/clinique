@@ -27,6 +27,7 @@ public class AnimalDAOJdbcImpl implements AnimalDAO {
 			+ "Couleur, Race, Espece, CodeClient, Tatouage, Antecedents, Archive FROM Animaux WHERE CodeAnimal=?";
 	private static final String sqlSelectAllEspece = "SELECT DISTINCT Espece FROM Races";
 	private static final String sqlSelectRaceByEspece = "SELECT Race FROM Races WHERE Espece=?";
+	private static final String sqlInsertRace = "INSERT INTO Races (Race, Espece) VALUES (?, ?)";
 	
 	public List<Animaux> selectAll() throws DALException {
 		Connection cnx = null;
@@ -201,7 +202,6 @@ public class AnimalDAOJdbcImpl implements AnimalDAO {
 					cnx.close();
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -312,11 +312,38 @@ public class AnimalDAOJdbcImpl implements AnimalDAO {
 					cnx.close();
 				}
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		return liste;
+	}
+
+	@Override
+	public void insertRace(String race, String espece) throws DALException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		try {
+			cnx = JdbcTools.getConnection();
+			rqt = cnx.prepareStatement(sqlInsertRace);
+			rqt.setString(1, race);
+			rqt.setString(2, espece);
+			rqt.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new DALException("Insert race failed - " + race, e);
+		} finally {
+			try {
+				if (rqt != null) {
+					rqt.close();
+				}
+				if (cnx != null) {
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				throw new DALException("close failed - ", e);
+			}
+
+		}
 	}
 
 }

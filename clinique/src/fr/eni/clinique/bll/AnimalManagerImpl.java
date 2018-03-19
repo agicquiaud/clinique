@@ -130,4 +130,13 @@ class AnimalManagerImpl implements AnimalManager {
 		return tab;
 	}
 
+	@Override
+	public void insertRace(String race, String espece) {
+		try {
+			con.insertRace(race, espece);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+	}
+
 }
