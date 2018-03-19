@@ -33,25 +33,24 @@ public class WindowRemove {
 		controllerClient = new ControllerClients();
 		controllerPersonnels = new ControllerPersonnels();
 		
-		PopupDelete.setTitle("Ajouter un animal");
-		PopupDelete.setSize(620, 145);
+		PopupDelete.setTitle("Suppression");
+		PopupDelete.setSize(360, 145);
 		PopupDelete.setLocationRelativeTo(null);
 		PopupDelete.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		PopupDelete.setVisible(true);
 		
 		GridBagLayout gbl_PopupDeleteClient = new GridBagLayout();
-		gbl_PopupDeleteClient.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_PopupDeleteClient.columnWidths = new int[] { 0, 0, 0, 0, 0, 0 };
 		gbl_PopupDeleteClient.rowHeights = new int[] { 0, 0, 0, 0, 0, 0 };
-		gbl_PopupDeleteClient.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+		gbl_PopupDeleteClient.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0,
 				Double.MIN_VALUE };
 		gbl_PopupDeleteClient.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		PopupDelete.getContentPane().setLayout(gbl_PopupDeleteClient);
 
 		JLabel lbltesvousSurDe = new JLabel();
 		GridBagConstraints gbc_lbltesvousSurDe = new GridBagConstraints();
-		gbc_lbltesvousSurDe.gridheight = 2;
 		gbc_lbltesvousSurDe.fill = GridBagConstraints.BOTH;
-		gbc_lbltesvousSurDe.gridwidth = 8;
+		gbc_lbltesvousSurDe.gridwidth = 3;
 		gbc_lbltesvousSurDe.insets = new Insets(0, 0, 5, 5);
 		gbc_lbltesvousSurDe.gridx = 1;
 		gbc_lbltesvousSurDe.gridy = 1;
@@ -69,7 +68,7 @@ public class WindowRemove {
 				JButton btnPopupDelete = new JButton("Oui");
 				GridBagConstraints gbc_btnPopupDelete = new GridBagConstraints();
 				gbc_btnPopupDelete.insets = new Insets(0, 0, 5, 5);
-				gbc_btnPopupDelete.gridx = 3;
+				gbc_btnPopupDelete.gridx = 2;
 				gbc_btnPopupDelete.gridy = 3;
 				PopupDelete.getContentPane().add(btnPopupDelete, gbc_btnPopupDelete);
 				
@@ -87,13 +86,13 @@ public class WindowRemove {
 						}
 					}
 				});
-		
-				JButton btnPopupCancelDelete = new JButton("Non");
-				GridBagConstraints gbc_btnPopupCancelDelete = new GridBagConstraints();
-				gbc_btnPopupCancelDelete.insets = new Insets(0, 0, 5, 5);
-				gbc_btnPopupCancelDelete.gridx = 5;
-				gbc_btnPopupCancelDelete.gridy = 3;
-				PopupDelete.getContentPane().add(btnPopupCancelDelete, gbc_btnPopupCancelDelete);
+				
+						JButton btnPopupCancelDelete = new JButton("Non");
+						GridBagConstraints gbc_btnPopupCancelDelete = new GridBagConstraints();
+						gbc_btnPopupCancelDelete.insets = new Insets(0, 0, 5, 5);
+						gbc_btnPopupCancelDelete.gridx = 3;
+						gbc_btnPopupCancelDelete.gridy = 3;
+						PopupDelete.getContentPane().add(btnPopupCancelDelete, gbc_btnPopupCancelDelete);
 		
 		//Actions Listeners
 		btnPopupCancelDelete.addActionListener(new ActionListener() {
