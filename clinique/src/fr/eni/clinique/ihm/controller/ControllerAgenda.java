@@ -40,15 +40,6 @@ public class ControllerAgenda {
 		mgerAgenda = AgendaManagerSingleton.getinstance();
 	}
 	
-	public void removeRDV(User veto, String date, Integer heure, Integer minute, Animaux animal){
-		String[] str = date.split("/");
-		Calendar cal = null;
-		cal.set(Integer.parseInt(str[0]), Integer.parseInt(str[1]), Integer.parseInt(str[2]), heure, minute);
-		System.out.println(cal.getTime());
-		//mgerAgenda.delete(new RendezVous(veto.getId(), cal.getTime(), animal.getCodeAnimal()));
-		
-	}
-	
 	public void addRDV(User veto, String date, Integer heure, Integer minute, Animaux animal){
 		String[] str = date.split("/");
 		Calendar cal = null;
@@ -56,6 +47,15 @@ public class ControllerAgenda {
 		System.out.println(cal.getTime());
 		mgerAgenda.insert(new RendezVous(veto.getId(), cal.getTime(), animal.getCodeAnimal()));
 	}
+
+public void removeRDV(User veto, String date, Integer heure, Integer minute, Animaux animal){
+	String[] str = date.split("/");
+	Calendar cal = null;
+	cal.set(Integer.parseInt(str[0]), Integer.parseInt(str[1]), Integer.parseInt(str[2]), heure, minute);
+	System.out.println(cal.getTime());
+	//mgerAgenda.delete(new RendezVous(veto.getId(), cal.getTime(), animal.getCodeAnimal()));
+	
+}
 	
 	public List<RendezVous> getRdv(User veto, String date, Integer heure, Integer minute){
 		String[] str = date.split("/");
@@ -63,7 +63,7 @@ public class ControllerAgenda {
 		cal.set(Integer.parseInt(str[0]), Integer.parseInt(str[1]), Integer.parseInt(str[2]), heure, minute);
 		return mgerAgenda.getRdvVetByDay(new RendezVous(veto.getId(), cal.getTime()));
 	}
-
+	
 	public Object[][] getTabAgenda(String NomVeto, String pdate) {
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = null;
@@ -75,7 +75,7 @@ public class ControllerAgenda {
 		}
 		RendezVous rdv = new RendezVous(Veto.getId(), date);
 		liste = mgerAgenda.getRdvVetByDay(rdv);
-		Object[][] tab = new Object[liste.size()][4];
+		Object[][] tab = new Object[liste.size()][5];
 		format.applyPattern("HH:mm");
 		for (int i = 0; i < liste.size(); i++) {
 			animaux = mgerAnimal.animalById(liste.get(i).getCodeAnimal());
@@ -84,6 +84,7 @@ public class ControllerAgenda {
 			tab[i][1] = clients.getNom() + " " + clients.getPrenom();
 			tab[i][2] = animaux.getNom();
 			tab[i][3] = animaux.getRace();
+			tab[i][4] = animaux;
 		}
 		return tab;
 	}

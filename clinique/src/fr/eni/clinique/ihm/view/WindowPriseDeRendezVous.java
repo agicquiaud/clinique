@@ -112,6 +112,7 @@ public class WindowPriseDeRendezVous extends JFrame {
 		btnAddClient.setOpaque(false);
 		btnAddClient.setBackground(new Color(66, 210, 230));
 		btnAddClient.setBorderPainted(false);
+		btnAddClient.setFocusPainted(false);
 		btnAddClient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -122,6 +123,7 @@ public class WindowPriseDeRendezVous extends JFrame {
 		btnAddAnimal.setOpaque(false);
 		btnAddAnimal.setBackground(new Color(66, 210, 230));
 		btnAddAnimal.setBorderPainted(false);
+		btnAddAnimal.setFocusPainted(false);
 		btnAddAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
