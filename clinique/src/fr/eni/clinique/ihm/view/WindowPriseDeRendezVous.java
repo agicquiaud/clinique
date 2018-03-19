@@ -8,7 +8,7 @@ import java.awt.GridLayout;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.text.ParseException;
 import java.util.Properties;
 
 import javax.swing.BoxLayout;
@@ -31,6 +31,7 @@ import org.jdatepicker.impl.UtilDateModel;
 
 import fr.eni.clinique.bo.Animaux;
 import fr.eni.clinique.bo.Clients;
+import fr.eni.clinique.bo.User;
 import fr.eni.clinique.ihm.controller.ControllerAgenda;
 import fr.eni.clinique.ihm.controller.ControllerAnimaux;
 import fr.eni.clinique.ihm.controller.ControllerClients;
@@ -53,12 +54,14 @@ public class WindowPriseDeRendezVous extends JFrame {
 	private Properties properties = new Properties();
 	private UtilDateModel model = new UtilDateModel();
 	private JDatePanelImpl datePanel = new JDatePanelImpl(model, properties);
+	private DateLabelFormatter formatDate = new DateLabelFormatter();
 	private JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
 	private ImageIcon icon = new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/plus.png");
 	private ControllerAnimaux controllerAnimal = new ControllerAnimaux();
 	private ControllerClients controllerClients = new ControllerClients();
 	private final JButton btnAddClient = new JButton(icon);
 	private final JButton btnAddAnimal = new JButton(icon);
+	ControllerAgenda CA = new ControllerAgenda();
 
 	/**
 	 * Create the frame.
@@ -158,6 +161,8 @@ public class WindowPriseDeRendezVous extends JFrame {
 		contentPaneCenter.setLayout(new BorderLayout());
 		table.setAutoCreateRowSorter(true);
 		contentPaneCenter.add(scrollPane);
+		table.getSelectedColumn();
+		table.getSelectedRow();
 
 		contentPaneSouth.setLayout(new BoxLayout(contentPaneSouth, BoxLayout.LINE_AXIS));
 
@@ -173,14 +178,36 @@ public class WindowPriseDeRendezVous extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ControllerAgenda CA = new ControllerAgenda();
 				
-				System.out.println(table.getValueAt(table.getSelectedRow(), table.getSelectedColumn()));
+				try {
+					CA.removeRDV((User) CBVet.getSelectedItem(),formatDate.valueToString(datePicker) , Integer.parseInt(heure.toString())
+							, Integer.parseInt(minute.toString()), (Animaux) CBAnimal.getSelectedItem());
+				} catch (NumberFormatException | ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				
 			}
 		});
 		contentPaneSouthEst.add(button);
-		contentPaneSouthEst.add(new JButton("Valider"));
+		JButton valider = new JButton("Valider");
+		valider.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					CA.addRDV((User) CBVet.getSelectedItem(), formatDate.valueToString(datePicker), Integer.parseInt(heure.toString())
+							, Integer.parseInt(minute.toString()), (Animaux) CBAnimal.getSelectedItem());
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}});
+		contentPaneSouthEst.add(valider);
 
 		contentPaneSouth.add(contentPaneSouthWest);
 		contentPaneSouth.add(contentPaneSouthCenter);
