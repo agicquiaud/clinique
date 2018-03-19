@@ -26,7 +26,11 @@ import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
+
+
+import fr.eni.clinique.bo.Animaux;
 import fr.eni.clinique.ihm.controller.ControllerAgenda;
+import fr.eni.clinique.ihm.controller.ControllerAnimaux;
 import fr.eni.clinique.ihm.controller.ControllerPersonnels;
 import fr.eni.clinique.ihm.graphic.ImagePanel;
 
@@ -43,6 +47,7 @@ public class WindowAgenda {
 	private JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());;
 	private ControllerPersonnels controllerpersonnels;
 	private ControllerAgenda controlleragenda;
+	private ControllerAnimaux controlleranimaux = new ControllerAnimaux();
 	
 	public WindowAgenda(){		
 		controlleragenda = new ControllerAgenda();
@@ -153,7 +158,8 @@ public class WindowAgenda {
 		btnDossierMedical.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new WindowDossierMedicalAnimal();
+				Animaux animaux = (Animaux) donnee[table.getSelectedRow()][4];
+				new WindowDossierMedicalAnimal(table.getModel().getValueAt(table.getSelectedRow(), 1).toString(), controlleranimaux.getAnimalById(animaux.getCodeAnimal().toString()));
 			}
 		});
 		//Action listener deconnexion
@@ -164,8 +170,6 @@ public class WindowAgenda {
 				new WindowLogin();
 			}
 		});
-		
-		
 	}
 	
 	private void setUpTableData(Object[][] data, String[] entetes) {
@@ -176,8 +180,7 @@ public class WindowAgenda {
 			}
 		};
 		table.setModel(tableModel);
-		tableModel.fireTableDataChanged();
-	}
+		tableModel.fireTableDataChanged();	}
 	
 }
 

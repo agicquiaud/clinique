@@ -95,8 +95,7 @@ public class ControllerAnimaux {
 	
 	public void updateClient(String codeAnimal, String nom, String sexe, String couleur, String race, String espece,
 			String codeClient, String antecedent, String tatouage) {
-		animal = new Animaux(Integer.parseInt(codeAnimal), nom, sexe, couleur, race, espece, Integer.parseInt(codeClient), antecedent, tatouage, false);
-		animal.toString();
+		animal = new Animaux(Integer.parseInt(codeAnimal), nom, sexe, couleur, race, espece, Integer.parseInt(codeClient), tatouage, antecedent, false);
 		mgerAnimal.update(animal);
 	}
 
