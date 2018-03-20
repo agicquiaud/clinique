@@ -1,51 +1,42 @@
 package fr.eni.clinique.ihm.view;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JDesktopPane;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.JTextComponent;
 
-import fr.eni.clinique.bo.Animaux;
-import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.ihm.controller.ControllerAnimaux;
 import fr.eni.clinique.ihm.controller.ControllerClients;
 
-public class WindowClients {
+public class WindowClients implements Observer{
 
 	private JFrame frame;
 	private DefaultTableModel tableModel;
 	private ComboBoxModel<String> comboboxModel;
 	private JTable table_1;
 	private JTable table_2;
-	private ControllerClients controller;
+	private ControllerClients controllerclient;
 	private ControllerAnimaux controlleranimal;
 	private JTextField textFieldSearch;
 
 	public WindowClients() {
-		controller = new ControllerClients();
+		controllerclient = new ControllerClients();
+		controllerclient.addObserver(this);
 		controlleranimal = new ControllerAnimaux();
 		frame = new JFrame();
 		frame.setTitle("Gestion Clients");
@@ -119,7 +110,7 @@ public class WindowClients {
 		gbc_scrollPane.gridy = 3;
 		frame.getContentPane().add(scrollPane, gbc_scrollPane);
 		String[] entetes1 = { "CodeClient", "Prenom", "Nom", "Code Postal", "Ville" };
-		Object[][] donnee1 = controller.getList();
+		Object[][] donnee1 = controllerclient.getList();
 		table_1 = new JTable();
 		tableModel = new DefaultTableModel(donnee1, entetes1) { // nouveau model
 			@Override
@@ -207,9 +198,9 @@ public class WindowClients {
 			public void actionPerformed(ActionEvent e) {
 				lblError.setText("");
 				if (textFieldSearch.getText().equals("")) {
-					setUpTableClient(controller.getList(), entetes1);
+					setUpTableClient(controllerclient.getList(), entetes1);
 				} else {
-					setUpTableClient(controller.getClient(textFieldSearch.getText()), entetes1);
+					setUpTableClient(controllerclient.getClient(textFieldSearch.getText()), entetes1);
 				}
 			}
 		});
@@ -228,7 +219,7 @@ public class WindowClients {
 				try {
 					lblError.setText("");
 					new WindowRemove(
-							controller.getClientbyId(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()));
+							controllerclient.getClientbyId(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()));
 				} catch (Exception err) {
 					lblError.setText("Aucun client selectionné pour le supprimer");
 				}
@@ -242,7 +233,7 @@ public class WindowClients {
 				try {
 					lblError.setText("");
 					new WindowEditClient(
-							controller.getClientbyId(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()));
+							controllerclient.getClientbyId(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()));
 				} catch (Exception err) {
 					lblError.setText("Aucun client selectionné pour le modifier");
 				}
@@ -257,7 +248,7 @@ public class WindowClients {
 				try {
 					lblError.setText("");
 					new WindowAddAnimal(
-							controller.getClientbyId(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()));
+							controllerclient.getClientbyId(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()));
 				} catch (Exception err) {
 					lblError.setText("Aucun client selectionné pour luil ajouter un animal");
 				}
@@ -316,5 +307,11 @@ public class WindowClients {
 		};
 		table_2.setModel(tableModel);
 		tableModel.fireTableDataChanged(); // maj tableau
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		System.out.println("+++++++++++++");
+		frame.getContentPane().repaint();
 	}
 }
