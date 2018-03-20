@@ -14,7 +14,6 @@ public class ControllerClients extends Observable{
 	private Clients clients;
 
 	public ControllerClients() {
-		
 		bllclients = ClientsManagerSingleton.getinstance();
 	}
 
@@ -22,9 +21,8 @@ public class ControllerClients extends Observable{
 			String Email) {
 		clients = new Clients(Nom, Prenom, Adresse1, Adresse2, CodePostal, Ville, NumTel, Email, false);
 		bllclients.insert(clients);
-		System.out.println("jsuis ici");
-		
-		notifyObservers(clients);
+		System.out.println(countObservers());
+		notifyObservers();
 		setChanged();
 	}
 	/**

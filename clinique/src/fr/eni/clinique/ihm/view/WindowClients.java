@@ -20,10 +20,11 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.ihm.controller.ControllerAnimaux;
 import fr.eni.clinique.ihm.controller.ControllerClients;
 
-public class WindowClients implements Observer{
+public class WindowClients implements Observer {
 
 	private JFrame frame;
 	private DefaultTableModel tableModel;
@@ -37,6 +38,7 @@ public class WindowClients implements Observer{
 	public WindowClients() {
 		controllerclient = new ControllerClients();
 		controllerclient.addObserver(this);
+		System.out.println(controllerclient.countObservers());
 		controlleranimal = new ControllerAnimaux();
 		frame = new JFrame();
 		frame.setTitle("Gestion Clients");
@@ -311,7 +313,9 @@ public class WindowClients implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		System.out.println("+++++++++++++");
-		frame.getContentPane().repaint();
+		if (arg instanceof Clients) {
+			System.out.println("+++++++++++++");
+//			frame.getContentPane().repaint();
+		}
 	}
 }
