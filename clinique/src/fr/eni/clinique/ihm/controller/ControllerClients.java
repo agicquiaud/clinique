@@ -1,7 +1,6 @@
 package fr.eni.clinique.ihm.controller;
 
 import fr.eni.clinique.bo.Clients;
-import javafx.beans.Observable;
 
 public interface ControllerClients{
 	
