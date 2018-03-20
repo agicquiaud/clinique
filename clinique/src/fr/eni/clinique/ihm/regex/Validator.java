@@ -5,28 +5,26 @@ import java.util.regex.Pattern;
 
 public class Validator {
 
-	private Pattern pattern;
-	private Matcher matcher;
-
-	private static final String CP_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-
-	public Validator() {
-		pattern = Pattern.compile(CP_PATTERN);
+	private static final String PATTERN_MAIL = "^[A-Za-z0-9+_.-]+@(.+)$";
+	private static final String PATTERN_CP = "[0-9]";
+	private static final String PATTERN_TATOUAGE = "[0-9A-Z]";
+	
+	public static boolean patternMail(String mail) {
+		boolean result = Pattern.matches( PATTERN_MAIL, mail);
+		return result;
 	}
-
-	/**
-	 * Validate hex with regular expression
-	 * 
-	 * @param hex
-	 *            hex for validation
-	 * @return true valid hex, false invalid hex
-	 */
-	public boolean validate(final String hex) {
-
-		matcher = pattern.matcher(hex);
-		return matcher.matches();
-
+	
+	public static boolean patternCP(String codePostal) {
+		boolean result = Pattern.matches( PATTERN_CP, codePostal);
+		return result;
 	}
+	
+	public static boolean patternTatouage(String codePostal) {
+		boolean result = Pattern.matches( PATTERN_TATOUAGE, codePostal);
+		return result;
+	}
+	
+	
 
 }
+
