@@ -7,7 +7,7 @@ public class Validator {
 
 	private static final String PATTERN_MAIL = "^[A-Za-z0-9+_.-]+@(.+)$";
 	private static final String PATTERN_CP = "[0-9]{5}";
-	private static final String PATTERN_TATOUAGE = "[2]{0,1}[A-Z]{3}[0-9]{3}";
+	private static final String PATTERN_TATOUAGE = "[0-9]{1}\\s[A-Z]{3}\\s[0-9]{3}";
 	private static final String PATTERN_NOMPRENOM_ANIMAL = "[a-zA-Z0-9]{1,30}";
 
 	
