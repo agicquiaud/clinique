@@ -44,7 +44,6 @@ public class ControllerAgenda {
 		String[] str = date.split("/");
 		Calendar cal = null;
 		cal.set(Integer.parseInt(str[0]), Integer.parseInt(str[1]), Integer.parseInt(str[2]), heure, minute);
-		System.out.println(cal.getTime());
 		mgerAgenda.insert(new RendezVous(veto.getId(), cal.getTime(), animal.getCodeAnimal()));
 	}
 
