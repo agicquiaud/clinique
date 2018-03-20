@@ -9,7 +9,7 @@ public class Validator {
 	private static final String PATTERN_CP = "[0-9]{5}";
 	private static final String PATTERN_TATOUAGE = "[2]{0,1}\\s[A-Z]{3}\\s[0-9]{3}";
 	private static final String PATTERN_NOMPRENOM_ANIMAL = "[a-zA-Z0-9]{1,30}";
-	private static final String PATTERN_NOMPRENOM = "[a-zA-Z]{1,30}";
+	private static final String PATTERN_NOMPRENOM = "[a-zA-Z\\s-]{1,30}";
 	private static final String PATTERN_NUMTEL = "[0-9]{10}";
 
 	
