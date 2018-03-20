@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -18,7 +19,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 	private static final String sqlSelectAll = "SELECT CodeVeto, DateRdv, CodeAnimal FROM Agendas";
 	private static final String sqlUpdate = "UPDATE Agendas SET CodeVeto=?, DateRdv=?, CodeAnimal=? WHERE CodeAnimal=?";
 	private static final String sqlInsert = "INSERT INTO Agendas (CodeVeto, DateRdv, CodeAnimal) VALUES (?, ?, ?)";
-	private static final String sqlDelete = "DELETE FROM Agendas WHERE CodeVeto=?, DateRdv=?, CodeAnimal=?";
+	private static final String sqlDelete = "DELETE FROM Agendas WHERE CodeVeto=? AND DateRdv=? AND CodeAnimal=?";
 	private static final String sqlSelectByHour = "SELECT CodeVeto, DateRdv, CodeAnimal FROM Agendas WHERE DateRdv<=? AND DateRdv>=?";
 	private static final String sqlSelectByDay = "SELECT CodeVeto, DateRdv, CodeAnimal FROM Agendas WHERE DateRdv<=? AND DateRdv>=?";
 	private static final String sqlSelectByIdAnimal ="SELECT CodeVeto, CodeAnimal, DateRdv FROM Agendas WHERE CodeAnimal=?";
@@ -128,9 +129,10 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		try {
-			cnx = JdbcTools.getConnection();
+			System.out.println(data.toString() + " " + new java.sql.Timestamp(data.getDate().getTime()));
 			// l'intégrité référentielle s'occupe d'invalider la suppression
-			rqt = cnx.prepareStatement(sqlDelete);
+			cnx = JdbcTools.getConnection();
+			rqt = cnx.prepareStatement(sqlDelete);			
 			rqt.setInt(1, data.getCodeVeto());
 			rqt.setTimestamp(2, new java.sql.Timestamp(data.getDate().getTime()));
 			rqt.setInt(3, data.getCodeAnimal());

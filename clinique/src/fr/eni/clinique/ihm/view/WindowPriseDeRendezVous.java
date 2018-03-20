@@ -266,8 +266,7 @@ public class WindowPriseDeRendezVous extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 					if(table.getSelectedColumn()> -1 && table.getSelectedRow()>-1){
-						CA.removeRDV((User) CBVet.getSelectedItem(),sdf.format(datePicker.getModel().getValue()) , Integer.parseInt(heure.getModel().getValue().toString())
-								, Integer.parseInt(minute.getModel().getValue().toString()), (Animaux) CBAnimal.getSelectedItem());
+						CA.removeRDV((User) CBVet.getSelectedItem(),sdf.format(datePicker.getModel().getValue()) , table.getValueAt(table.getSelectedRow(), 0).toString(), (Animaux) CBAnimal.getSelectedItem());
 						setUpTableData(CA.getTabAgenda(((User) CBVet.getSelectedItem()).getLogin(), sdf.format(datePicker.getModel().getValue())), entete);
 					}else
 						System.out.println("Aucune ligne sélectionner");

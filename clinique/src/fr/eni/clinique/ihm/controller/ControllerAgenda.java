@@ -44,12 +44,18 @@ public class ControllerAgenda {
 		mgerAgenda.insert(new RendezVous(veto.getId(), cal.getTime(), animal.getCodeAnimal()));
 	}
 
-	public void removeRDV(User veto, String date, Integer heure, Integer minute, Animaux animal) {
+	public void removeRDV(User veto, String date, String heureminute, Animaux animal) {
 		String[] str = date.split("/");
-		cal.set(Integer.parseInt(str[2]), Integer.parseInt(str[1])-1, Integer.parseInt(str[0]), heure, minute, 00);
-		System.out.println(cal.getTime());
-		mgerAgenda.delete(new RendezVous(veto.getId(), cal.getTime(), animal.getCodeAnimal()));
+		String[] strhm = heureminute.split(":");
+		cal.set(Integer.parseInt(str[2]), Integer.parseInt(str[1])-1, Integer.parseInt(str[0]), Integer.parseInt(strhm[0]), Integer.parseInt(strhm[1]));
+		SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	    String strDate = sm.format(cal.getTime());
+	    try {
+			cal.setTime(sm.parse(strDate));
+		} catch (ParseException e) {
 
+		}
+		mgerAgenda.delete(new RendezVous(veto.getId(), cal.getTime(), animal.getCodeAnimal()));
 	}
 
 	public List<RendezVous> getRdv(User veto, String date, Integer heure, Integer minute) {
