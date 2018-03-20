@@ -2,7 +2,6 @@ package fr.eni.clinique.ihm.controller;
 
 import java.util.List;
 import java.util.Observable;
-import java.util.Observer;
 
 import fr.eni.clinique.bll.ClientsManager;
 import fr.eni.clinique.bll.ClientsManagerSingleton;
@@ -15,7 +14,7 @@ public class ControllerClients extends Observable{
 	private Clients clients;
 
 	public ControllerClients() {
-		addObserver((Observer) this);
+		
 		bllclients = ClientsManagerSingleton.getinstance();
 	}
 
@@ -23,9 +22,10 @@ public class ControllerClients extends Observable{
 			String Email) {
 		clients = new Clients(Nom, Prenom, Adresse1, Adresse2, CodePostal, Ville, NumTel, Email, false);
 		bllclients.insert(clients);
+		System.out.println("jsuis ici");
 		
+		notifyObservers(clients);
 		setChanged();
-		notifyObservers();
 	}
 	/**
 	 * fonction qui récupère une liste de clients

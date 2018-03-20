@@ -30,12 +30,13 @@ public class WindowClients implements Observer{
 	private ComboBoxModel<String> comboboxModel;
 	private JTable table_1;
 	private JTable table_2;
-	private ControllerClients controller;
+	private ControllerClients controllerclient;
 	private ControllerAnimaux controlleranimal;
 	private JTextField textFieldSearch;
 
 	public WindowClients() {
-		controller = new ControllerClients();
+		controllerclient = new ControllerClients();
+		controllerclient.addObserver(this);
 		controlleranimal = new ControllerAnimaux();
 		frame = new JFrame();
 		frame.setTitle("Gestion Clients");
@@ -109,7 +110,7 @@ public class WindowClients implements Observer{
 		gbc_scrollPane.gridy = 3;
 		frame.getContentPane().add(scrollPane, gbc_scrollPane);
 		String[] entetes1 = { "CodeClient", "Prenom", "Nom", "Code Postal", "Ville" };
-		Object[][] donnee1 = controller.getList();
+		Object[][] donnee1 = controllerclient.getList();
 		table_1 = new JTable();
 		tableModel = new DefaultTableModel(donnee1, entetes1) { // nouveau model
 			@Override
@@ -197,9 +198,9 @@ public class WindowClients implements Observer{
 			public void actionPerformed(ActionEvent e) {
 				lblError.setText("");
 				if (textFieldSearch.getText().equals("")) {
-					setUpTableClient(controller.getList(), entetes1);
+					setUpTableClient(controllerclient.getList(), entetes1);
 				} else {
-					setUpTableClient(controller.getClient(textFieldSearch.getText()), entetes1);
+					setUpTableClient(controllerclient.getClient(textFieldSearch.getText()), entetes1);
 				}
 			}
 		});
@@ -218,7 +219,7 @@ public class WindowClients implements Observer{
 				try {
 					lblError.setText("");
 					new WindowRemove(
-							controller.getClientbyId(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()));
+							controllerclient.getClientbyId(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()));
 				} catch (Exception err) {
 					lblError.setText("Aucun client selectionné pour le supprimer");
 				}
@@ -232,7 +233,7 @@ public class WindowClients implements Observer{
 				try {
 					lblError.setText("");
 					new WindowEditClient(
-							controller.getClientbyId(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()));
+							controllerclient.getClientbyId(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()));
 				} catch (Exception err) {
 					lblError.setText("Aucun client selectionné pour le modifier");
 				}
@@ -247,7 +248,7 @@ public class WindowClients implements Observer{
 				try {
 					lblError.setText("");
 					new WindowAddAnimal(
-							controller.getClientbyId(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()));
+							controllerclient.getClientbyId(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()));
 				} catch (Exception err) {
 					lblError.setText("Aucun client selectionné pour luil ajouter un animal");
 				}
@@ -310,6 +311,7 @@ public class WindowClients implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		
+		System.out.println("+++++++++++++");
+		frame.getContentPane().repaint();
 	}
 }
