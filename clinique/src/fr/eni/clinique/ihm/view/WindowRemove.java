@@ -15,23 +15,23 @@ import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.bo.RendezVous;
 import fr.eni.clinique.bo.User;
 import fr.eni.clinique.ihm.controller.ControllerAgenda;
-import fr.eni.clinique.ihm.controller.ControllerAnimaux;
-import fr.eni.clinique.ihm.controller.ControllerClients;
-import fr.eni.clinique.ihm.controller.ControllerPersonnels;
+import fr.eni.clinique.ihm.controller.ControllerAnimauxImpl;
+import fr.eni.clinique.ihm.controller.ControllerClientsImpl;
+import fr.eni.clinique.ihm.controller.ControllerPersonnelsImpl;
 
 public class WindowRemove {
 
 	private ControllerAgenda controllerAgenda;
-	private ControllerAnimaux controllerAnimal;
-	private ControllerClients controllerClient;
-	private ControllerPersonnels controllerPersonnels;
+	private ControllerAnimauxImpl controllerAnimal;
+	private ControllerClientsImpl controllerClient;
+	private ControllerPersonnelsImpl controllerPersonnels;
 	private JDialog PopupDelete = new JDialog();
 
 	WindowRemove(Object obj) {
 		controllerAgenda = new ControllerAgenda();
-		controllerAnimal = new ControllerAnimaux();
-		controllerClient = new ControllerClients();
-		controllerPersonnels = new ControllerPersonnels();
+		controllerAnimal = new ControllerAnimauxImpl();
+		controllerClient = new ControllerClientsImpl();
+		controllerPersonnels = new ControllerPersonnelsImpl();
 		
 		PopupDelete.setTitle("Suppression");
 		PopupDelete.setSize(360, 145);

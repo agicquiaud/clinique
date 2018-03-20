@@ -8,16 +8,16 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import fr.eni.clinique.ihm.controller.ControllerClients;
+import fr.eni.clinique.ihm.controller.ControllerClientsSingleton;
 
-public class WindowAddClient{
-	
+public class WindowAddClient {
+
 	private JDialog frame = new JDialog();
-	private ControllerClients controller;
+	private ControllerClients controllerclient;
 	private JTextField textFieldNomClient;
 	private JTextField textFieldPrenomClient;
 	private JTextField textFieldAdresse1Client;
@@ -26,23 +26,23 @@ public class WindowAddClient{
 	private JTextField textFieldVilleClient;
 	private JTextField textFieldNumTelClient;
 	private JTextField textFieldEmailClient;
-	
-	public WindowAddClient(){
-		
-		controller = new ControllerClients();
+
+	public WindowAddClient() {
+
+		controllerclient = ControllerClientsSingleton.getinstance();
 		frame.setTitle("Ajouter un client");
 		frame.setSize(440, 325);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		frame.setVisible(true);
-		
+
 		GridBagLayout gridBagLayoutModalAddClient = new GridBagLayout();
 		gridBagLayoutModalAddClient.columnWidths = new int[] { 0, 0, 0, 140, 0, 0, 0, 0 };
 		gridBagLayoutModalAddClient.rowHeights = new int[] { 17, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-		gridBagLayoutModalAddClient.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+		gridBagLayoutModalAddClient.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+				Double.MIN_VALUE };
+		gridBagLayoutModalAddClient.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
 				0.0, Double.MIN_VALUE };
-		gridBagLayoutModalAddClient.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-				0.0, 0.0, Double.MIN_VALUE };
 		frame.getContentPane().setLayout(gridBagLayoutModalAddClient);
 
 		JLabel lblAddClient = new JLabel("Nouveau Client");
@@ -173,32 +173,33 @@ public class WindowAddClient{
 		gbc_textFieldEmailClient.gridx = 3;
 		gbc_textFieldEmailClient.gridy = 9;
 		frame.getContentPane().add(textFieldEmailClient, gbc_textFieldEmailClient);
+
+		JButton btnValiderModalAddClient = new JButton("VALIDER");
+		GridBagConstraints gbc_btnValiderModalAdd = new GridBagConstraints();
+		gbc_btnValiderModalAdd.insets = new Insets(0, 0, 5, 5);
+		gbc_btnValiderModalAdd.gridx = 4;
+		gbc_btnValiderModalAdd.gridy = 10;
+		frame.getContentPane().add(btnValiderModalAddClient, gbc_btnValiderModalAdd);
+
+		JButton btnAnnulerModalCancelClient = new JButton("ANNULER");
+		GridBagConstraints gbc_btnAnnulerModalCancelClient = new GridBagConstraints();
+		gbc_btnAnnulerModalCancelClient.insets = new Insets(0, 0, 5, 5);
+		gbc_btnAnnulerModalCancelClient.gridx = 5;
+		gbc_btnAnnulerModalCancelClient.gridy = 10;
+		frame.getContentPane().add(btnAnnulerModalCancelClient, gbc_btnAnnulerModalCancelClient);
 		
-				JButton btnValiderModalAddClient = new JButton("VALIDER");
-				GridBagConstraints gbc_btnValiderModalAdd = new GridBagConstraints();
-				gbc_btnValiderModalAdd.insets = new Insets(0, 0, 5, 5);
-				gbc_btnValiderModalAdd.gridx = 4;
-				gbc_btnValiderModalAdd.gridy = 10;
-				frame.getContentPane().add(btnValiderModalAddClient, gbc_btnValiderModalAdd);
-				
-						btnValiderModalAddClient.addActionListener(new ActionListener() {
-							@Override
-							public void actionPerformed(ActionEvent e) {
-								controller.addClient(textFieldNomClient.getText(), textFieldPrenomClient.getText(),
-										textFieldAdresse1Client.getText(), textFieldAdresse2Client.getText(),
-										textFieldCodePostalClient.getText(), textFieldVilleClient.getText(),
-										textFieldNumTelClient.getText(), textFieldEmailClient.getText());
-								frame.dispose();
-							}
-						});
-		
-				JButton btnAnnulerModalCancelClient = new JButton("ANNULER");
-				GridBagConstraints gbc_btnAnnulerModalCancelClient = new GridBagConstraints();
-				gbc_btnAnnulerModalCancelClient.insets = new Insets(0, 0, 5, 5);
-				gbc_btnAnnulerModalCancelClient.gridx = 5;
-				gbc_btnAnnulerModalCancelClient.gridy = 10;
-				frame.getContentPane().add(btnAnnulerModalCancelClient, gbc_btnAnnulerModalCancelClient);
-		
+		//Actions Listeners		
+		btnValiderModalAddClient.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controllerclient.addClient(textFieldNomClient.getText(), textFieldPrenomClient.getText(),
+						textFieldAdresse1Client.getText(), textFieldAdresse2Client.getText(),
+						textFieldCodePostalClient.getText(), textFieldVilleClient.getText(),
+						textFieldNumTelClient.getText(), textFieldEmailClient.getText());
+				frame.dispose();
+			}
+		});
+
 		btnAnnulerModalCancelClient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -206,6 +207,5 @@ public class WindowAddClient{
 			}
 		});
 	}
-	
-}
 
+}

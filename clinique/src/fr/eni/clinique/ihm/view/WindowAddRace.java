@@ -18,12 +18,12 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
-import fr.eni.clinique.ihm.controller.ControllerAnimaux;
+import fr.eni.clinique.ihm.controller.ControllerAnimauxImpl;
 
 public class WindowAddRace {
 
 	private JDialog AddRace = new JDialog();
-	private ControllerAnimaux controlleranimal = new ControllerAnimaux();
+	private ControllerAnimauxImpl controlleranimal = new ControllerAnimauxImpl();
 	private JTextField textFieldRace;
 	private JTextField textFieldEspece;
 

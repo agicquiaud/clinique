@@ -1,19 +1,19 @@
 package fr.eni.clinique.ihm.controller;
 
-public interface ControllerPersonnels {
+import java.util.List;
 
 import fr.eni.clinique.bll.PersonnelsManager;
 import fr.eni.clinique.bll.PersonnelsManagerSingleton;
 import fr.eni.clinique.bo.User;
 import fr.eni.clinique.ihm.view.WindowLogin;
 
-public class ControllerPersonnels {
+public class ControllerPersonnelsImpl implements ControllerPersonnels{
 
 	private static PersonnelsManager mger;
 	private List<User> liste;
 	private User user;
 
-	public ControllerPersonnels() {
+	ControllerPersonnelsImpl() {
 		mger = PersonnelsManagerSingleton.getInstance();
 	}
 
@@ -52,15 +52,6 @@ public class ControllerPersonnels {
 			droit = true;
 		}
 		return droit;
-	}
-	
-	public User[] getVeterinaire(){
-		liste = mger.getVeterinaires();
-		User[] tab = new User[liste.size()];
-		for (User user : liste) {
-			tab[liste.lastIndexOf(user)] = user;
-		}
-		return tab;
 	}
 
 	public String[] getNomVeterinaires() {

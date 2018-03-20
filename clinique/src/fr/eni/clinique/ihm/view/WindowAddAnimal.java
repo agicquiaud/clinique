@@ -20,13 +20,13 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import fr.eni.clinique.bo.Clients;
-import fr.eni.clinique.ihm.controller.ControllerAnimaux;
+import fr.eni.clinique.ihm.controller.ControllerAnimauxImpl;
 import fr.eni.clinique.ihm.regex.Validator;
 
 public class WindowAddAnimal {
 	
 	private JDialog AddAnimal = new JDialog();
-	private ControllerAnimaux controlleranimal = new ControllerAnimaux();
+	private ControllerAnimauxImpl controlleranimal = new ControllerAnimauxImpl();
 	private JTextField textFieldNomAnimal;
 	private JTextField textFieldCouleurAnimal;
 	private JTextField textFieldTatouageAnimal;
@@ -232,13 +232,17 @@ public class WindowAddAnimal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Validator validator = new Validator();
-				if(!validator.patternNomPrenomAnimal(textFieldNomAnimal.getText())){
-					lblErreur.setText("erreur pas de caractère spéciaux");
+				if(validator.patternNomPrenomAnimal(textFieldNomAnimal.getText())){
+					if(validator.patternTatouage(textFieldTatouageAnimal.getText())){
+						controlleranimal.addAnimal(textFieldNomAnimal.getText(), comboBoxGenre.getSelectedItem().toString()
+								, textFieldCouleurAnimal.getText(), race.getSelectedItem().toString(), espece.getSelectedItem().toString()
+								, client.getCodeClient().toString(), textFieldTatouageAnimal.getText(), textFieldAntecedentsAnimal.getText());
+						AddAnimal.dispose();
+					}else{
+						lblErreur.setText("Format du tatouage incorrect ex : 2 ABC 123");
+					}
 				} else {
-					controlleranimal.addAnimal(textFieldNomAnimal.getText(), comboBoxGenre.getSelectedItem().toString()
-							, textFieldCouleurAnimal.getText(), race.getSelectedItem().toString(), espece.getSelectedItem().toString()
-							, client.getCodeClient().toString(), textFieldTatouageAnimal.getText());
-					AddAnimal.dispose();
+					lblErreur.setText("erreur pas de caractère spéciaux dans le nom");
 				}
 			}
 		});

@@ -18,7 +18,7 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
 import fr.eni.clinique.bo.Clients;
-import fr.eni.clinique.ihm.controller.ControllerClients;
+import fr.eni.clinique.ihm.controller.ControllerClientsImpl;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -31,7 +31,7 @@ public class WindowPriseDeRendezVous2 {
 	private JDatePanelImpl datePanel = new JDatePanelImpl(model, properties);
 	private JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());;
 	private ImageIcon icon = new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/plus.png");
-	private ControllerClients controllerClients = new ControllerClients();
+	private ControllerClientsImpl controllerClients = new ControllerClientsImpl();
 	private final JLabel lblPar = new JLabel("Pour");
 	private final JLabel lblClient = new JLabel("Client : ");
 	private final JComboBox<String>comboBox = new JComboBox<String>();
