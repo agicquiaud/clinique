@@ -138,8 +138,12 @@ public class WindowPriseDeRendezVous extends JFrame {
 				}
 			}
 		});
-		
-		JComboBox<Animaux> CBAnimal = new JComboBox<Animaux>(controllerAnimal.getAnimalByIdClient(18));
+		Animaux[] tabAnimal = null;
+		tabAnimal = controllerAnimal.getAnimalByIdClient(((Clients)CBClient.getSelectedItem()).getCodeClient());
+		if (tabAnimal[0] == null){
+			tabAnimal[0] =  new Animaux();
+		}
+		JComboBox<Animaux> CBAnimal = new JComboBox<Animaux>(tabAnimal);
 		CBAnimal.setRenderer(new ListCellRenderer<Animaux>() {
 			@Override
 			public Component getListCellRendererComponent(JList<? extends Animaux> list, Animaux value, int index,
