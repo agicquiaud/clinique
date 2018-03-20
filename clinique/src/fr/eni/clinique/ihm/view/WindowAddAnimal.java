@@ -21,6 +21,7 @@ import javax.swing.UIManager;
 
 import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.ihm.controller.ControllerAnimaux;
+import fr.eni.clinique.ihm.regex.Validator;
 
 public class WindowAddAnimal {
 	
@@ -226,16 +227,19 @@ public class WindowAddAnimal {
 		gbc_lblErreur.gridy = 7;
 		AddAnimal.getContentPane().add(lblErreur, gbc_lblErreur);
 		
-		
-		
 		//Actions Listeners
 		btnConfirmAddAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controlleranimal.addAnimal(textFieldNomAnimal.getText(), comboBoxGenre.getSelectedItem().toString()
-						, textFieldCouleurAnimal.getText(), race.getSelectedItem().toString(), espece.getSelectedItem().toString()
-						, client.getCodeClient().toString(), textFieldTatouageAnimal.getText());
-				AddAnimal.dispose();
+				Validator validator = new Validator();
+				if(!validator.patternNomPrenomAnimal(textFieldNomAnimal.getText())){
+					lblErreur.setText("erreur pas de caractère spéciaux");
+				} else {
+					controlleranimal.addAnimal(textFieldNomAnimal.getText(), comboBoxGenre.getSelectedItem().toString()
+							, textFieldCouleurAnimal.getText(), race.getSelectedItem().toString(), espece.getSelectedItem().toString()
+							, client.getCodeClient().toString(), textFieldTatouageAnimal.getText());
+					AddAnimal.dispose();
+				}
 			}
 		});
 		
