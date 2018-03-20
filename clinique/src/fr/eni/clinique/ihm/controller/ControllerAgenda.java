@@ -40,13 +40,13 @@ public class ControllerAgenda {
 
 	public void addRDV(User veto, String date, Integer heure, Integer minute, Animaux animal) {
 		String[] str = date.split("/");
-		cal.set(Integer.parseInt(str[0]), Integer.parseInt(str[1]), Integer.parseInt(str[2]), heure, minute);
+		cal.set(Integer.parseInt(str[2]), Integer.parseInt(str[1])-1, Integer.parseInt(str[0]), heure, minute, 00);
 		mgerAgenda.insert(new RendezVous(veto.getId(), cal.getTime(), animal.getCodeAnimal()));
 	}
 
 	public void removeRDV(User veto, String date, Integer heure, Integer minute, Animaux animal) {
 		String[] str = date.split("/");
-		cal.set(Integer.parseInt(str[0]), Integer.parseInt(str[1]), Integer.parseInt(str[2]), heure, minute);
+		cal.set(Integer.parseInt(str[2]), Integer.parseInt(str[1])-1, Integer.parseInt(str[0]), heure, minute, 00);
 		System.out.println(cal.getTime());
 		mgerAgenda.delete(new RendezVous(veto.getId(), cal.getTime(), animal.getCodeAnimal()));
 
@@ -59,7 +59,7 @@ public class ControllerAgenda {
 	}
 
 	public Object[][] getTabAgenda(String NomVeto, String pdate) {
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Date date = null;
 		User Veto = mgerPersonnel.getUser(NomVeto);
 		try {
