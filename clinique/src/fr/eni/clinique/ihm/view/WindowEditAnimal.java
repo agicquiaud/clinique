@@ -259,6 +259,7 @@ public class WindowEditAnimal extends WindowClients {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
 				Validator validator = new Validator();
 				if(validator.patternNomPrenomAnimal(textFieldNomAnimalEditAnimal.getText())){
 					if(validator.patternTatouage(textFieldTatouageEditAnimal.getText())){

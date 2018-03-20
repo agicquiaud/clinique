@@ -1,13 +1,14 @@
 package fr.eni.clinique.ihm.controller;
 
 import java.util.List;
+import java.util.Observable;
 
 import fr.eni.clinique.bll.PersonnelsManager;
 import fr.eni.clinique.bll.PersonnelsManagerSingleton;
 import fr.eni.clinique.bo.User;
 import fr.eni.clinique.ihm.view.WindowLogin;
 
-public class ControllerPersonnelsImpl implements ControllerPersonnels{
+public class ControllerPersonnelsImpl extends Observable implements ControllerPersonnels{
 
 	private static PersonnelsManager mger;
 	private List<User> liste;
@@ -19,11 +20,22 @@ public class ControllerPersonnelsImpl implements ControllerPersonnels{
 
 	public void addPersonnel(User p) {
 		mger.add(p);
+		
+		setChanged();
+		notifyObservers(p);
+	}
+	
+	public User getUserByNom(String nom){
+		user = mger.getUser(nom);
+		return user;
 	}
 
 	public void ArchivePersonnel(String nom) {
 		user = mger.getUser(nom);
 		mger.archive(user);
+		
+		setChanged();
+		notifyObservers(user);
 	}
 
 	public Object[][] getList() {
@@ -42,16 +54,9 @@ public class ControllerPersonnelsImpl implements ControllerPersonnels{
 		user = mger.getUser(login);
 		user.setPassword(mdp);
 		mger.resetMotDePasse(user);
-	}
-
-	public Boolean verifDroit() {
-		Boolean droit = false;
-		String nom = WindowLogin.getNom();
-		user = mger.getUser(nom);
-		if (user.getType().equals("adm")) {
-			droit = true;
-		}
-		return droit;
+		
+		setChanged();
+		notifyObservers(user);
 	}
 	
 	public User[] getVeterinaire(){

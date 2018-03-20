@@ -6,7 +6,6 @@ import java.util.Observable;
 import fr.eni.clinique.bll.ClientsManager;
 import fr.eni.clinique.bll.ClientsManagerSingleton;
 import fr.eni.clinique.bo.Clients;
-import javafx.beans.InvalidationListener;
 
 public class ControllerClientsImpl extends Observable implements ControllerClients{
 
@@ -25,7 +24,7 @@ public class ControllerClientsImpl extends Observable implements ControllerClien
 		System.out.println(countObservers());
 		
 		setChanged();
-		notifyObservers();
+		notifyObservers(clients);
 	}
 	/**
 	 * fonction qui récupère une liste de clients
@@ -90,7 +89,7 @@ public class ControllerClientsImpl extends Observable implements ControllerClien
 		bllclients.update(clients);
 		
 		setChanged();
-		notifyObservers();
+		notifyObservers(clients);
 	}
 
 	public void updateClient(String codeClient, String nomClient, String prenomClient, String adresse1, String adresse2,
@@ -100,17 +99,6 @@ public class ControllerClientsImpl extends Observable implements ControllerClien
 		bllclients.update(clients);
 		
 		setChanged();
-		notifyObservers();
+		notifyObservers(clients);
 	}
-
-	@Override
-	public void addListener(InvalidationListener listener) {
-		
-	}
-
-	@Override
-	public void removeListener(InvalidationListener listener) {
-		
-	}
-
 }
