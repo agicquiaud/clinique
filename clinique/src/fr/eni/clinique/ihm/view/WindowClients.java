@@ -202,9 +202,9 @@ public class WindowClients implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				lblError.setText("");
 				if (textFieldSearch.getText().equals("")) {
-					SearchClient(controllerclient.getList(), ENTETES_CLIENT);
+					setUpTableClient(controllerclient.getList(), ENTETES_CLIENT);
 				} else {
-					SearchClient(controllerclient.getClient(textFieldSearch.getText()), ENTETES_CLIENT);
+					setUpTableClient(controllerclient.getClient(textFieldSearch.getText()), ENTETES_CLIENT);
 				}
 			}
 		});
@@ -291,7 +291,7 @@ public class WindowClients implements Observer {
 		});
 	}
 
-	void SearchClient(Object[][] data, String[] entetes) {
+	void setUpTableClient(Object[][] data, String[] entetes) {
 		tableModel = new DefaultTableModel(data, entetes) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
@@ -303,9 +303,7 @@ public class WindowClients implements Observer {
 	}
 
 	void setUpTableAnimal(Object[][] data, String[] entetes) {
-		tableModel = new DefaultTableModel(
-				controlleranimal.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()),
-				ENTETES_ANIMAL) { // nouveau model
+		tableModel = new DefaultTableModel(data, entetes) { // nouveau model
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
@@ -318,26 +316,11 @@ public class WindowClients implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		if (arg instanceof Clients) {
-			tableModel = new DefaultTableModel(controllerclient.getList(), ENTETES_CLIENT) { // nouveau
-																								// model
-				@Override
-				public boolean isCellEditable(int row, int column) {
-					return false;
-				}
-			};
-			table_1.setModel(tableModel);
-			tableModel.fireTableDataChanged(); // maj tableau
+			setUpTableClient(controllerclient.getList(), ENTETES_CLIENT);
 		} else if (arg instanceof Animaux) {
-			tableModel = new DefaultTableModel(
+			setUpTableAnimal(
 					controlleranimal.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()),
-					ENTETES_ANIMAL) { // nouveau model
-				@Override
-				public boolean isCellEditable(int row, int column) {
-					return false;
-				}
-			};
-			table_2.setModel(tableModel);
-			tableModel.fireTableDataChanged(); // maj tableau
+					ENTETES_ANIMAL);
 		}
 	}
 }
