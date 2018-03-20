@@ -10,7 +10,7 @@ public class AppliTestIHM {
 	
 	public static void main(String[] args) {
 		Validator valid = new Validator();
-		valid.patternNomPrenomAnimal("gj");
+		valid.patternTatouage("AAA555");
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
