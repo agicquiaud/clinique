@@ -31,7 +31,6 @@ public class Validator {
 	
 	public boolean patternNomPrenomAnimal(String nomPrenomAnimal) {
 		boolean result = Pattern.matches( PATTERN_NOMPRENOM_ANIMAL, nomPrenomAnimal);
-System.out.println(result);
 		return result;
 	}
 	
