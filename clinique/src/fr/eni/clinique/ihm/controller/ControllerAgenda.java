@@ -59,7 +59,7 @@ public class ControllerAgenda {
 	}
 
 	public Object[][] getTabAgenda(String NomVeto, String pdate) {
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = null;
 		User Veto = mgerPersonnel.getUser(NomVeto);
 		try {
