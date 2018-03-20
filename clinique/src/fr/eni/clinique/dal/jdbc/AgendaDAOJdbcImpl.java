@@ -95,6 +95,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		try {
+			System.out.println(data.getDate());
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
 			rqt.setInt(1, data.getCodeVeto());
