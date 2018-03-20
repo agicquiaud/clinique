@@ -35,6 +35,7 @@ public class WindowGestionPersonnels implements Observer{
 	 * Create the application.
 	 */
 	public WindowGestionPersonnels() {
+		
 		controllerPersonnels = ControllerPersonnelsSingleton.getinstance();
 		((Observable) controllerPersonnels).addObserver(this);
 		frameGestionPersonnel = new JFrame();
@@ -100,6 +101,7 @@ public class WindowGestionPersonnels implements Observer{
 		};
 		table.setModel(tableModel);
 		scrollPane.setViewportView(table);
+		
 		JLabel lblNewLabelGP = new JLabel("");
 		GridBagConstraints gbc_lblNewLabelGP = new GridBagConstraints();
 		gbc_lblNewLabelGP.anchor = GridBagConstraints.WEST;
@@ -108,8 +110,7 @@ public class WindowGestionPersonnels implements Observer{
 		gbc_lblNewLabelGP.gridy = 4;
 		frameGestionPersonnel.getContentPane().add(lblNewLabelGP, gbc_lblNewLabelGP);
 
-		/////////////////////////////////////////////////////////////////////////////////////////
-
+		//Actions Listeners
 		btnAjouter.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
