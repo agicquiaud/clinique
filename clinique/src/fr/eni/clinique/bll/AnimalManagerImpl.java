@@ -31,7 +31,9 @@ class AnimalManagerImpl implements AnimalManager {
 
 	@Override
 	public void update(Animaux animal) {
+
 		if(animal.getSexe().equals("Masculin")){
+
 			animal.setSexe("M");
 		}else if(animal.getSexe().equals("Féminin")){
 			animal.setSexe("F");

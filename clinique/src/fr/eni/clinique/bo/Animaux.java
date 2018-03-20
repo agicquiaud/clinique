@@ -28,22 +28,9 @@ public class Animaux {
 		Antecedents = antecedents;
 		Archive = archive;
 	}
-	public Animaux(Integer codeAnimal, String nom, String sexe, String couleur, String race, String espece,
-			Integer codeClient, String tatouage, Boolean archive) {
-		super();
-		CodeAnimal = codeAnimal;
-		Nom = nom;
-		Sexe = sexe;
-		Couleur = couleur;
-		Race = race;
-		Espece = espece;
-		CodeClient = codeClient;
-		Tatouage = tatouage;
-		Archive = archive;
-	}
-	
+
 	public Animaux(String nom, String sexe, String couleur, String race, String espece,
-			Integer codeClient, String tatouage, Boolean archive) {
+			Integer codeClient, String tatouage, String antecedents, Boolean archive) {
 		super();
 		Nom = nom;
 		Sexe = sexe;
@@ -52,6 +39,7 @@ public class Animaux {
 		Espece = espece;
 		CodeClient = codeClient;
 		Tatouage = tatouage;
+		Antecedents = antecedents;
 		Archive = archive;
 	}
 	
