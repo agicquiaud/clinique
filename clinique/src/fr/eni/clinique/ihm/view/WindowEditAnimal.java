@@ -132,7 +132,7 @@ public class WindowEditAnimal extends WindowClients {
 		EditAnimal.getContentPane().add(textFieldNomAnimalEditAnimal, gbc_textFieldNomAnimalEditAnimal);
 		textFieldNomAnimalEditAnimal.setColumns(10);
 
-		String[] Genre = { "Male", "Femelle", "Hermaphrodite" };
+		String[] Genre = { "Masculin", "Féminin", "Hermaphrodite" };
 		JComboBox<String> comboboxgenreEditAnimal = new JComboBox<String>(Genre);
 		GridBagConstraints gbc_comboboxgenreEditAnimal = new GridBagConstraints();
 		comboboxgenreEditAnimal.setBackground(new Color(255, 255, 255));
