@@ -36,9 +36,9 @@ import fr.eni.clinique.bo.Animaux;
 import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.bo.User;
 import fr.eni.clinique.ihm.controller.ControllerAgenda;
-import fr.eni.clinique.ihm.controller.ControllerAnimaux;
-import fr.eni.clinique.ihm.controller.ControllerClients;
-import fr.eni.clinique.ihm.controller.ControllerPersonnels;
+import fr.eni.clinique.ihm.controller.ControllerAnimauxImpl;
+import fr.eni.clinique.ihm.controller.ControllerClientsImpl;
+import fr.eni.clinique.ihm.controller.ControllerPersonnelsImpl;
 
 public class WindowPriseDeRendezVous extends JFrame {
 
@@ -61,8 +61,8 @@ public class WindowPriseDeRendezVous extends JFrame {
 	private DateLabelFormatter formatDate;
 	private JDatePickerImpl datePicker;
 	private ImageIcon icon = new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/plus.png");
-	private ControllerAnimaux controllerAnimal = new ControllerAnimaux();
-	private ControllerClients controllerClients = new ControllerClients();
+	private ControllerAnimauxImpl controllerAnimal = new ControllerAnimauxImpl();
+	private ControllerClientsImpl controllerClients = new ControllerClientsImpl();
 	private final JButton btnAddClient = new JButton(icon);
 	private final JButton btnAddAnimal = new JButton(icon);
 	private ControllerAgenda CA = new ControllerAgenda();
@@ -160,7 +160,7 @@ public class WindowPriseDeRendezVous extends JFrame {
 		contentPaneNorthCenter.setLayout(new GridLayout(10, 1));
 		contentPaneNorthCenter.add(new JLabel("Par"));
 		contentPaneNorthCenter.add(new JLabel("Véterinaire :"));
-		ControllerPersonnels cp = new ControllerPersonnels();
+		ControllerPersonnelsImpl cp = new ControllerPersonnelsImpl();
 		String[] listeVeto= cp.getNomVeterinaires();
 		CBVet = new JComboBox<String>(listeVeto);
 		sdf = new SimpleDateFormat("dd/MM/yyyy");

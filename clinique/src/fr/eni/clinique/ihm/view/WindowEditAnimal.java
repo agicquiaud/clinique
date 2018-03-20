@@ -20,8 +20,8 @@ import javax.swing.UIManager;
 
 import fr.eni.clinique.bo.Animaux;
 import fr.eni.clinique.bo.Clients;
-import fr.eni.clinique.ihm.controller.ControllerAnimaux;
-import fr.eni.clinique.ihm.controller.ControllerClients;
+import fr.eni.clinique.ihm.controller.ControllerAnimauxImpl;
+import fr.eni.clinique.ihm.controller.ControllerClientsImpl;
 
 public class WindowEditAnimal extends WindowClients {
 
@@ -30,14 +30,14 @@ public class WindowEditAnimal extends WindowClients {
 	private JTextField textFieldCouleurEditAnimal;
 	private JTextField textFieldTatouageEditAnimal;
 	private JTextField textFieldAntecedentsEditAnimal;
-	private ControllerAnimaux controlleranimal;
-	private ControllerClients controllerclient;
+	private ControllerAnimauxImpl controlleranimal;
+	private ControllerClientsImpl controllerclient;
 	private DefaultComboBoxModel<String> comboboxModel;
 	private String[] entetes = { "CodeAnimal", "Nom", "Sexe", "Couleur", "Race", "Espece" };
 
 	public WindowEditAnimal(Animaux animal) {
-		controlleranimal = new ControllerAnimaux();
-		controllerclient = new ControllerClients();
+		controlleranimal = new ControllerAnimauxImpl();
+		controllerclient = new ControllerClientsImpl();
 		EditAnimal.setFont(new Font("Malgun Gothic", Font.PLAIN, 13));
 		EditAnimal.setTitle("Gestion Animal");
 		EditAnimal.setSize(500, 400);

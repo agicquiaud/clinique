@@ -22,7 +22,10 @@ import javax.swing.table.DefaultTableModel;
 
 import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.ihm.controller.ControllerAnimaux;
+import fr.eni.clinique.ihm.controller.ControllerAnimauxImpl;
+import fr.eni.clinique.ihm.controller.ControllerAnimauxSingleton;
 import fr.eni.clinique.ihm.controller.ControllerClients;
+import fr.eni.clinique.ihm.controller.ControllerClientsSingleton;
 
 public class WindowClients implements Observer {
 
@@ -36,10 +39,10 @@ public class WindowClients implements Observer {
 	private JTextField textFieldSearch;
 
 	public WindowClients() {
-		controllerclient = new ControllerClients();
+		controllerclient = ControllerClientsSingleton.getinstance();
 		controllerclient.addObserver(this);
 		System.out.println(controllerclient.countObservers());
-		controlleranimal = new ControllerAnimaux();
+		controlleranimal = ControllerAnimauxSingleton.getinstance();
 		frame = new JFrame();
 		frame.setTitle("Gestion Clients");
 		frame.setSize(850, 485);

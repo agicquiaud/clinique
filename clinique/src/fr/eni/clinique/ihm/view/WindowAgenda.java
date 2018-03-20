@@ -30,8 +30,8 @@ import org.jdatepicker.impl.UtilDateModel;
 
 import fr.eni.clinique.bo.Animaux;
 import fr.eni.clinique.ihm.controller.ControllerAgenda;
-import fr.eni.clinique.ihm.controller.ControllerAnimaux;
-import fr.eni.clinique.ihm.controller.ControllerPersonnels;
+import fr.eni.clinique.ihm.controller.ControllerAnimauxImpl;
+import fr.eni.clinique.ihm.controller.ControllerPersonnelsImpl;
 import fr.eni.clinique.ihm.graphic.ImagePanel;
 
 public class WindowAgenda {
@@ -45,13 +45,13 @@ public class WindowAgenda {
 	private UtilDateModel model = new UtilDateModel();
 	private JDatePanelImpl datePanel = new JDatePanelImpl(model, properties);
 	private JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());;
-	private ControllerPersonnels controllerpersonnels;
+	private ControllerPersonnelsImpl controllerpersonnels;
 	private ControllerAgenda controlleragenda;
-	private ControllerAnimaux controlleranimaux = new ControllerAnimaux();
+	private ControllerAnimauxImpl controlleranimaux = new ControllerAnimauxImpl();
 	
 	public WindowAgenda(){		
 		controlleragenda = new ControllerAgenda();
-		controllerpersonnels = new ControllerPersonnels();
+		controllerpersonnels = new ControllerPersonnelsImpl();
 		frame = new JFrame();
 		frame.setTitle("Agenda");
 		frame.setBounds(100, 100, 585, 470);

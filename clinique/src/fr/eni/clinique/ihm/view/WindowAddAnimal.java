@@ -20,13 +20,13 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import fr.eni.clinique.bo.Clients;
-import fr.eni.clinique.ihm.controller.ControllerAnimaux;
+import fr.eni.clinique.ihm.controller.ControllerAnimauxImpl;
 import fr.eni.clinique.ihm.regex.Validator;
 
 public class WindowAddAnimal {
 	
 	private JDialog AddAnimal = new JDialog();
-	private ControllerAnimaux controlleranimal = new ControllerAnimaux();
+	private ControllerAnimauxImpl controlleranimal = new ControllerAnimauxImpl();
 	private JTextField textFieldNomAnimal;
 	private JTextField textFieldCouleurAnimal;
 	private JTextField textFieldTatouageAnimal;

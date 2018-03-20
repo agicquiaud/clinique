@@ -8,16 +8,16 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import fr.eni.clinique.ihm.controller.ControllerClients;
+import fr.eni.clinique.ihm.controller.ControllerClientsSingleton;
 
 public class WindowAddClient {
 
 	private JDialog frame = new JDialog();
-	private ControllerClients controller;
+	private ControllerClients controllerclient;
 	private JTextField textFieldNomClient;
 	private JTextField textFieldPrenomClient;
 	private JTextField textFieldAdresse1Client;
@@ -29,7 +29,7 @@ public class WindowAddClient {
 
 	public WindowAddClient() {
 
-		controller = new ControllerClients();
+		controllerclient = ControllerClientsSingleton.getinstance();
 		frame.setTitle("Ajouter un client");
 		frame.setSize(440, 325);
 		frame.setLocationRelativeTo(null);
@@ -192,7 +192,7 @@ public class WindowAddClient {
 		btnValiderModalAddClient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.addClient(textFieldNomClient.getText(), textFieldPrenomClient.getText(),
+				controllerclient.addClient(textFieldNomClient.getText(), textFieldPrenomClient.getText(),
 						textFieldAdresse1Client.getText(), textFieldAdresse2Client.getText(),
 						textFieldCodePostalClient.getText(), textFieldVilleClient.getText(),
 						textFieldNumTelClient.getText(), textFieldEmailClient.getText());
