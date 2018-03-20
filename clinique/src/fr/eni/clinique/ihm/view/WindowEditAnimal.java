@@ -251,7 +251,7 @@ public class WindowEditAnimal extends WindowClients {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controlleranimal.updateClient(animal.getCodeAnimal().toString(), textFieldNomAnimalEditAnimal.getText(),
+				controlleranimal.updateAnimal(animal.getCodeAnimal().toString(), textFieldNomAnimalEditAnimal.getText(),
 						comboboxgenreEditAnimal.getSelectedItem().toString(), textFieldCouleurEditAnimal.getText(),
 						comboBoxRaceEditAnimal.getSelectedItem().toString(),
 						comboBoxEspeceEditAnimal.getSelectedItem().toString(), lblNCodeEditAnimal.getText(),

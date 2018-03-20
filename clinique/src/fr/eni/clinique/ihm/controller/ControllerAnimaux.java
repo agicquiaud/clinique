@@ -13,7 +13,7 @@ public interface ControllerAnimaux {
 	public Animaux getAnimalById(String id);
 	public Animaux[] getAnimalByIdClient(Integer id);
 	public void removeAnimal(Integer codeanimal);
-	public void updateClient(String codeAnimal, String nom, String sexe, String couleur, String race, String espece,
+	public void updateAnimal(String codeAnimal, String nom, String sexe, String couleur, String race, String espece,
 			String codeClient, String antecedent, String tatouage);
 	public void addAnimalByNomClient(String nom, String sexe, String couleur, String race, String espece,
 			String NomPrenomClient, String antecedents, String tatouage);
