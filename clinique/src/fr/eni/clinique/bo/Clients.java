@@ -187,11 +187,10 @@ public class Clients {
 
 	@Override
 	public String toString() {
-		return Nom + " " + Prenom;
-//		return "Clients [CodeClient=" + CodeClient + ", Nom=" + Nom + ", Prenom=" + Prenom + ", adresse1=" + adresse1
-//				+ ", adresse2=" + adresse2 + ", CodePostal=" + CodePostal + ", Ville=" + Ville + ", NumTel=" + NumTel
-//				+ ", Assurance=" + Assurance + ", Email=" + Email + ", Remarque=" + Remarque + ", Archive=" + Archive
-//				+ "]";
+		return "Clients [CodeClient=" + CodeClient + ", Nom=" + Nom + ", Prenom=" + Prenom + ", adresse1=" + adresse1
+				+ ", adresse2=" + adresse2 + ", CodePostal=" + CodePostal + ", Ville=" + Ville + ", NumTel=" + NumTel
+				+ ", Assurance=" + Assurance + ", Email=" + Email + ", Remarque=" + Remarque + ", Archive=" + Archive
+				+ "]";
 	}
 
 

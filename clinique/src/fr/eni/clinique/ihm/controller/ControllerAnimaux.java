@@ -89,7 +89,6 @@ public class ControllerAnimaux {
 			System.out.println(str.lastIndexOf(animaux)+1);
 			tabAnimaux[str.lastIndexOf(animaux)] = animaux;
 		}
-		System.out.println(tabAnimaux[0]);
 		return tabAnimaux;
 	}
 	

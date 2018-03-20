@@ -15,18 +15,18 @@ import fr.eni.clinique.dal.DALException;
 public class ClientDAOJdbcImpl implements ClientDAO {
 
 	private static final String sqlSelectAll = "SELECT CodeClient, NomClient, PrenomClient, "
-			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive FROM Clients";
+			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Assurance, Email, Remarque, Archive FROM Clients";
 	private static final String sqlUpdate = "UPDATE Clients SET NomClient=?, PrenomClient=?, "
 			+ "Adresse1=?, Adresse2=?, CodePostal=?, Ville=?, NumTel=?, Assurance=?, Email=?, Remarque=?, Archive=? WHERE CodeClient=?";
 	private static final String sqlInsert = "INSERT INTO Clients (NomClient, PrenomClient, "
-			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Email, Archive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Assurance, Email, Remarque, Archive) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String sqlDelete = "DELETE FROM Clients WHERE CodeClient=?";
 	private static final String sqlSelectByNom = "SELECT CodeClient, NomClient, PrenomClient, "
-			+ "Adresse1, CodePostal, Ville, NumTel, Email, Archive FROM Clients WHERE NomClient LIKE ? OR PrenomClient LIKE ? ORDER BY NomClient ASC";
+			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Assurance, Email, Remarque, Archive FROM Clients WHERE NomClient LIKE ? OR PrenomClient LIKE ? ORDER BY NomClient ASC";
 	private static final String sqlSelectById = "SELECT CodeClient, NomClient, PrenomClient, "
-			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Email, Archive FROM Clients WHERE CodeClient=?";
+			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Assurance, Email, Remarque, Archive FROM Clients WHERE CodeClient=?";
 	private static final String sqlSelectByNomPrenom = "SELECT CodeClient, NomClient, PrenomClient, "
-			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Email, Archive FROM Clients WHERE NomClient=? AND PrenomClient=? ORDER BY NomClient ASC";
+			+ "Adresse1, Adresse2, CodePostal, Ville, NumTel, Assurance, Email, Remarque, Archive FROM Clients WHERE NomClient=? AND PrenomClient=? ORDER BY NomClient ASC";
 
 	public List<Clients> selectAll() throws DALException {
 		Connection cnx = null;
@@ -41,8 +41,9 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 
 			while (rs.next()) {
 				client = new Clients(rs.getInt("CodeClient"), rs.getString("NomClient"), rs.getString("PrenomClient"),
-						rs.getString("Adresse1"), rs.getString("CodePostal"), rs.getString("Ville"),
-						rs.getString("NumTel"), rs.getString("Email"), rs.getBoolean("Archive"));
+						rs.getString("Adresse1"), rs.getString("Adresse2"), rs.getString("CodePostal"),
+						rs.getString("Ville"), rs.getString("NumTel"), rs.getString("Assurance"), rs.getString("Email"),
+						rs.getString("Remarque"), rs.getBoolean("Archive"));
 
 				liste.add(client);
 			}
@@ -119,8 +120,10 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 			rqt.setString(5, data.getCodePostal());
 			rqt.setString(6, data.getVille());
 			rqt.setString(7, data.getNumTel());
-			rqt.setString(8, data.getEmail());
-			rqt.setBoolean(9, data.getArchive());
+			rqt.setString(8, data.getAssurance());
+			rqt.setString(9, data.getEmail());
+			rqt.setString(10, data.getRemarque());
+			rqt.setBoolean(11, data.getArchive());
 
 			int nbRows = rqt.executeUpdate();
 			if (nbRows == 1) {
@@ -145,6 +148,7 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 		}
 	}
 
+	// Non utilisé
 	public void delete(int id) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
@@ -183,11 +187,12 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 			rqt.setString(2, "%" + nom + "%");
 			rs = rqt.executeQuery();
 			Clients client = null;
-			
+
 			while (rs.next()) {
 				client = new Clients(rs.getInt("CodeClient"), rs.getString("NomClient"), rs.getString("PrenomClient"),
-						rs.getString("Adresse1"), rs.getString("CodePostal"), rs.getString("Ville"),
-						rs.getString("NumTel"), rs.getString("Email"), rs.getBoolean("Archive"));
+						rs.getString("Adresse1"), rs.getString("Adresse2"), rs.getString("CodePostal"),
+						rs.getString("Ville"), rs.getString("NumTel"), rs.getString("Assurance"), rs.getString("Email"),
+						rs.getString("Remarque"), rs.getBoolean("Archive"));
 
 				liste.add(client);
 			}
@@ -225,7 +230,8 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 			if (rs.next()) {
 				client = new Clients(rs.getInt("CodeClient"), rs.getString("NomClient"), rs.getString("PrenomClient"),
 						rs.getString("Adresse1"), rs.getString("Adresse2"), rs.getString("CodePostal"),
-						rs.getString("Ville"), rs.getString("NumTel"), rs.getString("Email"), rs.getBoolean("Archive"));
+						rs.getString("Ville"), rs.getString("NumTel"), rs.getString("Assurance"), rs.getString("Email"),
+						rs.getString("Remarque"), rs.getBoolean("Archive"));
 			}
 
 		} catch (SQLException e) {
@@ -250,7 +256,7 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 	}
 
 	@Override
-	public Clients selectByNomPrenom(String prenom, String nom) throws DALException{
+	public Clients selectByNomPrenom(String prenom, String nom) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		ResultSet rs = null;
@@ -264,11 +270,12 @@ public class ClientDAOJdbcImpl implements ClientDAO {
 			if (rs.next()) {
 				client = new Clients(rs.getInt("CodeClient"), rs.getString("NomClient"), rs.getString("PrenomClient"),
 						rs.getString("Adresse1"), rs.getString("Adresse2"), rs.getString("CodePostal"),
-						rs.getString("Ville"), rs.getString("NumTel"), rs.getString("Email"), rs.getBoolean("Archive"));
+						rs.getString("Ville"), rs.getString("NumTel"), rs.getString("Assurance"), rs.getString("Email"),
+						rs.getString("Remarque"), rs.getBoolean("Archive"));
 			}
 
 		} catch (SQLException e) {
-			throw new DALException("selectByNomPrenom failed - nomprenom = " + nom + " " +prenom, e);
+			throw new DALException("selectByNomPrenom failed - nomprenom = " + nom + " " + prenom, e);
 		} finally {
 			try {
 				if (rs != null) {

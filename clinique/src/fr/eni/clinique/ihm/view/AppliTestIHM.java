@@ -1,17 +1,17 @@
 package fr.eni.clinique.ihm.view;
 
-import javax.swing.SwingUtilities;
+import java.util.regex.Pattern;
 
-import fr.eni.clinique.bo.Clients;
+import javax.swing.SwingUtilities;
 
 public class AppliTestIHM {
 	
 	public static void main(String[] args) {
+		
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				new WindowPriseDeRendezVous();
-				
+				new WindowClients();
 			}
 		});
 	}

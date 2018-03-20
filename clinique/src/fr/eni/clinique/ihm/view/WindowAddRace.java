@@ -41,7 +41,7 @@ public class WindowAddRace {
 		gbl_AddRace.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 		gbl_AddRace.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		AddRace.getContentPane().setLayout(gbl_AddRace);
-
+		
 		JDesktopPane desktopPane = new JDesktopPane();
 		desktopPane.setBorder(null);
 		desktopPane.setBackground(new Color(255, 255, 255));
