@@ -1,6 +1,7 @@
 package fr.eni.clinique.ihm.controller;
 
 import java.util.List;
+import java.util.Observable;
 
 import fr.eni.clinique.bll.AnimalManager;
 import fr.eni.clinique.bll.AnimalManagerSingleton;
@@ -9,7 +10,7 @@ import fr.eni.clinique.bll.ClientsManagerSingleton;
 import fr.eni.clinique.bo.Animaux;
 import fr.eni.clinique.bo.Clients;
 
-public class ControllerAnimauxImpl implements ControllerAnimaux {
+public class ControllerAnimauxImpl extends Observable implements ControllerAnimaux {
 
 	private AnimalManager mgerAnimal;
 	private ClientsManager mgerClient;
@@ -56,6 +57,9 @@ public class ControllerAnimauxImpl implements ControllerAnimaux {
 		animal = new Animaux(nom, sexe, couleur, race, espece, Integer.parseInt(codeClient), antecedents, tatouage, false);
 		System.out.println(animal.toString());
 		mgerAnimal.insert(animal);
+		
+		setChanged();
+		notifyObservers(animal);
 	}
 	
 	public String[] getRace (String Espece){
@@ -94,12 +98,18 @@ public class ControllerAnimauxImpl implements ControllerAnimaux {
 	public void removeAnimal(Integer codeanimal) {
 		animal = mgerAnimal.animalById(codeanimal);
 		mgerAnimal.delete(animal);
+		
+		setChanged();
+		notifyObservers(animal);
 	}
 	
-	public void updateClient(String codeAnimal, String nom, String sexe, String couleur, String race, String espece,
+	public void updateAnimal(String codeAnimal, String nom, String sexe, String couleur, String race, String espece,
 			String codeClient, String antecedent, String tatouage) {
 		animal = new Animaux(Integer.parseInt(codeAnimal), nom, sexe, couleur, race, espece, Integer.parseInt(codeClient), tatouage, antecedent, false);
 		mgerAnimal.update(animal);
+		
+		setChanged();
+		notifyObservers(animal);
 	}
 
 	public void addAnimalByNomClient(String nom, String sexe, String couleur, String race, String espece,
@@ -109,7 +119,9 @@ public class ControllerAnimauxImpl implements ControllerAnimaux {
 		animal = new Animaux(nom, sexe, couleur, race, espece, client.getCodeClient(), antecedents, tatouage, false);
 		System.out.println(animal.toString());
 		mgerAnimal.insert(animal);
-	
+		
+		setChanged();
+		notifyObservers(animal);
 	}
 	
 	public Object[] getAnimalAndMaitre(String id){
@@ -125,7 +137,3 @@ public class ControllerAnimauxImpl implements ControllerAnimaux {
 	}
 	
 }
-
-
-
-

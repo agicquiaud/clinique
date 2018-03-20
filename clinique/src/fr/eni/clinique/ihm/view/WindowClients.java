@@ -41,8 +41,8 @@ public class WindowClients implements Observer {
 	public WindowClients() {
 		controllerclient = ControllerClientsSingleton.getinstance();
 		((Observable) controllerclient).addObserver(this);
-		System.out.println(((Observable) controllerclient).countObservers());
 		controlleranimal = ControllerAnimauxSingleton.getinstance();
+		((Observable) controlleranimal).addObserver(this);
 		frame = new JFrame();
 		frame.setTitle("Gestion Clients");
 		frame.setSize(850, 485);
@@ -262,10 +262,6 @@ public class WindowClients implements Observer {
 		btnEditAnimal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(table_1.toString());
-				System.out.println(table_1.getSelectedColumn());
-				System.out.println(table_1.getSelectedRow());
-
 				if (table_2.getSelectedRow() == -1 && table_2.getSelectedColumn() == -1) {
 					lblError.setText("Aucun animal sélectionner !");
 				} else {

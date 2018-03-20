@@ -149,7 +149,7 @@ public class WindowDossierMedicalAnimal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String antecedent = textFieldNomClient.getText();
-				controlleranimaux.updateClient(animaux.getCodeAnimal().toString(), animaux.getNom(), animaux.getSexe(), animaux.getCouleur(), animaux.getRace(), animaux.getEspece(), animaux.getCodeClient().toString(), antecedent, animaux.getTatouage());
+				controlleranimaux.updateAnimal(animaux.getCodeAnimal().toString(), animaux.getNom(), animaux.getSexe(), animaux.getCouleur(), animaux.getRace(), animaux.getEspece(), animaux.getCodeClient().toString(), antecedent, animaux.getTatouage());
 				frame.dispose();
 			}
 		});
