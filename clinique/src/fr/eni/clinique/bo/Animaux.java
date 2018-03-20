@@ -43,7 +43,7 @@ public class Animaux {
 	}
 	
 	public Animaux(String nom, String sexe, String couleur, String race, String espece,
-			Integer codeClient, String tatouage, Boolean archive) {
+			Integer codeClient, String tatouage, String antecedents, Boolean archive) {
 		super();
 		Nom = nom;
 		Sexe = sexe;
@@ -52,6 +52,7 @@ public class Animaux {
 		Espece = espece;
 		CodeClient = codeClient;
 		Tatouage = tatouage;
+		Antecedents = antecedents;
 		Archive = archive;
 	}
 	

@@ -237,7 +237,7 @@ public class WindowAddAnimal {
 				} else {
 					controlleranimal.addAnimal(textFieldNomAnimal.getText(), comboBoxGenre.getSelectedItem().toString()
 							, textFieldCouleurAnimal.getText(), race.getSelectedItem().toString(), espece.getSelectedItem().toString()
-							, client.getCodeClient().toString(), textFieldTatouageAnimal.getText());
+							, client.getCodeClient().toString(), textFieldTatouageAnimal.getText(), textFieldAntecedentsAnimal.getText());
 					AddAnimal.dispose();
 				}
 			}
