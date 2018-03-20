@@ -20,13 +20,14 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 
 import fr.eni.clinique.bo.Clients;
-import fr.eni.clinique.ihm.controller.ControllerAnimauxImpl;
+import fr.eni.clinique.ihm.controller.ControllerAnimaux;
+import fr.eni.clinique.ihm.controller.ControllerAnimauxSingleton;
 import fr.eni.clinique.ihm.regex.Validator;
 
 public class WindowAddAnimal {
 	
 	private JDialog AddAnimal = new JDialog();
-	private ControllerAnimauxImpl controlleranimal = new ControllerAnimauxImpl();
+	private ControllerAnimaux controlleranimal;
 	private JTextField textFieldNomAnimal;
 	private JTextField textFieldCouleurAnimal;
 	private JTextField textFieldTatouageAnimal;
@@ -35,7 +36,7 @@ public class WindowAddAnimal {
 	private ComboBoxModel<String> comboboxModel;
 
 	public WindowAddAnimal(Clients client){
-		
+		controlleranimal = ControllerAnimauxSingleton.getinstance();
 		AddAnimal.setTitle("Ajouter un animal");
 		AddAnimal.setSize(620, 370);
 		AddAnimal.setLocationRelativeTo(null);

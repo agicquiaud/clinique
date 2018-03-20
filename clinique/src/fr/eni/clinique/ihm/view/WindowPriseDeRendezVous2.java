@@ -1,6 +1,9 @@
 package fr.eni.clinique.ihm.view;
 
 import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.util.Date;
 import java.util.Properties;
 
@@ -18,10 +21,8 @@ import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
 
 import fr.eni.clinique.bo.Clients;
-import fr.eni.clinique.ihm.controller.ControllerClientsImpl;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
+import fr.eni.clinique.ihm.controller.ControllerClients;
+import fr.eni.clinique.ihm.controller.ControllerClientsSingleton;
 
 public class WindowPriseDeRendezVous2 {
 
@@ -31,7 +32,7 @@ public class WindowPriseDeRendezVous2 {
 	private JDatePanelImpl datePanel = new JDatePanelImpl(model, properties);
 	private JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());;
 	private ImageIcon icon = new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/plus.png");
-	private ControllerClientsImpl controllerClients = new ControllerClientsImpl();
+	private ControllerClients controllerClients;
 	private final JLabel lblPar = new JLabel("Pour");
 	private final JLabel lblClient = new JLabel("Client : ");
 	private final JComboBox<String>comboBox = new JComboBox<String>();
@@ -57,7 +58,7 @@ public class WindowPriseDeRendezVous2 {
 	 * Create the frame.
 	 */
 	public WindowPriseDeRendezVous2() {
-
+		controllerClients = ControllerClientsSingleton.getinstance();
 		frame.setTitle("Prise de rendez-vous");
 		frame.setSize(850, 570);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

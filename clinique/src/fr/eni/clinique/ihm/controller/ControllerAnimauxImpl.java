@@ -1,6 +1,5 @@
 package fr.eni.clinique.ihm.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.clinique.bll.AnimalManager;
@@ -53,8 +52,8 @@ public class ControllerAnimauxImpl implements ControllerAnimaux{
 	}
 	
 	public void addAnimal(String nom, String sexe, String couleur, String race, String espece,
-			String codeClient, String tatouage) {
-		animal = new Animaux(nom, sexe, couleur, race, espece, Integer.parseInt(codeClient), tatouage, false);
+			String codeClient, String antecedents, String tatouage) {
+		animal = new Animaux(nom, sexe, couleur, race, espece, Integer.parseInt(codeClient), antecedents, tatouage, false);
 		System.out.println(animal.toString());
 		mgerAnimal.insert(animal);
 	}
@@ -104,10 +103,10 @@ public class ControllerAnimauxImpl implements ControllerAnimaux{
 	}
 
 	public void addAnimalByNomClient(String nom, String sexe, String couleur, String race, String espece,
-			String NomPrenomClient, String tatouage) {
+			String NomPrenomClient, String antecedents, String tatouage) {
 		String [] PrenomNom = NomPrenomClient.split(" ");
 		Clients client = mgerClient.getClientByNomPrenom(PrenomNom[0], PrenomNom[1]);
-		animal = new Animaux(nom, sexe, couleur, race, espece, client.getCodeClient(), tatouage, false);
+		animal = new Animaux(nom, sexe, couleur, race, espece, client.getCodeClient(), antecedents, tatouage, false);
 		System.out.println(animal.toString());
 		mgerAnimal.insert(animal);
 	

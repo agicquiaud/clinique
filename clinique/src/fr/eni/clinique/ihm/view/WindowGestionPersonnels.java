@@ -18,7 +18,8 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import fr.eni.clinique.bo.User;
-import fr.eni.clinique.ihm.controller.ControllerPersonnelsImpl;
+import fr.eni.clinique.ihm.controller.ControllerPersonnels;
+import fr.eni.clinique.ihm.controller.ControllerPersonnelsSingleton;
 
 public class WindowGestionPersonnels {
 
@@ -27,7 +28,7 @@ public class WindowGestionPersonnels {
 	private JDialog AjoutPersonnel = new JDialog();
 	private JDialog ResetMdp = new JDialog();
 	private JDialog PopupDeleteClient = new JDialog();
-	private ControllerPersonnelsImpl controller;
+	private ControllerPersonnels controller;
 	private JTextField textField;
 	private DefaultTableModel tableModel;
 
@@ -35,7 +36,7 @@ public class WindowGestionPersonnels {
 	 * Create the application.
 	 */
 	public WindowGestionPersonnels() {
-		controller = new ControllerPersonnelsImpl();
+		controller = ControllerPersonnelsSingleton.getinstance();
 		frameGestionPersonnel = new JFrame();
 		frameGestionPersonnel.setTitle("Gestion Personnel");
 		frameGestionPersonnel.setBounds(100, 100, 450, 300);

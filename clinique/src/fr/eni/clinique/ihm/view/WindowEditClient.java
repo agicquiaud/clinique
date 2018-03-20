@@ -13,7 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import fr.eni.clinique.bo.Clients;
-import fr.eni.clinique.ihm.controller.ControllerClientsImpl;
+import fr.eni.clinique.ihm.controller.ControllerClients;
+import fr.eni.clinique.ihm.controller.ControllerClientsSingleton;
 
 public class WindowEditClient extends WindowClients{
 	
@@ -28,11 +29,11 @@ public class WindowEditClient extends WindowClients{
 	private JTextField textFieldAssuranceClientEdit;
 	private JTextField textFieldEmailClientEdit;
 	private JTextField textFieldRemarqueClientEdit;
-	private ControllerClientsImpl controllerclient;
+	private ControllerClients controllerclient;
 	private String[] entetes = { "CodeClient", "Prenom", "Nom", "Code Postal", "Ville" };
 	
 	public WindowEditClient(Clients client){
-		controllerclient = new ControllerClientsImpl();
+		controllerclient = ControllerClientsSingleton.getinstance();
 		EditClient.setFont(new Font("Malgun Gothic", Font.PLAIN, 13));
 		EditClient.setTitle("Gestion Client");
 		EditClient.setSize(480, 330);

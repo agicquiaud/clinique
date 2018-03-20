@@ -53,6 +53,15 @@ public class ControllerPersonnelsImpl implements ControllerPersonnels{
 		}
 		return droit;
 	}
+	
+	public User[] getVeterinaire(){
+		liste = mger.getVeterinaires();
+		User[] tab = new User[liste.size()];
+		for (User user : liste) {
+			tab[liste.lastIndexOf(user)] = user;
+		}
+		return tab;
+	}
 
 	public String[] getNomVeterinaires() {
 		liste = mger.getVeterinaires();

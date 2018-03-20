@@ -12,18 +12,20 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import fr.eni.clinique.bo.Animaux;
-import fr.eni.clinique.ihm.controller.ControllerAnimauxImpl;
-import fr.eni.clinique.ihm.controller.ControllerClientsImpl;
+import fr.eni.clinique.ihm.controller.ControllerAnimaux;
+import fr.eni.clinique.ihm.controller.ControllerAnimauxSingleton;
+import fr.eni.clinique.ihm.controller.ControllerClients;
+import fr.eni.clinique.ihm.controller.ControllerClientsSingleton;
 
 public class WindowDossierMedicalAnimal {
 
 	private JDialog frame = new JDialog();
-	private ControllerClientsImpl controller;
-	private JTextField textFieldNomClient;
-	private ControllerAnimauxImpl controlleranimaux = new ControllerAnimauxImpl();
+	private ControllerClients controllerclient;
+	private ControllerAnimaux controlleranimaux;
 
 	public WindowDossierMedicalAnimal(String nomPrenom, Animaux animaux) {
-		controller = new ControllerClientsImpl();
+		controlleranimaux = ControllerAnimauxSingleton.getinstance();
+		controllerclient = ControllerClientsSingleton.getinstance();
 		// List<String> liste = controller.getClientbyId(id);
 
 		frame.setTitle("Dossier Medical");

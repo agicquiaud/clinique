@@ -22,7 +22,6 @@ import javax.swing.table.DefaultTableModel;
 
 import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.ihm.controller.ControllerAnimaux;
-import fr.eni.clinique.ihm.controller.ControllerAnimauxImpl;
 import fr.eni.clinique.ihm.controller.ControllerAnimauxSingleton;
 import fr.eni.clinique.ihm.controller.ControllerClients;
 import fr.eni.clinique.ihm.controller.ControllerClientsSingleton;
@@ -31,7 +30,6 @@ public class WindowClients implements Observer {
 
 	private JFrame frame;
 	private DefaultTableModel tableModel;
-	private ComboBoxModel<String> comboboxModel;
 	private JTable table_1;
 	private JTable table_2;
 	private ControllerClients controllerclient;
@@ -40,8 +38,8 @@ public class WindowClients implements Observer {
 
 	public WindowClients() {
 		controllerclient = ControllerClientsSingleton.getinstance();
-		controllerclient.addObserver(this);
-		System.out.println(controllerclient.countObservers());
+		((Observable) controllerclient).addObserver(this);
+		System.out.println(((Observable) controllerclient).countObservers());
 		controlleranimal = ControllerAnimauxSingleton.getinstance();
 		frame = new JFrame();
 		frame.setTitle("Gestion Clients");

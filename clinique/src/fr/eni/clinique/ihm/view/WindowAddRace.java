@@ -18,17 +18,19 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
+import fr.eni.clinique.ihm.controller.ControllerAnimaux;
 import fr.eni.clinique.ihm.controller.ControllerAnimauxImpl;
+import fr.eni.clinique.ihm.controller.ControllerAnimauxSingleton;
 
 public class WindowAddRace {
 
 	private JDialog AddRace = new JDialog();
-	private ControllerAnimauxImpl controlleranimal = new ControllerAnimauxImpl();
+	private ControllerAnimaux controlleranimal;
 	private JTextField textFieldRace;
 	private JTextField textFieldEspece;
 
 	public WindowAddRace() {
-
+		controlleranimal = ControllerAnimauxSingleton.getinstance();
 		AddRace.setTitle("Ajouter une race");
 		AddRace.setSize(500, 260);
 		AddRace.setLocationRelativeTo(null);

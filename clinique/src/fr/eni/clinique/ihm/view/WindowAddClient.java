@@ -28,7 +28,6 @@ public class WindowAddClient {
 	private JTextField textFieldEmailClient;
 
 	public WindowAddClient() {
-
 		controllerclient = ControllerClientsSingleton.getinstance();
 		frame.setTitle("Ajouter un client");
 		frame.setSize(440, 325);
