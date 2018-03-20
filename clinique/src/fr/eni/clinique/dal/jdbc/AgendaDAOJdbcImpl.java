@@ -121,7 +121,6 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 			} catch (SQLException e) {
 				throw new DALException("close failed - ", e);
 			}
-
 		}
 	}
 
