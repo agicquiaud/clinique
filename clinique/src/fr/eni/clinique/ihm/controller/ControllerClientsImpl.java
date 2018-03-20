@@ -25,7 +25,7 @@ public class ControllerClientsImpl extends Observable implements ControllerClien
 		System.out.println(countObservers());
 		
 		setChanged();
-		notifyObservers();
+		notifyObservers(clients);
 	}
 	/**
 	 * fonction qui récupère une liste de clients
@@ -90,7 +90,7 @@ public class ControllerClientsImpl extends Observable implements ControllerClien
 		bllclients.update(clients);
 		
 		setChanged();
-		notifyObservers();
+		notifyObservers(clients);
 	}
 
 	public void updateClient(String codeClient, String nomClient, String prenomClient, String adresse1, String adresse2,
@@ -100,7 +100,7 @@ public class ControllerClientsImpl extends Observable implements ControllerClien
 		bllclients.update(clients);
 		
 		setChanged();
-		notifyObservers();
+		notifyObservers(clients);
 	}
 
 	@Override

@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,6 +19,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
+import fr.eni.clinique.bo.Animaux;
 import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.ihm.controller.ControllerAnimaux;
 import fr.eni.clinique.ihm.controller.ControllerAnimauxSingleton;
@@ -35,6 +35,8 @@ public class WindowClients implements Observer {
 	private ControllerClients controllerclient;
 	private ControllerAnimaux controlleranimal;
 	private JTextField textFieldSearch;
+	private final String[] ENTETES_CLIENT = { "CodeClient", "Prenom", "Nom", "Code Postal", "Ville" };
+	private final String[] ENTETES_ANIMAL = { "CodeAnimal", "Nom", "Sexe", "Couleur", "Race", "Espece" };
 
 	public WindowClients() {
 		controllerclient = ControllerClientsSingleton.getinstance();
@@ -112,10 +114,10 @@ public class WindowClients implements Observer {
 		gbc_scrollPane.gridx = 1;
 		gbc_scrollPane.gridy = 3;
 		frame.getContentPane().add(scrollPane, gbc_scrollPane);
-		String[] entetes1 = { "CodeClient", "Prenom", "Nom", "Code Postal", "Ville" };
 		Object[][] donnee1 = controllerclient.getList();
 		table_1 = new JTable();
-		tableModel = new DefaultTableModel(donnee1, entetes1) { // nouveau model
+		tableModel = new DefaultTableModel(donnee1, ENTETES_CLIENT) { // nouveau
+																		// model
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
@@ -132,9 +134,8 @@ public class WindowClients implements Observer {
 		gbc_scrollPane_1.gridx = 6;
 		gbc_scrollPane_1.gridy = 3;
 		frame.getContentPane().add(scrollPane_1, gbc_scrollPane_1);
-		String[] entetes2 = { "CodeAnimal", "Nom", "Sexe", "Couleur", "Race", "Espece" };
 		Object[][] donnee2 = new Object[0][0];
-		table_2 = new JTable(donnee2, entetes2);
+		table_2 = new JTable(donnee2, ENTETES_ANIMAL);
 		scrollPane_1.setViewportView(table_2);
 
 		JLabel lblError = new JLabel("");
@@ -186,10 +187,10 @@ public class WindowClients implements Observer {
 			public void valueChanged(ListSelectionEvent e) {
 				try {
 					// fait une maj du tableau avec les nouvelles données
-					setUpTableAnimal(controlleranimal
-							.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()), entetes2);
+					setUpTableAnimal(controlleranimal.getListByClient(
+							table_1.getValueAt(table_1.getSelectedRow(), 0).toString()), ENTETES_ANIMAL);
 				} catch (Exception err) {
-					setUpTableAnimal(null, entetes2);
+					setUpTableAnimal(null, ENTETES_ANIMAL);
 				}
 			}
 		});
@@ -201,9 +202,9 @@ public class WindowClients implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				lblError.setText("");
 				if (textFieldSearch.getText().equals("")) {
-					setUpTableClient(controllerclient.getList(), entetes1);
+					SearchClient(controllerclient.getList(), ENTETES_CLIENT);
 				} else {
-					setUpTableClient(controllerclient.getClient(textFieldSearch.getText()), entetes1);
+					SearchClient(controllerclient.getClient(textFieldSearch.getText()), ENTETES_CLIENT);
 				}
 			}
 		});
@@ -290,7 +291,7 @@ public class WindowClients implements Observer {
 		});
 	}
 
-	void setUpTableClient(Object[][] data, String[] entetes) {
+	void SearchClient(Object[][] data, String[] entetes) {
 		tableModel = new DefaultTableModel(data, entetes) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
@@ -302,7 +303,9 @@ public class WindowClients implements Observer {
 	}
 
 	void setUpTableAnimal(Object[][] data, String[] entetes) {
-		tableModel = new DefaultTableModel(data, entetes) { // nouveau model
+		tableModel = new DefaultTableModel(
+				controlleranimal.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()),
+				ENTETES_ANIMAL) { // nouveau model
 			@Override
 			public boolean isCellEditable(int row, int column) {
 				return false;
@@ -315,8 +318,26 @@ public class WindowClients implements Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		if (arg instanceof Clients) {
-			System.out.println("+++++++++++++");
-//			frame.getContentPane().repaint();
+			tableModel = new DefaultTableModel(controllerclient.getList(), ENTETES_CLIENT) { // nouveau
+																								// model
+				@Override
+				public boolean isCellEditable(int row, int column) {
+					return false;
+				}
+			};
+			table_1.setModel(tableModel);
+			tableModel.fireTableDataChanged(); // maj tableau
+		} else if (arg instanceof Animaux) {
+			tableModel = new DefaultTableModel(
+					controlleranimal.getListByClient(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()),
+					ENTETES_ANIMAL) { // nouveau model
+				@Override
+				public boolean isCellEditable(int row, int column) {
+					return false;
+				}
+			};
+			table_2.setModel(tableModel);
+			tableModel.fireTableDataChanged(); // maj tableau
 		}
 	}
 }

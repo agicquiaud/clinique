@@ -9,7 +9,7 @@ import fr.eni.clinique.bll.ClientsManagerSingleton;
 import fr.eni.clinique.bo.Animaux;
 import fr.eni.clinique.bo.Clients;
 
-public class ControllerAnimauxImpl implements ControllerAnimaux{
+public class ControllerAnimauxImpl implements ControllerAnimaux {
 
 	private AnimalManager mgerAnimal;
 	private ClientsManager mgerClient;
