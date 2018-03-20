@@ -269,7 +269,7 @@ public class WindowEditClient extends WindowClients{
 						textFieldVilleClientEdit.getText(), textFieldNumTelClientEdit.getText(),
 						textFieldAssuranceClientEdit.getText(), textFieldEmailClientEdit.getText(),
 						textFieldRemarqueClientEdit.getText());
-				SearchClient(controllerclient.getList(), entetes);
+				setUpTableClient(controllerclient.getList(), entetes);
 				EditClient.dispose();
 			}
 		});

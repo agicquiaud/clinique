@@ -6,7 +6,6 @@ import java.util.Observable;
 import fr.eni.clinique.bll.ClientsManager;
 import fr.eni.clinique.bll.ClientsManagerSingleton;
 import fr.eni.clinique.bo.Clients;
-import javafx.beans.InvalidationListener;
 
 public class ControllerClientsImpl extends Observable implements ControllerClients{
 
@@ -102,15 +101,4 @@ public class ControllerClientsImpl extends Observable implements ControllerClien
 		setChanged();
 		notifyObservers(clients);
 	}
-
-	@Override
-	public void addListener(InvalidationListener listener) {
-		
-	}
-
-	@Override
-	public void removeListener(InvalidationListener listener) {
-		
-	}
-
 }

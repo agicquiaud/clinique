@@ -3,7 +3,7 @@ package fr.eni.clinique.ihm.controller;
 import fr.eni.clinique.bo.Clients;
 import javafx.beans.Observable;
 
-public interface ControllerClients extends Observable{
+public interface ControllerClients{
 	
 	public void addClient(String Nom, String Prenom, String Adresse1, String Adresse2, String CodePostal, String Ville, String NumTel,
 			String Email);
