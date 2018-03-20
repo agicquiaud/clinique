@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.ihm.controller.ControllerClients;
 import fr.eni.clinique.ihm.controller.ControllerClientsSingleton;
+import fr.eni.clinique.ihm.regex.Validator;
 
 public class WindowEditClient extends WindowClients{
 	
@@ -36,7 +37,7 @@ public class WindowEditClient extends WindowClients{
 		controllerclient = ControllerClientsSingleton.getinstance();
 		EditClient.setFont(new Font("Malgun Gothic", Font.PLAIN, 13));
 		EditClient.setTitle("Gestion Client");
-		EditClient.setSize(480, 330);
+		EditClient.setSize(550, 330);
 		EditClient.setLocationRelativeTo(null);
 		EditClient.setVisible(true);
 		
@@ -237,6 +238,13 @@ public class WindowEditClient extends WindowClients{
 		gbc_textFieldNumTelEdit.gridx = 3;
 		gbc_textFieldNumTelEdit.gridy = 9;
 		EditClient.getContentPane().add(textFieldNumTelClientEdit, gbc_textFieldNumTelEdit);
+		
+		JLabel lblerror = new JLabel("Erreur Format Numéro Téléphone");
+		GridBagConstraints gbc_lblerror  = new GridBagConstraints();
+		gbc_lblerror .insets = new Insets(0, 0, 5, 5);
+		gbc_lblerror .gridx = 3;
+		gbc_lblerror .gridy = 10;
+		EditClient.getContentPane().add(lblerror, gbc_lblerror);
 
 		JButton btnConfirmEditClient = new JButton("Valider");
 		GridBagConstraints gbc_btnConfirmEditClient = new GridBagConstraints();
@@ -263,14 +271,32 @@ public class WindowEditClient extends WindowClients{
 		btnConfirmEditClient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controllerclient.updateClient(lblCodeClientEdit.getText(), textFieldNomClientEdit.getText(),
-						textFieldPrenomClientEdit.getText(), textFieldAdresse1ClientEdit.getText(),
-						textFieldAdresse2ClientEdit.getText(), textFieldCodePostalClientEdit.getText(),
-						textFieldVilleClientEdit.getText(), textFieldNumTelClientEdit.getText(),
-						textFieldAssuranceClientEdit.getText(), textFieldEmailClientEdit.getText(),
-						textFieldRemarqueClientEdit.getText());
-				setUpTableClient(controllerclient.getList(), entetes);
-				EditClient.dispose();
+				Validator validator = new Validator();
+				if((validator.patternNomPrenom(textFieldNomClientEdit.getText())) && (validator.patternNomPrenom(textFieldPrenomClientEdit.getText()))){
+					if(validator.patternCP(textFieldCodePostalClientEdit.getText())){
+						if(validator.patternNumTel(textFieldNumTelClientEdit.getText())){
+							if(validator.patternMail(textFieldEmailClientEdit.getText())){
+								controllerclient.updateClient(lblCodeClientEdit.getText(), textFieldNomClientEdit.getText(),
+										textFieldPrenomClientEdit.getText(), textFieldAdresse1ClientEdit.getText(),
+										textFieldAdresse2ClientEdit.getText(), textFieldCodePostalClientEdit.getText(),
+										textFieldVilleClientEdit.getText(), textFieldNumTelClientEdit.getText(),
+										textFieldAssuranceClientEdit.getText(), textFieldEmailClientEdit.getText(),
+										textFieldRemarqueClientEdit.getText());
+								setUpTableClient(controllerclient.getList(), entetes);
+								EditClient.dispose();
+							}else{
+								lblerror.setText("Erreur Format Mail");
+							}
+						}else{
+							lblerror.setText("Erreur Format Numéro Téléphone");
+						}
+					}else{
+						lblerror.setText("Erreur Format CodePostal");
+					}
+				}else{
+					lblerror.setText("Erreur Format Nom ou Prénom");
+				}
+
 			}
 		});
 		

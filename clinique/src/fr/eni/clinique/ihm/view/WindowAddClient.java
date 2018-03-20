@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 
 import fr.eni.clinique.ihm.controller.ControllerClients;
 import fr.eni.clinique.ihm.controller.ControllerClientsSingleton;
+import fr.eni.clinique.ihm.regex.Validator;
 
 public class WindowAddClient {
 
@@ -30,7 +31,7 @@ public class WindowAddClient {
 	public WindowAddClient() {
 		controllerclient = ControllerClientsSingleton.getinstance();
 		frame.setTitle("Ajouter un client");
-		frame.setSize(440, 325);
+		frame.setSize(525, 325);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		frame.setVisible(true);
@@ -172,6 +173,13 @@ public class WindowAddClient {
 		gbc_textFieldEmailClient.gridx = 3;
 		gbc_textFieldEmailClient.gridy = 9;
 		frame.getContentPane().add(textFieldEmailClient, gbc_textFieldEmailClient);
+		
+		JLabel lblerror = new JLabel("");
+		GridBagConstraints gbc_lblerror  = new GridBagConstraints();
+		gbc_lblerror .insets = new Insets(0, 0, 5, 5);
+		gbc_lblerror .gridx = 3;
+		gbc_lblerror .gridy = 10;
+		frame.getContentPane().add(lblerror, gbc_lblerror);
 
 		JButton btnValiderModalAddClient = new JButton("VALIDER");
 		GridBagConstraints gbc_btnValiderModalAdd = new GridBagConstraints();
@@ -191,14 +199,31 @@ public class WindowAddClient {
 		btnValiderModalAddClient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controllerclient.addClient(textFieldNomClient.getText(), textFieldPrenomClient.getText(),
-						textFieldAdresse1Client.getText(), textFieldAdresse2Client.getText(),
-						textFieldCodePostalClient.getText(), textFieldVilleClient.getText(),
-						textFieldNumTelClient.getText(), textFieldEmailClient.getText());
-				frame.dispose();
-			}
+				Validator validator = new Validator();
+				if((validator.patternNomPrenom(textFieldNomClient.getText())) && (validator.patternNomPrenom(textFieldPrenomClient.getText()))){
+					if(validator.patternCP(textFieldCodePostalClient.getText())){
+						if(validator.patternNumTel(textFieldNumTelClient.getText())){
+							if(validator.patternMail(textFieldEmailClient.getText())){
+								controllerclient.addClient(textFieldNomClient.getText(), textFieldPrenomClient.getText(),
+										textFieldAdresse1Client.getText(), textFieldAdresse2Client.getText(),
+										textFieldCodePostalClient.getText(), textFieldVilleClient.getText(),
+										textFieldNumTelClient.getText(), textFieldEmailClient.getText());
+								frame.dispose();
+							}else{
+								lblerror.setText("Erreur Format Mail");
+							}
+						}else{
+							lblerror.setText("Erreur Format Numéro Téléphone");
+						}
+					}else{
+						lblerror.setText("Erreur Format CodePostal");
+					}
+				}else{
+					lblerror.setText("Erreur Format Nom ou Prénom");
+				}
+			}	
 		});
-
+	
 		btnAnnulerModalCancelClient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -206,5 +231,4 @@ public class WindowAddClient {
 			}
 		});
 	}
-
 }

@@ -221,7 +221,7 @@ public class WindowAddAnimal {
 		gbc_textFieldAntecedentsAnimal.gridy = 6;
 		AddAnimal.getContentPane().add(textFieldAntecedentsAnimal, gbc_textFieldAntecedentsAnimal);
 		
-		JLabel lblErreur = new JLabel("erreur");
+		JLabel lblErreur = new JLabel("");
 		GridBagConstraints gbc_lblErreur = new GridBagConstraints();
 		gbc_lblErreur.insets = new Insets(0, 0, 0, 5);
 		gbc_lblErreur.gridx = 1;
@@ -240,7 +240,7 @@ public class WindowAddAnimal {
 								, client.getCodeClient().toString(), textFieldTatouageAnimal.getText(), textFieldAntecedentsAnimal.getText());
 						AddAnimal.dispose();
 					}else{
-						lblErreur.setText("Format du tatouage incorrect ex : 2 ABC 123");
+						lblErreur.setText("Format du tatouage incorrect ex : (2) ABC 123");
 					}
 				} else {
 					lblErreur.setText("erreur pas de caractère spéciaux dans le nom");

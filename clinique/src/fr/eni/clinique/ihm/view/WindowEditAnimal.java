@@ -24,6 +24,7 @@ import fr.eni.clinique.ihm.controller.ControllerAnimaux;
 import fr.eni.clinique.ihm.controller.ControllerAnimauxSingleton;
 import fr.eni.clinique.ihm.controller.ControllerClients;
 import fr.eni.clinique.ihm.controller.ControllerClientsSingleton;
+import fr.eni.clinique.ihm.regex.Validator;
 
 public class WindowEditAnimal extends WindowClients {
 
@@ -42,15 +43,15 @@ public class WindowEditAnimal extends WindowClients {
 		controllerclient = ControllerClientsSingleton.getinstance();
 		EditAnimal.setFont(new Font("Malgun Gothic", Font.PLAIN, 13));
 		EditAnimal.setTitle("Gestion Animal");
-		EditAnimal.setSize(500, 400);
+		EditAnimal.setSize(610, 390);
 		EditAnimal.setLocationRelativeTo(null);
 		EditAnimal.setVisible(true);
 
 		GridBagLayout gbl_EditAnimal = new GridBagLayout();
 		gbl_EditAnimal.columnWidths = new int[] { 0, 84, 0, 67, 0, 0, 0 };
-		gbl_EditAnimal.rowHeights = new int[] { 93, 64, 0, 35, 35, 0, 0, 0, 0, 0, 0 };
+		gbl_EditAnimal.rowHeights = new int[] { 93, 64, 0, 35, 35, 0, 0, 0, 0, 21, 0, 0 };
 		gbl_EditAnimal.columnWeights = new double[] { 1.0, 1.0, 0.0, 1.0, 0.0, 1.0, 0.0 };
-		gbl_EditAnimal.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_EditAnimal.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		EditAnimal.getContentPane().setLayout(gbl_EditAnimal);
 
 		JDesktopPane desktopPaneEditAnimal = new JDesktopPane();
@@ -235,6 +236,13 @@ public class WindowEditAnimal extends WindowClients {
 		gbc_textFieldAntecedentsEditAnimal.gridx = 1;
 		gbc_textFieldAntecedentsEditAnimal.gridy = 7;
 		EditAnimal.getContentPane().add(textFieldAntecedentsEditAnimal, gbc_textFieldAntecedentsEditAnimal);
+		
+		JLabel lblErreur  = new JLabel("error");
+		GridBagConstraints gbc_lblErreur= new GridBagConstraints();
+		gbc_lblErreur.insets = new Insets(0, 0, 5, 5);
+		gbc_lblErreur.gridx = 0;
+		gbc_lblErreur.gridy = 9;
+		EditAnimal.getContentPane().add(lblErreur, gbc_lblErreur);
 
 		// Actions Listeners
 		comboBoxEspeceEditAnimal.addActionListener(new ActionListener() {
@@ -251,17 +259,28 @@ public class WindowEditAnimal extends WindowClients {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controlleranimal.updateAnimal(animal.getCodeAnimal().toString(), textFieldNomAnimalEditAnimal.getText(),
-						comboboxgenreEditAnimal.getSelectedItem().toString(), textFieldCouleurEditAnimal.getText(),
-						comboBoxRaceEditAnimal.getSelectedItem().toString(),
-						comboBoxEspeceEditAnimal.getSelectedItem().toString(), lblNCodeEditAnimal.getText(),
-						textFieldTatouageEditAnimal.getText(), textFieldAntecedentsEditAnimal.getText());
-				// setUpTableData2(
-				// controlleranimal.getListByClient(table_1.getValueAt(table_1.getSelectedRow(),
-				// 0).toString()),
-				// entetes2);
-				setUpTableAnimal(controlleranimal.getListByClient(animal.getCodeClient().toString()), entetes);
-				EditAnimal.dispose();
+
+				Validator validator = new Validator();
+				if(validator.patternNomPrenomAnimal(textFieldNomAnimalEditAnimal.getText())){
+					if(validator.patternTatouage(textFieldTatouageEditAnimal.getText())){
+						controlleranimal.updateAnimal(animal.getCodeAnimal().toString(), textFieldNomAnimalEditAnimal.getText(),
+								comboboxgenreEditAnimal.getSelectedItem().toString(), textFieldCouleurEditAnimal.getText(),
+								comboBoxRaceEditAnimal.getSelectedItem().toString(),
+								comboBoxEspeceEditAnimal.getSelectedItem().toString(), lblNCodeEditAnimal.getText(),
+								textFieldTatouageEditAnimal.getText(), textFieldAntecedentsEditAnimal.getText());
+						// setUpTableData2(
+						// controlleranimal.getListByClient(table_1.getValueAt(table_1.getSelectedRow(),
+						// 0).toString()),
+						// entetes2);
+						setUpTableAnimal(controlleranimal.getListByClient(animal.getCodeClient().toString()), entetes);
+						EditAnimal.dispose();
+					}else{
+						lblErreur.setText("Format du tatouage incorrect ex : (2) ABC 123");
+					}
+				} else {
+					lblErreur.setText("erreur pas de caractère spéciaux dans le nom");
+				}
+
 			}
 		});
 
