@@ -1,27 +1,31 @@
 package fr.eni.clinique.ihm.controller;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 import fr.eni.clinique.bll.ClientsManager;
 import fr.eni.clinique.bll.ClientsManagerSingleton;
 import fr.eni.clinique.bo.Clients;
 
-public class ControllerClients {
+public class ControllerClients extends Observable{
 
 	private ClientsManager bllclients;
 	private List<Clients> liste;
 	private Clients clients;
 
 	public ControllerClients() {
+		addObserver((Observer) this);
 		bllclients = ClientsManagerSingleton.getinstance();
-
 	}
 
 	public void addClient(String Nom, String Prenom, String Adresse1, String Adresse2, String CodePostal, String Ville, String NumTel,
 			String Email) {
 		clients = new Clients(Nom, Prenom, Adresse1, Adresse2, CodePostal, Ville, NumTel, Email, false);
 		bllclients.insert(clients);
+		
+		setChanged();
+		notifyObservers();
 	}
 	/**
 	 * fonction qui récupère une liste de clients
@@ -83,6 +87,9 @@ public class ControllerClients {
 		System.out.println(clients.toString());
 		clients.setArchive(true);
 		bllclients.update(clients);
+		
+		setChanged();
+		notifyObservers();
 	}
 
 	public void updateClient(String codeClient, String nomClient, String prenomClient, String adresse1, String adresse2,
@@ -90,6 +97,9 @@ public class ControllerClients {
 		clients = new Clients(Integer.parseInt(codeClient), nomClient, prenomClient, adresse1, adresse2, codePostal,
 				ville, numTel, assurance, email, remarque, false);
 		bllclients.update(clients);
+		
+		setChanged();
+		notifyObservers();
 	}
 
 }

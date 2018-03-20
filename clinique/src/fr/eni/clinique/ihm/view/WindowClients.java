@@ -1,39 +1,29 @@
 package fr.eni.clinique.ihm.view;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JDesktopPane;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.JTextComponent;
 
-import fr.eni.clinique.bo.Animaux;
-import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.ihm.controller.ControllerAnimaux;
 import fr.eni.clinique.ihm.controller.ControllerClients;
 
-public class WindowClients {
+public class WindowClients implements Observer{
 
 	private JFrame frame;
 	private DefaultTableModel tableModel;
@@ -316,5 +306,10 @@ public class WindowClients {
 		};
 		table_2.setModel(tableModel);
 		tableModel.fireTableDataChanged(); // maj tableau
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		
 	}
 }
