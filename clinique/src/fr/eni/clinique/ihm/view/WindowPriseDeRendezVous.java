@@ -200,12 +200,12 @@ public class WindowPriseDeRendezVous extends JFrame {
 		sdf = new SimpleDateFormat("dd/MM/yyyy");
 		sdf.format(model.getValue());
 		String[] entete = { "Heure", "Nom du client", "Animal", "Race" };
-		Object[][] donnee = CA.getTabAgenda(CBVet.getSelectedItem().toString(), sdf.format(model.getValue()));
+		Object[][] donnee = CA.getTabAgenda(((User) CBVet.getSelectedItem()).getLogin(), sdf.format(model.getValue()));
 		CBVet.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setUpTableData(CA.getTabAgenda(CBVet.getSelectedItem().toString(), sdf.format(model.getValue())), entete);
+				setUpTableData(CA.getTabAgenda(((User) CBVet.getSelectedItem()).getLogin(), sdf.format(model.getValue())), entete);
 				
 			}
 		});
@@ -219,7 +219,7 @@ public class WindowPriseDeRendezVous extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setUpTableData(CA.getTabAgenda(CBVet.getSelectedItem().toString(), sdf.format(datePicker.getModel().getValue())), entete);
+				setUpTableData(CA.getTabAgenda(((User) CBVet.getSelectedItem()).getLogin(), sdf.format(datePicker.getModel().getValue())), entete);
 				
 			}
 		});
@@ -265,18 +265,12 @@ public class WindowPriseDeRendezVous extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				try {
 					if(table.getSelectedColumn()> -1 && table.getSelectedRow()>-1){
-						CA.removeRDV((User) CBVet.getSelectedItem(),formatDate.valueToString(datePicker) , Integer.parseInt(heure.toString())
-								, Integer.parseInt(minute.toString()), (Animaux) CBAnimal.getSelectedItem());
-						setUpTableData(CA.getTabAgenda(CBVet.getSelectedItem().toString(), formatDate.valueToString(datePicker)), entete);
+						CA.removeRDV((User) CBVet.getSelectedItem(),sdf.format(datePicker.getModel().getValue()) , Integer.parseInt(heure.getModel().getValue().toString())
+								, Integer.parseInt(minute.getModel().getValue().toString()), (Animaux) CBAnimal.getSelectedItem());
+						setUpTableData(CA.getTabAgenda(((User) CBVet.getSelectedItem()).getLogin(), sdf.format(datePicker.getModel().getValue())), entete);
 					}else
 						System.out.println("Aucune ligne sélectionner");
-					
-				} catch (NumberFormatException | ParseException e1) {
-					e1.printStackTrace();
-				}
-				
 			}
 		});
 		contentPaneSouthEst.add(button);
@@ -285,17 +279,9 @@ public class WindowPriseDeRendezVous extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				try {
-					CA.addRDV((User) CBVet.getSelectedItem(), formatDate.valueToString(datePicker), Integer.parseInt(heure.toString())
-							, Integer.parseInt(minute.toString()), (Animaux) CBAnimal.getSelectedItem());
-					setUpTableData(CA.getTabAgenda(CBVet.getSelectedItem().toString(), formatDate.valueToString(datePicker)), entete);
-					
-				} catch (NumberFormatException e1) {
-					e1.printStackTrace();
-				} catch (ParseException e1) {
-					e1.printStackTrace();
-				}
-				
+					CA.addRDV((User) CBVet.getSelectedItem(), sdf.format(datePicker.getModel().getValue()), Integer.parseInt(heure.getModel().getValue().toString())
+							, Integer.parseInt(minute.getModel().getValue().toString()), (Animaux) CBAnimal.getSelectedItem());
+					setUpTableData(CA.getTabAgenda(((User) CBVet.getSelectedItem()).getLogin(), sdf.format(datePicker.getModel().getValue())), entete);
 			}});
 		contentPaneSouthEst.add(valider);
 
