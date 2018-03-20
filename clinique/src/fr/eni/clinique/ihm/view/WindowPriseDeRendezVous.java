@@ -69,7 +69,7 @@ public class WindowPriseDeRendezVous extends JFrame {
 	private DefaultTableModel tableModel;
 	private JTable table;
 	private SimpleDateFormat sdf;
-	private JComboBox<String> CBVet;
+	private JComboBox<User> CBVet;
 
 	/**
 	 * Create the frame.
@@ -153,6 +153,23 @@ public class WindowPriseDeRendezVous extends JFrame {
 				return renderer;
 			}
 		});
+		CBClient.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CBAnimal.removeAllItems();
+				Animaux[] tabAnimaux2 = null;
+				tabAnimaux2 = controllerAnimal.getAnimalByIdClient(((Clients)CBClient.getSelectedItem()).getCodeClient());
+				if(tabAnimaux2[0] == null){
+					tabAnimaux2[0] = new Animaux();
+				}
+				for (Animaux animaux : tabAnimaux2) {
+					CBAnimal.addItem(animaux);
+				}
+				CBAnimal.repaint();
+			}
+		});
+		
 		contentPaneNorthWestAnimal.add(CBAnimal);
 		contentPaneNorthWest.add(contentPaneNorthWestAnimal);
 		contentPaneNorthWestAnimal.add(btnAddAnimal);
@@ -161,8 +178,17 @@ public class WindowPriseDeRendezVous extends JFrame {
 		contentPaneNorthCenter.add(new JLabel("Par"));
 		contentPaneNorthCenter.add(new JLabel("Véterinaire :"));
 		ControllerPersonnels cp = new ControllerPersonnels();
-		String[] listeVeto= cp.getNomVeterinaires();
-		CBVet = new JComboBox<String>(listeVeto);
+		User[] listeVeto= cp.getVeterinaire();
+		CBVet = new JComboBox<User>(listeVeto);
+		CBVet.setRenderer(new ListCellRenderer<User>() {
+			@Override
+			public Component getListCellRendererComponent(JList<? extends User> list, User value, int index,
+					boolean isSelected, boolean cellHasFocus) {
+				DefaultListCellRenderer renderer = new DefaultListCellRenderer();
+				renderer.setText(value.getLogin() + " " + value.getPassword());
+				return renderer;
+			}
+		});
 		sdf = new SimpleDateFormat("dd/MM/yyyy");
 		sdf.format(model.getValue());
 		String[] entete = { "Heure", "Nom du client", "Animal", "Race" };
