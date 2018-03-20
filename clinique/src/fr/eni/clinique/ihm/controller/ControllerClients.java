@@ -30,6 +30,7 @@ public class ControllerClients {
 	public Clients[] listeClient(){
 		liste = bllclients.getAll();
 		Clients[] tab = new Clients[liste.size()];
+		System.out.println(liste.size());
 		for (Clients clients : liste) {
 			tab[liste.indexOf(clients)] = clients;
 		}
