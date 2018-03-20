@@ -95,11 +95,10 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		try {
-			System.out.println(data.getDate());
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
 			rqt.setInt(1, data.getCodeVeto());
-			rqt.setDate(2, new java.sql.Date(data.getDate().getTime()));
+			rqt.setTimestamp(2, new java.sql.Timestamp(data.getDate().getTime()));
 			rqt.setInt(3, data.getCodeAnimal());
 
 			int nbRows = rqt.executeUpdate();
