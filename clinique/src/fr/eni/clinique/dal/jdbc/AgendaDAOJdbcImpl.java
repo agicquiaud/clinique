@@ -18,7 +18,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 	private static final String sqlSelectAll = "SELECT CodeVeto, DateRdv, CodeAnimal FROM Agendas";
 	private static final String sqlUpdate = "UPDATE Agendas SET CodeVeto=?, DateRdv=?, CodeAnimal=? WHERE CodeAnimal=?";
 	private static final String sqlInsert = "INSERT INTO Agendas (CodeVeto, DateRdv, CodeAnimal) VALUES (?, ?, ?)";
-	private static final String sqlDelete = "DELETE FROM Agendas WHERE DateRdv=?";
+	private static final String sqlDelete = "DELETE FROM Agendas WHERE CodeVeto=?, DateRdv=?, CodeAnimal=?";
 	private static final String sqlSelectByHour = "SELECT CodeVeto, DateRdv, CodeAnimal FROM Agendas WHERE DateRdv<=? AND DateRdv>=?";
 	private static final String sqlSelectByDay = "SELECT CodeVeto, DateRdv, CodeAnimal FROM Agendas WHERE DateRdv<=? AND DateRdv>=?";
 	private static final String sqlSelectByIdAnimal ="SELECT CodeVeto, CodeAnimal, DateRdv FROM Agendas WHERE CodeAnimal=?";
@@ -124,18 +124,19 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 		}
 	}
 
-	public void delete(RendezVous prdv) throws DALException {
+	public void delete(RendezVous data) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		try {
 			cnx = JdbcTools.getConnection();
 			// l'intégrité référentielle s'occupe d'invalider la suppression
-			// si l'article est référencé dans une ligne de commande
 			rqt = cnx.prepareStatement(sqlDelete);
-			rqt.setInt(1, prdv.getCodeAnimal());
+			rqt.setInt(1, data.getCodeVeto());
+			rqt.setTimestamp(2, new java.sql.Timestamp(data.getDate().getTime()));
+			rqt.setInt(3, data.getCodeAnimal());
 			rqt.executeUpdate();
 		} catch (SQLException e) {
-			throw new DALException("Delete animal failed - id=" + prdv.getCodeAnimal(), e);
+			throw new DALException("Delete rdv failed - date=" + data.getDate().toString(), e);
 		} finally {
 			try {
 				if (rqt != null) {
@@ -163,8 +164,8 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 			rqt = cnx.prepareStatement(sqlSelectByHour);
 			cal.setTime(new Date(date.getTime()));
 			cal.add(Calendar.HOUR, 1);
-			rqt.setDate(1, new java.sql.Date(date.getTime()));
-			rqt.setDate(2, (java.sql.Date) cal.getTime());
+			rqt.setTimestamp(1, new java.sql.Timestamp(date.getTime()));
+			rqt.setTimestamp(2, new java.sql.Timestamp(cal.getTime().getTime()));
 			rs = rqt.executeQuery();
 			RendezVous rdv = null;
 
@@ -174,7 +175,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 				liste.add(rdv);
 			}
 		} catch (SQLException e) {
-			throw new DALException("selectByDate failed - date = " + date, e);
+			throw new DALException("selectByHour failed - date = " + date, e);
 		} finally {
 			try {
 				if (rs != null) {
@@ -209,14 +210,14 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 			rqt.setDate(2, (java.sql.Date) cal.getTime());
 			rs = rqt.executeQuery();
 			RendezVous rdv = null;
-
+			
 			while (rs.next()) {
 				rdv = new RendezVous();
 
 				liste.add(rdv);
 			}
 		} catch (SQLException e) {
-			throw new DALException("selectByDate failed - date = " + date, e);
+			throw new DALException("selectByDay failed - date = " + date, e);
 		} finally {
 			try {
 				if (rs != null) {
@@ -240,7 +241,6 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		ResultSet rs = null;
-		Calendar cal = Calendar.getInstance();
 		List<RendezVous> liste = new ArrayList<RendezVous>();
 		try {
 			cnx = JdbcTools.getConnection();
@@ -255,7 +255,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 				liste.add(rdv);
 			}
 		} catch (SQLException e) {
-			throw new DALException("selectByDate failed - date = ", e);
+			throw new DALException("selectByIdAnimal failed - IdAnimal = " + idAnimal, e);
 		} finally {
 			try {
 				if (rs != null) {
@@ -279,7 +279,6 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		ResultSet rs = null;
-		Calendar cal = Calendar.getInstance();
 		List<RendezVous> liste = new ArrayList<RendezVous>();
 		try {
 			cnx = JdbcTools.getConnection();
@@ -294,7 +293,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 				liste.add(rdv);
 			}
 		} catch (SQLException e) {
-			throw new DALException("selectByDate failed - date = ", e);
+			throw new DALException("selectByIdVet failed - idVet = " + idVet, e);
 		} finally {
 			try {
 				if (rs != null) {
@@ -337,7 +336,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 				liste.add(rdv);
 			}
 		} catch (SQLException e) {
-			throw new DALException("selectByDate failed - date = " + date, e);
+			throw new DALException("selectDayByVet failed - date = " + date, e);
 		} finally {
 			try {
 				if (rs != null) {
