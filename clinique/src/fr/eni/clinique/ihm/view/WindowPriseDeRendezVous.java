@@ -19,6 +19,9 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
@@ -44,9 +47,10 @@ import fr.eni.clinique.ihm.controller.ControllerPersonnels;
 import fr.eni.clinique.ihm.controller.ControllerPersonnelsImpl;
 import fr.eni.clinique.ihm.controller.ControllerPersonnelsSingleton;
 
-public class WindowPriseDeRendezVous extends JFrame {
+public class WindowPriseDeRendezVous {
 
 	private static final long serialVersionUID = 2363352550943035894L;
+	private JFrame frame = new JFrame();
 	private JPanel contentPaneNorth = new JPanel();
 	private JPanel contentPaneNorthWest = new JPanel();
 	private JPanel contentPaneNorthWestClient = new JPanel();
@@ -84,10 +88,20 @@ public class WindowPriseDeRendezVous extends JFrame {
 		cp = ControllerPersonnelsSingleton.getinstance();
 		controllerAnimal = ControllerAnimauxSingleton.getinstance();
 		controllerClients = ControllerClientsSingleton.getinstance();
-		this.setTitle("Prise de rendez-vous");
-		this.setSize(1000, 800);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null);
+		frame.setTitle("Prise de rendez-vous");
+		frame.setSize(1000, 800);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+		
+		JMenuBar menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);
+		
+		JMenu mnConnexion = new JMenu("Connexion");
+		menuBar.add(mnConnexion);
+		
+		JMenuItem mntmDeconnexion = new JMenuItem("Deconnexion");
+		mnConnexion.add(mntmDeconnexion);
 
 		properties.put("text.today", "Today");
 		properties.put("text.month", "Month");
@@ -287,12 +301,18 @@ public class WindowPriseDeRendezVous extends JFrame {
 		contentPaneSouth.add(contentPaneSouthWest);
 		contentPaneSouth.add(contentPaneSouthCenter);
 		contentPaneSouth.add(contentPaneSouthEst);
-		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-		this.getContentPane().add(contentPaneNorth);
-		this.getContentPane().add(contentPaneCenter);
-		this.getContentPane().add(contentPaneSouth);
-
-		this.setVisible(true);
+		frame.getContentPane().setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+		frame.getContentPane().add(contentPaneNorth);
+		frame.getContentPane().add(contentPaneCenter);
+		frame.getContentPane().add(contentPaneSouth);
+		
+		mntmDeconnexion.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new WindowLogin();
+			}
+		});
 
 	}
 	private void setUpTableData(Object[][] data, String[] entetes) {

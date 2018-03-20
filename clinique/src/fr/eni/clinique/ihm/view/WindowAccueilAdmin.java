@@ -13,19 +13,31 @@ import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 public class WindowAccueilAdmin {
+	
 	JFrame frame;
 	
-	
 	public WindowAccueilAdmin(){
+	
 	frame = new JFrame();
 	frame.setTitle("Accueil Gestion Personnel");
 	frame.setBounds(100, 100, 348, 500);
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame.setVisible(true);
 	
+	JMenuBar menuBar = new JMenuBar();
+	frame.setJMenuBar(menuBar);
+	
+	JMenu mnConnexion = new JMenu("Connexion");
+	menuBar.add(mnConnexion);
+	
+	JMenuItem mntmDeconnexion = new JMenuItem("Deconnexion");
+	mnConnexion.add(mntmDeconnexion);	
 	
 	GridBagLayout gridBagLayout = new GridBagLayout();
 	gridBagLayout.columnWidths = new int[]{0, 0};
@@ -89,6 +101,14 @@ public class WindowAccueilAdmin {
 		public void actionPerformed(ActionEvent e) {
 			frame.dispose();
 			WindowGestionPersonnels windowGestionPersonnels  = new WindowGestionPersonnels();
+		}
+	});
+	
+	mntmDeconnexion.addActionListener(new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			frame.dispose();
+			new WindowLogin();
 		}
 	});
 	

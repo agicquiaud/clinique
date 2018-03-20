@@ -58,6 +58,15 @@ public class WindowAgenda {
 		frame.setBounds(100, 100, 585, 470);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		
+		JMenuBar menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);
+		
+		JMenu mnConnexion = new JMenu("Connexion");
+		menuBar.add(mnConnexion);
+		
+		JMenuItem mntmDeconnexion = new JMenuItem("Deconnexion");
+		mnConnexion.add(mntmDeconnexion);
 
 		GridBagLayout gridBagLayoutModalAddClient = new GridBagLayout();
 		gridBagLayoutModalAddClient.columnWidths = new int[] { 33, 74, 152, 30, 52, 82, 62, 61, 0, 0 };
@@ -128,15 +137,6 @@ public class WindowAgenda {
 		gbc_btnDossierMedical.gridx = 6;
 		gbc_btnDossierMedical.gridy = 6;
 		frame.getContentPane().add(btnDossierMedical, gbc_btnDossierMedical);
-		
-		JMenuBar menuBar = new JMenuBar();
-		frame.setJMenuBar(menuBar);
-		
-		JMenu mnConnexion = new JMenu("Connexion");
-		menuBar.add(mnConnexion);
-		
-		JMenuItem mntmDeconnexion = new JMenuItem("Deconnexion");
-		mnConnexion.add(mntmDeconnexion);
 		
 		//Action Listener DatePicker for refresh JTable
 		datePicker.addActionListener(new ActionListener() {

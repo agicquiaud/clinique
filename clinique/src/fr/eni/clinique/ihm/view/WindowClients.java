@@ -12,6 +12,9 @@ import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -39,6 +42,7 @@ public class WindowClients implements Observer {
 	private final String[] ENTETES_ANIMAL = { "CodeAnimal", "Nom", "Sexe", "Couleur", "Race", "Espece" };
 
 	public WindowClients() {
+		
 		controllerclient = ControllerClientsSingleton.getinstance();
 		((Observable) controllerclient).addObserver(this);
 		controlleranimal = ControllerAnimauxSingleton.getinstance();
@@ -49,6 +53,15 @@ public class WindowClients implements Observer {
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		
+		JMenuBar menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);
+		
+		JMenu mnConnexion = new JMenu("Connexion");
+		menuBar.add(mnConnexion);
+		
+		JMenuItem mntmDeconnexion = new JMenuItem("Deconnexion");
+		mnConnexion.add(mntmDeconnexion);
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 23, 66, 135, 0, 0, 53, 70, 83, 104, 69, 0, 0 };
@@ -180,7 +193,7 @@ public class WindowClients implements Observer {
 		gbc_btnEditAnimal.gridy = 4;
 		frame.getContentPane().add(btnEditAnimal, gbc_btnEditAnimal);
 
-		//////////////////////////////////////////////////////////////////////////////
+		//Actions Listeners
 
 		table_1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			@Override
@@ -192,6 +205,14 @@ public class WindowClients implements Observer {
 				} catch (Exception err) {
 					setUpTableAnimal(null, ENTETES_ANIMAL);
 				}
+			}
+		});
+		
+		mntmDeconnexion.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new WindowLogin();
 			}
 		});
 

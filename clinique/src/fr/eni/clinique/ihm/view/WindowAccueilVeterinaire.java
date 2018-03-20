@@ -13,18 +13,30 @@ import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 public class WindowAccueilVeterinaire {
 	private JFrame frame;
 	
 	public WindowAccueilVeterinaire() {
-		frame = new JFrame();
 		
+		frame = new JFrame();
 		frame.setTitle("Accueil Agenda");
 		frame.setBounds(100, 100, 348, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		
+		JMenuBar menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);
+		
+		JMenu mnConnexion = new JMenu("Connexion");
+		menuBar.add(mnConnexion);
+		
+		JMenuItem mntmDeconnexion = new JMenuItem("Deconnexion");
+		mnConnexion.add(mntmDeconnexion);
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
@@ -88,6 +100,14 @@ public class WindowAccueilVeterinaire {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				WindowLogin windowClients = new WindowLogin();
+			}
+		});
+		
+		mntmDeconnexion.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new WindowLogin();
 			}
 		});
 		
