@@ -26,7 +26,6 @@ class AnimalManagerImpl implements AnimalManager {
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@Override
