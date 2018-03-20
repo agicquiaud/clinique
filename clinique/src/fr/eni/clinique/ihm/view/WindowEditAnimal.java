@@ -263,7 +263,7 @@ public class WindowEditAnimal extends WindowClients {
 				Validator validator = new Validator();
 				if(validator.patternNomPrenomAnimal(textFieldNomAnimalEditAnimal.getText())){
 					if(validator.patternTatouage(textFieldTatouageEditAnimal.getText())){
-						controlleranimal.updateClient(animal.getCodeAnimal().toString(), textFieldNomAnimalEditAnimal.getText(),
+						controlleranimal.updateAnimal(animal.getCodeAnimal().toString(), textFieldNomAnimalEditAnimal.getText(),
 								comboboxgenreEditAnimal.getSelectedItem().toString(), textFieldCouleurEditAnimal.getText(),
 								comboBoxRaceEditAnimal.getSelectedItem().toString(),
 								comboBoxEspeceEditAnimal.getSelectedItem().toString(), lblNCodeEditAnimal.getText(),
