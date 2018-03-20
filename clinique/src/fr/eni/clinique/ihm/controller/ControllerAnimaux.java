@@ -76,9 +76,14 @@ public class ControllerAnimaux {
 	
 	public Animaux[] getAnimalByIdClient(Integer id){
 		List<Animaux> str;
+		Integer longueurListe;
 		str = mgerAnimal.animalByIdClient(id);
-		System.out.println(str.size());
-		Animaux[] tabAnimaux = new Animaux[str.size()];
+		if (str.size() == 0){
+			longueurListe = str.size() + 1;
+		}else {
+			longueurListe = str.size();
+		}
+		Animaux[] tabAnimaux = new Animaux[longueurListe];
 		System.out.println(tabAnimaux.length );
 		for (Animaux animaux : str) {
 			System.out.println(str.lastIndexOf(animaux)+1);

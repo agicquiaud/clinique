@@ -7,8 +7,9 @@ public class Validator {
 
 	private static final String PATTERN_MAIL = "^[A-Za-z0-9+_.-]+@(.+)$";
 	private static final String PATTERN_CP = "[0-9]{5}";
-	private static final String PATTERN_TATOUAGE = "[0-9A-Z]";
-	private static final String PATTERN_NOMPRENOM_ANIMAL = "[a-zA-Z]";
+	private static final String PATTERN_TATOUAGE = "[2]{0,1}[A-Z]{3}[0-9]{3}";
+	private static final String PATTERN_NOMPRENOM_ANIMAL = "[a-zA-Z0-9]{1,30}";
+
 	
 	public Validator(){
 		
@@ -31,7 +32,6 @@ public class Validator {
 	
 	public boolean patternNomPrenomAnimal(String nomPrenomAnimal) {
 		boolean result = Pattern.matches( PATTERN_NOMPRENOM_ANIMAL, nomPrenomAnimal);
-System.out.println(result);
 		return result;
 	}
 	
