@@ -6,6 +6,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -25,8 +26,11 @@ public class WindowResetPassword {
 		
 		controllerPersonnels = ControllerPersonnelsSingleton.getinstance();
 		ResetMdp.setSize(450, 300);
+		ResetMdp.setResizable(false);
 		ResetMdp.setLocationRelativeTo(null);
-		ResetMdp.setVisible(true);
+		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		ResetMdp.setContentPane(bckground);		
+		
 		GridBagLayout gridBagLayoutModalReset = new GridBagLayout();
 		gridBagLayoutModalReset.columnWidths = new int[] { 50, 0, 0, 0, 0, 0, 140, 0, 0, 0, 0, 100, 0 };
 		gridBagLayoutModalReset.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -68,6 +72,9 @@ public class WindowResetPassword {
 		gbc_btnValiderModalReset.gridy = 7;
 		ResetMdp.getContentPane().add(btnValiderModalReset, gbc_btnValiderModalReset);
 		
+		ResetMdp.setVisible(true);
+		
+		//Actions Listeners
 		btnValiderModalReset.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -51,17 +52,22 @@ public class WindowClients implements Observer {
 		frame.setTitle("Gestion Clients");
 		frame.setSize(850, 485);
 		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
+		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		frame.setContentPane(bckground);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		
-		JMenu mnConnexion = new JMenu("Connexion");
+		JMenu mnConnexion = new JMenu("Menu");
 		menuBar.add(mnConnexion);
 		
 		JMenuItem mntmDeconnexion = new JMenuItem("Deconnexion");
 		mnConnexion.add(mntmDeconnexion);
+		
+		JMenuItem mntmRetour = new JMenuItem("Retour");
+		mnConnexion.add(mntmRetour);
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 23, 66, 135, 0, 0, 53, 70, 83, 104, 69, 0, 0 };
@@ -193,8 +199,9 @@ public class WindowClients implements Observer {
 		gbc_btnEditAnimal.gridy = 4;
 		frame.getContentPane().add(btnEditAnimal, gbc_btnEditAnimal);
 
+		frame.setVisible(true);
+		
 		//Actions Listeners
-
 		table_1.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
@@ -213,6 +220,14 @@ public class WindowClients implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				new WindowLogin();
+			}
+		});
+		
+		mntmRetour.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new WindowAccueilSecretaire();
 			}
 		});
 

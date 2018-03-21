@@ -45,7 +45,9 @@ public class WindowEditAnimal extends WindowClients {
 		EditAnimal.setTitle("Gestion Animal");
 		EditAnimal.setSize(610, 390);
 		EditAnimal.setLocationRelativeTo(null);
-		EditAnimal.setVisible(true);
+		EditAnimal.setResizable(false);
+		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		EditAnimal.setContentPane(bckground);
 
 		GridBagLayout gbl_EditAnimal = new GridBagLayout();
 		gbl_EditAnimal.columnWidths = new int[] { 0, 84, 0, 67, 0, 0, 0 };
@@ -243,7 +245,9 @@ public class WindowEditAnimal extends WindowClients {
 		gbc_lblErreur.gridx = 0;
 		gbc_lblErreur.gridy = 9;
 		EditAnimal.getContentPane().add(lblErreur, gbc_lblErreur);
-
+		
+		EditAnimal.setVisible(true);
+		
 		// Actions Listeners
 		comboBoxEspeceEditAnimal.addActionListener(new ActionListener() {
 			@Override

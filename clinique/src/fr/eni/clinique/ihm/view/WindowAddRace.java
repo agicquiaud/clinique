@@ -33,10 +33,12 @@ public class WindowAddRace {
 		controlleranimal = ControllerAnimauxSingleton.getinstance();
 		AddRace.setTitle("Ajouter une race");
 		AddRace.setSize(500, 260);
+		AddRace.setResizable(false);
 		AddRace.setLocationRelativeTo(null);
 		AddRace.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		AddRace.setVisible(true);
-
+		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		AddRace.setContentPane(bckground);
+		
 		GridBagLayout gbl_AddRace = new GridBagLayout();
 		gbl_AddRace.columnWidths = new int[] { 40, 60, 144, 25, 0, 146, 31 };
 		gbl_AddRace.rowHeights = new int[] { 60, 40, 35, 30, 0, 0, 0 };
@@ -55,17 +57,15 @@ public class WindowAddRace {
 		gbc_desktopPane.gridy = 0;
 		AddRace.getContentPane().add(desktopPane, gbc_desktopPane);
 
-		JButton btnConfirmAddRace = new JButton();
+		JButton btnConfirmAddRace = new JButton(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/checked32.png"));
 		btnConfirmAddRace.setForeground(new Color(255, 255, 255));
 		btnConfirmAddRace.setBackground(new Color(255, 255, 255));
-		btnConfirmAddRace.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/checked32.png"));
 		btnConfirmAddRace.setBounds(320, 5, 58, 44);
 		desktopPane.add(btnConfirmAddRace);
 
-		JButton btnCancelAddRace = new JButton();
+		JButton btnCancelAddRace = new JButton(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/cancel.png"));
 		btnCancelAddRace.setForeground(new Color(255, 255, 255));
 		btnCancelAddRace.setBackground(new Color(255, 255, 255));
-		btnCancelAddRace.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/cancel.png"));
 		btnCancelAddRace.setBounds(390, 5, 58, 44);
 		desktopPane.add(btnCancelAddRace);
 
@@ -120,6 +120,8 @@ public class WindowAddRace {
 		AddRace.getContentPane().add(textFieldEspece, gbc_textFieldEspece);
 		textFieldEspece.setColumns(10);
 
+		AddRace.setVisible(true);
+		
 		// Actions Listeners
 		btnCancelAddRace.addActionListener(new ActionListener() {
 			@Override

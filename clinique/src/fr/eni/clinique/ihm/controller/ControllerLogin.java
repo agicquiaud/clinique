@@ -38,11 +38,11 @@ public class ControllerLogin {
 			userI = user.getUser(nom);
 
 			if(userI.getType().equals("sec")){
-				WindowAccueilSecretaire frame = new WindowAccueilSecretaire();
+				new WindowAccueilSecretaire();
 			}else if(userI.getType().equals("vet")){
-				WindowAccueilVeterinaire frame = new WindowAccueilVeterinaire();
+				new WindowAccueilVeterinaire(nom);
 			}else if(userI.getType().equals("adm")){
-				WindowAccueilAdmin frame = new WindowAccueilAdmin();
+				new WindowAccueilAdmin();
 			}
 			
 		}

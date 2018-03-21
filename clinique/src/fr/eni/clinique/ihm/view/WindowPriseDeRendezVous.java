@@ -90,18 +90,23 @@ public class WindowPriseDeRendezVous {
 		controllerClients = ControllerClientsSingleton.getinstance();
 		frame.setTitle("Prise de rendez-vous");
 		frame.setSize(1000, 800);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		frame.setContentPane(bckground);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		
-		JMenu mnConnexion = new JMenu("Connexion");
+		JMenu mnConnexion = new JMenu("Menu");
 		menuBar.add(mnConnexion);
 		
 		JMenuItem mntmDeconnexion = new JMenuItem("Deconnexion");
 		mnConnexion.add(mntmDeconnexion);
+		
+		JMenuItem mntmRetour = new JMenuItem("Retour");
+		mnConnexion.add(mntmRetour);
 
 		properties.put("text.today", "Today");
 		properties.put("text.month", "Month");
@@ -306,11 +311,20 @@ public class WindowPriseDeRendezVous {
 		frame.getContentPane().add(contentPaneCenter);
 		frame.getContentPane().add(contentPaneSouth);
 		
+		frame.setVisible(true);
 		mntmDeconnexion.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				new WindowLogin();
+			}
+		});
+		
+		mntmRetour.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new WindowAccueilSecretaire();
 			}
 		});
 

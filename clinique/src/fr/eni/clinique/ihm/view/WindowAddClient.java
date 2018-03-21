@@ -6,6 +6,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -32,10 +33,12 @@ public class WindowAddClient {
 		controllerclient = ControllerClientsSingleton.getinstance();
 		frame.setTitle("Ajouter un client");
 		frame.setSize(525, 325);
+		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		frame.setVisible(true);
-
+		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		frame.setContentPane(bckground);
+		
 		GridBagLayout gridBagLayoutModalAddClient = new GridBagLayout();
 		gridBagLayoutModalAddClient.columnWidths = new int[] { 0, 0, 0, 140, 0, 0, 0, 0 };
 		gridBagLayoutModalAddClient.rowHeights = new int[] { 17, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -194,6 +197,8 @@ public class WindowAddClient {
 		gbc_btnAnnulerModalCancelClient.gridx = 5;
 		gbc_btnAnnulerModalCancelClient.gridy = 10;
 		frame.getContentPane().add(btnAnnulerModalCancelClient, gbc_btnAnnulerModalCancelClient);
+		
+		frame.setVisible(true);
 		
 		//Actions Listeners		
 		btnValiderModalAddClient.addActionListener(new ActionListener() {

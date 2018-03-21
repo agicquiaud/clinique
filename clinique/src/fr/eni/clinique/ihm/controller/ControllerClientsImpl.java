@@ -21,7 +21,6 @@ public class ControllerClientsImpl extends Observable implements ControllerClien
 			String Email) {
 		clients = new Clients(Nom, Prenom, Adresse1, Adresse2, CodePostal, Ville, NumTel, Email, false);
 		bllclients.insert(clients);
-		System.out.println(countObservers());
 		
 		setChanged();
 		notifyObservers(clients);

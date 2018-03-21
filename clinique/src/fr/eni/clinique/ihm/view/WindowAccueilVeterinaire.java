@@ -21,22 +21,15 @@ import javax.swing.JPanel;
 public class WindowAccueilVeterinaire {
 	private JFrame frame;
 	
-	public WindowAccueilVeterinaire() {
+	public WindowAccueilVeterinaire(String nom) {
 		
 		frame = new JFrame();
 		frame.setTitle("Accueil Agenda");
-		frame.setBounds(100, 100, 348, 500);
+		frame.setSize(335, 490);
+		frame.setResizable(false);
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		
-		JMenuBar menuBar = new JMenuBar();
-		frame.setJMenuBar(menuBar);
-		
-		JMenu mnConnexion = new JMenu("Connexion");
-		menuBar.add(mnConnexion);
-		
-		JMenuItem mntmDeconnexion = new JMenuItem("Deconnexion");
-		mnConnexion.add(mntmDeconnexion);
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
@@ -53,8 +46,7 @@ public class WindowAccueilVeterinaire {
 		gbc_desktopPane.gridy = 0;
 		frame.getContentPane().add(desktopPane, gbc_desktopPane);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("Y:\\RL_AG_LV\\logo.jpg"));
+		JLabel lblNewLabel = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/logo.jpg"));
 		lblNewLabel.setBounds(122, 11, 90, 96);
 		desktopPane.add(lblNewLabel);
 		
@@ -79,14 +71,12 @@ public class WindowAccueilVeterinaire {
 		panel_2.setBounds(0, 400, 332, 63);
 		desktopPane.add(panel_2);
 		
-		JButton btnNewButton_2 = new JButton("");
+		JButton btnNewButton_2 = new JButton(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/cancel.png"));
 		panel_2.add(btnNewButton_2);
 		btnNewButton_2.setMaximumSize(new Dimension(30, 30));
 		btnNewButton_2.setBackground(new Color(240, 240, 240));
-		btnNewButton_2.setIcon(new ImageIcon("Y:\\RL_AG_LV\\cancel.png"));
 		
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setIcon(new ImageIcon("Y:\\RL_AG_LV\\Icons-agenda.jpg"));
+		JButton btnNewButton = new JButton(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/Icons-agenda.jpg"));
 		btnNewButton.setBounds(100, 193, 140, 139);
 		desktopPane.add(btnNewButton);
 		
@@ -99,14 +89,6 @@ public class WindowAccueilVeterinaire {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				WindowLogin windowClients = new WindowLogin();
-			}
-		});
-		
-		mntmDeconnexion.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
 				new WindowLogin();
 			}
 		});
@@ -115,10 +97,8 @@ public class WindowAccueilVeterinaire {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				new WindowAgenda();
+				new WindowAgenda(nom);
 			}
-		});
-		
-		
+		});	
 	}
 }

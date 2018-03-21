@@ -26,18 +26,11 @@ public class WindowAccueilSecretaire {
 		
 		frame = new JFrame();
 		frame.setTitle("Accueil Rendez-vous");
-		frame.setBounds(100, 100, 348, 500);
+		frame.setSize(335, 490);
+		frame.setResizable(false);
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-
-		JMenuBar menuBar = new JMenuBar();
-		frame.setJMenuBar(menuBar);
-		
-		JMenu mnConnexion = new JMenu("Connexion");
-		menuBar.add(mnConnexion);
-		
-		JMenuItem mntmDeconnexion = new JMenuItem("Deconnexion");
-		mnConnexion.add(mntmDeconnexion);
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 0, 0 };
@@ -54,15 +47,13 @@ public class WindowAccueilSecretaire {
 		gbc_desktopPane.gridy = 0;
 		frame.getContentPane().add(desktopPane, gbc_desktopPane);
 
-		JButton btnNewButton_2 = new JButton("");
+		JButton btnNewButton_2 = new JButton(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/cancel.png"));
 		btnNewButton_2.setBounds(134, 407, 65, 48);
 		desktopPane.add(btnNewButton_2);
 		btnNewButton_2.setMaximumSize(new Dimension(30, 30));
 		btnNewButton_2.setBackground(Color.white);
-		btnNewButton_2.setIcon(new ImageIcon("Y:\\RL_AG_LV\\cancel.png"));
 
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("Y:\\RL_AG_LV\\logo.jpg"));
+		JLabel lblNewLabel = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/logo.jpg"));
 		lblNewLabel.setBounds(117, 11, 90, 96);
 		desktopPane.add(lblNewLabel);
 
@@ -87,13 +78,11 @@ public class WindowAccueilSecretaire {
 		panel_2.setBounds(0, 400, 332, 63);
 		desktopPane.add(panel_2);
 
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setIcon(new ImageIcon("Y:\\RL_AG_LV\\flat-calendar-redi.jpg"));
+		JButton btnNewButton = new JButton(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/flat-calendar-redi.jpg"));
 		btnNewButton.setBounds(31, 202, 117, 123);
 		desktopPane.add(btnNewButton);
 
-		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setIcon(new ImageIcon("Y:\\RL_AG_LV\\Client.jpg"));
+		JButton btnNewButton_1 = new JButton(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/Client.jpg"));
 		btnNewButton_1.setBounds(185, 202, 117, 123);
 		desktopPane.add(btnNewButton_1);
 
@@ -111,15 +100,7 @@ public class WindowAccueilSecretaire {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				WindowClients windowClients = new WindowClients();
-			}
-		});
-
-		mntmDeconnexion.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
-				new WindowLogin();
+				new WindowClients();
 			}
 		});
 		
@@ -127,7 +108,7 @@ public class WindowAccueilSecretaire {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				WindowPriseDeRendezVous windowPriseDeRendezVous = new WindowPriseDeRendezVous();
+				new WindowPriseDeRendezVous();
 			}
 		});
 
@@ -135,7 +116,7 @@ public class WindowAccueilSecretaire {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				WindowLogin windowClients = new WindowLogin();
+				new WindowLogin();
 			}
 		});
 

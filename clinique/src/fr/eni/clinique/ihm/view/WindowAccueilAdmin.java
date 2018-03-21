@@ -26,18 +26,11 @@ public class WindowAccueilAdmin {
 	
 	frame = new JFrame();
 	frame.setTitle("Accueil Gestion Personnel");
-	frame.setBounds(100, 100, 348, 500);
+	frame.setSize(335, 490);
+	frame.setResizable(false);
+	frame.setLocationRelativeTo(null);
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame.setVisible(true);
-	
-	JMenuBar menuBar = new JMenuBar();
-	frame.setJMenuBar(menuBar);
-	
-	JMenu mnConnexion = new JMenu("Connexion");
-	menuBar.add(mnConnexion);
-	
-	JMenuItem mntmDeconnexion = new JMenuItem("Deconnexion");
-	mnConnexion.add(mntmDeconnexion);	
 	
 	GridBagLayout gridBagLayout = new GridBagLayout();
 	gridBagLayout.columnWidths = new int[]{0, 0};
@@ -54,8 +47,7 @@ public class WindowAccueilAdmin {
 	gbc_desktopPane.gridy = 0;
 	frame.getContentPane().add(desktopPane, gbc_desktopPane);
 	
-	JLabel lblNewLabel = new JLabel("");
-	lblNewLabel.setIcon(new ImageIcon("Y:\\RL_AG_LV\\logo.jpg"));
+	JLabel lblNewLabel = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/logo.jpg"));
 	lblNewLabel.setBounds(117, 11, 90, 96);
 	desktopPane.add(lblNewLabel);
 	
@@ -80,14 +72,12 @@ public class WindowAccueilAdmin {
 	panel_2.setBounds(0, 400, 332, 63);
 	desktopPane.add(panel_2);
 	
-	JButton btnNewButton_2 = new JButton("");
+	JButton btnNewButton_2 = new JButton(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/cancel.png"));
 	panel_2.add(btnNewButton_2);
 	btnNewButton_2.setMaximumSize(new Dimension(30, 30));
 	btnNewButton_2.setBackground(new Color(240, 240, 240));
-	btnNewButton_2.setIcon(new ImageIcon("Y:\\RL_AG_LV\\cancel.png"));
 	
-	JButton btnNewButton = new JButton("");
-	btnNewButton.setIcon(new ImageIcon("Y:\\RL_AG_LV\\ico_gp.jpg"));
+	JButton btnNewButton = new JButton(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/ico_gp.jpg"));
 	btnNewButton.setBounds(92, 193, 140, 139);
 	desktopPane.add(btnNewButton);
 	
@@ -100,15 +90,7 @@ public class WindowAccueilAdmin {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			frame.dispose();
-			WindowGestionPersonnels windowGestionPersonnels  = new WindowGestionPersonnels();
-		}
-	});
-	
-	mntmDeconnexion.addActionListener(new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			frame.dispose();
-			new WindowLogin();
+			new WindowGestionPersonnels();
 		}
 	});
 	
@@ -116,7 +98,7 @@ public class WindowAccueilAdmin {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			frame.dispose();
-			WindowLogin windowClients = new WindowLogin();
+			new WindowLogin();
 		}
 	});
 }

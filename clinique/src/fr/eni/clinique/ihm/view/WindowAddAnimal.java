@@ -36,12 +36,15 @@ public class WindowAddAnimal {
 	private ComboBoxModel<String> comboboxModel;
 
 	public WindowAddAnimal(Clients client){
+		
 		controlleranimal = ControllerAnimauxSingleton.getinstance();
 		AddAnimal.setTitle("Ajouter un animal");
 		AddAnimal.setSize(620, 370);
+		AddAnimal.setResizable(false);
 		AddAnimal.setLocationRelativeTo(null);
 		AddAnimal.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		AddAnimal.setVisible(true);
+		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		AddAnimal.setContentPane(bckground);
 		
 		GridBagLayout gbl_AddAnimal = new GridBagLayout();
 		gbl_AddAnimal.columnWidths = new int[] { 115, 210, 31, 38, 150, 63 };
@@ -61,17 +64,15 @@ public class WindowAddAnimal {
 		gbc_desktopPane.gridy = 0;
 		AddAnimal.getContentPane().add(desktopPane, gbc_desktopPane);
 
-		JButton btnConfirmAddAnimal = new JButton();
+		JButton btnConfirmAddAnimal = new JButton(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/checked32.png"));
 		btnConfirmAddAnimal.setForeground(new Color(255, 255, 255));
 		btnConfirmAddAnimal.setBackground(new Color(255, 255, 255));
-		btnConfirmAddAnimal.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/checked32.png"));
 		btnConfirmAddAnimal.setBounds(420, 11, 58, 44);
 		desktopPane.add(btnConfirmAddAnimal);
 
-		JButton btnCancelAddAnimal = new JButton();
+		JButton btnCancelAddAnimal = new JButton(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/cancel.png"));
 		btnCancelAddAnimal.setForeground(new Color(255, 255, 255));
 		btnCancelAddAnimal.setBackground(new Color(255, 255, 255));
-		btnCancelAddAnimal.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/cancel.png"));
 		btnCancelAddAnimal.setBounds(500, 11, 58, 44);
 		desktopPane.add(btnCancelAddAnimal);
 
@@ -227,6 +228,8 @@ public class WindowAddAnimal {
 		gbc_lblErreur.gridx = 1;
 		gbc_lblErreur.gridy = 7;
 		AddAnimal.getContentPane().add(lblErreur, gbc_lblErreur);
+		
+		AddAnimal.setVisible(true);
 		
 		//Actions Listeners
 		btnConfirmAddAnimal.addActionListener(new ActionListener() {

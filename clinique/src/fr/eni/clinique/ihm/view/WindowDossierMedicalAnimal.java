@@ -6,6 +6,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -29,12 +30,15 @@ public class WindowDossierMedicalAnimal {
 		// List<String> liste = controller.getClientbyId(id);
 
 		frame.setTitle("Dossier Medical");
-		frame.setBounds(100, 100, 570, 300);
-		frame.setVisible(true);
-
+		frame.setSize(705, 310);
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
+		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		frame.setContentPane(bckground);
+		
 		GridBagLayout gridBagLayoutDossierAnimal = new GridBagLayout();
 		gridBagLayoutDossierAnimal.columnWidths = new int[] { 0, 80, 0, 0, 75, 65, 0, 73, 33, 0 };
-		gridBagLayoutDossierAnimal.rowHeights = new int[] { 0, 0, 30, 30, 0, 0, 0, 0, 0, 0, 0 };
+		gridBagLayoutDossierAnimal.rowHeights = new int[] { 35, 0, 30, 30, 0, 0, 0, 0, 0, 0, 0 };
 		gridBagLayoutDossierAnimal.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
 				Double.MIN_VALUE };
 		gridBagLayoutDossierAnimal.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -62,7 +66,7 @@ public class WindowDossierMedicalAnimal {
 		gbc_lblClients.gridy = 2;
 		frame.getContentPane().add(lblClients, gbc_lblClients);
 
-		JLabel lblAntecedentsconsultations = new JLabel("Antécédents Consultations");
+		JLabel lblAntecedentsconsultations = new JLabel("Antécédents/Consultations");
 		GridBagConstraints gbc_lblAntecedentsconsultations = new GridBagConstraints();
 		gbc_lblAntecedentsconsultations.gridwidth = 2;
 		gbc_lblAntecedentsconsultations.insets = new Insets(0, 0, 5, 5);
@@ -95,48 +99,50 @@ public class WindowDossierMedicalAnimal {
 		gbc_lblAnimal.gridy = 4;
 		frame.getContentPane().add(lblAnimal, gbc_lblAnimal);
 
-		JLabel lblCodeanimal = new JLabel(animaux.getCodeAnimal().toString());
+		JLabel lblCodeanimal = new JLabel("Code : " + animaux.getCodeAnimal().toString());
 		GridBagConstraints gbc_lblCodeanimal = new GridBagConstraints();
 		gbc_lblCodeanimal.insets = new Insets(0, 0, 5, 5);
 		gbc_lblCodeanimal.gridx = 2;
 		gbc_lblCodeanimal.gridy = 4;
 		frame.getContentPane().add(lblCodeanimal, gbc_lblCodeanimal);
 
-		JLabel lblNom = new JLabel(animaux.getNom());
+		JLabel lblNom = new JLabel("Nom : " + animaux.getNom());
 		GridBagConstraints gbc_lblNom = new GridBagConstraints();
 		gbc_lblNom.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNom.gridx = 2;
 		gbc_lblNom.gridy = 5;
 		frame.getContentPane().add(lblNom, gbc_lblNom);
 
-		JLabel lblRoguz = new JLabel(animaux.getCouleur());
+		JLabel lblRoguz = new JLabel("Couleur : " + animaux.getCouleur());
 		GridBagConstraints gbc_lblRoguz = new GridBagConstraints();
 		gbc_lblRoguz.insets = new Insets(0, 0, 5, 5);
 		gbc_lblRoguz.gridx = 2;
 		gbc_lblRoguz.gridy = 6;
 		frame.getContentPane().add(lblRoguz, gbc_lblRoguz);
 
-		JLabel lblGenre = new JLabel(animaux.getSexe());
+		JLabel lblGenre = new JLabel("Genre : " + animaux.getSexe());
 		GridBagConstraints gbc_lblGenre = new GridBagConstraints();
 		gbc_lblGenre.insets = new Insets(0, 0, 5, 5);
 		gbc_lblGenre.gridx = 3;
 		gbc_lblGenre.gridy = 6;
 		frame.getContentPane().add(lblGenre, gbc_lblGenre);
 
-		JLabel lblEspece = new JLabel(animaux.getEspece() + " " + animaux.getRace());
+		JLabel lblEspece = new JLabel("Espece/Race : " + animaux.getEspece() + " " + animaux.getRace());
 		GridBagConstraints gbc_lblEspece = new GridBagConstraints();
 		gbc_lblEspece.insets = new Insets(0, 0, 5, 5);
 		gbc_lblEspece.gridx = 2;
 		gbc_lblEspece.gridy = 7;
 		frame.getContentPane().add(lblEspece, gbc_lblEspece);
 
-		JLabel lblTatouage = new JLabel(animaux.getTatouage());
+		JLabel lblTatouage = new JLabel("Tatouage : " + animaux.getTatouage());
 		GridBagConstraints gbc_lblTatouage = new GridBagConstraints();
 		gbc_lblTatouage.insets = new Insets(0, 0, 5, 5);
 		gbc_lblTatouage.gridx = 2;
 		gbc_lblTatouage.gridy = 8;
 		frame.getContentPane().add(lblTatouage, gbc_lblTatouage);
 
+		frame.setVisible(true);
+		
 		// Action listener du btn Annuler de la JDialog
 		btnAnnuler.addActionListener(new ActionListener() {
 			@Override

@@ -7,6 +7,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -39,7 +40,9 @@ public class WindowEditClient extends WindowClients{
 		EditClient.setTitle("Gestion Client");
 		EditClient.setSize(550, 330);
 		EditClient.setLocationRelativeTo(null);
-		EditClient.setVisible(true);
+		EditClient.setResizable(false);
+		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		EditClient.setContentPane(bckground);
 		
 		GridBagLayout gbl_EditClient = new GridBagLayout();
 		gbl_EditClient.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -259,6 +262,8 @@ public class WindowEditClient extends WindowClients{
 		gbc_btnCancelEditClient.gridx = 11;
 		gbc_btnCancelEditClient.gridy = 10;
 		EditClient.getContentPane().add(btnCancelEditClient, gbc_btnCancelEditClient);
+		
+		EditClient.setVisible(true);
 		
 		//Actions Listeners
 		btnCancelEditClient.addActionListener(new ActionListener() {

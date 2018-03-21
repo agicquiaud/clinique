@@ -32,12 +32,10 @@ import fr.eni.clinique.ihm.controller.ControllerAnimaux;
 import fr.eni.clinique.ihm.controller.ControllerAnimauxSingleton;
 import fr.eni.clinique.ihm.controller.ControllerPersonnels;
 import fr.eni.clinique.ihm.controller.ControllerPersonnelsSingleton;
-import fr.eni.clinique.ihm.graphic.ImagePanel;
 
 public class WindowAgenda {
 	
 	private JFrame frame;
-	private ImagePanel imgBack = new ImagePanel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/login-color.jpg").getImage());
 	private JTable table;
 	private DefaultTableModel tableModel;
 	private ImageIcon foldericon = new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/folder-icon.png");
@@ -49,15 +47,18 @@ public class WindowAgenda {
 	private ControllerAgenda controlleragenda;
 	private ControllerAnimaux controlleranimaux;
 	
-	public WindowAgenda(){		
+	public WindowAgenda(String nom){		
 		controlleragenda = new ControllerAgenda();
 		controlleranimaux = ControllerAnimauxSingleton.getinstance();
 		controllerpersonnels = ControllerPersonnelsSingleton.getinstance();
 		frame = new JFrame();
 		frame.setTitle("Agenda");
-		frame.setBounds(100, 100, 585, 470);
+		frame.setSize(585, 470);
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
+		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		frame.setContentPane(bckground);
 		
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
@@ -67,6 +68,9 @@ public class WindowAgenda {
 		
 		JMenuItem mntmDeconnexion = new JMenuItem("Deconnexion");
 		mnConnexion.add(mntmDeconnexion);
+		
+		JMenuItem mntmRetour = new JMenuItem("Retour");
+		mnConnexion.add(mntmRetour);
 
 		GridBagLayout gridBagLayoutModalAddClient = new GridBagLayout();
 		gridBagLayoutModalAddClient.columnWidths = new int[] { 33, 74, 152, 30, 52, 82, 62, 61, 0, 0 };
@@ -84,6 +88,7 @@ public class WindowAgenda {
 		
 		String [] tabVet = controllerpersonnels.getNomVeterinaires();
 		JComboBox<String>comboBoxVet = new JComboBox<String>(tabVet);
+		comboBoxVet.setSelectedItem(nom);
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
@@ -138,6 +143,8 @@ public class WindowAgenda {
 		gbc_btnDossierMedical.gridy = 6;
 		frame.getContentPane().add(btnDossierMedical, gbc_btnDossierMedical);
 		
+		frame.setVisible(true);
+		
 		//Action Listener DatePicker for refresh JTable
 		datePicker.addActionListener(new ActionListener() {
 			@Override
@@ -169,6 +176,14 @@ public class WindowAgenda {
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
 				new WindowLogin();
+			}
+		});
+		
+		mntmRetour.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+				new WindowAccueilSecretaire();
 			}
 		});
 	}

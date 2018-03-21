@@ -28,29 +28,25 @@ import javax.swing.JDesktopPane;
 public class WindowLogin {
 
 	private JFrame frame;
-	private static JTextField textField = new RoundJTextField(15);
+	private JTextField textField = new RoundJTextField(15);
 	private JLabel lblConnexion;
 	private ControllerLogin controller;
 	private JPasswordField textField_1 = new RoundJPasswordField(15);
 	private JDesktopPane desktopPane = new JDesktopPane();
 	private ImagePanel imgBack = new ImagePanel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/login-color.jpg").getImage());
 
-
-	/**
-	 * Create the application.
-	 * 
-	 */
-
-	
 	public WindowLogin() {
 		controller = new ControllerLogin();
 		 
 		//liste panneau------------------------------------
 		frame = new JFrame();
 		frame.setTitle("Connexion");
-		frame.setBounds(100, 100, 315, 487);
+		frame.setSize(315, 487);
+		frame.setResizable(false);
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
+		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		frame.setContentPane(bckground);
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
@@ -105,17 +101,20 @@ public class WindowLogin {
 		btnValider.setBackground(new Color(66, 208, 231));
 		btnValider.setBorderPainted(true);
 		desktopPane.add(btnValider);
-
+		
+		lblConnexion = new JLabel("");
+		lblConnexion.setBounds(90, 318, 120, 14);
+		desktopPane.add(lblConnexion);
+		
 		desktopPane.add(imgBack);
+		frame.setVisible(true);
 		
-//------------------------------------------------------------------------		
-		
+		//Actions Listeners	
 		btnValider.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
 				if(controller.verif(textField.getText(), textField_1.getPassword())){
-					frame.setVisible(false);
+					frame.dispose();
 				}else{
 					lblConnexion.setText("Identifiant incorrect.");
 				}
@@ -123,9 +122,4 @@ public class WindowLogin {
 			}
 		});
 	}
-
-	public static String getNom(){
-		return textField.getText();
-	}
-
 }

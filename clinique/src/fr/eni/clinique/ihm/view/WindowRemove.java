@@ -6,6 +6,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -39,16 +40,17 @@ public class WindowRemove {
 		controllerClient = ControllerClientsSingleton.getinstance();
 		controllerPersonnels = ControllerPersonnelsSingleton.getinstance();
 		PopupDelete.setTitle("Suppression");
-		PopupDelete.setSize(360, 145);
+		PopupDelete.setSize(340, 120);
+		PopupDelete.setResizable(false);
 		PopupDelete.setLocationRelativeTo(null);
 		PopupDelete.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		PopupDelete.setVisible(true);
-		
+		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		PopupDelete.setContentPane(bckground);
+
 		GridBagLayout gbl_PopupDeleteClient = new GridBagLayout();
-		gbl_PopupDeleteClient.columnWidths = new int[] { 0, 0, 0, 0, 0, 0 };
+		gbl_PopupDeleteClient.columnWidths = new int[] { 100, 0, 40, 55, 100, 0 };
 		gbl_PopupDeleteClient.rowHeights = new int[] { 0, 0, 0, 0, 0, 0 };
-		gbl_PopupDeleteClient.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0,
-				Double.MIN_VALUE };
+		gbl_PopupDeleteClient.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		gbl_PopupDeleteClient.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		PopupDelete.getContentPane().setLayout(gbl_PopupDeleteClient);
 
@@ -60,46 +62,50 @@ public class WindowRemove {
 		gbc_lbltesvousSurDe.gridx = 1;
 		gbc_lbltesvousSurDe.gridy = 1;
 		PopupDelete.getContentPane().add(lbltesvousSurDe, gbc_lbltesvousSurDe);
-		if(obj instanceof Clients){
+		if (obj instanceof Clients) {
 			lbltesvousSurDe.setText("Etes-vous sur de vouloir archiver ce client ?");
-		}else if (obj instanceof Animaux){
+		} else if (obj instanceof Animaux) {
 			lbltesvousSurDe.setText("Etes-vous sur de vouloir archiver cet animal ?");
-		}else if (obj instanceof User){
+		} else if (obj instanceof User) {
 			lbltesvousSurDe.setText("Etes-vous sur de vouloir archiver ce personnel ?");
-		}else if (obj instanceof RendezVous){
+		} else if (obj instanceof RendezVous) {
 			lbltesvousSurDe.setText("Etes-vous sur de vouloir archiver ce rendez-vous ?");
 		}
+
+		JButton btnPopupDelete = new JButton("Oui");
+		GridBagConstraints gbc_btnPopupDelete = new GridBagConstraints();
+		gbc_btnPopupDelete.insets = new Insets(0, 0, 5, 5);
+		gbc_btnPopupDelete.gridx = 1;
+		gbc_btnPopupDelete.gridy = 3;
+		PopupDelete.getContentPane().add(btnPopupDelete, gbc_btnPopupDelete);
+
+		btnPopupDelete.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (obj instanceof Clients) {
+					controllerClient.removeClient(((Clients) obj).getCodeClient());
+				} else if (obj instanceof Animaux) {
+					controllerAnimal.removeAnimal(((Animaux) obj).getCodeAnimal());
+				} else if (obj instanceof User) {
+					controllerPersonnels.ArchivePersonnel(((User) obj).getLogin());
+				} else if (obj instanceof RendezVous) {
+					// controllerAgenda.removeRDV(veto, date, heure, minute,
+					// animal);
+				}
+				PopupDelete.dispose();
+			}
+		});
+
+		JButton btnPopupCancelDelete = new JButton("Non");
+		GridBagConstraints gbc_btnPopupCancelDelete = new GridBagConstraints();
+		gbc_btnPopupCancelDelete.insets = new Insets(0, 0, 5, 5);
+		gbc_btnPopupCancelDelete.gridx = 3;
+		gbc_btnPopupCancelDelete.gridy = 3;
+		PopupDelete.getContentPane().add(btnPopupCancelDelete, gbc_btnPopupCancelDelete);
+
+		PopupDelete.setVisible(true);
 		
-				JButton btnPopupDelete = new JButton("Oui");
-				GridBagConstraints gbc_btnPopupDelete = new GridBagConstraints();
-				gbc_btnPopupDelete.insets = new Insets(0, 0, 5, 5);
-				gbc_btnPopupDelete.gridx = 2;
-				gbc_btnPopupDelete.gridy = 3;
-				PopupDelete.getContentPane().add(btnPopupDelete, gbc_btnPopupDelete);
-				
-				btnPopupDelete.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						if(obj instanceof Clients){
-							controllerClient.removeClient(((Clients) obj).getCodeClient());
-						}else if (obj instanceof Animaux){
-							controllerAnimal.removeAnimal(((Animaux) obj).getCodeAnimal());
-						}else if (obj instanceof User){
-							controllerPersonnels.ArchivePersonnel(((User) obj).getLogin());
-						}else if (obj instanceof RendezVous){
-							//controllerAgenda.removeRDV(veto, date, heure, minute, animal);
-						}
-					}
-				});
-				
-						JButton btnPopupCancelDelete = new JButton("Non");
-						GridBagConstraints gbc_btnPopupCancelDelete = new GridBagConstraints();
-						gbc_btnPopupCancelDelete.insets = new Insets(0, 0, 5, 5);
-						gbc_btnPopupCancelDelete.gridx = 3;
-						gbc_btnPopupCancelDelete.gridy = 3;
-						PopupDelete.getContentPane().add(btnPopupCancelDelete, gbc_btnPopupCancelDelete);
-		
-		//Actions Listeners
+		// Actions Listeners
 		btnPopupCancelDelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
