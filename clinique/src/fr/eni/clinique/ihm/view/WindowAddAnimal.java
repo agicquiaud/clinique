@@ -7,6 +7,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
@@ -24,7 +26,7 @@ import fr.eni.clinique.ihm.controller.ControllerAnimaux;
 import fr.eni.clinique.ihm.controller.ControllerAnimauxSingleton;
 import fr.eni.clinique.ihm.regex.Validator;
 
-public class WindowAddAnimal {
+public class WindowAddAnimal implements Observer{
 	
 	private JDialog AddAnimal = new JDialog();
 	private ControllerAnimaux controlleranimal;
@@ -34,10 +36,12 @@ public class WindowAddAnimal {
 	private JTextField textFieldAntecedentsAnimal;
 	private ImageIcon icon = new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/plus.png");
 	private ComboBoxModel<String> comboboxModel;
+	private JComboBox<String> espece;
+	private JComboBox<String> race;
 
 	public WindowAddAnimal(Clients client){
-		
 		controlleranimal = ControllerAnimauxSingleton.getinstance();
+		((Observable) controlleranimal).addObserver(this);
 		AddAnimal.setTitle("Ajouter un animal");
 		AddAnimal.setSize(620, 370);
 		AddAnimal.setResizable(false);
@@ -149,7 +153,7 @@ public class WindowAddAnimal {
 		gbc_lblEspeceAnimal.gridy = 4;
 		AddAnimal.getContentPane().add(lblEspeceAnimal, gbc_lblEspeceAnimal);
 		
-		JComboBox<String> espece = new JComboBox<String>(controlleranimal.getEspece());
+		espece = new JComboBox<String>(controlleranimal.getEspece());
 		GridBagConstraints gbc_espece = new GridBagConstraints();
 		espece.setBackground(new Color(255, 255, 255));
 		gbc_espece.insets = new Insets(0, 0, 5, 5);
@@ -167,7 +171,7 @@ public class WindowAddAnimal {
 		gbc_lblRaceAnimal.gridy = 4;
 		AddAnimal.getContentPane().add(lblRaceAnimal, gbc_lblRaceAnimal);
 
-		JComboBox<String> race = new JComboBox<String>(controlleranimal.getRace(espece.getSelectedItem().toString()));
+		race = new JComboBox<String>(controlleranimal.getRace(espece.getSelectedItem().toString()));
 		GridBagConstraints gbc_race = new GridBagConstraints();
 		gbc_race.fill = GridBagConstraints.HORIZONTAL;
 		race.setBackground(new Color(255, 255, 255));
@@ -273,5 +277,19 @@ public class WindowAddAnimal {
 				System.out.println("maintenant");
 			}
 		});
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		if(arg instanceof String){
+			//update des races
+			comboboxModel = new DefaultComboBoxModel<String>(
+					controlleranimal.getRace(espece.getSelectedItem().toString()));
+			race.setModel(comboboxModel);
+			//updates des especes
+			comboboxModel = new DefaultComboBoxModel<String>(
+					controlleranimal.getEspece());
+			espece.setModel(comboboxModel);
+		}
 	}
 }

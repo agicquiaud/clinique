@@ -15,6 +15,7 @@ import java.util.Observer;
 import java.util.Properties;
 
 import javax.swing.BoxLayout;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -82,6 +83,10 @@ public class WindowPriseDeRendezVous implements Observer{
 	private DefaultTableModel tableModel;
 	private JTable table;
 	private SimpleDateFormat sdf;
+	private JComboBox<Animaux> CBAnimal;
+	private DefaultComboBoxModel<Animaux> comboboxModelAnimal;
+	private JComboBox<Clients> CBClient;
+	private DefaultComboBoxModel<Clients> comboboxModelClient;
 	private JComboBox<User> CBVet;
 	private JLabel Err = new JLabel();
 	private final String[] ENTETES = { "Heure", "Nom du client", "Animal", "Race" };
@@ -91,7 +96,9 @@ public class WindowPriseDeRendezVous implements Observer{
 		((Observable) CA).addObserver(this);
 		cp = ControllerPersonnelsSingleton.getinstance();
 		controllerAnimal = ControllerAnimauxSingleton.getinstance();
+		((Observable) controllerAnimal).addObserver(this);
 		controllerClients = ControllerClientsSingleton.getinstance();
+		((Observable) controllerClients).addObserver(this);
 		frame.setTitle("Prise de rendez-vous");
 		frame.setSize(1000, 800);
 		frame.setResizable(false);
@@ -129,7 +136,7 @@ public class WindowPriseDeRendezVous implements Observer{
 		Clients[] client = new Clients[controllerClients.listeClient().length];
 		client = controllerClients.listeClient();
 
-		JComboBox<Clients> CBClient = new JComboBox<Clients>(client);
+		CBClient = new JComboBox<Clients>(client);
 		CBClient.setRenderer(new ListCellRenderer<Clients>() {
 			@Override
 			public Component getListCellRendererComponent(JList<? extends Clients> list, Clients value, int index,
@@ -161,7 +168,7 @@ public class WindowPriseDeRendezVous implements Observer{
 		if (tabAnimal[0] == null) {
 			tabAnimal[0] = new Animaux();
 		}
-		JComboBox<Animaux> CBAnimal = new JComboBox<Animaux>(tabAnimal);
+		CBAnimal = new JComboBox<Animaux>(tabAnimal);
 		CBAnimal.setRenderer(new ListCellRenderer<Animaux>() {
 			@Override
 			public Component getListCellRendererComponent(JList<? extends Animaux> list, Animaux value, int index,
@@ -372,6 +379,22 @@ public class WindowPriseDeRendezVous implements Observer{
 		if(arg instanceof RendezVous){
 			setUpTableData(CA.getTabAgenda(((User) CBVet.getSelectedItem()).getLogin(),
 					sdf.format(datePicker.getModel().getValue())), ENTETES);
+		}else if(arg instanceof Clients){
+			comboboxModelClient = new DefaultComboBoxModel<Clients>(
+					controllerClients.listeClient());
+			CBClient.setModel(comboboxModelClient);
+		}else if(arg instanceof Animaux){
+			CBAnimal.removeAllItems();
+			Animaux[] tabAnimaux2 = null;
+			tabAnimaux2 = controllerAnimal
+					.getAnimalByIdClient(((Clients) CBClient.getSelectedItem()).getCodeClient());
+			if (tabAnimaux2[0] == null) {
+				tabAnimaux2[0] = new Animaux();
+			}
+			for (Animaux animaux : tabAnimaux2) {
+				CBAnimal.addItem(animaux);
+			}
+			CBAnimal.repaint();
 		}
 	}
 
