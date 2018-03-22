@@ -33,8 +33,12 @@ public class ControllerLogin {
 			e.printStackTrace();
 		}
 		if (message) {
-			User userI; 
-			userI = user.getUser(nom);
+			User userI = null; 
+			try {
+				userI = user.getUser(nom);
+			} catch (BLLException e) {
+				e.getMessage();
+			}
 
 			if(userI.getType().equals("sec")){
 				new WindowAccueilSecretaire();

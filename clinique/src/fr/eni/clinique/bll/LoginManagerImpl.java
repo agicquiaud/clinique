@@ -18,7 +18,7 @@ public class LoginManagerImpl implements LoginManager{
 			user = daoUser.selectByNom(nom);
 		} catch (DALException e) {
 			user = null;
-			throw new BLLException("Erreur BLL - " + user);			
+			throw new BLLException("Erreur BLL Login verifPassword - user=" + user);			
 		}
 		if (user == null) {
 			message = false;

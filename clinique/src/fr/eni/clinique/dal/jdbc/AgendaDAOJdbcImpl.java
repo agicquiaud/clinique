@@ -44,7 +44,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 				liste.add(rdv);
 			}
 		} catch (SQLException e) {
-			throw new DALException("selectAll failed - ", e);
+			throw new DALException("selectAll rdv failed - ", e);
 		} finally {
 			try {
 				if (rs != null) {
@@ -77,7 +77,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 			rqt.executeUpdate();
 
 		} catch (SQLException e) {
-			throw new DALException("Update animal failed - " + data, e);
+			throw new DALException("Update rdv failed - " + data, e);
 		} finally {
 			try {
 				if (rqt != null) {
@@ -110,7 +110,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 				}
 			}
 		} catch (SQLException e) {
-			throw new DALException("Insert animal failed - " + data, e);
+			throw new DALException("Insert rdv failed - " + data, e);
 		} finally {
 			try {
 				if (rqt != null) {

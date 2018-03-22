@@ -11,6 +11,7 @@ import fr.eni.clinique.bll.AgendaManager;
 import fr.eni.clinique.bll.AgendaManagerSingleton;
 import fr.eni.clinique.bll.AnimalManager;
 import fr.eni.clinique.bll.AnimalManagerSingleton;
+import fr.eni.clinique.bll.BLLException;
 import fr.eni.clinique.bll.ClientsManager;
 import fr.eni.clinique.bll.ClientsManagerSingleton;
 import fr.eni.clinique.bll.PersonnelsManager;
@@ -39,19 +40,29 @@ public class ControllerAgendaImpl extends Observable implements ControllerAgenda
 		mgerAgenda = AgendaManagerSingleton.getinstance();
 	}
 
-	public void addRDV(RendezVous rdv) {	
-//		if (mgerAgenda.getRdvByDateCodeVet(rdv.getCodeVeto(), rdv.getDate()) == null) {
+	public void addRDV(RendezVous rdv) {
+		// if (mgerAgenda.getRdvByDateCodeVet(rdv.getCodeVeto(), rdv.getDate())
+		// == null) {
+		try {
 			mgerAgenda.insert(rdv);
+		} catch (BLLException e) {
+			e.getMessage();
+		}
 
-			setChanged();
-			notifyObservers(rdv);
-//		} else {
-//			System.out.println("erreur, un rendez vous est deja prévu pour ce créneau la");
-//		}
+		setChanged();
+		notifyObservers(rdv);
+		// } else {
+		// System.out.println("erreur, un rendez vous est deja prévu pour ce
+		// créneau la");
+		// }
 	}
 
 	public void removeRDV(RendezVous rdv) {
-		mgerAgenda.delete(rdv);
+		try {
+			mgerAgenda.delete(rdv);
+		} catch (BLLException e) {
+			e.getMessage();
+		}
 
 		setChanged();
 		notifyObservers(rdv);
@@ -60,25 +71,48 @@ public class ControllerAgendaImpl extends Observable implements ControllerAgenda
 	public List<RendezVous> getRdv(User veto, String date, Integer heure, Integer minute) {
 		String[] str = date.split("/");
 		cal.set(Integer.parseInt(str[0]), Integer.parseInt(str[1]), Integer.parseInt(str[2]), heure, minute);
-		return mgerAgenda.getRdvVetByDay(new RendezVous(veto.getId(), cal.getTime()));
+		try {
+			liste = mgerAgenda.getRdvVetByDay(new RendezVous(veto.getId(), cal.getTime()));
+		} catch (BLLException e) {
+			e.getMessage();
+		}
+
+		return liste;
 	}
 
 	public Object[][] getTabAgenda(String NomVeto, String pdate) {
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = null;
-		User Veto = mgerPersonnel.getUser(NomVeto);
+		User Veto = null;
+		try {
+			Veto = mgerPersonnel.getUser(NomVeto);
+		} catch (BLLException e) {
+			e.getMessage();
+		}
 		try {
 			date = (Date) format.parse(pdate);
 		} catch (ParseException e) {
-			e.printStackTrace();
+			System.out.println("Erreur parse ControllerAgenda - getTabAgenda ");
 		}
 		RendezVous rdv = new RendezVous(Veto.getId(), date);
-		liste = mgerAgenda.getRdvVetByDay(rdv);
+		try {
+			liste = mgerAgenda.getRdvVetByDay(rdv);
+		} catch (BLLException e) {
+			e.getMessage();
+		}
 		Object[][] tab = new Object[liste.size()][5];
 		format.applyPattern("HH:mm");
 		for (int i = 0; i < liste.size(); i++) {
-			animaux = mgerAnimal.animalById(liste.get(i).getCodeAnimal());
-			clients = mgerClient.getClientById(animaux.getCodeClient());
+			try {
+				animaux = mgerAnimal.animalById(liste.get(i).getCodeAnimal());
+			} catch (BLLException e) {
+				e.getMessage();
+			}
+			try {
+				clients = mgerClient.getClientById(animaux.getCodeClient());
+			} catch (BLLException e) {
+				e.getMessage();
+			}
 			tab[i][0] = format.format(liste.get(i).getDate());
 			tab[i][1] = clients.getNom() + " " + clients.getPrenom();
 			tab[i][2] = animaux.getNom();
@@ -89,7 +123,11 @@ public class ControllerAgendaImpl extends Observable implements ControllerAgenda
 	}
 
 	public RendezVous getRdvByCodeVetDate(RendezVous rdv) {
-		rdv = mgerAgenda.getRdvByDateCodeVet(rdv.getCodeVeto(), rdv.getDate());
+		try {
+			rdv = mgerAgenda.getRdvByDateCodeVet(rdv.getCodeVeto(), rdv.getDate());
+		} catch (BLLException e) {
+			e.getMessage();
+		}
 
 		return rdv;
 	}

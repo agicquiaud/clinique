@@ -17,7 +17,7 @@ public class JdbcTools {
 		try {
 			Class.forName(Settings.getProperty("driverdb"));
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			System.out.println("Erreur de connexion à la base de données dans JdbcTools.");
 		}		
 		urldb = Settings.getProperty("urldb");
 		userdb = Settings.getProperty("userdb");

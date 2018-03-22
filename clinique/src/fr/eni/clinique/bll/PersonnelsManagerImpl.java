@@ -14,52 +14,52 @@ public class PersonnelsManagerImpl implements PersonnelsManager {
 	private List<User> liste;
 
 	@Override
-	public void add(User p) {
+	public void add(User p) throws BLLException {
 		try {
 			con.insert(p);
 		} catch (DALException e) {
-			e.printStackTrace();
+			throw new BLLException("Erreur BLL Personnel add - user=" + p, e);
 		}
 
 	}
 
 	@Override
-	public void archive(User p) {
+	public void archive(User p) throws BLLException {
 		try {
 			p.setArchive(true);
 			con.update(p);
 		} catch (DALException e) {
-			e.printStackTrace();
+			throw new BLLException("Erreur BLL Personnel archive - user=" + p, e);
 		}
 
 	}
 
 	@Override
-	public void resetMotDePasse(User p) {
+	public void resetMotDePasse(User p) throws BLLException {
 		try {
 			con.update(p);
 		} catch (DALException e) {
-			e.printStackTrace();
+			throw new BLLException("Erreur BLL Personnel resetMotDePasse - user=" + p, e);
 		}
 	}
 
 	@Override
-	public User getUser(String nom) {
+	public User getUser(String nom) throws BLLException {
 		try {
 			user = con.selectByNom(nom);
 		} catch (DALException e) {
-			e.printStackTrace();
+			throw new BLLException("Erreur BLL Personnel getUser - nom=" + nom, e);
 		}
 		return user;
 	}
 
 	@Override
-	public List<User> getAll() {
+	public List<User> getAll() throws BLLException {
 		List<User> listereturn = new ArrayList<User>();
 		try {
 			liste = con.selectAll();
 		} catch (DALException e) {
-			e.printStackTrace();
+			throw new BLLException("Erreur BLL Personnel getAll - ", e);
 		}
 		for (User user : liste) {
 			if (user.getArchive() == false) {
@@ -69,11 +69,11 @@ public class PersonnelsManagerImpl implements PersonnelsManager {
 		return listereturn;
 	}
 
-	public List<User> getVeterinaires() {
+	public List<User> getVeterinaires() throws BLLException {
 		try {
 			liste = con.selectByPoste("vet");
 		} catch (DALException e) {
-			e.printStackTrace();
+			throw new BLLException("Erreur BLL Personnel getVeterinaires - ", e);
 		}
 		return liste;
 	}

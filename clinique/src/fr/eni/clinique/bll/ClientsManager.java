@@ -4,11 +4,11 @@ import java.util.List;
 import fr.eni.clinique.bo.Clients;
 
 public interface ClientsManager {
-	public List<Clients> getAll();
-	public List<Clients> getClientByNom(String nom);
-	public void insert(Clients client);
-	public void update (Clients client);
-	public void delete (Integer id);
-	public Clients getClientById(Integer id);
-	public Clients getClientByNomPrenom(String Prenom, String Nom);
+	public List<Clients> getAll() throws BLLException;
+	public List<Clients> getClientByNom(String nom) throws BLLException;
+	public void insert(Clients client) throws BLLException;
+	public void update (Clients client) throws BLLException;
+	public void delete (Integer id) throws BLLException;
+	public Clients getClientById(Integer id) throws BLLException;
+	public Clients getClientByNomPrenom(String Prenom, String Nom) throws BLLException;
 }
