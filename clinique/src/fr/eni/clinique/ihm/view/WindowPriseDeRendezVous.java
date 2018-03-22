@@ -88,7 +88,7 @@ public class WindowPriseDeRendezVous implements Observer{
 	private JComboBox<Clients> CBClient;
 	private DefaultComboBoxModel<Clients> comboboxModelClient;
 	private JComboBox<User> CBVet;
-	private JLabel err = new JLabel();
+	private JLabel err = new JLabel("");
 	private final String[] ENTETES = { "Heure", "Nom du client", "Animal", "Race" };
 
 	public WindowPriseDeRendezVous() {
@@ -240,9 +240,9 @@ public class WindowPriseDeRendezVous implements Observer{
 
 		contentPaneSouth.setLayout(new BoxLayout(contentPaneSouth, BoxLayout.LINE_AXIS));
 		contentPaneSouthWest.setLayout(new BoxLayout(contentPaneSouthWest, BoxLayout.PAGE_AXIS));
-		contentPaneSouthWest.add(new JLabel());
+		contentPaneSouthWest.add(err);
 		contentPaneSouthCenter.setLayout(new BoxLayout(contentPaneSouthCenter, BoxLayout.PAGE_AXIS));
-		contentPaneSouthCenter.add(new JLabel());
+		contentPaneSouthCenter.add(new JLabel("                                                                                                                                 "));
 		contentPaneSouthEst.setLayout(new BoxLayout(contentPaneSouthEst, BoxLayout.PAGE_AXIS));
 		
 		JButton button = new JButton("Supprimer");
