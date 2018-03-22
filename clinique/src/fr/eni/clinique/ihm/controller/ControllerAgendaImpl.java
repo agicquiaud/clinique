@@ -40,7 +40,7 @@ public class ControllerAgendaImpl extends Observable implements ControllerAgenda
 	}
 
 	public void addRDV(RendezVous rdv) {	
-//		if (mgerAgenda.getRdvByDateCodeVet(rdv.getCodeVeto(), rdv.getDate()).equals(null)) {
+//		if (mgerAgenda.getRdvByDateCodeVet(rdv.getCodeVeto(), rdv.getDate()) == null) {
 			mgerAgenda.insert(rdv);
 
 			setChanged();
