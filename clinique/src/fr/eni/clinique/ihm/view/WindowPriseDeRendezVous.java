@@ -333,14 +333,47 @@ public class WindowPriseDeRendezVous implements Observer{
 		valider.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Conversion date
-				String[] str = sdf.format(datePicker.getModel().getValue()).split("/");
-				cal.set(Integer.parseInt(str[2]), Integer.parseInt(str[1]) - 1, Integer.parseInt(str[0]),
-						Integer.parseInt(heure.getModel().getValue().toString()),
-						Integer.parseInt(minute.getModel().getValue().toString()), 00);
-				//Add Client
-				CA.addRDV(new RendezVous(((User) CBVet.getSelectedItem()).getId(), cal.getTime(),
-						((Animaux) CBAnimal.getSelectedItem()).getCodeAnimal()));
+				boolean b = true;
+				String h;
+				String m;
+				String[] Heure = new String[table.getRowCount()];
+				for (int i = 0; i < table.getRowCount(); i++) {
+					Heure[i] = (String) table.getValueAt(i, 0);
+				}
+				for (String stri : Heure) {
+					if (heure.getModel().getValue().toString().equals("9")){
+						h = "0" + heure.getModel().getValue().toString();
+					}
+					else{
+						h = heure.getModel().getValue().toString();
+					}
+					if (minute.getModel().getValue().toString().equals("0")){
+						m = minute.getModel().getValue().toString() + "0";
+					}else{
+						m = minute.getModel().getValue().toString();
+					}
+					if(!(stri.equalsIgnoreCase(h + ":" + m))){
+						b = true;
+					}else{
+						b = false;
+						break;
+					}
+					
+				}
+				if(b){
+					//Conversion date
+					String[] str = sdf.format(datePicker.getModel().getValue()).split("/");
+					cal.set(Integer.parseInt(str[2]), Integer.parseInt(str[1]) - 1, Integer.parseInt(str[0]),
+							Integer.parseInt(heure.getModel().getValue().toString()),
+							Integer.parseInt(minute.getModel().getValue().toString()), 00);
+					//Add Client
+					CA.addRDV(new RendezVous(((User) CBVet.getSelectedItem()).getId(), cal.getTime(),
+							((Animaux) CBAnimal.getSelectedItem()).getCodeAnimal()));
+				}else{
+					error.setText("Un rendez-vous est déjà programmer a cette date et l'heure selectionner.");
+				}
+				
+				
 			}
 		});
 		btnAddClient.addActionListener(new ActionListener() {
