@@ -369,7 +369,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 			rqt.setInt(1, idVet);
 			rqt.setTimestamp(2, new java.sql.Timestamp(date.getTime()));
 			rs = rqt.executeQuery();
-			if (rs.next()) {
+			while (rs.next()) {
 				rdv = new RendezVous(rs.getInt("CodeVeto"), rs.getTimestamp("DateRdv"), rs.getInt("CodeAnimal"));
 			}
 		} catch (SQLException e) {

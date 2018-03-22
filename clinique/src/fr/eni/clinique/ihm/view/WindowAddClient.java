@@ -36,7 +36,7 @@ public class WindowAddClient {
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		JLabel bckground = new JLabel(new ImageIcon("ressource/backgroung.jpg"));
 		frame.setContentPane(bckground);
 		
 		GridBagLayout gridBagLayoutModalAddClient = new GridBagLayout();

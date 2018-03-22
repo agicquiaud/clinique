@@ -73,7 +73,7 @@ public class WindowPriseDeRendezVous implements Observer{
 	private JDatePanelImpl datePanel;
 	private DateLabelFormatter formatDate;
 	private JDatePickerImpl datePicker;
-	private ImageIcon icon = new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/plus.png");
+	private ImageIcon icon = new ImageIcon("ressource/plus.png");
 	private ControllerAnimaux controllerAnimal;
 	private ControllerClients controllerClients;
 	private final JButton btnAddClient = new JButton(icon);
@@ -84,11 +84,10 @@ public class WindowPriseDeRendezVous implements Observer{
 	private JTable table;
 	private SimpleDateFormat sdf;
 	private JComboBox<Animaux> CBAnimal;
-	private DefaultComboBoxModel<Animaux> comboboxModelAnimal;
 	private JComboBox<Clients> CBClient;
 	private DefaultComboBoxModel<Clients> comboboxModelClient;
 	private JComboBox<User> CBVet;
-	private JLabel err = new JLabel("");
+	private JLabel error = new JLabel();
 	private final String[] ENTETES = { "Heure", "Nom du client", "Animal", "Race" };
 
 	public WindowPriseDeRendezVous() {
@@ -104,7 +103,7 @@ public class WindowPriseDeRendezVous implements Observer{
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		JLabel bckground = new JLabel(new ImageIcon("ressource/backgroung.jpg"));
 		frame.setContentPane(bckground);
 
 		JMenuBar menuBar = new JMenuBar();
@@ -240,9 +239,9 @@ public class WindowPriseDeRendezVous implements Observer{
 
 		contentPaneSouth.setLayout(new BoxLayout(contentPaneSouth, BoxLayout.LINE_AXIS));
 		contentPaneSouthWest.setLayout(new BoxLayout(contentPaneSouthWest, BoxLayout.PAGE_AXIS));
-		contentPaneSouthWest.add(err);
+		contentPaneSouthWest.add(error);
 		contentPaneSouthCenter.setLayout(new BoxLayout(contentPaneSouthCenter, BoxLayout.PAGE_AXIS));
-		contentPaneSouthCenter.add(new JLabel("                                                                                                                                 "));
+		contentPaneSouthCenter.add(new JLabel(""));
 		contentPaneSouthEst.setLayout(new BoxLayout(contentPaneSouthEst, BoxLayout.PAGE_AXIS));
 		
 		JButton button = new JButton("Supprimer");
@@ -308,7 +307,7 @@ public class WindowPriseDeRendezVous implements Observer{
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (table.getSelectedColumn() > -1 && table.getSelectedRow() > -1) {
+				try{
 					// Conversion date
 					String[] str = sdf.format(datePicker.getModel().getValue()).split("/");
 					String[] strhm = table.getValueAt(table.getSelectedRow(), 0).toString().split(":");
@@ -324,9 +323,10 @@ public class WindowPriseDeRendezVous implements Observer{
 					// Remove client
 					new WindowRemove(new RendezVous(((User) CBVet.getSelectedItem()).getId(), cal.getTime(),
 							null));
-				} else
-					err.setText("Aucune ligne sélectionnée");
+				} catch(Exception err){
+					error.setText("Aucune ligne sélectionnée");
 					System.out.println("Aucune ligne sélectionnée");
+				}
 			}
 		});
 		

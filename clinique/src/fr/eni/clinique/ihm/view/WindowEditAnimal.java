@@ -46,7 +46,7 @@ public class WindowEditAnimal extends WindowClients {
 		EditAnimal.setSize(610, 390);
 		EditAnimal.setLocationRelativeTo(null);
 		EditAnimal.setResizable(false);
-		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		JLabel bckground = new JLabel(new ImageIcon("ressource/backgroung.jpg"));
 		EditAnimal.setContentPane(bckground);
 
 		GridBagLayout gbl_EditAnimal = new GridBagLayout();
@@ -70,14 +70,14 @@ public class WindowEditAnimal extends WindowClients {
 		JButton btnValiderEditAnimal = new JButton();
 		btnValiderEditAnimal.setForeground(new Color(255, 255, 255));
 		btnValiderEditAnimal.setBackground(new Color(255, 255, 255));
-		btnValiderEditAnimal.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/checked32.png"));
+		btnValiderEditAnimal.setIcon(new ImageIcon("ressource/checked32.png"));
 		btnValiderEditAnimal.setBounds(320, 18, 58, 44);
 		desktopPaneEditAnimal.add(btnValiderEditAnimal);
 
 		JButton btnAnnulerEditAnimal = new JButton();
 		btnAnnulerEditAnimal.setForeground(new Color(255, 255, 255));
 		btnAnnulerEditAnimal.setBackground(new Color(255, 255, 255));
-		btnAnnulerEditAnimal.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/cancel.png"));
+		btnAnnulerEditAnimal.setIcon(new ImageIcon("ressource/cancel.png"));
 		btnAnnulerEditAnimal.setBounds(400, 18, 58, 44);
 		desktopPaneEditAnimal.add(btnAnnulerEditAnimal);
 

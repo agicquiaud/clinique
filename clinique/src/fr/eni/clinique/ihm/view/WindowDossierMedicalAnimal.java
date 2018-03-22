@@ -33,7 +33,7 @@ public class WindowDossierMedicalAnimal {
 		frame.setSize(705, 310);
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
-		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		JLabel bckground = new JLabel(new ImageIcon("ressource/backgroung.jpg"));
 		frame.setContentPane(bckground);
 		
 		GridBagLayout gridBagLayoutDossierAnimal = new GridBagLayout();

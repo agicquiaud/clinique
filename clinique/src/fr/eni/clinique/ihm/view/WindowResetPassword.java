@@ -28,7 +28,7 @@ public class WindowResetPassword {
 		ResetMdp.setSize(450, 300);
 		ResetMdp.setResizable(false);
 		ResetMdp.setLocationRelativeTo(null);
-		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		JLabel bckground = new JLabel(new ImageIcon("ressource/backgroung.jpg"));
 		ResetMdp.setContentPane(bckground);		
 		
 		GridBagLayout gridBagLayoutModalReset = new GridBagLayout();
