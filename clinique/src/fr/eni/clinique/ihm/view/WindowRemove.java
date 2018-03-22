@@ -67,7 +67,7 @@ public class WindowRemove {
 		} else if (obj instanceof User) {
 			lbltesvousSurDe.setText("Etes-vous sur de vouloir archiver ce personnel ?");
 		} else if (obj instanceof RendezVous) {
-			lbltesvousSurDe.setText("Etes-vous sur de vouloir archiver ce rendez-vous ?");
+			lbltesvousSurDe.setText("Etes-vous sur de vouloir supprimer ce rendez-vous ?");
 		}
 
 		JButton btnPopupDelete = new JButton("Oui");
