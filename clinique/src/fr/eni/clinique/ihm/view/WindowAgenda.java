@@ -174,12 +174,11 @@ public class WindowAgenda {
 		btnDossierMedical.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
 				try{
 				Animaux animaux = (Animaux) donnee[table.getSelectedRow()][4];
 				new WindowDossierMedicalAnimal(table.getModel().getValueAt(table.getSelectedRow(), 1).toString(), controlleranimaux.getAnimalById(animaux.getCodeAnimal().toString()));
-				}catch (Exception err){
-					error.setText("Aucun rendez-vous de sélectionné");
+				} catch (Exception err){
+					error.setText("Aucun rendez-vous sélectionné");
 				}
 			}
 		});
