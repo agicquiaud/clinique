@@ -6,7 +6,6 @@ import java.awt.GridBagLayout;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
-import fr.eni.clinique.bo.Clients;
 
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -14,38 +13,13 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JTable;
 import javax.swing.JDesktopPane;
-import javax.swing.JDialog;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.SystemColor;
 
 public class windowtest {
 
-	private JFrame frmGestionAnimal;
-	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JButton btnValider;
-	private JTextField textField_5;
-	private JTable table;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTable table_1;
-	private JTable table_2;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_12;
-	private JTextField textField_13;
-	private JTextField textField_14;
-	private JDialog PopupDeleteAnimal = new JDialog();
 
 	/**
 	 * Create the application.
@@ -148,7 +122,7 @@ public class windowtest {
 		textFieldNomAnimalEditAnimal.setColumns(10);
 
 		String[] Genre = { "Masculin", "Féminin", "Hermaphrodite" };
-		JComboBox<String> comboboxgenreEditAnimal = new JComboBox<String>();
+		JComboBox<String> comboboxgenreEditAnimal = new JComboBox<String>(Genre);
 		GridBagConstraints gbc_comboboxgenreEditAnimal = new GridBagConstraints();
 		comboboxgenreEditAnimal.setBackground(new Color(255, 255, 255));
 		gbc_comboboxgenreEditAnimal.insets = new Insets(0, 0, 5, 5);

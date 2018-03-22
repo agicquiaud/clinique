@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
 
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class RoundJTextField extends JTextField {

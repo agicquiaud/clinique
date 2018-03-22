@@ -1,11 +1,9 @@
 package fr.eni.clinique.ihm.graphic;
 
 import java.awt.*;
-import java.awt.geom.*;
-import javax.swing.*;
+
 import javax.swing.border.Border;
 
-import java.awt.event.*;
  
 public class RoundButton implements Border {
 
