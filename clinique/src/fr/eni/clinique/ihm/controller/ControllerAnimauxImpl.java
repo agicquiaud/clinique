@@ -55,7 +55,6 @@ public class ControllerAnimauxImpl extends Observable implements ControllerAnima
 	public void addAnimal(String nom, String sexe, String couleur, String race, String espece,
 			String codeClient, String antecedents, String tatouage) {
 		animal = new Animaux(nom, sexe, couleur, race, espece, Integer.parseInt(codeClient), antecedents, tatouage, false);
-		System.out.println(animal.toString());
 		mgerAnimal.insert(animal);
 		
 		setChanged();
@@ -87,9 +86,7 @@ public class ControllerAnimauxImpl extends Observable implements ControllerAnima
 			longueurListe = str.size();
 		}
 		Animaux[] tabAnimaux = new Animaux[longueurListe];
-		System.out.println(tabAnimaux.length );
 		for (Animaux animaux : str) {
-			System.out.println(str.lastIndexOf(animaux)+1);
 			tabAnimaux[str.lastIndexOf(animaux)] = animaux;
 		}
 		return tabAnimaux;
@@ -117,7 +114,6 @@ public class ControllerAnimauxImpl extends Observable implements ControllerAnima
 		String [] PrenomNom = NomPrenomClient.split(" ");
 		Clients client = mgerClient.getClientByNomPrenom(PrenomNom[0], PrenomNom[1]);
 		animal = new Animaux(nom, sexe, couleur, race, espece, client.getCodeClient(), antecedents, tatouage, false);
-		System.out.println(animal.toString());
 		mgerAnimal.insert(animal);
 		
 		setChanged();
