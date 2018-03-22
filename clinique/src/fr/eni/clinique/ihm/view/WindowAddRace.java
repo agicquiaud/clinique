@@ -140,8 +140,13 @@ public class WindowAddRace {
 					streturn = comboBoxEspece.getSelectedItem().toString();
 				}
 				controlleranimal.addRace(textFieldRace.getText(), streturn);
+				
 				AddRace.dispose();
 			}
 		});
+	}
+	
+	public String[] MAJCBRace(String Espece){
+		return controlleranimal.getRace(Espece);
 	}
 }
