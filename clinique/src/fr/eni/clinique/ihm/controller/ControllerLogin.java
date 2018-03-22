@@ -39,7 +39,7 @@ public class ControllerLogin {
 			if(userI.getType().equals("sec")){
 				new WindowAccueilSecretaire();
 			}else if(userI.getType().equals("vet")){
-				new WindowAccueilVeterinaire(nom);
+				new WindowAccueilVeterinaire(nom.substring(0, 1).toUpperCase() + nom.substring(1));
 			}else if(userI.getType().equals("adm")){
 				new WindowAccueilAdmin();
 			}
