@@ -370,7 +370,7 @@ public class WindowPriseDeRendezVous implements Observer{
 					CA.addRDV(new RendezVous(((User) CBVet.getSelectedItem()).getId(), cal.getTime(),
 							((Animaux) CBAnimal.getSelectedItem()).getCodeAnimal()));
 				}else{
-					err.setText("Un rendez-vous est déjà programmer a cette date et l'heure selectionner.");
+					error.setText("Un rendez-vous est déjà programmer a cette date et l'heure selectionner.");
 				}
 				
 				
