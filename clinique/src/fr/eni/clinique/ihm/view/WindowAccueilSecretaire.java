@@ -47,13 +47,13 @@ public class WindowAccueilSecretaire {
 		gbc_desktopPane.gridy = 0;
 		frame.getContentPane().add(desktopPane, gbc_desktopPane);
 
-		JButton btnNewButton_2 = new JButton(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/cancel.png"));
+		JButton btnNewButton_2 = new JButton(new ImageIcon("ressource/cancel.png"));
 		btnNewButton_2.setBounds(134, 407, 65, 48);
 		desktopPane.add(btnNewButton_2);
 		btnNewButton_2.setMaximumSize(new Dimension(30, 30));
 		btnNewButton_2.setBackground(Color.white);
 
-		JLabel lblNewLabel = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/logo.jpg"));
+		JLabel lblNewLabel = new JLabel(new ImageIcon("ressource/logo.jpg"));
 		lblNewLabel.setBounds(117, 11, 90, 96);
 		desktopPane.add(lblNewLabel);
 
@@ -78,11 +78,11 @@ public class WindowAccueilSecretaire {
 		panel_2.setBounds(0, 400, 332, 63);
 		desktopPane.add(panel_2);
 
-		JButton btnNewButton = new JButton(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/flat-calendar-redi.jpg"));
+		JButton btnNewButton = new JButton(new ImageIcon("ressource/flat-calendar-redi.jpg"));
 		btnNewButton.setBounds(31, 202, 117, 123);
 		desktopPane.add(btnNewButton);
 
-		JButton btnNewButton_1 = new JButton(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/Client.jpg"));
+		JButton btnNewButton_1 = new JButton(new ImageIcon("ressource/Client.jpg"));
 		btnNewButton_1.setBounds(185, 202, 117, 123);
 		desktopPane.add(btnNewButton_1);
 

@@ -36,7 +36,7 @@ public class WindowAddRace {
 		AddRace.setResizable(false);
 		AddRace.setLocationRelativeTo(null);
 		AddRace.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		JLabel bckground = new JLabel(new ImageIcon("ressource/backgroung.jpg"));
 		AddRace.setContentPane(bckground);
 		
 		GridBagLayout gbl_AddRace = new GridBagLayout();
@@ -57,13 +57,13 @@ public class WindowAddRace {
 		gbc_desktopPane.gridy = 0;
 		AddRace.getContentPane().add(desktopPane, gbc_desktopPane);
 
-		JButton btnConfirmAddRace = new JButton(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/checked32.png"));
+		JButton btnConfirmAddRace = new JButton(new ImageIcon("ressource/checked32.png"));
 		btnConfirmAddRace.setForeground(new Color(255, 255, 255));
 		btnConfirmAddRace.setBackground(new Color(255, 255, 255));
 		btnConfirmAddRace.setBounds(320, 5, 58, 44);
 		desktopPane.add(btnConfirmAddRace);
 
-		JButton btnCancelAddRace = new JButton(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/cancel.png"));
+		JButton btnCancelAddRace = new JButton(new ImageIcon("ressource/cancel.png"));
 		btnCancelAddRace.setForeground(new Color(255, 255, 255));
 		btnCancelAddRace.setBackground(new Color(255, 255, 255));
 		btnCancelAddRace.setBounds(390, 5, 58, 44);

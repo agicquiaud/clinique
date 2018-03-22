@@ -31,7 +31,7 @@ public class WindowPriseDeRendezVous2 {
 	private UtilDateModel model = new UtilDateModel();
 	private JDatePanelImpl datePanel = new JDatePanelImpl(model, properties);
 	private JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());;
-	private ImageIcon icon = new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/plus.png");
+	private ImageIcon icon = new ImageIcon("ressource/plus.png");
 	private ControllerClients controllerClients;
 	private final JLabel lblPar = new JLabel("Pour");
 	private final JLabel lblClient = new JLabel("Client : ");

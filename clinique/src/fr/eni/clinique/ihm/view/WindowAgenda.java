@@ -43,7 +43,7 @@ public class WindowAgenda {
 	private JFrame frame;
 	private JTable table;
 	private DefaultTableModel tableModel;
-	private ImageIcon foldericon = new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/folder-icon.png");
+	private ImageIcon foldericon = new ImageIcon("ressource/folder-icon.png");
 	private Properties properties = new Properties();
 	private UtilDateModel model = new UtilDateModel();
 	private JDatePanelImpl datePanel = new JDatePanelImpl(model, properties);
@@ -64,7 +64,7 @@ public class WindowAgenda {
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		JLabel bckground = new JLabel(new ImageIcon("ressource/backgroung.jpg"));
 		frame.setContentPane(bckground);
 
 		JMenuBar menuBar = new JMenuBar();

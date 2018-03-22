@@ -42,7 +42,7 @@ public class WindowRemove {
 		PopupDelete.setResizable(false);
 		PopupDelete.setLocationRelativeTo(null);
 		PopupDelete.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		JLabel bckground = new JLabel(new ImageIcon("ressource/backgroung.jpg"));
 		PopupDelete.setContentPane(bckground);
 
 		GridBagLayout gbl_PopupDeleteClient = new GridBagLayout();

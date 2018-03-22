@@ -80,14 +80,14 @@ public class windowtest {
 		JButton btnValiderEditAnimal = new JButton();
 		btnValiderEditAnimal.setForeground(new Color(255, 255, 255));
 		btnValiderEditAnimal.setBackground(new Color(255, 255, 255));
-		btnValiderEditAnimal.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/checked32.png"));
+		btnValiderEditAnimal.setIcon(new ImageIcon("ressource/checked32.png"));
 		btnValiderEditAnimal.setBounds(320, 18, 58, 44);
 		desktopPaneEditAnimal.add(btnValiderEditAnimal);
 
 		JButton btnAnnulerEditAnimal = new JButton();
 		btnAnnulerEditAnimal.setForeground(new Color(255, 255, 255));
 		btnAnnulerEditAnimal.setBackground(new Color(255, 255, 255));
-		btnAnnulerEditAnimal.setIcon(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/cancel.png"));
+		btnAnnulerEditAnimal.setIcon(new ImageIcon("ressource/cancel.png"));
 		btnAnnulerEditAnimal.setBounds(400, 18, 58, 44);
 		desktopPaneEditAnimal.add(btnAnnulerEditAnimal);
 

@@ -41,7 +41,7 @@ public class WindowEditClient extends WindowClients{
 		EditClient.setSize(550, 330);
 		EditClient.setLocationRelativeTo(null);
 		EditClient.setResizable(false);
-		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		JLabel bckground = new JLabel(new ImageIcon("ressource/backgroung.jpg"));
 		EditClient.setContentPane(bckground);
 		
 		GridBagLayout gbl_EditClient = new GridBagLayout();

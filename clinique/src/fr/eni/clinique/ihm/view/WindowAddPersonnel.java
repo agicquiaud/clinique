@@ -29,7 +29,7 @@ public class WindowAddPersonnel {
 		AjoutPersonnel.setSize(460, 260);
 		AjoutPersonnel.setResizable(false);
 		AjoutPersonnel.setLocationRelativeTo(null);
-		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		JLabel bckground = new JLabel(new ImageIcon("ressource/backgroung.jpg"));
 		AjoutPersonnel.setContentPane(bckground);
 
 		GridBagLayout gridBagLayoutModalAdd = new GridBagLayout();

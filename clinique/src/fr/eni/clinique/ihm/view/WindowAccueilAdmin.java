@@ -47,7 +47,7 @@ public class WindowAccueilAdmin {
 	gbc_desktopPane.gridy = 0;
 	frame.getContentPane().add(desktopPane, gbc_desktopPane);
 	
-	JLabel lblNewLabel = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/logo.jpg"));
+	JLabel lblNewLabel = new JLabel(new ImageIcon("ressource/logo.jpg"));
 	lblNewLabel.setBounds(117, 11, 90, 96);
 	desktopPane.add(lblNewLabel);
 	
@@ -72,12 +72,12 @@ public class WindowAccueilAdmin {
 	panel_2.setBounds(0, 400, 332, 63);
 	desktopPane.add(panel_2);
 	
-	JButton btnNewButton_2 = new JButton(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/cancel.png"));
+	JButton btnNewButton_2 = new JButton(new ImageIcon("ressource/cancel.png"));
 	panel_2.add(btnNewButton_2);
 	btnNewButton_2.setMaximumSize(new Dimension(30, 30));
 	btnNewButton_2.setBackground(new Color(240, 240, 240));
 	
-	JButton btnNewButton = new JButton(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/ico_gp.jpg"));
+	JButton btnNewButton = new JButton(new ImageIcon("ressource/ico_gp.jpg"));
 	btnNewButton.setBounds(92, 193, 140, 139);
 	desktopPane.add(btnNewButton);
 	

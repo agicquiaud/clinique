@@ -34,7 +34,7 @@ public class WindowAddAnimal implements Observer{
 	private JTextField textFieldCouleurAnimal;
 	private JTextField textFieldTatouageAnimal;
 	private JTextField textFieldAntecedentsAnimal;
-	private ImageIcon icon = new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/plus.png");
+	private ImageIcon icon = new ImageIcon("ressource/plus.png");
 	private ComboBoxModel<String> comboboxModel;
 	private JComboBox<String> espece;
 	private JComboBox<String> race;
@@ -47,7 +47,7 @@ public class WindowAddAnimal implements Observer{
 		AddAnimal.setResizable(false);
 		AddAnimal.setLocationRelativeTo(null);
 		AddAnimal.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		JLabel bckground = new JLabel(new ImageIcon("ressource/backgroung.jpg"));
 		AddAnimal.setContentPane(bckground);
 		
 		GridBagLayout gbl_AddAnimal = new GridBagLayout();
@@ -68,13 +68,13 @@ public class WindowAddAnimal implements Observer{
 		gbc_desktopPane.gridy = 0;
 		AddAnimal.getContentPane().add(desktopPane, gbc_desktopPane);
 
-		JButton btnConfirmAddAnimal = new JButton(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/checked32.png"));
+		JButton btnConfirmAddAnimal = new JButton(new ImageIcon("ressource/checked32.png"));
 		btnConfirmAddAnimal.setForeground(new Color(255, 255, 255));
 		btnConfirmAddAnimal.setBackground(new Color(255, 255, 255));
 		btnConfirmAddAnimal.setBounds(420, 11, 58, 44);
 		desktopPane.add(btnConfirmAddAnimal);
 
-		JButton btnCancelAddAnimal = new JButton(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/cancel.png"));
+		JButton btnCancelAddAnimal = new JButton(new ImageIcon("ressource/cancel.png"));
 		btnCancelAddAnimal.setForeground(new Color(255, 255, 255));
 		btnCancelAddAnimal.setBackground(new Color(255, 255, 255));
 		btnCancelAddAnimal.setBounds(500, 11, 58, 44);

@@ -73,7 +73,7 @@ public class WindowPriseDeRendezVous implements Observer{
 	private JDatePanelImpl datePanel;
 	private DateLabelFormatter formatDate;
 	private JDatePickerImpl datePicker;
-	private ImageIcon icon = new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/plus.png");
+	private ImageIcon icon = new ImageIcon("ressource/plus.png");
 	private ControllerAnimaux controllerAnimal;
 	private ControllerClients controllerClients;
 	private final JButton btnAddClient = new JButton(icon);
@@ -104,7 +104,7 @@ public class WindowPriseDeRendezVous implements Observer{
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		JLabel bckground = new JLabel(new ImageIcon("ressource/backgroung.jpg"));
 		frame.setContentPane(bckground);
 
 		JMenuBar menuBar = new JMenuBar();

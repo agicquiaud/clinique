@@ -40,7 +40,7 @@ public class WindowGestionPersonnels implements Observer{
 		frameGestionPersonnel.setResizable(false);
 		frameGestionPersonnel.setLocationRelativeTo(null);
 		frameGestionPersonnel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
+		JLabel bckground = new JLabel(new ImageIcon("ressource/backgroung.jpg"));
 		frameGestionPersonnel.setContentPane(bckground);
 	
 		JMenuBar menuBar = new JMenuBar();
