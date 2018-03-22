@@ -10,5 +10,6 @@ public interface ControllerAgenda {
 	public void removeRDV(RendezVous rdv);
 	public List<RendezVous> getRdv(User veto, String date, Integer heure, Integer minute);
 	public Object[][] getTabAgenda(String NomVeto, String pdate);
+	public RendezVous getRdvByCodeVetDate(RendezVous rdv);
 	
 }
