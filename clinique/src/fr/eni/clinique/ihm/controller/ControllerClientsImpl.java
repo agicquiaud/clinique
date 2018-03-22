@@ -32,7 +32,6 @@ public class ControllerClientsImpl extends Observable implements ControllerClien
 	public Clients[] listeClient(){
 		liste = bllclients.getAll();
 		Clients[] tab = new Clients[liste.size()];
-		System.out.println(liste.size());
 		for (Clients clients : liste) {
 			tab[liste.indexOf(clients)] = clients;
 		}
@@ -83,7 +82,6 @@ public class ControllerClientsImpl extends Observable implements ControllerClien
 
 	public void removeClient(Integer codeclient) {
 		clients = bllclients.getClientById(codeclient);
-		System.out.println(clients.toString());
 		clients.setArchive(true);
 		bllclients.update(clients);
 		
