@@ -286,7 +286,7 @@ public class WindowClients implements Observer {
 					new WindowAddAnimal(
 							controllerclient.getClientbyId(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()));
 				} catch (Exception err) {
-					lblError.setText("Aucun client sélectionné pour luil ajouter un animal");
+					lblError.setText("Aucun client sélectionné pour lui ajouter un animal");
 				}
 			}
 		});

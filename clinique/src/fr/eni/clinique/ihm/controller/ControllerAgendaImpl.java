@@ -82,5 +82,11 @@ public class ControllerAgendaImpl extends Observable implements ControllerAgenda
 		}
 		return tab;
 	}
+	
+	public RendezVous getRdvByCodeVetDate(RendezVous rdv){
+		rdv = mgerAgenda.getRdvByDateCodeVet(rdv.getCodeVeto(), rdv.getDate());
+		
+		return rdv;	
+	}
 
 }

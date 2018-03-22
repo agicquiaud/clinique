@@ -1,5 +1,6 @@
 package fr.eni.clinique.bll;
 
+import java.util.Date;
 import java.util.List;
 
 import fr.eni.clinique.bo.RendezVous;
@@ -11,6 +12,7 @@ public class AgendaManagerImpl implements AgendaManager{
 
 	private AgendaDAO agendaDAO = new DAOFactory().getAgendaDAO();
 	private List<RendezVous> liste;
+	private RendezVous rdv;
 	
 	@Override
 	public void insert(RendezVous pRdv) {
@@ -80,6 +82,16 @@ public class AgendaManagerImpl implements AgendaManager{
 			e.printStackTrace();
 		}
 		return liste;
+	}
+	
+	@Override
+	public RendezVous getRdvByDateCodeVet(Integer codeVet, Date date) {
+		try {
+			rdv = agendaDAO.selectRdvByDateCodeVeto(date, codeVet);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		return rdv;
 	}
 	
 }

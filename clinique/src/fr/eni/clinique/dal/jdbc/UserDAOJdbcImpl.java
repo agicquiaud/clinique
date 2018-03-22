@@ -101,7 +101,7 @@ public class UserDAOJdbcImpl implements UserDAO {
 		try {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS);
-			rqt.setString(1, data.getLogin());
+			rqt.setString(1, data.getLogin().substring(0, 1).toUpperCase() + data.getLogin().substring(1));
 			rqt.setString(2, data.getPassword());
 			rqt.setString(3, data.getType());
 			rqt.setBoolean(4, data.getArchive());

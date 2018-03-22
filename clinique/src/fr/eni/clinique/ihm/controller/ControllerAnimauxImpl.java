@@ -130,6 +130,11 @@ public class ControllerAnimauxImpl extends Observable implements ControllerAnima
 
 	public void addRace(String race, String espece) {
 		mgerAnimal.insertRace(race, espece);
+		
+		setChanged();
+		notifyObservers(race);
+		setChanged();
+		notifyObservers(espece);
 	}
 	
 }
