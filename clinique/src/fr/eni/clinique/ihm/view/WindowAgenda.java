@@ -136,7 +136,14 @@ public class WindowAgenda {
 		String[] entete = { "Heure", "Nom", "Animal", "Race" };
 		Object[][] donnee = controlleragenda.getTabAgenda(comboBoxVet.getSelectedItem().toString(),
 				datePicker.getJFormattedTextField().getText());
-		table = new JTable(donnee, entete);
+		table = new JTable();
+		tableModel = new DefaultTableModel(donnee, entete) { // nouveau model
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		table.setModel(tableModel);
 		scrollPane.setViewportView(table);
 
 		JButton btnDossierMedical = new JButton(foldericon);

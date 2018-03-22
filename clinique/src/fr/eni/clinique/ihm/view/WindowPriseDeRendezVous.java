@@ -88,7 +88,7 @@ public class WindowPriseDeRendezVous implements Observer{
 	private JComboBox<Clients> CBClient;
 	private DefaultComboBoxModel<Clients> comboboxModelClient;
 	private JComboBox<User> CBVet;
-	private JLabel Err = new JLabel();
+	private JLabel err = new JLabel();
 	private final String[] ENTETES = { "Heure", "Nom du client", "Animal", "Race" };
 
 	public WindowPriseDeRendezVous() {
@@ -222,7 +222,14 @@ public class WindowPriseDeRendezVous implements Observer{
 		contentPaneNorth.add(contentPaneNorthCenter);
 		contentPaneNorth.add(contentPaneNorthEst);
 
-		table = new JTable(donnee, ENTETES);
+		table = new JTable();
+		tableModel = new DefaultTableModel(donnee, ENTETES) { // nouveau model
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		table.setModel(tableModel);
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setColumnHeaderView(table.getTableHeader());
 		contentPaneCenter.setLayout(new BorderLayout());
@@ -318,7 +325,8 @@ public class WindowPriseDeRendezVous implements Observer{
 					new WindowRemove(new RendezVous(((User) CBVet.getSelectedItem()).getId(), cal.getTime(),
 							null));
 				} else
-					System.out.println("Aucune ligne sélectionner");
+					err.setText("Aucune ligne sélectionnée");
+					System.out.println("Aucune ligne sélectionnée");
 			}
 		});
 		
@@ -333,9 +341,6 @@ public class WindowPriseDeRendezVous implements Observer{
 				//Add Client
 				CA.addRDV(new RendezVous(((User) CBVet.getSelectedItem()).getId(), cal.getTime(),
 						((Animaux) CBAnimal.getSelectedItem()).getCodeAnimal()));
-				
-				setUpTableData(CA.getTabAgenda(((User) CBVet.getSelectedItem()).getLogin(),
-						sdf.format(datePicker.getModel().getValue())), ENTETES);
 			}
 		});
 		btnAddClient.addActionListener(new ActionListener() {
