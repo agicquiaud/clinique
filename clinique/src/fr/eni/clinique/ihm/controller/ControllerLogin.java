@@ -28,7 +28,6 @@ public class ControllerLogin {
 			for (char c : pass) {
 				mdp = mdp + c;
 			}
-			System.out.println(mdp);
 			message = mger.verifPassword(nom, mdp);
 		} catch (BLLException e) {
 			e.printStackTrace();

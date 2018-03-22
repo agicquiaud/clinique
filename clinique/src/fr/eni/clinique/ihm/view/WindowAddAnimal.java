@@ -270,6 +270,7 @@ public class WindowAddAnimal {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new WindowAddRace();
+				System.out.println("maintenant");
 			}
 		});
 	}

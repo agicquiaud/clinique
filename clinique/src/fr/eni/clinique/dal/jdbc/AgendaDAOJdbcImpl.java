@@ -19,7 +19,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 	private static final String sqlSelectAll = "SELECT CodeVeto, DateRdv, CodeAnimal FROM Agendas";
 	private static final String sqlUpdate = "UPDATE Agendas SET CodeVeto=?, DateRdv=?, CodeAnimal=? WHERE CodeAnimal=?";
 	private static final String sqlInsert = "INSERT INTO Agendas (CodeVeto, DateRdv, CodeAnimal) VALUES (?, ?, ?)";
-	private static final String sqlDelete = "DELETE FROM Agendas WHERE CodeVeto=? AND DateRdv=? AND CodeAnimal=?";
+	private static final String sqlDelete = "DELETE FROM Agendas WHERE CodeVeto=? AND DateRdv=?";
 	private static final String sqlSelectByHour = "SELECT CodeVeto, DateRdv, CodeAnimal FROM Agendas WHERE DateRdv<=? AND DateRdv>=?";
 	private static final String sqlSelectByDay = "SELECT CodeVeto, DateRdv, CodeAnimal FROM Agendas WHERE DateRdv<=? AND DateRdv>=?";
 	private static final String sqlSelectByIdAnimal ="SELECT CodeVeto, CodeAnimal, DateRdv FROM Agendas WHERE CodeAnimal=?";
@@ -135,7 +135,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 			rqt = cnx.prepareStatement(sqlDelete);			
 			rqt.setInt(1, data.getCodeVeto());
 			rqt.setTimestamp(2, new java.sql.Timestamp(data.getDate().getTime()));
-			rqt.setInt(3, data.getCodeAnimal());
+			//rqt.setInt(3, data.getCodeAnimal());
 			rqt.executeUpdate();
 		} catch (SQLException e) {
 			throw new DALException("Delete rdv failed - date=" + data.getDate().toString(), e);

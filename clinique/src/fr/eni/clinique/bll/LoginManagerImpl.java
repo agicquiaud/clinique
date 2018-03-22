@@ -27,8 +27,6 @@ public class LoginManagerImpl implements LoginManager{
 				message = true;
 			}
 		}
-			
-		System.out.println(message);
 		return message;
 	}
 

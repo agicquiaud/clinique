@@ -83,6 +83,7 @@ public class WindowPriseDeRendezVous implements Observer{
 	private JTable table;
 	private SimpleDateFormat sdf;
 	private JComboBox<User> CBVet;
+	private JLabel Err = new JLabel();
 	private final String[] ENTETES = { "Heure", "Nom du client", "Animal", "Race" };
 
 	public WindowPriseDeRendezVous() {
@@ -297,9 +298,10 @@ public class WindowPriseDeRendezVous implements Observer{
 					// Conversion date
 					String[] str = sdf.format(datePicker.getModel().getValue()).split("/");
 					String[] strhm = table.getValueAt(table.getSelectedRow(), 0).toString().split(":");
+					System.out.println(table.getValueAt(table.getSelectedRow(), 0).toString());
 					cal.set(Integer.parseInt(str[2]), Integer.parseInt(str[1]) - 1, Integer.parseInt(str[0]),
-							Integer.parseInt(strhm[0]), Integer.parseInt(strhm[1]));
-					SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+							Integer.parseInt(strhm[0]), Integer.parseInt(strhm[1]), 00);
+					SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 					String strDate = sm.format(cal.getTime());
 					try {
 						cal.setTime(sm.parse(strDate));
@@ -307,7 +309,7 @@ public class WindowPriseDeRendezVous implements Observer{
 					}
 					// Remove client
 					new WindowRemove(new RendezVous(((User) CBVet.getSelectedItem()).getId(), cal.getTime(),
-							((Animaux) CBAnimal.getSelectedItem()).getCodeAnimal()));
+							null));
 				} else
 					System.out.println("Aucune ligne sélectionner");
 			}
