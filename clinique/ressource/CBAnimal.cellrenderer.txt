@@ -1,0 +1,9 @@
+CBAnimal.setRenderer(new ListCellRenderer<Animaux>() {
+			@Override
+			public Component getListCellRendererComponent(JList<? extends Animaux> list, Animaux value, int index,
+					boolean isSelected, boolean cellHasFocus) {
+				DefaultListCellRenderer renderer = new DefaultListCellRenderer();
+				renderer.setText(value.getNom());
+				return renderer;
+			}
+		});
