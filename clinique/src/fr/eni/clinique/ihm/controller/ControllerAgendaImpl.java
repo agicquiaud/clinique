@@ -20,7 +20,7 @@ import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.bo.RendezVous;
 import fr.eni.clinique.bo.User;
 
-public class ControllerAgendaImpl extends Observable implements ControllerAgenda{
+public class ControllerAgendaImpl extends Observable implements ControllerAgenda {
 
 	private AnimalManager mgerAnimal;
 	private ClientsManager mgerClient;
@@ -32,22 +32,27 @@ public class ControllerAgendaImpl extends Observable implements ControllerAgenda
 	private Calendar cal = Calendar.getInstance();
 
 	ControllerAgendaImpl() {
-		mgerAnimal = AnimalManagerSingleton.getinstance(); // Instance AnimalImpl
+		mgerAnimal = AnimalManagerSingleton.getinstance(); // Instance
+															// AnimalImpl
 		mgerClient = ClientsManagerSingleton.getinstance();
 		mgerPersonnel = PersonnelsManagerSingleton.getInstance();
 		mgerAgenda = AgendaManagerSingleton.getinstance();
 	}
 
-	public void addRDV(RendezVous rdv) {
-		mgerAgenda.insert(rdv);
-		
-		setChanged();
-		notifyObservers(rdv);
+	public void addRDV(RendezVous rdv) {	
+//		if (mgerAgenda.getRdvByDateCodeVet(rdv.getCodeVeto(), rdv.getDate()).equals(null)) {
+			mgerAgenda.insert(rdv);
+
+			setChanged();
+			notifyObservers(rdv);
+//		} else {
+//			System.out.println("erreur, un rendez vous est deja prévu pour ce créneau la");
+//		}
 	}
 
 	public void removeRDV(RendezVous rdv) {
 		mgerAgenda.delete(rdv);
-		
+
 		setChanged();
 		notifyObservers(rdv);
 	}
@@ -82,11 +87,11 @@ public class ControllerAgendaImpl extends Observable implements ControllerAgenda
 		}
 		return tab;
 	}
-	
-	public RendezVous getRdvByCodeVetDate(RendezVous rdv){
+
+	public RendezVous getRdvByCodeVetDate(RendezVous rdv) {
 		rdv = mgerAgenda.getRdvByDateCodeVet(rdv.getCodeVeto(), rdv.getDate());
-		
-		return rdv;	
+
+		return rdv;
 	}
 
 }
