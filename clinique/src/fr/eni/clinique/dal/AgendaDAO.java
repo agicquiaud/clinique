@@ -24,5 +24,7 @@ public interface AgendaDAO {
 	public List<RendezVous> selectByIdVet(Integer id) throws DALException;
 	
 	public List<RendezVous> selectDayByVet (Date date, Integer id) throws DALException;
+
+	public Integer selectCodeAnimalByRdv(Date date, Integer idVet) throws DALException;
 	
 }

@@ -356,4 +356,39 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 		}
 		return liste;
 	}
+	
+	@Override
+	public Integer selectCodeAnimalByRdv(Date date, Integer idVet) throws DALException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		Integer codeAnimal = null;
+		try {
+			cnx = JdbcTools.getConnection();
+			rqt = cnx.prepareStatement(sqlSelectDayByVet);
+			rqt.setInt(1, idVet);
+			rqt.setTimestamp(2, new java.sql.Timestamp(date.getTime()));
+			rs = rqt.executeQuery();
+			if (rs.next()) {
+				codeAnimal = rs.getInt("CodeAnimal");
+			}
+		} catch (SQLException e) {
+			throw new DALException("selectDayByVet failed - date = " + date, e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (rqt != null) {
+					rqt.close();
+				}
+				if (cnx != null) {
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return codeAnimal;
+	}	
 }
