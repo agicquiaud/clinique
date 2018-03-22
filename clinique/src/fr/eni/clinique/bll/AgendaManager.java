@@ -1,5 +1,6 @@
 package fr.eni.clinique.bll;
 
+import java.util.Date;
 import java.util.List;
 
 import fr.eni.clinique.bo.RendezVous;
@@ -13,5 +14,6 @@ public interface AgendaManager {
 	public List<RendezVous> RdvByIdAnimal(Integer id);
 	public List<RendezVous> RdvByIdVet(Integer id);
 	public List<RendezVous> getRdvVetByDay(RendezVous prdv);
+	public RendezVous getRdvByDateCodeVet(Integer Codevet, Date date);
 	
 }

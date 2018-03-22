@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -25,6 +24,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 	private static final String sqlSelectByIdAnimal ="SELECT CodeVeto, CodeAnimal, DateRdv FROM Agendas WHERE CodeAnimal=?";
 	private static final String sqlSelectByIdVet = "SELECT CodeVeto, CodeAnimal, DateRdv FROM Agendas WHERE CodeVeto=?";
 	private static final String sqlSelectDayByVet = "SELECT CodeVeto, CodeAnimal, DateRdv FROM Agendas WHERE DateRdv BETWEEN ? AND ? AND CodeVeto=?";
+	private static final String sqlSelectRdvByDateCodeVeto = "SELECT CodeVeto, DateRdv, CodeAnimal FROM Agendas WHERE CodeVeto=? AND DateRdv=?";
 	
 	public List<RendezVous> selectAll() throws DALException {
 		Connection cnx = null;
@@ -358,19 +358,19 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 	}
 	
 	@Override
-	public Integer selectCodeAnimalByRdv(Date date, Integer idVet) throws DALException {
+	public RendezVous selectRdvByDateCodeVeto(Date date, Integer idVet) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		ResultSet rs = null;
-		Integer codeAnimal = null;
+		RendezVous rdv = null;
 		try {
 			cnx = JdbcTools.getConnection();
-			rqt = cnx.prepareStatement(sqlSelectDayByVet);
+			rqt = cnx.prepareStatement(sqlSelectRdvByDateCodeVeto);
 			rqt.setInt(1, idVet);
 			rqt.setTimestamp(2, new java.sql.Timestamp(date.getTime()));
 			rs = rqt.executeQuery();
 			if (rs.next()) {
-				codeAnimal = rs.getInt("CodeAnimal");
+				rdv = new RendezVous(idVet, date, rs.getInt("CodeAnimal"));
 			}
 		} catch (SQLException e) {
 			throw new DALException("selectDayByVet failed - date = " + date, e);
@@ -389,6 +389,6 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 				e.printStackTrace();
 			}
 		}
-		return codeAnimal;
+		return rdv;
 	}	
 }
