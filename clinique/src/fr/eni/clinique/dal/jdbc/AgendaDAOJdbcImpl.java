@@ -21,11 +21,11 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 	private static final String sqlDelete = "DELETE FROM Agendas WHERE CodeVeto=? AND DateRdv=?";
 	private static final String sqlSelectByHour = "SELECT CodeVeto, DateRdv, CodeAnimal FROM Agendas WHERE DateRdv<=? AND DateRdv>=?";
 	private static final String sqlSelectByDay = "SELECT CodeVeto, DateRdv, CodeAnimal FROM Agendas WHERE DateRdv<=? AND DateRdv>=?";
-	private static final String sqlSelectByIdAnimal ="SELECT CodeVeto, CodeAnimal, DateRdv FROM Agendas WHERE CodeAnimal=?";
+	private static final String sqlSelectByIdAnimal = "SELECT CodeVeto, CodeAnimal, DateRdv FROM Agendas WHERE CodeAnimal=?";
 	private static final String sqlSelectByIdVet = "SELECT CodeVeto, CodeAnimal, DateRdv FROM Agendas WHERE CodeVeto=?";
 	private static final String sqlSelectDayByVet = "SELECT CodeVeto, CodeAnimal, DateRdv FROM Agendas WHERE DateRdv BETWEEN ? AND ? AND CodeVeto=?";
 	private static final String sqlSelectRdvByDateCodeVeto = "SELECT CodeVeto, DateRdv, CodeAnimal FROM Agendas WHERE CodeVeto=? AND DateRdv=?";
-	
+
 	public List<RendezVous> selectAll() throws DALException {
 		Connection cnx = null;
 		Statement rqt = null;
@@ -70,7 +70,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 			cnx = JdbcTools.getConnection();
 			rqt = cnx.prepareStatement(sqlUpdate);
 			rqt.setInt(1, data.getCodeVeto());
-			rqt.setDate(4, new java.sql.Date(data.getDate().getTime())); 
+			rqt.setDate(4, new java.sql.Date(data.getDate().getTime()));
 			rqt.setInt(3, data.getCodeAnimal());
 			rqt.setDate(4, new java.sql.Date(data.getDate().getTime()));
 
@@ -132,10 +132,10 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 			System.out.println(data.toString() + " " + new java.sql.Timestamp(data.getDate().getTime()));
 			// l'intégrité référentielle s'occupe d'invalider la suppression
 			cnx = JdbcTools.getConnection();
-			rqt = cnx.prepareStatement(sqlDelete);			
+			rqt = cnx.prepareStatement(sqlDelete);
 			rqt.setInt(1, data.getCodeVeto());
 			rqt.setTimestamp(2, new java.sql.Timestamp(data.getDate().getTime()));
-			//rqt.setInt(3, data.getCodeAnimal());
+			// rqt.setInt(3, data.getCodeAnimal());
 			rqt.executeUpdate();
 		} catch (SQLException e) {
 			throw new DALException("Delete rdv failed - date=" + data.getDate().toString(), e);
@@ -154,7 +154,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 		}
 	}
 
-	@Override 
+	@Override
 	public List<RendezVous> selectByHour(Date date) throws DALException {
 		Connection cnx = null;
 		PreparedStatement rqt = null;
@@ -212,7 +212,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 			rqt.setDate(2, (java.sql.Date) cal.getTime());
 			rs = rqt.executeQuery();
 			RendezVous rdv = null;
-			
+
 			while (rs.next()) {
 				rdv = new RendezVous();
 
@@ -356,7 +356,7 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 		}
 		return liste;
 	}
-	
+
 	@Override
 	public RendezVous selectRdvByDateCodeVeto(Date date, Integer idVet) throws DALException {
 		Connection cnx = null;
@@ -370,10 +370,10 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 			rqt.setTimestamp(2, new java.sql.Timestamp(date.getTime()));
 			rs = rqt.executeQuery();
 			if (rs.next()) {
-				rdv = new RendezVous(idVet, date, rs.getInt("CodeAnimal"));
+				rdv = new RendezVous(rs.getInt("CodeVeto"), rs.getTimestamp("DateRdv"), rs.getInt("CodeAnimal"));
 			}
 		} catch (SQLException e) {
-			throw new DALException("selectDayByVet failed - date = " + date, e);
+			throw new DALException("selectRdvByDateCodeVeto failed - date = " + date, e);
 		} finally {
 			try {
 				if (rs != null) {
@@ -390,5 +390,5 @@ public class AgendaDAOJdbcImpl implements AgendaDAO {
 			}
 		}
 		return rdv;
-	}	
+	}
 }
