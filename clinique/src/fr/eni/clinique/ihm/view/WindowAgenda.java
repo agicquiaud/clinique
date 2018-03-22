@@ -144,6 +144,13 @@ public class WindowAgenda {
 		gbc_btnDossierMedical.gridy = 6;
 		frame.getContentPane().add(btnDossierMedical, gbc_btnDossierMedical);
 		
+		JLabel error = new JLabel("");
+		GridBagConstraints gbc_error = new GridBagConstraints();
+		gbc_error.insets = new Insets(0, 0, 5, 5);
+		gbc_error.gridx = 2;
+		gbc_error.gridy = 6;
+		frame.getContentPane().add(error, gbc_error);
+		
 		frame.setVisible(true);
 		
 		//Action Listener DatePicker for refresh JTable
@@ -167,8 +174,13 @@ public class WindowAgenda {
 		btnDossierMedical.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				try{
 				Animaux animaux = (Animaux) donnee[table.getSelectedRow()][4];
 				new WindowDossierMedicalAnimal(table.getModel().getValueAt(table.getSelectedRow(), 1).toString(), controlleranimaux.getAnimalById(animaux.getCodeAnimal().toString()));
+				}catch (Exception err){
+					error.setText("Aucun rendez-vous de sélectionné");
+				}
 			}
 		});
 		//Action listener deconnexion
