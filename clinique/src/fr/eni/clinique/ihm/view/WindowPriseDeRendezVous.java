@@ -362,6 +362,7 @@ public class WindowPriseDeRendezVous implements Observer{
 				}
 				if(b){
 					//Conversion date
+					error.setText("");
 					String[] str = sdf.format(datePicker.getModel().getValue()).split("/");
 					cal.set(Integer.parseInt(str[2]), Integer.parseInt(str[1]) - 1, Integer.parseInt(str[0]),
 							Integer.parseInt(heure.getModel().getValue().toString()),
@@ -370,7 +371,7 @@ public class WindowPriseDeRendezVous implements Observer{
 					CA.addRDV(new RendezVous(((User) CBVet.getSelectedItem()).getId(), cal.getTime(),
 							((Animaux) CBAnimal.getSelectedItem()).getCodeAnimal()));
 				}else{
-					error.setText("Un rendez-vous est déjà programmer a cette date et l'heure selectionner.");
+					error.setText("Un rendez-vous est déjà programmé pour ce vétérinaire pour le créneau selectionné.");
 				}
 				
 				

@@ -43,82 +43,162 @@ public class Animaux {
 		Archive = archive;
 	}
 	
+	/**
+	 * 
+	 * @return Integer
+	 */
 	public Integer getCodeAnimal() {
 		return CodeAnimal;
 	}
 
+	/**
+	 * 
+	 * @param Integer codeAnimal
+	 */
 	public void setCodeAnimal(Integer codeAnimal) {
 		CodeAnimal = codeAnimal;
 	}
 
+	/**
+	 * 
+	 * @return String
+	 */
 	public String getNom() {
 		return Nom;
 	}
 
+	/**
+	 * 
+	 * @param String nom
+	 */
 	public void setNom(String nom) {
 		Nom = nom;
 	}
 
+	/**
+	 * 
+	 * @return String
+	 */
 	public String getSexe() {
 		return Sexe;
 	}
 
+	/**
+	 * 
+	 * @param String sexe
+	 */
 	public void setSexe(String sexe) {
 		Sexe = sexe;
 	}
 
+	/**
+	 * 
+	 * @return String 
+	 */
 	public String getCouleur() {
 		return Couleur;
 	}
 
+	/**
+	 * 
+	 * @param String couleur
+	 */
 	public void setCouleur(String couleur) {
 		Couleur = couleur;
 	}
 
+	/**
+	 * 
+	 * @return String 
+	 */
 	public String getRace() {
 		return Race;
 	}
 
+	/**
+	 * 
+	 * @param String race
+	 */
 	public void setRace(String race) {
 		Race = race;
 	}
 
+	/**
+	 * 
+	 * @return String
+	 */
 	public String getEspece() {
 		return Espece;
 	}
 
+	/**
+	 * 
+	 * @param String espece
+	 */
 	public void setEspece(String espece) {
 		Espece = espece;
 	}
 
+	/**
+	 * 
+	 * @return Integer
+	 */
 	public Integer getCodeClient() {
 		return CodeClient;
 	}
 
+	/**
+	 * 
+	 * @param Integer codeClient
+	 */
 	public void setCodeClient(Integer codeClient) {
 		CodeClient = codeClient;
 	}
 
+	/**
+	 * 
+	 * @return String
+	 */
 	public String getTatouage() {
 		return Tatouage;
 	}
 
+	/**
+	 * 
+	 * @param String tatouage
+	 */
 	public void setTatouage(String tatouage) {
 		Tatouage = tatouage;
 	}
 
+	/**
+	 * 
+	 * @return String
+	 */
 	public String getAntecedents() {
 		return Antecedents;
 	}
 
+	/**
+	 * 
+	 * @param String antecedents
+	 */
 	public void setAntecedents(String antecedents) {
 		Antecedents = antecedents;
 	}
 
+	/**
+	 * 
+	 * @return Boolean
+	 */
 	public Boolean getArchive() {
 		return Archive;
 	}
 
+	/**
+	 * 
+	 * @param Boolean archive
+	 */
 	public void setArchive(Boolean archive) {
 		Archive = archive;
 	}
