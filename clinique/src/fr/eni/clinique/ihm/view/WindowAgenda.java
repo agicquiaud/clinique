@@ -28,6 +28,7 @@ import org.jdatepicker.impl.UtilDateModel;
 
 import fr.eni.clinique.bo.Animaux;
 import fr.eni.clinique.ihm.controller.ControllerAgenda;
+import fr.eni.clinique.ihm.controller.ControllerAgendaSingleton;
 import fr.eni.clinique.ihm.controller.ControllerAnimaux;
 import fr.eni.clinique.ihm.controller.ControllerAnimauxSingleton;
 import fr.eni.clinique.ihm.controller.ControllerPersonnels;
@@ -48,7 +49,7 @@ public class WindowAgenda {
 	private ControllerAnimaux controlleranimaux;
 	
 	public WindowAgenda(String nom){		
-		controlleragenda = new ControllerAgenda();
+		controlleragenda = ControllerAgendaSingleton.getinstance();
 		controlleranimaux = ControllerAnimauxSingleton.getinstance();
 		controllerpersonnels = ControllerPersonnelsSingleton.getinstance();
 		frame = new JFrame();
@@ -63,7 +64,7 @@ public class WindowAgenda {
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
 		
-		JMenu mnConnexion = new JMenu("Connexion");
+		JMenu mnConnexion = new JMenu("Menu");
 		menuBar.add(mnConnexion);
 		
 		JMenuItem mntmDeconnexion = new JMenuItem("Deconnexion");
@@ -183,7 +184,7 @@ public class WindowAgenda {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.dispose();
-				new WindowAccueilSecretaire();
+				new WindowAccueilVeterinaire(nom);
 			}
 		});
 	}

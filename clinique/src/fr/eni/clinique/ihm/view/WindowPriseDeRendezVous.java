@@ -8,7 +8,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Properties;
 
 import javax.swing.BoxLayout;
@@ -37,20 +40,21 @@ import org.jdatepicker.impl.UtilDateModel;
 
 import fr.eni.clinique.bo.Animaux;
 import fr.eni.clinique.bo.Clients;
+import fr.eni.clinique.bo.RendezVous;
 import fr.eni.clinique.bo.User;
 import fr.eni.clinique.ihm.controller.ControllerAgenda;
+import fr.eni.clinique.ihm.controller.ControllerAgendaSingleton;
 import fr.eni.clinique.ihm.controller.ControllerAnimaux;
 import fr.eni.clinique.ihm.controller.ControllerAnimauxSingleton;
 import fr.eni.clinique.ihm.controller.ControllerClients;
 import fr.eni.clinique.ihm.controller.ControllerClientsSingleton;
 import fr.eni.clinique.ihm.controller.ControllerPersonnels;
-import fr.eni.clinique.ihm.controller.ControllerPersonnelsImpl;
 import fr.eni.clinique.ihm.controller.ControllerPersonnelsSingleton;
 
-public class WindowPriseDeRendezVous {
+public class WindowPriseDeRendezVous implements Observer{
 
-	private static final long serialVersionUID = 2363352550943035894L;
 	private JFrame frame = new JFrame();
+	private Calendar cal = Calendar.getInstance();
 	private JPanel contentPaneNorth = new JPanel();
 	private JPanel contentPaneNorthWest = new JPanel();
 	private JPanel contentPaneNorthWestClient = new JPanel();
@@ -79,12 +83,11 @@ public class WindowPriseDeRendezVous {
 	private JTable table;
 	private SimpleDateFormat sdf;
 	private JComboBox<User> CBVet;
+	private final String[] ENTETES = { "Heure", "Nom du client", "Animal", "Race" };
 
-	/**
-	 * Create the frame.
-	 */
-	public WindowPriseDeRendezVous(){
-		CA = new ControllerAgenda();
+	public WindowPriseDeRendezVous() {
+		CA = ControllerAgendaSingleton.getinstance();
+		((Observable) CA).addObserver(this);
 		cp = ControllerPersonnelsSingleton.getinstance();
 		controllerAnimal = ControllerAnimauxSingleton.getinstance();
 		controllerClients = ControllerClientsSingleton.getinstance();
@@ -95,16 +98,16 @@ public class WindowPriseDeRendezVous {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JLabel bckground = new JLabel(new ImageIcon("//3-UC31-14/Partage_Stagiaires/RL_AG_LV/backgroung.jpg"));
 		frame.setContentPane(bckground);
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		frame.setJMenuBar(menuBar);
-		
+
 		JMenu mnConnexion = new JMenu("Menu");
 		menuBar.add(mnConnexion);
-		
+
 		JMenuItem mntmDeconnexion = new JMenuItem("Deconnexion");
 		mnConnexion.add(mntmDeconnexion);
-		
+
 		JMenuItem mntmRetour = new JMenuItem("Retour");
 		mnConnexion.add(mntmRetour);
 
@@ -115,7 +118,7 @@ public class WindowPriseDeRendezVous {
 		datePanel = new JDatePanelImpl(model, properties);
 		formatDate = new DateLabelFormatter();
 		datePicker = new JDatePickerImpl(datePanel, formatDate);
-		
+
 		contentPaneNorth.setLayout(new BoxLayout(contentPaneNorth, BoxLayout.LINE_AXIS));
 		contentPaneNorthWest.setBorder(new EmptyBorder(0, 2, 2, 3));
 		contentPaneNorthWest.setLayout(new GridLayout(10, 0));
@@ -147,29 +150,15 @@ public class WindowPriseDeRendezVous {
 		btnAddClient.setBackground(new Color(66, 210, 230));
 		btnAddClient.setBorderPainted(false);
 		btnAddClient.setFocusPainted(false);
-		btnAddClient.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new WindowAddClient();
-			}
-		});
 
 		btnAddAnimal.setOpaque(false);
 		btnAddAnimal.setBackground(new Color(66, 210, 230));
 		btnAddAnimal.setBorderPainted(false);
 		btnAddAnimal.setFocusPainted(false);
-		btnAddAnimal.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (!CBClient.getSelectedItem().toString().equals("")) {
-					new WindowAddAnimal((Clients) CBClient.getSelectedItem());
-				}
-			}
-		});
 		Animaux[] tabAnimal = null;
-		tabAnimal = controllerAnimal.getAnimalByIdClient(((Clients)CBClient.getSelectedItem()).getCodeClient());
-		if (tabAnimal[0] == null){
-			tabAnimal[0] =  new Animaux();
+		tabAnimal = controllerAnimal.getAnimalByIdClient(((Clients) CBClient.getSelectedItem()).getCodeClient());
+		if (tabAnimal[0] == null) {
+			tabAnimal[0] = new Animaux();
 		}
 		JComboBox<Animaux> CBAnimal = new JComboBox<Animaux>(tabAnimal);
 		CBAnimal.setRenderer(new ListCellRenderer<Animaux>() {
@@ -181,23 +170,6 @@ public class WindowPriseDeRendezVous {
 				return renderer;
 			}
 		});
-		CBClient.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				CBAnimal.removeAllItems();
-				Animaux[] tabAnimaux2 = null;
-				tabAnimaux2 = controllerAnimal.getAnimalByIdClient(((Clients)CBClient.getSelectedItem()).getCodeClient());
-				if(tabAnimaux2[0] == null){
-					tabAnimaux2[0] = new Animaux();
-				}
-				for (Animaux animaux : tabAnimaux2) {
-					CBAnimal.addItem(animaux);
-				}
-				CBAnimal.repaint();
-			}
-		});
-		
 		contentPaneNorthWestAnimal.add(CBAnimal);
 		contentPaneNorthWest.add(contentPaneNorthWestAnimal);
 		contentPaneNorthWestAnimal.add(btnAddAnimal);
@@ -205,7 +177,7 @@ public class WindowPriseDeRendezVous {
 		contentPaneNorthCenter.setLayout(new GridLayout(10, 1));
 		contentPaneNorthCenter.add(new JLabel("Par"));
 		contentPaneNorthCenter.add(new JLabel("Véterinaire :"));
-		User[] listeVeto= cp.getVeterinaire();
+		User[] listeVeto = cp.getVeterinaire();
 		CBVet = new JComboBox<User>(listeVeto);
 		CBVet.setRenderer(new ListCellRenderer<User>() {
 			@Override
@@ -218,30 +190,12 @@ public class WindowPriseDeRendezVous {
 		});
 		sdf = new SimpleDateFormat("dd/MM/yyyy");
 		sdf.format(model.getValue());
-		String[] entete = { "Heure", "Nom du client", "Animal", "Race" };
 		Object[][] donnee = CA.getTabAgenda(((User) CBVet.getSelectedItem()).getLogin(), sdf.format(model.getValue()));
-		CBVet.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setUpTableData(CA.getTabAgenda(((User) CBVet.getSelectedItem()).getLogin(), sdf.format(model.getValue())), entete);
-				
-			}
-		});
-		
 		contentPaneNorthCenter.add(CBVet);
 		contentPaneNorthEst.setBorder(new EmptyBorder(0, 3, 0, 2));
 		contentPaneNorthEst.setLayout(new GridLayout(10, 1));
 		contentPaneNorthEst.add(new JLabel("Quand"));
 		contentPaneNorthEst.add(new JLabel("Date :"));
-		datePicker.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setUpTableData(CA.getTabAgenda(((User) CBVet.getSelectedItem()).getLogin(), sdf.format(datePicker.getModel().getValue())), entete);
-				
-			}
-		});
 		contentPaneNorthEst.add(datePicker);
 		contentPaneNorthEst.add(new JLabel());
 		contentPaneNorthEstSouth.setLayout(new GridLayout(1, 4));
@@ -258,9 +212,9 @@ public class WindowPriseDeRendezVous {
 		contentPaneNorthEst.add(contentPaneNorthEstSouth);
 		contentPaneNorth.add(contentPaneNorthWest);
 		contentPaneNorth.add(contentPaneNorthCenter);
-		contentPaneNorth.add(contentPaneNorthEst);		
-		
-		table = new JTable(donnee, entete);
+		contentPaneNorth.add(contentPaneNorthEst);
+
+		table = new JTable(donnee, ENTETES);
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setColumnHeaderView(table.getTableHeader());
 		contentPaneCenter.setLayout(new BorderLayout());
@@ -270,39 +224,16 @@ public class WindowPriseDeRendezVous {
 		table.getSelectedRow();
 
 		contentPaneSouth.setLayout(new BoxLayout(contentPaneSouth, BoxLayout.LINE_AXIS));
-
 		contentPaneSouthWest.setLayout(new BoxLayout(contentPaneSouthWest, BoxLayout.PAGE_AXIS));
 		contentPaneSouthWest.add(new JLabel());
-
 		contentPaneSouthCenter.setLayout(new BoxLayout(contentPaneSouthCenter, BoxLayout.PAGE_AXIS));
 		contentPaneSouthCenter.add(new JLabel());
-
 		contentPaneSouthEst.setLayout(new BoxLayout(contentPaneSouthEst, BoxLayout.PAGE_AXIS));
+		
 		JButton button = new JButton("Supprimer");
-		button.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-					if(table.getSelectedColumn()> -1 && table.getSelectedRow()>-1){
-						CA.removeRDV((User) CBVet.getSelectedItem(),sdf.format(datePicker.getModel().getValue()) , table.getValueAt(table.getSelectedRow(), 0).toString(), (Animaux) CBAnimal.getSelectedItem());
-						setUpTableData(CA.getTabAgenda(((User) CBVet.getSelectedItem()).getLogin(), sdf.format(datePicker.getModel().getValue())), entete);
-					}else
-						System.out.println("Aucune ligne sélectionner");
-			}
-		});
 		contentPaneSouthEst.add(button);
 		JButton valider = new JButton("Valider");
-		valider.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-					CA.addRDV((User) CBVet.getSelectedItem(), sdf.format(datePicker.getModel().getValue()), Integer.parseInt(heure.getModel().getValue().toString())
-							, Integer.parseInt(minute.getModel().getValue().toString()), (Animaux) CBAnimal.getSelectedItem());
-					setUpTableData(CA.getTabAgenda(((User) CBVet.getSelectedItem()).getLogin(), sdf.format(datePicker.getModel().getValue())), entete);
-			}});
 		contentPaneSouthEst.add(valider);
-
 		contentPaneSouth.add(contentPaneSouthWest);
 		contentPaneSouth.add(contentPaneSouthCenter);
 		contentPaneSouth.add(contentPaneSouthEst);
@@ -310,8 +241,101 @@ public class WindowPriseDeRendezVous {
 		frame.getContentPane().add(contentPaneNorth);
 		frame.getContentPane().add(contentPaneCenter);
 		frame.getContentPane().add(contentPaneSouth);
-		
+
 		frame.setVisible(true);
+		
+		//Actions Listeners
+		CBVet.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setUpTableData(
+						CA.getTabAgenda(((User) CBVet.getSelectedItem()).getLogin(), sdf.format(model.getValue())),
+						ENTETES);
+			}
+		});
+		
+		datePicker.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setUpTableData(CA.getTabAgenda(((User) CBVet.getSelectedItem()).getLogin(),
+						sdf.format(datePicker.getModel().getValue())), ENTETES);
+
+			}
+		});		
+		//
+		btnAddAnimal.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (!CBClient.getSelectedItem().toString().equals("")) {
+					new WindowAddAnimal((Clients) CBClient.getSelectedItem());
+				}
+			}
+		});
+		CBClient.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CBAnimal.removeAllItems();
+				Animaux[] tabAnimaux2 = null;
+				tabAnimaux2 = controllerAnimal
+						.getAnimalByIdClient(((Clients) CBClient.getSelectedItem()).getCodeClient());
+				if (tabAnimaux2[0] == null) {
+					tabAnimaux2[0] = new Animaux();
+				}
+				for (Animaux animaux : tabAnimaux2) {
+					CBAnimal.addItem(animaux);
+				}
+				CBAnimal.repaint();
+			}
+		});
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (table.getSelectedColumn() > -1 && table.getSelectedRow() > -1) {
+					// Conversion date
+					String[] str = sdf.format(datePicker.getModel().getValue()).split("/");
+					String[] strhm = table.getValueAt(table.getSelectedRow(), 0).toString().split(":");
+					cal.set(Integer.parseInt(str[2]), Integer.parseInt(str[1]) - 1, Integer.parseInt(str[0]),
+							Integer.parseInt(strhm[0]), Integer.parseInt(strhm[1]));
+					SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+					String strDate = sm.format(cal.getTime());
+					try {
+						cal.setTime(sm.parse(strDate));
+					} catch (ParseException err) {
+					}
+					// Remove client
+					new WindowRemove(new RendezVous(((User) CBVet.getSelectedItem()).getId(), cal.getTime(),
+							((Animaux) CBAnimal.getSelectedItem()).getCodeAnimal()));
+				} else
+					System.out.println("Aucune ligne sélectionner");
+			}
+		});
+		
+		valider.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Conversion date
+				String[] str = sdf.format(datePicker.getModel().getValue()).split("/");
+				cal.set(Integer.parseInt(str[2]), Integer.parseInt(str[1]) - 1, Integer.parseInt(str[0]),
+						Integer.parseInt(heure.getModel().getValue().toString()),
+						Integer.parseInt(minute.getModel().getValue().toString()), 00);
+				//Add Client
+				CA.addRDV(new RendezVous(((User) CBVet.getSelectedItem()).getId(), cal.getTime(),
+						((Animaux) CBAnimal.getSelectedItem()).getCodeAnimal()));
+				
+				setUpTableData(CA.getTabAgenda(((User) CBVet.getSelectedItem()).getLogin(),
+						sdf.format(datePicker.getModel().getValue())), ENTETES);
+			}
+		});
+		btnAddClient.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new WindowAddClient();
+			}
+		});
+		
 		mntmDeconnexion.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -319,7 +343,7 @@ public class WindowPriseDeRendezVous {
 				new WindowLogin();
 			}
 		});
-		
+
 		mntmRetour.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -329,6 +353,7 @@ public class WindowPriseDeRendezVous {
 		});
 
 	}
+
 	private void setUpTableData(Object[][] data, String[] entetes) {
 		tableModel = new DefaultTableModel(data, entetes) { // nouveau model
 			@Override
@@ -338,6 +363,14 @@ public class WindowPriseDeRendezVous {
 		};
 		table.setModel(tableModel);
 		tableModel.fireTableDataChanged(); // maj tableau
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		if(arg instanceof RendezVous){
+			setUpTableData(CA.getTabAgenda(((User) CBVet.getSelectedItem()).getLogin(),
+					sdf.format(datePicker.getModel().getValue())), ENTETES);
+		}
 	}
 
 }

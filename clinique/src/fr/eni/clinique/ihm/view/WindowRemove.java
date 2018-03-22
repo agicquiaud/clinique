@@ -16,14 +16,12 @@ import fr.eni.clinique.bo.Clients;
 import fr.eni.clinique.bo.RendezVous;
 import fr.eni.clinique.bo.User;
 import fr.eni.clinique.ihm.controller.ControllerAgenda;
+import fr.eni.clinique.ihm.controller.ControllerAgendaSingleton;
 import fr.eni.clinique.ihm.controller.ControllerAnimaux;
-import fr.eni.clinique.ihm.controller.ControllerAnimauxImpl;
 import fr.eni.clinique.ihm.controller.ControllerAnimauxSingleton;
 import fr.eni.clinique.ihm.controller.ControllerClients;
-import fr.eni.clinique.ihm.controller.ControllerClientsImpl;
 import fr.eni.clinique.ihm.controller.ControllerClientsSingleton;
 import fr.eni.clinique.ihm.controller.ControllerPersonnels;
-import fr.eni.clinique.ihm.controller.ControllerPersonnelsImpl;
 import fr.eni.clinique.ihm.controller.ControllerPersonnelsSingleton;
 
 public class WindowRemove {
@@ -35,7 +33,7 @@ public class WindowRemove {
 	private JDialog PopupDelete = new JDialog();
 
 	WindowRemove(Object obj) {
-		controllerAgenda = new ControllerAgenda();
+		controllerAgenda = ControllerAgendaSingleton.getinstance();
 		controllerAnimal = ControllerAnimauxSingleton.getinstance();
 		controllerClient = ControllerClientsSingleton.getinstance();
 		controllerPersonnels = ControllerPersonnelsSingleton.getinstance();
@@ -89,8 +87,7 @@ public class WindowRemove {
 				} else if (obj instanceof User) {
 					controllerPersonnels.ArchivePersonnel(((User) obj).getLogin());
 				} else if (obj instanceof RendezVous) {
-					// controllerAgenda.removeRDV(veto, date, heure, minute,
-					// animal);
+					controllerAgenda.removeRDV((RendezVous) obj);
 				}
 				PopupDelete.dispose();
 			}

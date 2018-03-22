@@ -6,7 +6,6 @@ import java.util.Observable;
 import fr.eni.clinique.bll.PersonnelsManager;
 import fr.eni.clinique.bll.PersonnelsManagerSingleton;
 import fr.eni.clinique.bo.User;
-import fr.eni.clinique.ihm.view.WindowLogin;
 
 public class ControllerPersonnelsImpl extends Observable implements ControllerPersonnels{
 

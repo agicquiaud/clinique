@@ -174,10 +174,6 @@ public class WindowClients implements Observer {
 		frame.getContentPane().add(lblAnimaux, gbc_lblAnimaux);
 
 		JButton btnAddAnimal = new JButton("Ajouter");
-		btnAddAnimal.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		GridBagConstraints gbc_btnAddAnimal = new GridBagConstraints();
 		gbc_btnAddAnimal.insets = new Insets(0, 0, 0, 5);
 		gbc_btnAddAnimal.gridx = 6;
