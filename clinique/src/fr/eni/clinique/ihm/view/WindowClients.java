@@ -257,7 +257,7 @@ public class WindowClients implements Observer {
 					new WindowRemove(
 							controllerclient.getClientbyId(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()));
 				} catch (Exception err) {
-					lblError.setText("Aucun client selectionné pour le supprimer");
+					lblError.setText("Aucun client sélectionné pour le supprimer");
 				}
 
 			}
@@ -271,7 +271,7 @@ public class WindowClients implements Observer {
 					new WindowEditClient(
 							controllerclient.getClientbyId(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()));
 				} catch (Exception err) {
-					lblError.setText("Aucun client selectionné pour le modifier");
+					lblError.setText("Aucun client sélectionné pour le modifier");
 				}
 			}
 		});
@@ -286,7 +286,7 @@ public class WindowClients implements Observer {
 					new WindowAddAnimal(
 							controllerclient.getClientbyId(table_1.getValueAt(table_1.getSelectedRow(), 0).toString()));
 				} catch (Exception err) {
-					lblError.setText("Aucun client selectionné pour luil ajouter un animal");
+					lblError.setText("Aucun client sélectionné pour luil ajouter un animal");
 				}
 			}
 		});
@@ -295,7 +295,7 @@ public class WindowClients implements Observer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (table_2.getSelectedRow() == -1 && table_2.getSelectedColumn() == -1) {
-					lblError.setText("Aucun animal sélectionner !");
+					lblError.setText("Aucun animal sélectionné !");
 				} else {
 					lblError.setText("");
 					new WindowEditAnimal(
@@ -313,7 +313,7 @@ public class WindowClients implements Observer {
 					new WindowRemove(
 							controlleranimal.getAnimalById(table_2.getValueAt(table_2.getSelectedRow(), 0).toString()));
 				} catch (Exception err) {
-					lblError.setText("Aucun animal selectionné pour le modifier");
+					lblError.setText("Aucun animal sélectionné pour le modifier");
 				}
 			}
 		});

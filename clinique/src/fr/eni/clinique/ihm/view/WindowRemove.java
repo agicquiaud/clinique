@@ -77,6 +77,16 @@ public class WindowRemove {
 		gbc_btnPopupDelete.gridy = 3;
 		PopupDelete.getContentPane().add(btnPopupDelete, gbc_btnPopupDelete);
 
+		JButton btnPopupCancelDelete = new JButton("Non");
+		GridBagConstraints gbc_btnPopupCancelDelete = new GridBagConstraints();
+		gbc_btnPopupCancelDelete.insets = new Insets(0, 0, 5, 5);
+		gbc_btnPopupCancelDelete.gridx = 3;
+		gbc_btnPopupCancelDelete.gridy = 3;
+		PopupDelete.getContentPane().add(btnPopupCancelDelete, gbc_btnPopupCancelDelete);
+
+		PopupDelete.setVisible(true);
+		
+		//Actions Listeners
 		btnPopupDelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -91,18 +101,7 @@ public class WindowRemove {
 				}
 				PopupDelete.dispose();
 			}
-		});
-
-		JButton btnPopupCancelDelete = new JButton("Non");
-		GridBagConstraints gbc_btnPopupCancelDelete = new GridBagConstraints();
-		gbc_btnPopupCancelDelete.insets = new Insets(0, 0, 5, 5);
-		gbc_btnPopupCancelDelete.gridx = 3;
-		gbc_btnPopupCancelDelete.gridy = 3;
-		PopupDelete.getContentPane().add(btnPopupCancelDelete, gbc_btnPopupCancelDelete);
-
-		PopupDelete.setVisible(true);
-		
-		// Actions Listeners
+		});	
 		btnPopupCancelDelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
