@@ -10,7 +10,7 @@ public class AppliTestIHM {
 			@Override
 			public void run() {
 				
-				new WindowLogin();
+				new WindowAgenda("ronan");
 			}
 		});
 	}
