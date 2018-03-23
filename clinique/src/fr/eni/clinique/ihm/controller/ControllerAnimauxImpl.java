@@ -19,8 +19,7 @@ public class ControllerAnimauxImpl extends Observable implements ControllerAnima
 	private Animaux animal;
 
 	ControllerAnimauxImpl() {
-		mgerAnimal = AnimalManagerSingleton.getinstance(); // Instance
-															// AnimalImpl
+		mgerAnimal = AnimalManagerSingleton.getinstance(); // Instance AnimalImpl
 		mgerClient = ClientsManagerSingleton.getinstance();
 	}
 

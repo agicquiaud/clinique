@@ -26,7 +26,7 @@ import fr.eni.clinique.ihm.controller.ControllerClients;
 import fr.eni.clinique.ihm.controller.ControllerClientsSingleton;
 import fr.eni.clinique.ihm.regex.Validator;
 
-public class WindowEditAnimal extends WindowClients {
+public class WindowEditAnimal{
 
 	private JDialog EditAnimal = new JDialog();
 	private JTextField textFieldNomAnimalEditAnimal;
@@ -36,7 +36,6 @@ public class WindowEditAnimal extends WindowClients {
 	private ControllerAnimaux controlleranimal;
 	private ControllerClients controllerclient;
 	private DefaultComboBoxModel<String> comboboxModel;
-	private String[] entetes = { "CodeAnimal", "Nom", "Sexe", "Couleur", "Race", "Espece" };
 
 	public WindowEditAnimal(Animaux animal) {
 		controlleranimal = ControllerAnimauxSingleton.getinstance();
@@ -239,7 +238,7 @@ public class WindowEditAnimal extends WindowClients {
 		gbc_textFieldAntecedentsEditAnimal.gridy = 7;
 		EditAnimal.getContentPane().add(textFieldAntecedentsEditAnimal, gbc_textFieldAntecedentsEditAnimal);
 		
-		JLabel lblErreur  = new JLabel("error");
+		JLabel lblErreur  = new JLabel("");
 		GridBagConstraints gbc_lblErreur= new GridBagConstraints();
 		gbc_lblErreur.insets = new Insets(0, 0, 5, 5);
 		gbc_lblErreur.gridx = 0;
@@ -272,11 +271,6 @@ public class WindowEditAnimal extends WindowClients {
 								comboBoxRaceEditAnimal.getSelectedItem().toString(),
 								comboBoxEspeceEditAnimal.getSelectedItem().toString(), lblNCodeEditAnimal.getText(),
 								textFieldTatouageEditAnimal.getText(), textFieldAntecedentsEditAnimal.getText());
-						// setUpTableData2(
-						// controlleranimal.getListByClient(table_1.getValueAt(table_1.getSelectedRow(),
-						// 0).toString()),
-						// entetes2);
-						setUpTableAnimal(controlleranimal.getListByClient(animal.getCodeClient().toString()), entetes);
 						EditAnimal.dispose();
 					}else{
 						lblErreur.setText("Format du tatouage incorrect ex : (2) ABC 123");

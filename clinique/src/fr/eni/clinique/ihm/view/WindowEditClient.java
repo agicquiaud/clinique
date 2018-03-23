@@ -18,7 +18,7 @@ import fr.eni.clinique.ihm.controller.ControllerClients;
 import fr.eni.clinique.ihm.controller.ControllerClientsSingleton;
 import fr.eni.clinique.ihm.regex.Validator;
 
-public class WindowEditClient extends WindowClients{
+public class WindowEditClient{
 	
 	private JDialog EditClient = new JDialog();	
 	private JTextField textFieldNomClientEdit;
@@ -32,7 +32,6 @@ public class WindowEditClient extends WindowClients{
 	private JTextField textFieldEmailClientEdit;
 	private JTextField textFieldRemarqueClientEdit;
 	private ControllerClients controllerclient;
-	private String[] entetes = { "CodeClient", "Prenom", "Nom", "Code Postal", "Ville" };
 	
 	public WindowEditClient(Clients client){
 		controllerclient = ControllerClientsSingleton.getinstance();
@@ -242,7 +241,7 @@ public class WindowEditClient extends WindowClients{
 		gbc_textFieldNumTelEdit.gridy = 9;
 		EditClient.getContentPane().add(textFieldNumTelClientEdit, gbc_textFieldNumTelEdit);
 		
-		JLabel lblerror = new JLabel("Erreur Format Numéro Téléphone");
+		JLabel lblerror = new JLabel("");
 		GridBagConstraints gbc_lblerror  = new GridBagConstraints();
 		gbc_lblerror .insets = new Insets(0, 0, 5, 5);
 		gbc_lblerror .gridx = 3;
@@ -287,7 +286,6 @@ public class WindowEditClient extends WindowClients{
 										textFieldVilleClientEdit.getText(), textFieldNumTelClientEdit.getText(),
 										textFieldAssuranceClientEdit.getText(), textFieldEmailClientEdit.getText(),
 										textFieldRemarqueClientEdit.getText());
-								setUpTableClient(controllerclient.getList(), entetes);
 								EditClient.dispose();
 							}else{
 								lblerror.setText("Erreur Format Mail");
