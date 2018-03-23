@@ -269,8 +269,8 @@ public class WindowEditAnimal{
 						controlleranimal.updateAnimal(animal.getCodeAnimal().toString(), textFieldNomAnimalEditAnimal.getText(),
 								comboboxgenreEditAnimal.getSelectedItem().toString(), textFieldCouleurEditAnimal.getText(),
 								comboBoxRaceEditAnimal.getSelectedItem().toString(),
-								comboBoxEspeceEditAnimal.getSelectedItem().toString(), lblNCodeEditAnimal.getText(),
-								textFieldTatouageEditAnimal.getText(), textFieldAntecedentsEditAnimal.getText());
+								comboBoxEspeceEditAnimal.getSelectedItem().toString(), animal.getCodeClient().toString(),
+								textFieldAntecedentsEditAnimal.getText(), textFieldTatouageEditAnimal.getText());
 						EditAnimal.dispose();
 					}else{
 						lblErreur.setText("Format du tatouage incorrect ex : (2) ABC 123");
