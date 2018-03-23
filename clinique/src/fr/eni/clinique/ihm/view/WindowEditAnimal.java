@@ -173,6 +173,7 @@ public class WindowEditAnimal{
 		EditAnimal.getContentPane().add(lblEspeceEditAnimal, gbc_lblEspeceEditAnimal);
 
 		JComboBox<String> comboBoxEspeceEditAnimal = new JComboBox<String>(controlleranimal.getEspece());
+		comboBoxEspeceEditAnimal.setSelectedItem(animal.getEspece());
 		GridBagConstraints gbc_comboBoxEspeceEditAnimal = new GridBagConstraints();
 		gbc_comboBoxEspeceEditAnimal.gridwidth = 2;
 		comboBoxEspeceEditAnimal.setBackground(new Color(255, 255, 255));
@@ -193,6 +194,7 @@ public class WindowEditAnimal{
 
 		JComboBox<String> comboBoxRaceEditAnimal = new JComboBox<String>(
 				controlleranimal.getRace(comboBoxEspeceEditAnimal.getSelectedItem().toString()));
+		comboBoxRaceEditAnimal.setSelectedItem(animal.getRace());
 		GridBagConstraints gbc_comboBoxRaceEditAnimal = new GridBagConstraints();
 		gbc_comboBoxRaceEditAnimal.gridwidth = 2;
 		comboBoxRaceEditAnimal.setBackground(new Color(255, 255, 255));
