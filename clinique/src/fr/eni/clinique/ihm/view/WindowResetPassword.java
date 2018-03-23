@@ -25,51 +25,42 @@ public class WindowResetPassword {
 	public WindowResetPassword(User user) {
 		
 		controllerPersonnels = ControllerPersonnelsSingleton.getinstance();
-		ResetMdp.setSize(450, 300);
+		ResetMdp.setTitle("R\u00E9initialisation de mot de passe");
+		ResetMdp.setSize(460, 200);
 		ResetMdp.setResizable(false);
 		ResetMdp.setLocationRelativeTo(null);
 		JLabel bckground = new JLabel(new ImageIcon("ressource/backgroung.jpg"));
 		ResetMdp.setContentPane(bckground);		
 		
 		GridBagLayout gridBagLayoutModalReset = new GridBagLayout();
-		gridBagLayoutModalReset.columnWidths = new int[] { 50, 0, 0, 0, 0, 0, 140, 0, 0, 0, 0, 100, 0 };
-		gridBagLayoutModalReset.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-		gridBagLayoutModalReset.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0,
-				0.0, Double.MIN_VALUE };
-		gridBagLayoutModalReset.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+		gridBagLayoutModalReset.columnWidths = new int[] { 25, 0, 35, 160, 68, 30, 0 };
+		gridBagLayoutModalReset.rowHeights = new int[] { 25, 25, 0, 35, 0, 0, 0 };
+		gridBagLayoutModalReset.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gridBagLayoutModalReset.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
 				Double.MIN_VALUE };
 		ResetMdp.getContentPane().setLayout(gridBagLayoutModalReset);
-
-		JLabel lblResetMdp = new JLabel("REINITIALISER LE MOT DE PASSE");
-		GridBagConstraints gbc_lblResetMdp = new GridBagConstraints();
-		gbc_lblResetMdp.gridwidth = 12;
-		gbc_lblResetMdp.insets = new Insets(0, 0, 5, 0);
-		gbc_lblResetMdp.gridx = 0;
-		gbc_lblResetMdp.gridy = 1;
-		ResetMdp.getContentPane().add(lblResetMdp, gbc_lblResetMdp);
 
 		JLabel lblMdp = new JLabel("Nouveau mot de passe");
 		GridBagConstraints gbc_lblMdp = new GridBagConstraints();
 		gbc_lblMdp.insets = new Insets(0, 0, 5, 5);
-		gbc_lblMdp.gridx = 2;
-		gbc_lblMdp.gridy = 4;
+		gbc_lblMdp.gridx = 1;
+		gbc_lblMdp.gridy = 2;
 		ResetMdp.getContentPane().add(lblMdp, gbc_lblMdp);
-
-		textField = new JTextField();
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.gridwidth = 7;
-		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 4;
-		gbc_textField.gridy = 4;
-		ResetMdp.getContentPane().add(textField, gbc_textField);
-		textField.setColumns(10);
+		
+				textField = new JTextField();
+				GridBagConstraints gbc_textField = new GridBagConstraints();
+				gbc_textField.insets = new Insets(0, 0, 5, 5);
+				gbc_textField.fill = GridBagConstraints.HORIZONTAL;
+				gbc_textField.gridx = 3;
+				gbc_textField.gridy = 2;
+				ResetMdp.getContentPane().add(textField, gbc_textField);
+				textField.setColumns(10);
 
 		JButton btnValiderModalReset = new JButton("VALIDER");
 		GridBagConstraints gbc_btnValiderModalReset = new GridBagConstraints();
 		gbc_btnValiderModalReset.insets = new Insets(0, 0, 5, 5);
-		gbc_btnValiderModalReset.gridx = 10;
-		gbc_btnValiderModalReset.gridy = 7;
+		gbc_btnValiderModalReset.gridx = 4;
+		gbc_btnValiderModalReset.gridy = 4;
 		ResetMdp.getContentPane().add(btnValiderModalReset, gbc_btnValiderModalReset);
 		
 		ResetMdp.setVisible(true);

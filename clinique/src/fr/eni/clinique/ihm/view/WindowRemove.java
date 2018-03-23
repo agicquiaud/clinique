@@ -38,7 +38,7 @@ public class WindowRemove {
 		controllerClient = ControllerClientsSingleton.getinstance();
 		controllerPersonnels = ControllerPersonnelsSingleton.getinstance();
 		PopupDelete.setTitle("Suppression");
-		PopupDelete.setSize(340, 120);
+		PopupDelete.setSize(315, 150);
 		PopupDelete.setResizable(false);
 		PopupDelete.setLocationRelativeTo(null);
 		PopupDelete.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -46,20 +46,20 @@ public class WindowRemove {
 		PopupDelete.setContentPane(bckground);
 
 		GridBagLayout gbl_PopupDeleteClient = new GridBagLayout();
-		gbl_PopupDeleteClient.columnWidths = new int[] { 100, 0, 40, 55, 100, 0 };
-		gbl_PopupDeleteClient.rowHeights = new int[] { 0, 0, 0, 0, 0, 0 };
-		gbl_PopupDeleteClient.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+		gbl_PopupDeleteClient.columnWidths = new int[] { 35, 110, 100, 35, 0 };
+		gbl_PopupDeleteClient.rowHeights = new int[] { 35, 0, 25, 0, 0, 0 };
+		gbl_PopupDeleteClient.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		gbl_PopupDeleteClient.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		PopupDelete.getContentPane().setLayout(gbl_PopupDeleteClient);
 
-		JLabel lbltesvousSurDe = new JLabel();
-		GridBagConstraints gbc_lbltesvousSurDe = new GridBagConstraints();
-		gbc_lbltesvousSurDe.fill = GridBagConstraints.BOTH;
-		gbc_lbltesvousSurDe.gridwidth = 3;
-		gbc_lbltesvousSurDe.insets = new Insets(0, 0, 5, 5);
-		gbc_lbltesvousSurDe.gridx = 1;
-		gbc_lbltesvousSurDe.gridy = 1;
-		PopupDelete.getContentPane().add(lbltesvousSurDe, gbc_lbltesvousSurDe);
+		JLabel lbltesvousSurDe = new JLabel("");
+		GridBagConstraints gbc_label = new GridBagConstraints();
+		gbc_label.gridwidth = 2;
+		gbc_label.insets = new Insets(0, 0, 5, 5);
+		gbc_label.gridx = 1;
+		gbc_label.gridy = 1;
+		PopupDelete.getContentPane().add(lbltesvousSurDe, gbc_label);
+
 		if (obj instanceof Clients) {
 			lbltesvousSurDe.setText("Etes-vous sur de vouloir archiver ce client ?");
 		} else if (obj instanceof Animaux) {
@@ -80,13 +80,17 @@ public class WindowRemove {
 		JButton btnPopupCancelDelete = new JButton("Non");
 		GridBagConstraints gbc_btnPopupCancelDelete = new GridBagConstraints();
 		gbc_btnPopupCancelDelete.insets = new Insets(0, 0, 5, 5);
-		gbc_btnPopupCancelDelete.gridx = 3;
+		gbc_btnPopupCancelDelete.gridx = 2;
 		gbc_btnPopupCancelDelete.gridy = 3;
 		PopupDelete.getContentPane().add(btnPopupCancelDelete, gbc_btnPopupCancelDelete);
+		btnPopupCancelDelete.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PopupDelete.dispose();
+			}
+		});
 
-		PopupDelete.setVisible(true);
-		
-		//Actions Listeners
+		// Actions Listeners
 		btnPopupDelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -101,12 +105,8 @@ public class WindowRemove {
 				}
 				PopupDelete.dispose();
 			}
-		});	
-		btnPopupCancelDelete.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				PopupDelete.dispose();
-			}
 		});
+
+		PopupDelete.setVisible(true);
 	}
 }

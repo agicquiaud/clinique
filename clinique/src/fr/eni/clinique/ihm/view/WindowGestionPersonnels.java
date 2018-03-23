@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 import fr.eni.clinique.ihm.controller.ControllerPersonnels;
 import fr.eni.clinique.ihm.controller.ControllerPersonnelsSingleton;
 
-public class WindowGestionPersonnels implements Observer{
+public class WindowGestionPersonnels implements Observer {
 
 	private JFrame frameGestionPersonnel;
 	private JTable table;
@@ -31,7 +31,7 @@ public class WindowGestionPersonnels implements Observer{
 	private final String[] ENTETES = { "Nom", "Mot de passe", "Role" };
 
 	public WindowGestionPersonnels() {
-		
+
 		controllerPersonnels = ControllerPersonnelsSingleton.getinstance();
 		((Observable) controllerPersonnels).addObserver(this);
 		frameGestionPersonnel = new JFrame();
@@ -42,24 +42,24 @@ public class WindowGestionPersonnels implements Observer{
 		frameGestionPersonnel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JLabel bckground = new JLabel(new ImageIcon("ressource/backgroung.jpg"));
 		frameGestionPersonnel.setContentPane(bckground);
-	
+
 		JMenuBar menuBar = new JMenuBar();
 		frameGestionPersonnel.setJMenuBar(menuBar);
-		
+
 		JMenu mnConnexion = new JMenu("Menu");
 		menuBar.add(mnConnexion);
-		
+
 		JMenuItem mntmDeconnexion = new JMenuItem("Deconnexion");
 		mnConnexion.add(mntmDeconnexion);
-		
+
 		JMenuItem mntmRetour = new JMenuItem("Retour");
 		mnConnexion.add(mntmRetour);
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 25, 25, 78, 112, 75, 146, 0, 0 };
-		gridBagLayout.rowHeights = new int[] { 0, 24, 21, 207, 24 };
+		gridBagLayout.rowHeights = new int[] { 0, 24, 21, 207, 0, 24 };
 		gridBagLayout.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
-		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0 };
+		gridBagLayout.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 		frameGestionPersonnel.getContentPane().setLayout(gridBagLayout);
 
 		JButton btnAjouter = new JButton("AJOUTER");
@@ -92,7 +92,7 @@ public class WindowGestionPersonnels implements Observer{
 			}
 		};
 		table.setModel(tableModel);
-		
+
 		JScrollPane scrollPane = new JScrollPane(table);
 		GridBagConstraints gbc_scrollPane = new GridBagConstraints();
 		gbc_scrollPane.fill = GridBagConstraints.BOTH;
@@ -101,19 +101,27 @@ public class WindowGestionPersonnels implements Observer{
 		gbc_scrollPane.gridx = 1;
 		gbc_scrollPane.gridy = 3;
 		frameGestionPersonnel.getContentPane().add(scrollPane, gbc_scrollPane);
-		
+
+		JLabel lblError = new JLabel("");
+		GridBagConstraints gbc_lblError = new GridBagConstraints();
+		gbc_lblError.gridwidth = 2;
+		gbc_lblError.insets = new Insets(0, 0, 5, 5);
+		gbc_lblError.gridx = 1;
+		gbc_lblError.gridy = 4;
+		frameGestionPersonnel.getContentPane().add(lblError, gbc_lblError);
+
 		JLabel lblNewLabelGP = new JLabel("");
 		GridBagConstraints gbc_lblNewLabelGP = new GridBagConstraints();
 		gbc_lblNewLabelGP.insets = new Insets(0, 0, 0, 5);
 		gbc_lblNewLabelGP.anchor = GridBagConstraints.WEST;
 		gbc_lblNewLabelGP.gridwidth = 5;
 		gbc_lblNewLabelGP.gridx = 1;
-		gbc_lblNewLabelGP.gridy = 4;
+		gbc_lblNewLabelGP.gridy = 5;
 		frameGestionPersonnel.getContentPane().add(lblNewLabelGP, gbc_lblNewLabelGP);
 
 		frameGestionPersonnel.setVisible(true);
-		
-		//Actions Listeners
+
+		// Actions Listeners
 		mntmDeconnexion.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -121,7 +129,7 @@ public class WindowGestionPersonnels implements Observer{
 				new WindowLogin();
 			}
 		});
-		
+
 		mntmRetour.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -129,10 +137,11 @@ public class WindowGestionPersonnels implements Observer{
 				new WindowAccueilAdmin();
 			}
 		});
-		
+
 		btnAjouter.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				lblError.setText("");
 				new WindowAddPersonnel();
 			}
 		});
@@ -140,14 +149,26 @@ public class WindowGestionPersonnels implements Observer{
 		btnReinitialiser.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new WindowResetPassword(controllerPersonnels.getUserByNom(table.getValueAt(table.getSelectedRow(), 0).toString()));	
+				try {
+					lblError.setText("");
+					new WindowResetPassword(
+							controllerPersonnels.getUserByNom(table.getValueAt(table.getSelectedRow(), 0).toString()));
+				} catch (Exception err) {
+					lblError.setText("Aucun personnel sélectionné");
+				}
 			}
 		});
 
 		btnSupprimer.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-					new WindowRemove(controllerPersonnels.getUserByNom(table.getValueAt(table.getSelectedRow(), 0).toString()));
+				try {
+					lblError.setText("");
+					new WindowRemove(
+							controllerPersonnels.getUserByNom(table.getValueAt(table.getSelectedRow(), 0).toString()));
+				} catch (Exception err) {
+					lblError.setText("Aucun personnel sélectionné");
+				}
 			}
 		});
 	}
