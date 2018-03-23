@@ -273,6 +273,7 @@ public class WindowPriseDeRendezVous implements Observer{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				error.setText("");
 				setUpTableData(CA.getTabAgenda(((User) CBVet.getSelectedItem()).getLogin(),
 						sdf.format(datePicker.getModel().getValue())), ENTETES);
 
@@ -308,6 +309,7 @@ public class WindowPriseDeRendezVous implements Observer{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try{
+					error.setText("");
 					// Conversion date
 					String[] str = sdf.format(datePicker.getModel().getValue()).split("/");
 					String[] strhm = table.getValueAt(table.getSelectedRow(), 0).toString().split(":");
@@ -380,6 +382,7 @@ public class WindowPriseDeRendezVous implements Observer{
 		btnAddClient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				error.setText("");
 				new WindowAddClient();
 			}
 		});
